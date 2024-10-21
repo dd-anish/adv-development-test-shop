@@ -43,6 +43,9 @@
         "heading",
         "button"
       ],
+      "custom_css": [
+        "banner__buttons a {font-weight: 900; font-size: 20px;}"
+      ],
       "settings": {
         "image": "shopify://shop_images/375919993_1028328158462025_2982595241498309255_n.jpg",
         "image_overlay_opacity": 30,
@@ -170,7 +173,7 @@
       "custom_css": [
         ".icon-wrap {display: none;}",
         ".slider-buttons {display: none;}",
-        ".card__content h3{font-weight: 800;}"
+        ".card__content h3 {font-weight: 800;}"
       ],
       "settings": {
         "title": "CATEGORIEËN",
@@ -184,12 +187,61 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "image_banner_FBX6ta": {
+      "type": "image-banner",
+      "blocks": {
+        "text_CxVVqR": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Het krachtigste elektrische waterpistool</strong>",
+            "text_style": "subtitle"
+          }
+        },
+        "heading_X9YdMa": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>SPYRA THREE</strong>",
+            "heading_size": "h2"
+          }
+        },
+        "buttons_qUTA7B": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "BEKIJK DIT PRODUCT",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "text_CxVVqR",
+        "heading_X9YdMa",
+        "buttons_qUTA7B"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/439366_99_09.jpg",
+        "image_overlay_opacity": 30,
+        "image_height": "large",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-21817ef0-4f10-4dd3-93de-ece7ea6d7d5d",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
     "image_banner_7ANFDr",
-    "collection_list_fgNipn"
+    "collection_list_fgNipn",
+    "image_banner_FBX6ta"
   ]
 }

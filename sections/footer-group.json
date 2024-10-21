@@ -1,1 +1,73 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":true,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand_information_QxXtCU": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": false
+          }
+        },
+        "text_9qgfLb": {
+          "type": "text",
+          "settings": {
+            "heading": "Koptekst",
+            "subtext": "<p>Deel contactgegevens, winkelgegevens en merkcontent met klanten.</p>"
+          }
+        },
+        "link_list_xgKFHx": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Snelle links",
+            "menu": "footer"
+          }
+        },
+        "link_list_pGHbGd": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Snelle links",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "brand_information_QxXtCU",
+        "text_9qgfLb",
+        "link_list_xgKFHx",
+        "link_list_pGHbGd"
+      ],
+      "custom_css": [
+        "footer-block__brand-info {display: flex; justify-content: center;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-89272fcc-ec3f-4067-9a14-72d8f67af67d",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": false,
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
