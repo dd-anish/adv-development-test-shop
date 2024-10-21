@@ -1,21 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "image_banner": {
       "type": "image-banner",
       "blocks": {
+        "text_tdknid": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Start jouw avontuur hier?</strong>",
+            "text_style": "subtitle"
+          }
+        },
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "heading": "<strong>Browse our latest products</strong>",
+            "heading_size": "h2"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
+            "button_label_1": "Shop Nu",
             "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
+            "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false
@@ -23,17 +39,19 @@
         }
       },
       "block_order": [
+        "text_tdknid",
         "heading",
         "button"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
+        "image": "shopify://shop_images/375919993_1028328158462025_2982595241498309255_n.jpg",
+        "image_overlay_opacity": 30,
         "image_height": "large",
         "desktop_content_position": "bottom-center",
         "show_text_box": false,
-        "image_behavior": "none",
         "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-21817ef0-4f10-4dd3-93de-ece7ea6d7d5d",
+        "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
         "show_text_below": false
@@ -42,20 +60,19 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
+        "title": "<a href=\"/collections/watersport\" target=\"_blank\" title=\"Watersport\">ONTDEK ONZE</a> BESTSELLERS",
+        "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
         "collection": "all",
         "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "enable_desktop_slider": true,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -63,13 +80,111 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": true,
         "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_7ANFDr": {
+      "type": "image-banner",
+      "blocks": {
+        "text_i4NrJt": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Heb je al gehoord van een</strong>",
+            "text_style": "subtitle"
+          }
+        },
+        "heading_PJWe4H": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>BUG-A-SALT?</strong>",
+            "heading_size": "h2"
+          }
+        },
+        "buttons_79hBmM": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "BEKIJK DIT PRODUCT",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "text_i4NrJt",
+        "heading_PJWe4H",
+        "buttons_79hBmM"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/439366_99_09.jpg",
+        "image_overlay_opacity": 30,
+        "image_height": "large",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-21817ef0-4f10-4dd3-93de-ece7ea6d7d5d",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "collection_list_fgNipn": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_xzipGE": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "archery-tag"
+          }
+        },
+        "featured_collection_HQ8pA7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bug-a-salt"
+          }
+        },
+        "featured_collection_RihkKX": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bumperballs"
+          }
+        },
+        "featured_collection_9MzwRk": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "xl-games"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_xzipGE",
+        "featured_collection_HQ8pA7",
+        "featured_collection_RihkKX",
+        "featured_collection_9MzwRk"
+      ],
+      "settings": {
+        "title": "CATEGORIEËN",
+        "heading_size": "h1",
+        "image_ratio": "portrait",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
         "padding_bottom": 36
       }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "image_banner_7ANFDr",
+    "collection_list_fgNipn"
   ]
 }
