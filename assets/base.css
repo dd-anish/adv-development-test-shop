@@ -275,9 +275,9 @@ h5,
 /* Between Small (20px) and Medium (40px) */
 .hsm-md{
   /* for simple font-size: calc(var(--font-heading-scale)* 3rem) */
-  font-size: calc(var(--font-heading-scale)* 3rem); 
+  font-size: clamp(calc(var(--font-heading-scale) * 2.2rem),3.8vw,calc(var(--font-heading-scale) * 4rem)); 
 
-  /* complex font-size => font-size: clamp(calc(var(--font-heading-scale) * 2.5rem),3.2vw,calc(var(--font-heading-scale) * 4rem)); ; */
+  /* complex font-size => font-size: clamp(calc(var(--font-heading-scale) * 2.2rem),3.8vw,calc(var(--font-heading-scale) * 4rem)) */
 }
 
 
