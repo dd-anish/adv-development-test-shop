@@ -490,3 +490,55 @@
     color: currentColor;
   }
 }
+
+
+/***** Custom CSS for Image Banner Section *****/
+
+.banner__box .banner__heading {
+  text-shadow: 0px 4px 10px black;
+  font-weight: 800;
+  line-height: 0.8;
+}
+
+/* 
+.banner__heading.h2 {
+    font-size: 16px;
+}
+
+.banner__heading.h1 {
+    font-size: 24px;
+} */
+
+.banner__buttons a {
+  font-weight: 900;
+  font-size: 16px;
+  text-transform: uppercase;
+  min-height: 0px;
+  padding: 10px 20px;
+}
+
+/* Desktop Image Banner */
+@media only screen and (min-width: 750px) {
+
+  .banner__heading.h2 {
+      font-size: 24px;
+  }
+
+  .banner__heading.hsm {
+      font-size: 36px;
+  }
+
+  .banner__box .banner__heading {
+    line-height: 0.7;
+  }
+
+  .banner__buttons {
+    margin-top: 40px;
+  }
+
+  .banner__buttons a {
+    font-size: 18px;
+    font-weight: bolder;
+    padding: 15px 25px;
+  }
+}
