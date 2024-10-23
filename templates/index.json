@@ -12,25 +12,25 @@
     "image_banner": {
       "type": "image-banner",
       "blocks": {
-        "text_tdknid": {
-          "type": "text",
-          "settings": {
-            "text": "<strong>Start jouw avontuur hier?</strong>",
-            "text_style": "subtitle"
-          }
-        },
-        "heading": {
+        "heading_TBXELt": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>Browse our latest products</strong>",
+            "heading": "Start your adventure here?",
             "heading_size": "h2"
+          }
+        },
+        "heading_LB6LMa": {
+          "type": "heading",
+          "settings": {
+            "heading": "Browse our latest products",
+            "heading_size": "hsm"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop Nu",
-            "button_link_1": "shopify://collections/all",
+            "button_label_1": "Shop Now",
+            "button_link_1": "shopify://collections",
             "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
@@ -39,8 +39,8 @@
         }
       },
       "block_order": [
-        "text_tdknid",
-        "heading",
+        "heading_TBXELt",
+        "heading_LB6LMa",
         "button"
       ],
       "custom_css": [
@@ -64,7 +64,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "<a href=\"/collections/watersport\" target=\"_blank\" title=\"Watersport\">ONTDEK ONZE</a> BESTSELLERS",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
