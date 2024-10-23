@@ -267,10 +267,16 @@ h5,
   word-break: break-word;
 }
 
-/* Between Small (20px) and Medium (40px) */
-.hsm{
-  font-size: calc(var(--font-heading-scale)* 2.5rem);
+/* Less than Small (20px), Medium (40px) */
+.hxsm{
+  font-size: calc(var(--font-heading-scale)* 1.6rem);
 }
+
+/* Between Small (20px), Medium (40px) */
+.hsm-md{
+  font-size: clamp(calc(var(--font-heading-scale) * 2rem), 5vw, calc(var(--font-heading-scale) * 4rem));
+}
+
 
 .hxxl {
   font-size: clamp(calc(var(--font-heading-scale) * 5.6rem), 14vw, calc(var(--font-heading-scale) * 7.2rem));
