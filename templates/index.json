@@ -16,14 +16,14 @@
           "type": "heading",
           "settings": {
             "heading": "Start your adventure here?",
-            "heading_size": "h2"
+            "heading_size": "hxsm"
           }
         },
         "heading_LB6LMa": {
           "type": "heading",
           "settings": {
             "heading": "Browse our latest products",
-            "heading_size": "hsm"
+            "heading_size": "h2"
           }
         },
         "button": {
@@ -62,6 +62,9 @@
     },
     "featured_collection": {
       "type": "featured-collection",
+      "custom_css": [
+
+      ],
       "settings": {
         "title": "<a href=\"/collections/watersport\" target=\"_blank\" title=\"Watersport\">ONTDEK ONZE</a> BESTSELLERS",
         "heading_size": "h2",
@@ -70,18 +73,18 @@
         "description_style": "body",
         "collection": "all",
         "products_to_show": 8,
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "quick_add": "none",
+        "quick_add": "standard",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 44,
@@ -91,17 +94,17 @@
     "image_banner_7ANFDr": {
       "type": "image-banner",
       "blocks": {
-        "text_i4NrJt": {
-          "type": "text",
+        "heading_WGXptw": {
+          "type": "heading",
           "settings": {
-            "text": "<strong>Heb je al gehoord van een</strong>",
-            "text_style": "subtitle"
+            "heading": "Heb je al gehoord van een",
+            "heading_size": "hxsm"
           }
         },
         "heading_PJWe4H": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>BUG-A-SALT?</strong>",
+            "heading": "BUG-A-SALT?",
             "heading_size": "h2"
           }
         },
@@ -118,7 +121,7 @@
         }
       },
       "block_order": [
-        "text_i4NrJt",
+        "heading_WGXptw",
         "heading_PJWe4H",
         "buttons_79hBmM"
       ],
@@ -191,11 +194,11 @@
     "image_banner_FBX6ta": {
       "type": "image-banner",
       "blocks": {
-        "text_CxVVqR": {
-          "type": "text",
+        "heading_afaBb4": {
+          "type": "heading",
           "settings": {
-            "text": "<strong>Het krachtigste elektrische waterpistool</strong>",
-            "text_style": "subtitle"
+            "heading": "Het krachtigste elektrische waterpistool",
+            "heading_size": "hxsm"
           }
         },
         "heading_X9YdMa": {
@@ -218,7 +221,7 @@
         }
       },
       "block_order": [
-        "text_CxVVqR",
+        "heading_afaBb4",
         "heading_X9YdMa",
         "buttons_qUTA7B"
       ],
