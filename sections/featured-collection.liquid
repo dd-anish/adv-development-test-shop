@@ -113,7 +113,8 @@
               show_rating: section.settings.show_rating,
               skip_styles: skip_card_product_styles,
               section_id: section.id,
-              quick_add: section.settings.quick_add
+              quick_add: section.settings.quick_add,
+              truncate_description: section.settings.truncate_description
             %}
           </li>
           {%- assign skip_card_product_styles = true -%}
@@ -411,6 +412,12 @@
       "default": "default",
       "label": "t:sections.all.image_shape.label",
       "info": "t:sections.all.image_shape.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "truncate_description",
+      "default": false,
+      "label": "Truncate Description to have same height of Cards"
     },
     {
       "type": "checkbox",

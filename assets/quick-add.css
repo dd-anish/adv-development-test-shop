@@ -1,7 +1,7 @@
 .quick-add {
   position: relative;
   grid-row-start: 4;
-  margin: 0 0 1rem;
+  /* margin: 0 0 1rem; */
   z-index: 1;
 }
 
@@ -355,8 +355,9 @@ quick-add-modal .product-form__buttons {
 }
 
 .quick-add__submit {
-  padding: 0.8rem;
-  min-width: 100%;
+  padding: 0.5rem 2rem;
+  min-width: 20px;
+  min-height: 10px;
   box-sizing: border-box;
 }
 
