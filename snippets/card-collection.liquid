@@ -31,7 +31,7 @@
   endif
 -%}
 
-<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
+<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %} collection-card-wrapper {% endif %}">
   <div
     class="
       card
@@ -83,7 +83,7 @@
       {%- else -%}
         <div class="card__content">
           <div class="card__information">
-            <h3 class="card__heading">
+            <h3 class="card__heading h2 font-body-bold">
               <a
                 {% if card_collection == blank %}
                   role="link" aria-disabled="true"
@@ -119,7 +119,7 @@
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
       <div class="card__content">
         <div class="card__information">
-          <h3 class="card__heading">
+          <h3 class="card__heading h2 font-body-bold">
             <a
               {% if card_collection == blank %}
                 role="link" aria-disabled="true"
@@ -154,7 +154,7 @@
     {%- if card_collection == blank -%}
       <div class="card__content">
         <div class="card__information">
-          <h3 class="card__heading card__heading--placeholder">
+          <h3 class="card__heading card__heading--placeholder h2 font-body-bold">
             <a role="link" aria-disabled="true" class="full-unstyled-link">
               {{ 'onboarding.collection_title' | t }}
               <span class="icon-wrap">
