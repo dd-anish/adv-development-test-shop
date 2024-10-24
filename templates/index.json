@@ -63,7 +63,8 @@
     "featured_collection": {
       "type": "featured-collection",
       "custom_css": [
-
+        ".slider-buttons {display: none;}",
+        "@media screen and (min-width: 750px) {.slider-buttons {display: flex; }}"
       ],
       "settings": {
         "title": "<a href=\"/collections/watersport\" target=\"_blank\" title=\"Watersport\">ONTDEK ONZE</a> BESTSELLERS",
@@ -81,6 +82,7 @@
         "color_scheme": "scheme-1",
         "image_ratio": "square",
         "image_shape": "default",
+        "truncate_description": true,
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
