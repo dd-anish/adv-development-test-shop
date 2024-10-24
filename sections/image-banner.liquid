@@ -119,7 +119,7 @@
                   {% else %}
                   href="{{ block.settings.button_link_1 }}"
                   {% endif %}
-                  class="button {% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary {% endif %}">
+                  class="button button-bold uppercase {% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary {% endif %}">
                   {{- block.settings.button_label_1 | escape -}}
                 </a>
               {%- endif -%}
@@ -131,7 +131,7 @@
                   {% else %}
                   href="{{ block.settings.button_link_2 }}"
                   {% endif %}
-                  class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}">
+                  class="button button-bold uppercase {% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}">
                   {{- block.settings.button_label_2 | escape -}}
                 </a>
               {%- endif -%}
@@ -328,16 +328,12 @@
             "id": "heading_size",
             "options": [
               {
-                "value": "hxsm",
+                "value": "hxs",
                 "label": "Extra Small"
               },
               {
                 "value": "h2",
                 "label": "t:sections.all.heading_size.options__1.label"
-              },
-              {
-                "value": "hsm-md",
-                "label":"Small to Medium"
               },
               {
                 "value": "h1",
@@ -440,13 +436,15 @@
               "heading_size": "h2"
             }
 
-          }, {
+          }, 
+          {
             "type": "heading",
             "settings": {
               "heading": "Browse our latest products",
-              "heading_size": "hxsm",
+              "heading_size": "h1"
             }
-          }, {
+          }, 
+          {
             "type": "buttons",
             "settings": {
               "button_label_1": "Shop now",

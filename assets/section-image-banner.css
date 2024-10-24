@@ -509,23 +509,12 @@
 } */
 
 .banner__buttons a {
-  font-weight: 900;
-  font-size: 16px;
-  text-transform: uppercase;
   min-height: 0px;
   padding: 10px 20px;
 }
 
 /* Desktop Image Banner */
 @media only screen and (min-width: 750px) {
-
-  .banner__heading.h2 {
-      font-size: 32px;
-  }
-
-  .banner__heading.hxsm {
-      font-size: 24px;
-  }
 
   .banner__box .banner__heading {
     line-height: 0.7;
@@ -536,8 +525,6 @@
   }
 
   .banner__buttons a {
-    font-size: 18px;
-    font-weight: bolder;
     padding: 15px 25px;
   }
 }
