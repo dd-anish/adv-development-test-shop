@@ -68,7 +68,7 @@
       ],
       "settings": {
         "title": "<a href=\"/collections/watersport\" target=\"_blank\" title=\"Watersport\">ONTDEK ONZE</a> BESTSELLERS",
-        "heading_size": "h2",
+        "heading_size": "hsm-md",
         "description": "",
         "show_description": false,
         "description_style": "body",
