@@ -20,13 +20,6 @@
             "show_social": false
           }
         },
-        "text_9qgfLb": {
-          "type": "text",
-          "settings": {
-            "heading": "Koptekst",
-            "subtext": "<p>Deel contactgegevens, winkelgegevens en merkcontent met klanten.</p>"
-          }
-        },
         "link_list_xgKFHx": {
           "type": "link_list",
           "settings": {
@@ -44,7 +37,6 @@
       },
       "block_order": [
         "brand_information_QxXtCU",
-        "text_9qgfLb",
         "link_list_xgKFHx",
         "link_list_pGHbGd"
       ],
