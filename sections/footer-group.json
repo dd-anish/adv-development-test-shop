@@ -49,7 +49,7 @@
         "link_list_pGHbGd"
       ],
       "custom_css": [
-        "footer-block__brand-info {display: flex; justify-content: center;}"
+        ".footer-block__brand-info {display: flex; justify-content: center;}"
       ],
       "settings": {
         "color_scheme": "scheme-89272fcc-ec3f-4067-9a14-72d8f67af67d",
