@@ -23,22 +23,30 @@
         "link_list_xgKFHx": {
           "type": "link_list",
           "settings": {
-            "heading": "Snelle links",
-            "menu": "footer"
+            "heading": "Contact",
+            "menu": "dev-footer-contact"
           }
         },
         "link_list_pGHbGd": {
           "type": "link_list",
           "settings": {
-            "heading": "Snelle links",
-            "menu": "footer"
+            "heading": "Rent Equipment",
+            "menu": "dev-footer-rent-equipment"
+          }
+        },
+        "link_list_bWjyEN": {
+          "type": "link_list",
+          "settings": {
+            "heading": "General Info",
+            "menu": "dev-footer-general-info"
           }
         }
       },
       "block_order": [
         "brand_information_QxXtCU",
         "link_list_xgKFHx",
-        "link_list_pGHbGd"
+        "link_list_pGHbGd",
+        "link_list_bWjyEN"
       ],
       "custom_css": [
         ".footer-block__brand-info {display: flex; justify-content: center;}"
