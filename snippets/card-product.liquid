@@ -145,13 +145,17 @@
             </a>
           </h3>
           <div class="card-information">
+
+            <!-- Vendor -->
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
               <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
             {%- endif -%}
 
+            <!-- Description -->
             <span class="caption-large light">{{ block.settings.description | escape }}</span>
 
+            <!-- Rating -->
             {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
               {% liquid
                 assign rating_decimal = 0
@@ -186,11 +190,14 @@
               </p>
             {%- endif -%}
 
+            <!-- Price Div-->
             <div class="price-add-to-cart-container">
               {% render 'price'
                 , product: card_product
                 , price_class: ''
-                , show_compare_at_price: true %}
+                , show_compare_at_price: true 
+                , show_strikethrough_price: show_strikethrough_price
+                %}
               <!-- Price -->
               {%- if card_product.quantity_price_breaks_configured? -%}
                 {% if card_product.variants.size == 1 and quick_add == 'bulk' %}
@@ -539,6 +546,7 @@
       </div>
     </div>
   {%- else -%}
+    {% comment %} card_product and card_product == empty {% endcomment %}
     {%- liquid
       assign ratio = 1
       assign placeholder = true
