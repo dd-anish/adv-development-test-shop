@@ -24,7 +24,7 @@
   endif
 
   assign show_desktop_slider = false
-  if section.settings.enable_desktop_slider
+  if section.settings.enable_desktop_slider and section.blocks.size > section.settings.columns_desktop
     assign show_desktop_slider = true
   endif
 
