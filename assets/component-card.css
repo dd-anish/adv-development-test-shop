@@ -622,12 +622,19 @@
 
 .card__heading-text-truncate {
   display: -webkit-box;
-  min-height: 6rem;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
+  min-height: 3rem;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .card__heading-text-truncate {
+    min-height: 4rem;
+  }
+  
 }
 
 /* .card__content.card__content_with_media{

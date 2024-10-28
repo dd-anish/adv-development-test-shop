@@ -114,7 +114,8 @@
               skip_styles: skip_card_product_styles,
               section_id: section.id,
               quick_add: section.settings.quick_add,
-              truncate_description: section.settings.truncate_description
+              truncate_description: section.settings.truncate_description,
+              show_strikethrough_price : section.settings.show_strikethrough_price
             %}
           </li>
           {%- assign skip_card_product_styles = true -%}
@@ -418,6 +419,12 @@
       "id": "truncate_description",
       "default": false,
       "label": "Truncate Description to have same height of Cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_strikethrough_price",
+      "default": true,
+      "label": "Show Strikethrough Price"
     },
     {
       "type": "checkbox",

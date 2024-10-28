@@ -104,6 +104,6 @@
 
 /* Custom */
 
-.price__container{
-   
+.price--on-sale-custom-color{
+   color: #b41d1c;
 }
