@@ -83,6 +83,7 @@
         "image_ratio": "square",
         "image_shape": "default",
         "truncate_description": true,
+        "show_strikethrough_price": false,
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
@@ -177,15 +178,17 @@
       ],
       "custom_css": [
         ".icon-wrap {display: none;}",
-        ".slider-buttons {display: none;}"
+        ".slider-buttons {display: none;}",
+        "@media screen and (min-width: 750px) {.slider-buttons {display: flex; }}"
       ],
       "settings": {
         "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">CATEGORIEËN</a>",
         "heading_size": "h1",
         "image_ratio": "portrait",
-        "columns_desktop": 5,
+        "columns_desktop": 3,
         "color_scheme": "",
         "show_view_all": false,
+        "enable_desktop_slider": false,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
