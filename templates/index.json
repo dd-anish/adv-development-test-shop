@@ -188,7 +188,7 @@
         "columns_desktop": 3,
         "color_scheme": "",
         "show_view_all": false,
-        "enable_desktop_slider": false,
+        "enable_desktop_slider": true,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
