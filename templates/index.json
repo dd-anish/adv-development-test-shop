@@ -225,7 +225,7 @@
         "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">CATEGORIEËN</a>",
         "heading_size": "h1",
         "image_ratio": "portrait",
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "color_scheme": "",
         "show_view_all": false,
         "enable_desktop_slider": true,
