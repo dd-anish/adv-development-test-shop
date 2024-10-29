@@ -168,24 +168,64 @@
           "settings": {
             "collection": "xl-games"
           }
+        },
+        "featured_collection_FQtTeq": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cadeau-idee"
+          }
+        },
+        "featured_collection_pQBRPk": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "elektronica"
+          }
+        },
+        "featured_collection_fMH8LC": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "outdoor-camping"
+          }
+        },
+        "featured_collection_XXKdif": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "paintball"
+          }
+        },
+        "featured_collection_PHbxKr": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "outdoors"
+          }
+        },
+        "featured_collection_XtGUHt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "watersport"
+          }
         }
       },
       "block_order": [
         "featured_collection_xzipGE",
         "featured_collection_HQ8pA7",
         "featured_collection_RihkKX",
-        "featured_collection_9MzwRk"
+        "featured_collection_9MzwRk",
+        "featured_collection_FQtTeq",
+        "featured_collection_pQBRPk",
+        "featured_collection_fMH8LC",
+        "featured_collection_XXKdif",
+        "featured_collection_PHbxKr",
+        "featured_collection_XtGUHt"
       ],
       "custom_css": [
-        ".icon-wrap {display: none;}",
-        ".slider-buttons {display: none;}",
-        "@media screen and (min-width: 750px) {.slider-buttons {display: flex; }}"
+        ".icon-wrap {display: none;}"
       ],
       "settings": {
         "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">CATEGORIEËN</a>",
         "heading_size": "h1",
         "image_ratio": "portrait",
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "color_scheme": "",
         "show_view_all": false,
         "enable_desktop_slider": true,
