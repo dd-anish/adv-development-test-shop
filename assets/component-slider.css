@@ -317,6 +317,13 @@ slider-component.slider-component-full-width {
   justify-content: center;
 }
 
+
+@media screen and (max-width: 749px) {
+  .slider-buttons--mobile-hide {
+      display: none;
+  }
+}
+
 @media screen and (min-width: 990px) {
   .slider:not(.slider--everywhere):not(.slider--desktop) + .slider-buttons {
     display: none;
