@@ -2,6 +2,8 @@
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
+ 
+
 .footer:not(.color-scheme-1) {
   border-top: none;
 }
@@ -11,10 +13,53 @@
   display: block;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 321px) {
+  .footer__content-top {
+    padding-bottom: 3rem;
+    padding-left: calc(3rem / var(--font-body-scale));
+    padding-right: calc(3rem / var(--font-body-scale));
+  }
+
   .footer .grid {
     display: block;
   }
+
+  .footer-menu-parent > li{
+    margin-bottom: 10px;
+  }
+
+  .grid--2-col .grid__item{
+    width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 321px) and (max-width: 749px) { 
+  .footer__content-top {
+    padding-bottom: 3rem;
+    padding-left: calc(4rem / var(--font-body-scale));
+    padding-right: calc(4rem / var(--font-body-scale));
+  }
+
+  .footer .grid {
+    display:grid;  
+  }
+
+  .footer-menu-parent {
+    grid-template-columns: 1fr 1fr; /* Two columns on smaller screens */
+  }
+
+  .footer-menu-item--contact {
+    grid-row: span 2; /* Span two rows in height */
+    /* grid-column: span 2; */
+  }
+
+  .grid--2-col .grid__item{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 749px) {
 
   .footer-block.grid__item {
     padding: 0;
@@ -24,12 +69,6 @@
 
   .footer-block.grid__item:first-child {
     margin-top: 0;
-  }
-
-  .footer__content-top {
-    padding-bottom: 3rem;
-    padding-left: calc(4rem / var(--font-body-scale));
-    padding-right: calc(4rem / var(--font-body-scale));
   }
 }
 
@@ -514,15 +553,44 @@
 
 /* Custom CSS */
 
-.footer-block__details-content.h2{
+.footer-top-content{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* 2 Columns of Link List in Mobile */
+/* .footer-menu-parent{
+  display: grid;
+  grid-template-columns: 1fr 1fr;  
+  gap: 1rem;  
+} */
+
+
+.footer-block__details-content .h2{
   color: #b41d1c;
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+.footer-block__details-content .h2:hover{
+  color: #b41d1c;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 749px) {
   
-  .footer-block__details-content.h2 {
+  .footer-block__details-content .h2 {
     font-size: calc(var(--font-heading-scale) * 1.6rem);
   }
+
+  .footer-top-content{
+    grid-template-columns: 150px 1fr;
+  }
+
+  /* 3 Columns of Footer Link List on Desktop */
+ /*  .footer-menu-parent {
+    grid-template-columns: 1fr 1fr 1fr;
+  } */
   
 }
