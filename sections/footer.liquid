@@ -216,6 +216,7 @@
         {%- endif -%}
 
         <!-- Newsletter Block -->
+        {% if section.settings.newsletter_enable %}
         <div
           class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
@@ -301,17 +302,18 @@
             </div>
           {%- endif -%}
         </div>
-
+        {% endif %}
       </div>
     {%- endunless -%}
   {%- endif -%}
 
   <!-- Footer Bottom Content -->
+  {% if section.settings.enable_country_selector %}
   <div
-    class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    {% if settings.animations_reveal_on_scroll %}
-      data-cascade
-    {% endif %}
+  class="footer__content-bottom {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  {% if settings.animations_reveal_on_scroll %}
+    data-cascade
+  {% endif %}
   >
     <div class="footer__content-bottom-wrapper page-width">
 
@@ -384,6 +386,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
 </footer>
 
 {% schema %}

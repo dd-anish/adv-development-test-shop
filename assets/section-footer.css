@@ -7,8 +7,9 @@
 }
 
 .footer__content-top {
-  padding-bottom: 5rem;
   display: block;
+  /* padding-bottom: 5rem; */
+  padding-bottom: 0rem;
 }
 
 @media screen and (max-width: 321px) {
