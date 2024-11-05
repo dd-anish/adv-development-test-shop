@@ -44,7 +44,7 @@
         "button"
       ],
       "custom_css": [
-        "banner__buttons a {font-weight: 900; font-size: 20px;}"
+
       ],
       "settings": {
         "image": "shopify://shop_images/375919993_1028328158462025_2982595241498309255_n.jpg",
