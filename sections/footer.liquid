@@ -73,7 +73,7 @@
               <!-- Footer Block -->
                <div class="grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}">
                   <div
-                    class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                    class="footer-block grid__item {% if block.type == 'link_list' %} footer-block--menu {% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                     {{ block.shopify_attributes }}
                     {% if settings.animations_reveal_on_scroll %}
                       data-cascade
@@ -129,22 +129,6 @@
                             {% endfor %}
                           </ul>
                         {% endif %}
-                        {% comment %} 
-                        {%- if block.settings.menu != blank -%}
-                          <ul class="footer-block__details-content list-unstyled">
-                            {%- for link in block.settings.menu.links -%}
-                              <li>
-                                <a
-                                  href="{{ link.url }}"
-                                  class="link link--text list-menu__item list-menu__item--link {% if link.active %} list-menu__item--active{% endif %} text-body--small custom-list-menu__item--link"
-                                >
-                                  {{ link.title | escape }}
-                                </a>
-                              </li>
-                            {%- endfor -%}
-                          </ul> 
-                        {%- endif -%}
-                        {% endcomment %}
 
                       <!-- Brand Information Block -->
                       {%- when 'brand_information' -%}
@@ -206,6 +190,39 @@
                </div>
               
             {%- endfor -%}
+            
+            <div class="footer-bottom grid">
+              <!-- Empty block for alignment -->
+              <div class="empty-block-for-alignment">
+              </div>
+
+              <div class="footer-block grid__item social-block">
+                <!-- Social Icons -->
+                {%- if section.settings.show_social and has_social_icons -%}
+                  {%- if section.settings.social_heading != blank -%}
+                    <h2 class="footer-block__heading h2">{{ section.settings.social_heading }}</h2>
+                  {%- endif -%}
+                  {%- render 'social-icons', class: 'footer__list-social' -%}
+                {%- endif -%}
+              </div>
+
+              <div class="payments-block footer-block grid__item">
+                {%- if section.settings.payment_enable -%}
+                  
+                  <div class="footer__payment">
+                    <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+                    <ul class="list list-payment" role="list">
+                      {%- for type in shop.enabled_payment_types -%}
+                        <li class="list-payment__item">
+                          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+
           </div>
         {%- endif -%}
 
@@ -294,12 +311,8 @@
               {{ shop | login_button: action: 'follow' }}
             </div>
           {%- endif -%}
-
-          <!-- Social Icons -->
-          {%- if section.settings.show_social and has_social_icons -%}
-            {%- render 'social-icons', class: 'footer__list-social' -%}
-          {%- endif -%}
         </div>
+
       </div>
     {%- endunless -%}
   {%- endif -%}
@@ -346,7 +359,7 @@
       <div class="footer__column footer__column--info">
 
         <!-- Payment Methods -->
-        {%- if section.settings.payment_enable -%}
+        {%- if section.settings.payment_enable and section.settings.payment_enable == false -%}
           <div class="footer__payment">
             <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
             <ul class="list list-payment" role="list">
@@ -536,6 +549,12 @@
       "id": "show_social",
       "default": true,
       "label": "t:sections.footer.settings.show_social.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "social_heading",
+      "default": "Follow us on",
+      "label": "Social Icons Heading"
     },
     {
       "type": "header",
