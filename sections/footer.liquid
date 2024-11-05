@@ -116,8 +116,8 @@
                                     <div class="footer__payment">
                                       <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
 
-                                      {% assign enabled_payment_types = 'visa,master,american_express,google_pay' | remove: ' ' | split: ',' %}
-                                      
+                                      {% assign enabled_payment_types = 'visa,american_express,google_pay' | remove: ' ' | split: ',' %}
+
                                       <ul class="list list-payment" role="list">
                                         {%- for type in enabled_payment_types -%}
                                           <li class="list-payment__item">
