@@ -20,33 +20,17 @@
             "show_social": false
           }
         },
-        "link_list_xgKFHx": {
+        "link_list_xHAmqV": {
           "type": "link_list",
           "settings": {
-            "heading": "Contact",
-            "menu": "dev-footer-contact"
-          }
-        },
-        "link_list_pGHbGd": {
-          "type": "link_list",
-          "settings": {
-            "heading": "Rent Equipment",
-            "menu": "dev-footer-rent-equipment"
-          }
-        },
-        "link_list_bWjyEN": {
-          "type": "link_list",
-          "settings": {
-            "heading": "General Info",
-            "menu": "dev-footer-general-info"
+            "heading": "",
+            "menu": "dev-footer-all"
           }
         }
       },
       "block_order": [
         "brand_information_QxXtCU",
-        "link_list_xgKFHx",
-        "link_list_pGHbGd",
-        "link_list_bWjyEN"
+        "link_list_xHAmqV"
       ],
       "custom_css": [
         ".footer-block__brand-info {display: flex; justify-content: center;}"
