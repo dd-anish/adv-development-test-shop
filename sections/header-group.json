@@ -23,6 +23,7 @@
         },
         "announcement_hdJALC": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "GRATIS VERZENDING VANAF 100 EURO 2",
             "link": ""
@@ -46,16 +47,16 @@
     "header": {
       "type": "header",
       "settings": {
-        "logo_position": "middle-left",
+        "logo_position": "middle-center",
         "menu": "dev-menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
-        "color_scheme": "scheme-2c96eb9f-812b-4b2d-99c0-a754ac541f90",
+        "color_scheme": "scheme-89272fcc-ec3f-4067-9a14-72d8f67af67d",
         "menu_color_scheme": "scheme-2c96eb9f-812b-4b2d-99c0-a754ac541f90",
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "enable_customer_avatar": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "enable_customer_avatar": false,
         "mobile_logo_position": "center",
         "margin_bottom": 0,
         "padding_top": 20,
