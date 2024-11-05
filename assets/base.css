@@ -238,6 +238,42 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   background-color: rgba(var(--color-foreground), 0.2);
 }
 
+.text-body {
+  font-size: 1.5rem;
+  letter-spacing: 0.06rem;
+  line-height: calc(1.2 / var(--font-body-scale));
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+}
+
+/* Custom Body Font Size */
+.text-body--extra-small {
+  font-size: 1.1rem;
+  line-height: calc(1.2 / var(--font-body-scale));
+}
+
+.text-body--small {
+  font-size: 1.2rem;
+  line-height: calc(1.2 / var(--font-body-scale));
+}
+
+@media screen and (min-width: 750px) {
+
+  .text-body--extra-small {
+    font-size: 1.2rem;
+  }
+
+  .text-body--small {
+    font-size: 1.4rem;
+  }
+
+  .text-body {
+    font-size: 1.6rem;
+  }
+
+}
+
 h1,
 h2,
 h3,

@@ -499,7 +499,11 @@
   line-height: 0.6;
 }
 
-.banner__box .banner__heading.h2{
+.banner__box .banner__heading.h1{
+  line-height: 1;
+}
+
+.banner__box .banner__heading.h2 {
   line-height: 1;
 }
 

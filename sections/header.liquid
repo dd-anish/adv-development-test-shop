@@ -160,6 +160,7 @@
       {%- endif -%}
     {%- endif -%}
 
+    {% comment %} Menu Snippets for Desktop {% endcomment %}
     {%- liquid
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
@@ -224,7 +225,11 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
+      
+      {% if section.settings.show_search_icon %}
+        {% render 'header-search', input_id: 'Search-In-Modal' %}
+      {% endif %}
+
 
       {%- if shop.customer_accounts_enabled -%}
         <a
@@ -525,6 +530,12 @@
       "id": "show_line_separator",
       "default": true,
       "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_icon",
+      "default": false,
+      "label": "Show Search icon"
     },
     {
       "type": "header",
