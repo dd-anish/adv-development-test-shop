@@ -384,4 +384,15 @@ slider-component.slider-component-full-width {
   transform: rotate(90deg) scale(1.1);
 }
 
+/* Custom CSS for Slider Product Cards */
 
+
+slider-component .grid{
+  gap: 10px;
+}
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  slider-component .grid{
+    gap: 20px;
+  }
+}
