@@ -570,13 +570,13 @@
 } */
 
 
-.footer-block__details-content .h2{
+.footer-block__details-content .hsm{
   color: #b41d1c;
   text-transform: uppercase;
   cursor: pointer;
 }
 
-.footer-block__details-content .h2:hover{
+.footer-block__details-content .hsm:hover{
   color: #b41d1c;
   text-decoration: none;
 }
@@ -587,9 +587,9 @@
 
 @media screen and (min-width: 749px) {
   
-  .footer-block__details-content .h2 {
+/*   .footer-block__details-content .h2 {
     font-size: calc(var(--font-heading-scale) * 1.6rem);
-  }
+  } */
 
   .footer-top-content{
     grid-template-columns: 150px 1fr;
