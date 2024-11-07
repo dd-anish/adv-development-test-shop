@@ -21,26 +21,49 @@
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
-              <!-- The Bunlde Offer Menu Link -->
+              <!-- The Bundle Offer Menu Link -->
 
               {%- for link in section.settings.menu.links -%}
                 <li>
                   {%- if link.links != blank -%}
+        
+                    {% if link.object.featured_image %}
+                      <!-- The below creates img tag inside other -->
+                      {% comment %} {% assign link_image_url = link.object.featured_image |  image_url: width: 450 |  image_tag: width:100 %} {% endcomment %}
+                      {% assign link_image_url = link.object.featured_image |  img_url: 'master' %}
+                    {% endif %}
+
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                       <!-- This is Level 1 Menu Title -->
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"
                         class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
                       >
-                        {{ link.title | escape }}
-                        <span class="svg-wrapper">
-                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                        </span>
+                        {% comment %} <div class="parent-menu-item"> {% endcomment %}
 
-                        {% comment %} Icon Caret Not Visible {% endcomment %} 
-                        <span class="svg-wrapper">
-                          {{- 'icon-caret.svg' | inline_asset_content -}}
-                        </span>
+                          {% if link_image_url != blank %}
+                            <img src="{{ link_image_url }}" alt="{{ link.title }}" class="menu-link-image" />
+                          {% endif %}
+  
+                          <div class="parent-menu-item-info">
+                            <h2 class="h2">
+                              {{ link.title | escape }}
+                            </h2>
+
+                            {% if link.object.description %}
+                              <p class="text-body--extra-small">{{ link.object.description |  strip_html }}</p>
+                            {% endif %}
+                          </div>
+  
+                          <span class="svg-wrapper">
+                            {{- 'icon-chevron-right.svg' | inline_asset_content -}}
+                          </span>
+  
+                          {% comment %} Icon Caret Not Visible {% endcomment %} 
+                          <span class="svg-wrapper">
+                            {{- 'icon-caret.svg' | inline_asset_content -}}
+                          </span>
+                        {% comment %} </div> {% endcomment %}
                       </summary>
                       <!-- This is Level 1 Menu Content -->
                       <div
@@ -56,7 +79,7 @@
                             </span>
                             {{ link.title | escape }}
                           </button>
-                          <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                          <ul class="menu-drawer__menu list-menu menu-list-parent" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}
                               <li>
                                 {%- if childlink.links == blank -%}
@@ -64,7 +87,7 @@
                                   <a
                                     id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
                                     href="{{ childlink.url }}"
-                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset h2 {% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
                                     {% if childlink.current %}
                                       aria-current="page"
                                     {% endif %}
@@ -76,12 +99,12 @@
                                   <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
                                     <summary
                                       id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
-                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
+                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset h2 child-link-menu-title"
                                     >
                                       {{ childlink.title | escape }}
 
-                                      <span class="svg-wrapper">
-                                        {{- 'icon-arrow.svg' | inline_asset_content -}}
+                                      <span class="svg-wrapper svg-wrapper-child-link">
+                                        {{- 'icon-chevron-right.svg' | inline_asset_content -}}
                                       </span>
 
                                       {% comment %} Icon Caret Not Visible {% endcomment %}                                      
@@ -115,7 +138,7 @@
                                             <a
                                               id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                               href="{{ grandchildlink.url }}"
-                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %} hxs grand-child-link-menu-title"
                                               {% if grandchildlink.current %}
                                                 aria-current="page"
                                               {% endif %}

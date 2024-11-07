@@ -1,97 +1,16 @@
+/* 
+
+Menu Drawer Font Sizes
+
+Parent Menu - h2
+Child Menu - h2
+Grand Child Menu - hxs
+
+*/
+
+
 .header__icon--menu {
   position: initial;
-}
-
-.js menu-drawer > details > summary::before,
-.js menu-drawer > details[open]:not(.menu-opening) > summary::before {
-  content: '';
-  position: absolute;
-  cursor: default;
-  width: 100%;
-  height: calc(100vh - 100%);
-  height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
-  top: 100%;
-  left: 0;
-  background: rgba(var(--color-foreground), 0.5);
-  opacity: 0;
-  visibility: hidden;
-  z-index: 2;
-  transition: opacity 0s, visibility 0s;
-}
-
-menu-drawer > details[open] > summary::before {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity var(--duration-default) ease, visibility var(--duration-default) ease;
-}
-
-.menu-drawer {
-  position: absolute;
-  transform: translateX(-100%);
-  visibility: hidden;
-  z-index: 3;
-  left: 0;
-  top: 100%;
-  width: 100%;
-  padding: 0;
-  background-color: rgb(var(--color-background));
-  overflow-x: hidden;
-  filter: drop-shadow(
-    var(--drawer-shadow-horizontal-offset) var(--drawer-shadow-vertical-offset) var(--drawer-shadow-blur-radius)
-      rgba(var(--color-shadow), var(--drawer-shadow-opacity))
-  );
-}
-
-.js .menu-drawer {
-  height: calc(100vh - 100%);
-  height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
-}
-
-.js details[open] > .menu-drawer,
-.js details[open] > .menu-drawer__submenu {
-  transition: transform var(--duration-default) ease, visibility var(--duration-default) ease;
-}
-
-.js details[open].menu-opening > .menu-drawer,
-details[open].menu-opening > .menu-drawer__submenu {
-  transform: translateX(0);
-  visibility: visible;
-}
-
-.js .menu-drawer__navigation .submenu-open {
-  visibility: hidden; /* hide menus from screen readers when hidden by submenu */
-}
-
-@media screen and (min-width: 750px) {
-  .menu-drawer {
-    width: 40rem;
-    border-width: 0 var(--drawer-border-width) 0 0;
-    border-style: solid;
-    border-color: rgba(var(--color-foreground), var(--drawer-border-opacity));
-  }
-}
-
-.menu-drawer__inner-container {
-  position: relative;
-  height: 100%;
-}
-
-.menu-drawer__navigation-container {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  align-content: space-between;
-  overflow-y: auto;
-  height: 100%;
-}
-
-.menu-drawer__navigation {
-  padding: 3rem 0;
-}
-
-.menu-drawer__inner-submenu {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 .js .menu-drawer__menu li {
@@ -101,7 +20,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__menu-item {
   padding: 1.1rem 3rem;
   text-decoration: none;
-  font-size: 1.8rem;
+  /* font-size: 1.8rem; */
 }
 
 .menu-drawer summary.menu-drawer__menu-item {
@@ -133,7 +52,8 @@ details[open].menu-opening > .menu-drawer__submenu {
   transform: translateY(-50%);
 }
 
-.js .menu-drawer__submenu {
+/* Can be removed as same class used below */
+/* .js .menu-drawer__submenu {
   position: absolute;
   top: 0;
   width: 100%;
@@ -143,7 +63,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   z-index: 1;
   transform: translateX(100%);
   visibility: hidden;
-}
+} */
 
 .js .menu-drawer__submenu .menu-drawer__submenu {
   overflow-y: auto;
@@ -240,4 +160,179 @@ details[open].menu-opening > .menu-drawer__submenu {
     filter: none !important;
     transition: none !important;
   }
+}
+
+
+/* Custom CSS */
+
+/* Keep the main drawer sliding behavior */
+.menu-drawer {
+  position: absolute;
+  transform: translateX(-100%);
+  visibility: hidden;
+  z-index: 3;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  padding: 0;
+  background-color: rgb(var(--color-background));
+  overflow-x: hidden;
+}
+
+/* Modify submenu behavior for collapsible functionality */
+.js .menu-drawer__submenu {
+  position: relative ;
+  top: auto;
+  left: auto;
+  width: 100%;
+  transform: none ;
+  visibility: visible;
+  /* background-color: rgb(var(--color-background)); */
+  z-index: 1;
+  display: none;
+  /* padding-left: 1.5rem; */
+}
+
+/* Show submenu when parent details is open */
+details[open]>.menu-drawer__submenu {
+  display: block;
+}
+
+/* Remove transitions for submenu */
+.js details[open]>.menu-drawer,
+.js details[open]>.menu-drawer__submenu {
+  transition: none;
+}
+
+/* Keep main drawer transition */
+.js details[open].menu-opening>.menu-drawer {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform var(--duration-default) ease, visibility var(--duration-default) ease;
+}
+
+/* Adjust inner submenu container */
+.menu-drawer__inner-submenu {
+  height: auto;
+  overflow: visible;
+  /* padding-left: 1rem; */
+}
+
+/* Remove back button */
+.menu-drawer__close-button {
+  display: none;
+}
+
+/* Adjust chevron rotation for expand/collapse */
+.menu-drawer__menu-item > .svg-wrapper {
+  width: 15px;
+  position: absolute;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.menu-drawer__menu-item >.svg-wrapper.svg-wrapper-child-link {
+  width: 10px;
+  right: 3.3rem;
+}
+
+details[open] > summary > .svg-wrapper {
+  transform: rotate(90deg) translateY(0) translateX(-50%);
+}
+
+details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
+  transform: rotate(90deg) translateY(0) translateX(-100%);
+}
+
+/* Keep navigation container styles but remove grid */
+.menu-drawer__navigation-container {
+  display: block;
+  overflow-y: auto;
+  height: 100%;
+}
+
+/* Maintain menu item spacing */
+.menu-drawer__menu-item {
+  padding: 1.1rem 3rem;
+  position: relative;
+}
+
+/* Adjust nested menu items padding */
+.menu-drawer__submenu .menu-drawer__menu-item {
+  /* padding-left: 4rem; */
+}
+
+.menu-drawer__submenu .menu-drawer__submenu .menu-drawer__menu-item {
+  /* padding-left: 5rem; */
+}
+
+/* Preserve desktop width */
+@media screen and (min-width: 750px) {
+  .menu-drawer {
+    width: 40rem;
+  }
+}
+
+/* Keep the main drawer height */
+.js .menu-drawer {
+  height: calc(100vh - 100%);
+  height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
+}
+
+/* Ensure submenus don't affect main drawer scroll */
+.menu-drawer__navigation {
+  padding: 3rem 0;
+  height: auto;
+}
+
+
+.menu-link-image{
+  width: 100px;
+  border-radius: 10px;
+  object-fit: cover; 
+  aspect-ratio: 1 / 1;
+}
+
+/* .parent-menu-item{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: rgb(237, 163, 163);
+
+}
+
+*/
+
+.parent-menu-item-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  gap: 10px;
+} 
+
+.parent-menu-item-info p, .parent-menu-item-info h2{
+  margin: 0;
+}
+
+.menu-drawer__inner-submenu{
+  margin: 0 1rem;
+  background: #efa3a3;
+  border-radius: var(--buttons-radius);
+}
+
+.menu-drawer__submenu{
+  
+}
+
+.child-link-menu-title{
+  background: #f7f7f7;
+  padding-left: 2rem;
+}
+.grand-child-link-menu-title{
+  background: #cecece;
+  padding-left: 2rem;
 }
