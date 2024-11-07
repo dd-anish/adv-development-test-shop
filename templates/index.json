@@ -15,21 +15,21 @@
         "heading_TBXELt": {
           "type": "heading",
           "settings": {
-            "heading": "Start your adventure here?",
+            "heading": "Start jouw avontuur hier?",
             "heading_size": "h2"
           }
         },
         "heading_LB6LMa": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
+            "heading": "Ontdek al onze recreatieve producten",
             "heading_size": "h1"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop Now",
+            "button_label_1": "Shop Nu",
             "button_link_1": "shopify://collections",
             "button_style_secondary_1": false,
             "button_label_2": "",
