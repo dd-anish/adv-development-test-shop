@@ -2,11 +2,25 @@
 
 Menu Drawer Font Sizes
 
-Parent Menu - h2
-Child Menu - h2
-Grand Child Menu - hxs
+Parent Menu - h2 = 1.5rem
+Child Menu - h2 = 1.4rem
+Grand Child Menu - hxs =  1.3rem
 
 */
+
+.parent-menu-item-info h2{
+  font-size: 1.5rem;
+}
+
+.menu-drawer__menu-item.child-link-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.grand-child-link-menu {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
 
 
 .header__icon--menu {
@@ -17,28 +31,22 @@ Grand Child Menu - hxs
   margin-bottom: 0.2rem;
 }
 
-.menu-drawer__menu-item {
-  padding: 1.1rem 3rem;
-  text-decoration: none;
-  /* font-size: 1.8rem; */
-}
-
 .menu-drawer summary.menu-drawer__menu-item {
   padding-right: 5.2rem;
 }
 
-.menu-drawer__menu-item--active,
+/* .menu-drawer__menu-item--active,
 .menu-drawer__menu-item:focus,
 .menu-drawer__close-button:focus,
 .menu-drawer__menu-item:hover,
 .menu-drawer__close-button:hover {
   color: rgb(var(--color-foreground));
   background-color: rgba(var(--color-foreground), 0.04);
-}
+} */
 
-.menu-drawer__menu-item--active:hover {
+/* .menu-drawer__menu-item--active:hover {
   background-color: rgba(var(--color-foreground), 0.08);
-}
+} */
 
 .js .menu-drawer__menu-item .icon-caret {
   display: none;
@@ -236,7 +244,7 @@ details[open]>.menu-drawer__submenu {
 
 .menu-drawer__menu-item >.svg-wrapper.svg-wrapper-child-link {
   width: 10px;
-  right: 3.3rem;
+  right: 2rem;
 }
 
 details[open] > summary > .svg-wrapper {
@@ -256,8 +264,9 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 
 /* Maintain menu item spacing */
 .menu-drawer__menu-item {
-  padding: 1.1rem 3rem;
   position: relative;
+  text-decoration: none;
+  padding: 1.1rem 1rem;
 }
 
 /* Adjust nested menu items padding */
@@ -306,6 +315,10 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 
 */
 
+.menu-container{
+  padding: 0 1rem;
+}
+
 .parent-menu-item-info{
   display: flex;
   flex-direction: column;
@@ -319,20 +332,43 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 }
 
 .menu-drawer__inner-submenu{
-  margin: 0 1rem;
+  /* margin: 0 1rem;
   background: #efa3a3;
-  border-radius: var(--buttons-radius);
+  border-radius: var(--buttons-radius); */
 }
 
 .menu-drawer__submenu{
   
 }
 
-.child-link-menu-title{
+.menu-list-parent{
   background: #f7f7f7;
-  padding-left: 2rem;
+  /* padding-left: 2rem; */
+  border-radius: var(--buttons-radius);
 }
-.grand-child-link-menu-title{
-  background: #cecece;
-  padding-left: 2rem;
+
+.menu-list-child {
+  /* background: #cecece; */ /* from figma */
+  background: #dbdbdb;  /* from Best Seller Section */
+  border-radius: var(--buttons-radius);
+}
+
+.list-menu.menu-list-child{
+  margin: 0 1rem;
+  /* padding: 1rem 0; */
+}
+
+.menu-list-parent li{
+  border-bottom: 1px solid #000;
+  margin: 0 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.menu-list-child li {
+  border-bottom: 1px dashed #000;
+  padding: 0.3rem 0;
+}
+
+.menu-list-parent li:last-child, .menu-list-child li:last-child{
+  border-bottom: none;
 }

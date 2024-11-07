@@ -22,6 +22,19 @@
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               <!-- The Bundle Offer Menu Link -->
+              {%- if section.settings.bundle_offer_menu_link != blank -%}
+                <li>
+                  <a
+                    href="{{ section.settings.bundle_offer_menu_link.url }}"
+                    class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if section.settings.bundle_offer_menu_link.current %} menu-drawer__menu-item--active{% endif %}"
+                    {% if section.settings.bundle_offer_menu_link.current %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    {{ section.settings.bundle_offer_menu_link.title | escape }}
+                  </a>
+                </li>
+              {%- endif -%}
 
               {%- for link in section.settings.menu.links -%}
                 <li>
@@ -33,7 +46,7 @@
                       {% assign link_image_url = link.object.featured_image |  img_url: 'master' %}
                     {% endif %}
 
-                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}" class="menu-container">
                       <!-- This is Level 1 Menu Title -->
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"
@@ -46,7 +59,7 @@
                           {% endif %}
   
                           <div class="parent-menu-item-info">
-                            <h2 class="h2">
+                            <h2>
                               {{ link.title | escape }}
                             </h2>
 
@@ -99,7 +112,7 @@
                                   <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
                                     <summary
                                       id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
-                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset h2 child-link-menu-title"
+                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset child-link-title"
                                     >
                                       {{ childlink.title | escape }}
 
@@ -115,7 +128,7 @@
                                     <!-- This is Level 2 Menu (Childlink) Content -->
                                     <div
                                       id="childlink-{{ childlink.handle | escape }}"
-                                      class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                                      class="menu-drawer__submenu has-submenu motion-reduce"
                                     >
                                       <!-- This is Level 2 Menu Backlink Title (Childlink) -->
                                       <button
@@ -128,7 +141,7 @@
                                         {{ childlink.title | escape }}
                                       </button>
                                       <ul
-                                        class="menu-drawer__menu list-menu"
+                                        class="menu-drawer__menu list-menu menu-list-child"
                                         role="list"
                                         tabindex="-1"
                                       >
@@ -138,7 +151,7 @@
                                             <a
                                               id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                               href="{{ grandchildlink.url }}"
-                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %} hxs grand-child-link-menu-title"
+                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset {% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %} grand-child-link-menu"
                                               {% if grandchildlink.current %}
                                                 aria-current="page"
                                               {% endif %}
@@ -174,11 +187,12 @@
               {%- endfor -%}
             </ul>
           </nav>
-
+          
+          <!-- The Contact Menu Link -->
           <!-- There was no need of the below code, so removed it -->
-          <div class="menu-drawer__utility-links">
+          {% comment %} <div class="menu-drawer__utility-links">
 
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </div>

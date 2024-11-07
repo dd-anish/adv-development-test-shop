@@ -100,18 +100,18 @@
                             
                             {% for link in block.settings.menu.links %}
                               <li class="grid__item {% if link.title == 'Contact' %} footer-menu-item--contact {% endif %}">
-                                <a class="link link--text list-menu__item list-menu__item--link h2">
+                                <a class="link link--text list-menu__item list-menu__item--link hsm">
                                   {{ link.title }}
                                 </a>
 
-                                {% if link.title == 'Follow Us' %}
+                                {% if link.title == 'Follow Us' or link.title == 'Volg Ons' %}
                                   <!-- Social Icons -->
                                     {%- if section.settings.show_social and has_social_icons -%}
                                       {%- render 'social-icons', class: 'footer__list-social' -%}
                                     {%- endif -%}
                                 {% endif %}
 
-                                {% if link.title == 'Payments' %}
+                                {% if link.title == 'Payments' or link.title == 'Betaalmethoden' %}
                                   {%- if section.settings.payment_enable -%}
                                     <div class="footer__payment">
                                       <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
