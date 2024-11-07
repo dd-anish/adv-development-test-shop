@@ -319,6 +319,11 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
   padding: 0 1rem;
 }
 
+.menu-container-no-sublink{
+  padding: 0 2rem;
+  margin-right: 1rem;
+}
+
 .parent-menu-item-info{
   display: flex;
   flex-direction: column;
