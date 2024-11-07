@@ -21,21 +21,6 @@
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
-              <!-- The Bundle Offer Menu Link -->
-              {%- if section.settings.bundle_offer_menu_link != blank -%}
-                <li>
-                  <a
-                    href="{{ section.settings.bundle_offer_menu_link.url }}"
-                    class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if section.settings.bundle_offer_menu_link.current %} menu-drawer__menu-item--active{% endif %}"
-                    {% if section.settings.bundle_offer_menu_link.current %}
-                      aria-current="page"
-                    {% endif %}
-                  >
-                    {{ section.settings.bundle_offer_menu_link.title | escape }}
-                  </a>
-                </li>
-              {%- endif -%}
-
               {%- for link in section.settings.menu.links -%}
                 <li>
                   {%- if link.links != blank -%}
@@ -171,16 +156,40 @@
                       </div>
                     </details>
                   {%- else -%}
-                    <!-- If there are no links in the Menu Title -->
+                    <!-- If there are no sub-links in the Menu Title -->
+                    {% if link.object.featured_image %}
+                      {% assign link_image_url = link.object.featured_image |  img_url: 'master' %}
+                    {% endif %}
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
                       href="{{ link.url }}"
-                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active {% endif %} menu-container-no-sublink"
                       {% if link.current %}
                         aria-current="page"
                       {% endif %}
                     >
-                      {{ link.title | escape }}
+                      {% if link_image_url != blank %}
+                        <img src="{{ link_image_url }}" alt="{{ link.title }}" class="menu-link-image" />
+                      {% endif %}
+
+                      <div class="parent-menu-item-info">
+                        <h2>
+                          {{ link.title | escape }}
+                        </h2>
+
+                        {% if link.object.description %}
+                          <p class="text-body--extra-small">{{ link.object.description |  strip_html }}</p>
+                        {% endif %}
+                      </div>
+
+                      <span class="svg-wrapper">
+                        {{- 'icon-chevron-right.svg' | inline_asset_content -}}
+                      </span>
+
+                      {% comment %} Icon Caret Not Visible {% endcomment %} 
+                      <span class="svg-wrapper">
+                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                      </span>
                     </a>
                   {%- endif -%}
                 </li>
