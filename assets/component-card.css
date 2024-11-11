@@ -641,3 +641,15 @@
   background-color: #f5f5f5;
   border-radius: 1.5rem;
 } */
+
+.variants-stocks-status-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.svg-checkmark-fill{
+  width: 1.5rem;
+  height: 1.5rem;
+  color: rgb(0, 0, 0);
+}

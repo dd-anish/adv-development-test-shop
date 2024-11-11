@@ -178,7 +178,9 @@
                     quick_add: section.settings.quick_add,
                     section_id: section.id,
                     truncate_description: section.settings.truncate_description,
-                    show_strikethrough_price : section.settings.show_strikethrough_price
+                    show_strikethrough_price : section.settings.show_strikethrough_price,
+                    show_product_variants: section.settings.show_product_variants,
+                    show_product_stock_status: section.settings.show_product_stock_status
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
@@ -296,19 +298,31 @@
     {
       "type": "checkbox",
       "id": "truncate_description",
-      "default": false,
+      "default": true,
       "label": "Truncate Description to have same height of Cards"
     },
     {
       "type": "checkbox",
-      "id": "show_strikethrough_price",
+      "id": "show_product_variants",
       "default": true,
+      "label": "Show Product Variants"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_stock_status",
+      "default": true,
+      "label": "Show Product Stock Status"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_strikethrough_price",
+      "default": false,
       "label": "Show Strikethrough Price"
     },
     {
       "type": "checkbox",
       "id": "show_secondary_image",
-      "default": false,
+      "default": true,
       "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
     },
     {
@@ -327,7 +341,7 @@
     {
       "type": "select",
       "id": "quick_add",
-      "default": "none",
+      "default": "standard",
       "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
       "info": "t:sections.main-collection-product-grid.settings.quick_add.info",
       "options": [

@@ -191,8 +191,6 @@
             {%- endif -%}
 
             <!-- Variants and In Stock Div -->
-            {% assign show_product_variants = true %}
-            {% assign show_product_stock_status = true %}
             {% if show_product_variants or show_product_stock_status %}
               <div class="variants-stocks-status-container"> 
                 {% if show_product_variants %}
@@ -201,17 +199,16 @@
                     {% comment %}
                       {% render 'product-variant-picker', product: card_product, product_form_id: card_product.id %} 
                     {% endcomment %}  
-                    {% for option in card_product.options_with_values %}
-                      {{ option.name }} 
-                      {% for value in option.values %}
-                        {{ value }}
-                      {% endfor %}
-                    {% endfor %}
+                    {% comment %} {% render 'product-variant-picker', product: card_product, block: block, product_form_id: product_form_id %} {% endcomment %}
+                    {% render 'card-product-variant-picker', product: card_product, block: block, product_form_id: product_form_id %}
                     
+                    {% comment %} {%- for value in card_product.options_by_name['Color'].values %}
+                      <option>{{ value }}</option>
+                    {%- endfor %} {% endcomment %}
 
                     {% else %}
                       <span class="caption">
-                        No Variant
+                        No variants
                       </span>
                     {% endif %}
                   </div>
@@ -220,8 +217,11 @@
                   <div class="stock-status">
                     {% if card_product.available %}
                       <span class="caption">
-                         Op voorraad  
-                         </span>
+                        Op voorraad 
+                        <span class="svg-wrapper svg-checkmark-fill">
+                          {{- 'icon-checkmark-fill.svg' | inline_asset_content -}}
+                        </span>
+                      </span>
                     {% else %}
                       <span class="caption"></span>
                     {% endif %}
