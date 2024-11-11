@@ -175,7 +175,9 @@
                     lazy_load: lazy_load,
                     skip_styles: skip_card_product_styles,
                     quick_add: section.settings.quick_add,
-                    section_id: section.id
+                    section_id: section.id,
+                    truncate_description: section.settings.truncate_description,
+                    show_strikethrough_price : section.settings.show_strikethrough_price
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
@@ -289,6 +291,18 @@
       "default": "default",
       "label": "t:sections.all.image_shape.label",
       "info": "t:sections.all.image_shape.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "truncate_description",
+      "default": false,
+      "label": "Truncate Description to have same height of Cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_strikethrough_price",
+      "default": true,
+      "label": "Show Strikethrough Price"
     },
     {
       "type": "checkbox",
