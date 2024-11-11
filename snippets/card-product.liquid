@@ -190,6 +190,35 @@
               </p>
             {%- endif -%}
 
+            <!-- Variants and In Stock Div -->
+            {% assign show_product_variants = true %}
+            {% assign show_product_stock_status = true %}
+            {% if show_product_variants or show_product_stock_status %}
+              <div class="variants-stocks-status-container"> 
+                {% if show_product_variants %}
+                  <div class="variants">
+                    {% if card_product.variants.size > 1 %}
+                      {% render 'product-variant-picker', product: card_product, block: variant_picker, product_form_id: card_product.id %}
+                    {% else %}
+                      <span class="caption">
+                        No Variant
+                      </span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if show_product_stock_status %}
+                  <div class="stock-status">
+                    {% if card_product.available %}
+                      <span class="caption"> In Stock </span>
+                    {% else %}
+                      <span class="caption">Out of Stock</span>
+                      {% assign show_in_stock_label = false %}
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
             <!-- Price Div-->
             <div class="price-add-to-cart-container">
               {% render 'price'

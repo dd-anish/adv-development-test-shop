@@ -36,6 +36,8 @@
   }
 {%- endstyle -%}
 
+{%- assign product_form_id = 'product-form-' | append: section.id -%}
+
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
@@ -177,7 +179,8 @@
                     quick_add: section.settings.quick_add,
                     section_id: section.id,
                     truncate_description: section.settings.truncate_description,
-                    show_strikethrough_price : section.settings.show_strikethrough_price
+                    show_strikethrough_price : section.settings.show_strikethrough_price,
+                    variant_picker: section.blocks[0]
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
@@ -292,6 +295,7 @@
       "label": "t:sections.all.image_shape.label",
       "info": "t:sections.all.image_shape.info"
     },
+    
     {
       "type": "checkbox",
       "id": "truncate_description",
@@ -426,6 +430,52 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     }
+  ],
+  "blocks": [
+    {
+      "type": "variant_picker",
+      "name": "t:sections.main-product.blocks.variant_picker.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__1.label"
+            },
+            {
+              "value": "button",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label"
+            }
+          ],
+          "default": "button",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
+        },
+        {
+          "id": "swatch_shape",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.label",
+          "type": "select",
+          "info": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.info",
+          "options": [
+            {
+              "value": "circle",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__1.label"
+            },
+            {
+              "value": "square",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__2.label"
+            },
+            {
+              "value": "none",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__3.label"
+            }
+          ],
+          "default": "circle"
+        }
+      ]
+    },
   ]
 }
 {% endschema %}
