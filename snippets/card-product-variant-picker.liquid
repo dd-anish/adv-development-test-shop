@@ -8,6 +8,7 @@ Accepts:
 Usage:
 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+
 {%- unless product.has_only_default_variant -%}
     <variant-selects
       id="variant-selects-{{ section.id }}"
@@ -51,18 +52,19 @@ Usage:
              picker_type: picker_type %}
           </fieldset> {% endcomment %}
         {%- else -%}
+          <!-- If there is no swatch compatible Metafield or Variant -->
           <div class="product-form__input product-form__input--dropdown">
             {% comment %} <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
               {{ option.name }}
             </label> {% endcomment %}
-            Else here
+            {% comment %} Else here
             <div class="select">
               {%- if picker_type == 'swatch_dropdown' -%}
                 <span data-selected-value class="dropdown-swatch">
                   {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
                 </span>
               {%- endif -%}
-              {% comment %} <select
+              <select
                 id="Option-{{ section.id }}-{{ forloop.index0 }}"
                 class="select__select"
                 name="options[{{ option.name | escape }}]"
@@ -75,8 +77,8 @@ Usage:
               </select>
               <span class="svg-wrapper">
                 {{- 'icon-caret.svg' | inline_asset_content -}}
-              </span> {% endcomment %}
-            </div>
+              </span>
+            </div> {% endcomment %}
           </div>
         {%- endif -%}
       {%- endfor -%}
