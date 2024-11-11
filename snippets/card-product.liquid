@@ -198,7 +198,17 @@
                 {% if show_product_variants %}
                   <div class="variants">
                     {% if card_product.variants.size > 1 %}
-                      {% render 'product-variant-picker', product: card_product, block: variant_picker, product_form_id: card_product.id %}
+                    {% comment %}
+                      {% render 'product-variant-picker', product: card_product, product_form_id: card_product.id %} 
+                    {% endcomment %}  
+                    {% for option in card_product.options_with_values %}
+                      {{ option.name }} 
+                      {% for value in option.values %}
+                        {{ value }}
+                      {% endfor %}
+                    {% endfor %}
+                    
+
                     {% else %}
                       <span class="caption">
                         No Variant
@@ -209,10 +219,11 @@
                 {% if show_product_stock_status %}
                   <div class="stock-status">
                     {% if card_product.available %}
-                      <span class="caption"> In Stock </span>
+                      <span class="caption">
+                         Op voorraad  
+                         </span>
                     {% else %}
-                      <span class="caption">Out of Stock</span>
-                      {% assign show_in_stock_label = false %}
+                      <span class="caption"></span>
                     {% endif %}
                   </div>
                 {% endif %}
