@@ -200,6 +200,7 @@
                       {% render 'product-variant-picker', product: card_product, product_form_id: card_product.id %} 
                     {% endcomment %}  
                     {% comment %} {% render 'product-variant-picker', product: card_product, block: block, product_form_id: product_form_id %} {% endcomment %}
+                    <!-- Custom Snippet for Product card to show variants in Shop View -->
                     {% render 'card-product-variant-picker', product: card_product, block: block, product_form_id: product_form_id %}
                     
                     {% comment %} {%- for value in card_product.options_by_name['Color'].values %}
@@ -216,14 +217,14 @@
                 {% if show_product_stock_status %}
                   <div class="stock-status">
                     {% if card_product.available %}
-                      <span class="caption">
+                      <span class="caption stock-status-caption">
                         Op voorraad 
-                        <span class="svg-wrapper svg-checkmark-fill">
-                          {{- 'icon-checkmark-fill.svg' | inline_asset_content -}}
-                        </span>
+                      </span>
+                      <span class="svg-wrapper svg-checkmark-fill">
+                        {{- 'icon-checkmark-fill.svg' | inline_asset_content -}}
                       </span>
                     {% else %}
-                      <span class="caption"></span>
+                      <span class="caption visually-hidden"></span>
                     {% endif %}
                   </div>
                 {% endif %}

@@ -150,3 +150,13 @@ variant-selects {
   }
 }
 /* End custom styles for Swatch display type */
+
+/* Custom CSS */
+
+.card_product-variant-picker{
+  position: relative;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

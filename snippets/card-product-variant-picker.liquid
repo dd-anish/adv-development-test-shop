@@ -28,7 +28,7 @@ Usage:
           endif
         -%}
         {%- if picker_type == 'swatch' -%}
-          <fieldset class="js product-form__input product-form__input--swatch">
+          <fieldset class="js product-form__input product-form__input--swatch card_product-variant-picker">
             <legend class="form__label visually-hidden">
               {{ option.name }}:
               <span data-selected-value>
@@ -42,7 +42,7 @@ Usage:
              picker_type: picker_type %}
         </fieldset>
         {%- elsif picker_type == 'button' -%}
-            Button here
+            Button Picker
           {% comment %} <fieldset class="js product-form__input product-form__input--pill">
             <legend class="form__label">{{ option.name }}</legend>
             {% render 'product-variant-options'
@@ -52,8 +52,8 @@ Usage:
              picker_type: picker_type %}
           </fieldset> {% endcomment %}
         {%- else -%}
-          <!-- If there is no swatch compatible Metafield or Variant -->
-          <div class="product-form__input product-form__input--dropdown">
+          <!-- If there is no swatch Metafield or Variant -->
+          <div class="product-form__input product-form__input--dropdown visually-hidden">
             {% comment %} <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
               {{ option.name }}
             </label> {% endcomment %}

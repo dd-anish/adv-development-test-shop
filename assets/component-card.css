@@ -653,3 +653,9 @@
   height: 1.5rem;
   color: rgb(0, 0, 0);
 }
+
+.stock-status{
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
