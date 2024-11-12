@@ -199,18 +199,25 @@
                     {% comment %}
                       {% render 'product-variant-picker', product: card_product, product_form_id: card_product.id %} 
                     {% endcomment %}  
-                    {% comment %} {% render 'product-variant-picker', product: card_product, block: block, product_form_id: product_form_id %} {% endcomment %}
                     <!-- Custom Snippet for Product card to show variants in Shop View -->
                     {% render 'card-product-variant-picker', product: card_product, block: block, product_form_id: product_form_id %}
-                    
-                    {% comment %} {%- for value in card_product.options_by_name['Color'].values %}
-                      <option>{{ value }}</option>
-                    {%- endfor %} {% endcomment %}
-
+ 
                     {% else %}
-                      <span class="caption">
+                      {% comment %} <span class="caption">
                         No variants
-                      </span>
+                      </span> {% endcomment %}
+                      <div class="product-form__input--swatch">
+                        <span class="swatch-input__input">
+                          </span>
+                          <span class="swatch-input__label">
+                            <span class="swatch swatch--no-variant-container" style="--swatch--background: black;">
+                              <span class="swatch--no-variant">
+                                <span class="no-variant-overlay">N/A</span>
+                              </span>
+                          </span>
+                        </span>
+                      </div>
+
                     {% endif %}
                   </div>
                 {% endif %}

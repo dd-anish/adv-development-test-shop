@@ -91,6 +91,8 @@
 
 .card-information {
   text-align: var(--text-alignment);
+  position: relative;
+  z-index: 10;
 }
 
 .card__media,
@@ -646,6 +648,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 2rem;
 }
 
 .svg-checkmark-fill{
@@ -658,4 +661,25 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
+}
+
+.swatch--no-variant-container{
+  display: flex;
+  align-items: center;
+}
+
+.swatch--no-variant {
+  position: relative;
+}
+
+.no-variant-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0.6;
 }
