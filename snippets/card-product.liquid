@@ -190,6 +190,52 @@
               </p>
             {%- endif -%}
 
+            <!-- Variants and In Stock Div -->
+            {% if show_product_variants or show_product_stock_status %}
+              <div class="variants-stocks-status-container"> 
+                {% if show_product_variants %}
+                  <div class="variants">
+                    {% if card_product.variants.size > 1 %}
+                    {% comment %}
+                      {% render 'product-variant-picker', product: card_product, product_form_id: card_product.id %} 
+                    {% endcomment %}  
+                    <!-- Custom Snippet for Product card to show variants in Shop View -->
+                    {% render 'card-product-variant-picker', product: card_product, block: block, product_form_id: product_form_id %}
+ 
+                    {% else %}
+                      {% comment %} <span class="caption">
+                        No variants
+                      </span> {% endcomment %}
+                      <div class="product-form__input--swatch">
+                        <span class="swatch-input__input"> </span>
+                          <span class="swatch-input__label">
+                            <!-- Don't edit the above 3 Tags -->
+                            <span class="swatch swatch--no-variant">
+                              
+                          </span>
+                        </span>
+                      </div>
+
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if show_product_stock_status %}
+                  <div class="stock-status">
+                    {% if card_product.available %}
+                      <span class="caption stock-status-caption">
+                        Op voorraad 
+                      </span>
+                      <span class="svg-wrapper svg-checkmark-fill">
+                        {{- 'icon-checkmark-fill.svg' | inline_asset_content -}}
+                      </span>
+                    {% else %}
+                      <span class="caption visually-hidden"></span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
             <!-- Price Div-->
             <div class="price-add-to-cart-container">
               {% render 'price'
@@ -360,11 +406,12 @@
                               {% comment %} {{ 'products.product.add_to_cart' | t }} {% endcomment %}
                               {{- 'icon-cart-2.svg' | inline_asset_content -}}
                             {%- else -%}
-                              {{ 'products.product.sold_out' | t }}
+                              {% comment %}  {{ 'products.product.sold_out' | t }} {% endcomment %}
+                              {{- 'icon-cart-2.svg' | inline_asset_content -}}
                             {%- endif -%}
                           </span>
                           <span class="sold-out-message hidden">
-                            {{ 'products.product.sold_out' | t }}
+                            {{ 'products.product.sold_out' | t }} 
                           </span>
                           {%- if horizontal_quick_add -%}
                             <span class="icon-wrap">
@@ -545,6 +592,7 @@
         </div>
       </div>
     </div>
+  </div>
   {%- else -%}
     {% comment %} card_product and card_product == empty {% endcomment %}
     {%- liquid

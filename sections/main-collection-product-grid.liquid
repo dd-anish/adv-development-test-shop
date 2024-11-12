@@ -2,6 +2,12 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
+{% if section.blocks %}
+  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -34,7 +40,15 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .swatch.swatch--no-variant {
+    background-color: {{ settings.no_product_variant_background }};
+    opacity: {{ settings.no_product_variant_bg_opacity | plus: 0.0 | divided_by: 100 }};
+    border: {{ settings.no_product_variant_border_width }}px {{ settings.no_product_variant_border_style }} {{ settings.no_product_variant_border_color }};
+  }
+
 {%- endstyle -%}
+
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
@@ -175,7 +189,11 @@
                     lazy_load: lazy_load,
                     skip_styles: skip_card_product_styles,
                     quick_add: section.settings.quick_add,
-                    section_id: section.id
+                    section_id: section.id,
+                    truncate_description: section.settings.truncate_description,
+                    show_strikethrough_price : section.settings.show_strikethrough_price,
+                    show_product_variants: section.settings.show_product_variants,
+                    show_product_stock_status: section.settings.show_product_stock_status
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
@@ -292,8 +310,32 @@
     },
     {
       "type": "checkbox",
-      "id": "show_secondary_image",
+      "id": "truncate_description",
+      "default": true,
+      "label": "Truncate Description to have same height of Cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_variants",
+      "default": true,
+      "label": "Show Product Variants"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_stock_status",
+      "default": true,
+      "label": "Show Product Stock Status"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_strikethrough_price",
       "default": false,
+      "label": "Show Strikethrough Price"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": true,
       "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
     },
     {
@@ -312,7 +354,7 @@
     {
       "type": "select",
       "id": "quick_add",
-      "default": "none",
+      "default": "standard",
       "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
       "info": "t:sections.main-collection-product-grid.settings.quick_add.info",
       "options": [

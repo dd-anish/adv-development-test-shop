@@ -400,6 +400,66 @@
         "unit": "px",
         "label": "t:settings_schema.global.settings.blur.label",
         "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Product Card Variant Pills"
+      },
+      {
+        "type": "color",
+        "id": "no_product_variant_background",
+        "label": "No Product Variant background",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "no_product_variant_bg_opacity",
+        "min": 50,
+        "max": 100,
+        "step": 10,
+        "unit": "%",
+        "label": "No Product Variant background opacity",
+        "default": 80
+      },
+      {
+        "type": "range",
+        "id": "no_product_variant_border_width",
+        "min": 0,
+        "max": 12,
+        "step": 1,
+        "unit": "px",
+        "label": "No Product Variant border width",
+        "default": 1
+      },
+      {
+        "type": "color",
+        "id": "no_product_variant_border_color",
+        "label": "No Product Variant border color",
+        "default": "#cf4d4d"
+      },
+      {
+        "type": "select",
+        "id": "no_product_variant_border_style",
+        "options": [
+          {
+            "value": "solid",
+            "label": "Solid"
+          },
+          {
+            "value": "dashed",
+            "label": "Dashed"
+          },
+          {
+            "value": "dotted",
+            "label": "Dotted"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          }
+        ],
+        "default": "dashed",
+        "label": "No Product Variant border style"
       }
     ]
   },
