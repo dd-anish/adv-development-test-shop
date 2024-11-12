@@ -77,6 +77,16 @@
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
   }
 
+  {%- if section.settings.horizontal_alignment != 'none' -%}
+    @media screen and (min-width: 750px) {
+      .header {
+        display: flex;
+        justify-content: {{ section.settings.horizontal_alignment }};
+        align-items: {{ section.settings.vertical_alignment }};
+      }
+    }
+  {%- endif -%}
+
   .section-header {
     position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
@@ -473,6 +483,50 @@
       "default": "middle-left",
       "label": "t:sections.header.settings.logo_position.label",
       "info": "t:sections.header.settings.logo_help.content"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "options": [
+        {
+          "value": "space-around",
+          "label": "Space Around"
+        },
+        {
+          "value": "space-between",
+          "label": "Space Between"
+        },
+        {
+          "value": "space-evenly",
+          "label": "Space Evenly"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "space-between",
+      "label": "Header Horizontal Alignment"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Start"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "End"
+        }
+      ],
+      "default": "center",
+      "label": "Header Vertical Alignment"
     },
     {
       "type": "link_list",
