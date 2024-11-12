@@ -30,7 +30,7 @@
         "show_product_variants": true,
         "show_product_stock_status": true,
         "show_strikethrough_price": false,
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",

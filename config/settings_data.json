@@ -17,7 +17,7 @@
     "body_scale": 100,
     "page_width": 1200,
     "spacing_sections": 0,
-    "spacing_grid_horizontal": 8,
+    "spacing_grid_horizontal": 12,
     "spacing_grid_vertical": 8,
     "animations_reveal_on_scroll": true,
     "animations_hover_elements": "none",
@@ -35,6 +35,8 @@
     "variant_pills_shadow_horizontal_offset": 0,
     "variant_pills_shadow_vertical_offset": 4,
     "variant_pills_shadow_blur": 5,
+    "no_product_variant_background": "#2e1111",
+    "no_product_variant_border_style": "dashed",
     "inputs_border_thickness": 1,
     "inputs_border_opacity": 55,
     "inputs_radius": 0,
@@ -140,11 +142,15 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "breadcrumb": {
+        "type": "breadcrumb",
+        "settings": {
+          "show_home_breadcrumb": true
+        }
       }
     },
-    "content_for_index": [
-
-    ],
+    "content_for_index": [],
     "color_schemes": {
       "scheme-1": {
         "settings": {
@@ -247,7 +253,7 @@
       },
       "scheme-966de08a-a9f0-4e7b-99fc-d2a727bd7470": {
         "settings": {
-          "background": "#dcdbdb",
+          "background": "#ededed",
           "background_gradient": "",
           "text": "#121212",
           "button": "#121212",

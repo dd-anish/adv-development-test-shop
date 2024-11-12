@@ -43,14 +43,12 @@
         "heading_LB6LMa",
         "button"
       ],
-      "custom_css": [
-
-      ],
+      "custom_css": [],
       "settings": {
         "image": "shopify://shop_images/375919993_1028328158462025_2982595241498309255_n.jpg",
         "image_overlay_opacity": 30,
         "image_height": "medium",
-        "desktop_content_position": "bottom-center",
+        "desktop_content_position": "middle-center",
         "show_text_box": false,
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-21817ef0-4f10-4dd3-93de-ece7ea6d7d5d",
@@ -132,7 +130,7 @@
         "image": "shopify://shop_images/439366_99_09.jpg",
         "image_overlay_opacity": 30,
         "image_height": "medium",
-        "desktop_content_position": "bottom-center",
+        "desktop_content_position": "middle-center",
         "show_text_box": false,
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-21817ef0-4f10-4dd3-93de-ece7ea6d7d5d",
@@ -273,7 +271,7 @@
         "image": "shopify://shop_images/439366_99_09.jpg",
         "image_overlay_opacity": 30,
         "image_height": "medium",
-        "desktop_content_position": "bottom-center",
+        "desktop_content_position": "middle-center",
         "show_text_box": false,
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-21817ef0-4f10-4dd3-93de-ece7ea6d7d5d",
