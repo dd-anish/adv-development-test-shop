@@ -234,6 +234,53 @@
     ]
   },
   {
+    "name": "Text Decorations",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Text Underline Styles",
+        "info": "Set for Mobile, Desktop will add Adjustment to the styles"
+      },
+      {
+        "type": "range",
+        "id": "text_decoration_thickness",
+        "min": 0,
+        "max": 12,
+        "step": 1,
+        "unit": "px",
+        "label": "Underline Thickness",
+        "default": 1
+      },
+      {
+        "type": "range",
+        "id": "text_decoration_spacing",
+        "min": 0,
+        "max": 12,
+        "step": 1,
+        "unit": "px",
+        "label": "Underline Spacing",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "text_decoration_desktop_adjustment",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "unit": "px",
+        "label": "Underline Desktop Adjustment",
+        "default": 1
+      },
+      {
+        "type": "color",
+        "id": "text_decoration_color",
+        "label": "Underline Color",
+        "default": "#C11717"
+      }
+
+    ]
+  },
+  {
     "name": "t:settings_schema.buttons.name",
     "settings": [
       {

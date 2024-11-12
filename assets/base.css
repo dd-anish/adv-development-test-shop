@@ -473,37 +473,22 @@ details > * {
   --animation-fade-in: fadeIn var(--duration-extra-long) var(--ease-out-slow);
 }
 
+/* Text Link Underline CSS */
+
 .underlined-link,
 .customer a,
 .inline-richtext a {
   text-underline-offset: 0.3rem;
-  text-decoration-thickness: 0.3rem;
-  transition: text-decoration-thickness ease 100ms;
-  text-decoration-color: #C11717;
+  text-decoration-thickness: 0.1rem;
+  transition: text-decoration-thickness ease 100ms;  
 }
+
 
 .underlined-link:hover,
 .customer a:hover,
 .inline-richtext a:hover {
   color: rgb(var(--color-link));
   text-decoration-thickness: 0.3rem;
-}
-
-@media screen and (min-width: 750px) {
-  .underlined-link,
-  .customer a,
-  .inline-richtext a {
-    text-underline-offset: 0.5rem;
-    text-decoration-thickness: 0.4rem;
-  }
-
-  .underlined-link:hover,
-  .customer a:hover,
-  .inline-richtext a:hover {
-    color: rgb(var(--color-link));
-    text-decoration-thickness: 0.4rem;
-  }
-  
 }
 
 .underlined-link,
@@ -3528,7 +3513,7 @@ details-disclosure > details {
 }
 
 
-/*********** Custom CSS ************/
+/*********** Custom CSS for the custom theme ************/
 
 /* Font Sizes */
 
@@ -3733,6 +3718,24 @@ h6,
 
   .button-bold {
     font-size: 1.6rem;
+  }
+  
+}
+
+/* Text Link Underline CUSTOM CSS */
+
+.text-link-underline a{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: var(--text-decoration-spacing);
+  text-decoration-thickness: var(--text-decoration-thickness);
+  text-decoration-color: var(--text-decoration-color);  
+}
+
+@media screen and (min-width: 750px) {
+  .text-link-underline a{
+    text-underline-offset: calc(var(--text-decoration-spacing) + var(--text_decoration_desktop_adjustment));
+    text-decoration-thickness: calc(var(--text-decoration-thickness) + var(--text_decoration_desktop_adjustment));
   }
   
 }

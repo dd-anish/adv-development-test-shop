@@ -230,6 +230,12 @@
         --variant-pills-shadow-horizontal-offset: {{ settings.variant_pills_shadow_horizontal_offset }}px;
         --variant-pills-shadow-vertical-offset: {{ settings.variant_pills_shadow_vertical_offset }}px;
         --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
+
+        --text-decoration-thickness: {{ settings.text_decoration_thickness }}px;
+        --text-decoration-opacity: {{ settings.text_decoration_opacity | divided_by: 100.0 }};
+        --text-decoration-spacing: {{ settings.text_decoration_spacing }}px;
+        --text-decoration-color: {{ settings.text_decoration_color }};
+        --text_decoration_desktop_adjustment: {{ settings.text_decoration_desktop_adjustment }}px;
       }
 
       *,
