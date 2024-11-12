@@ -40,6 +40,13 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .swatch.swatch--no-variant {
+    background-color: {{ settings.no_product_variant_background }};
+    opacity: {{ settings.no_product_variant_bg_opacity | plus: 0.0 | divided_by: 100 }};
+    border: {{ settings.no_product_variant_border_width }}px {{ settings.no_product_variant_border_style }} {{ settings.no_product_variant_border_color }};
+  }
+
 {%- endstyle -%}
 
 

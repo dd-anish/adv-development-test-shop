@@ -652,9 +652,16 @@
 }
 
 .svg-checkmark-fill{
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.4rem;
+  height: 1.4rem;
   color: rgb(0, 0, 0);
+}
+
+@media screen and (min-width: 750px) {
+  .svg-checkmark-fill{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 
 .stock-status{
@@ -663,23 +670,7 @@
   gap: 0.3rem;
 }
 
-.swatch--no-variant-container{
-  display: flex;
-  align-items: center;
-}
-
-.swatch--no-variant {
-  position: relative;
-}
-
-.no-variant-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 0.8rem;
-  text-align: center;
-  font-weight: bold;
-  opacity: 0.6;
-}
+/* .swatch.swatch--no-variant {
+  background-color: #373937;
+  opacity: 0.7;
+} */
