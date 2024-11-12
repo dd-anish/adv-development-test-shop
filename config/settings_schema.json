@@ -249,7 +249,7 @@
         "step": 1,
         "unit": "px",
         "label": "Underline Thickness",
-        "default": 1
+        "default": 3
       },
       {
         "type": "range",
@@ -259,7 +259,7 @@
         "step": 1,
         "unit": "px",
         "label": "Underline Spacing",
-        "default": 0
+        "default": 4
       },
       {
         "type": "range",
@@ -269,7 +269,7 @@
         "step": 1,
         "unit": "px",
         "label": "Underline Desktop Adjustment",
-        "default": 1
+        "default": 2
       },
       {
         "type": "color",
