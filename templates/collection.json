@@ -11,6 +11,7 @@
   "sections": {
     "banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "show_collection_description": true,
         "show_collection_image": false,
@@ -25,10 +26,14 @@
         "color_scheme": "scheme-2c96eb9f-812b-4b2d-99c0-a754ac541f90",
         "image_ratio": "portrait",
         "image_shape": "default",
+        "truncate_description": true,
+        "show_product_variants": true,
+        "show_product_stock_status": true,
+        "show_strikethrough_price": false,
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
-        "quick_add": "none",
+        "quick_add": "standard",
         "enable_filtering": true,
         "filter_type": "horizontal",
         "enable_sorting": true,
