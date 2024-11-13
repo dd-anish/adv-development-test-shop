@@ -45,7 +45,6 @@
       ],
       "custom_css": [],
       "settings": {
-        "image": "shopify://shop_images/375919993_1028328158462025_2982595241498309255_n.jpg",
         "image_overlay_opacity": 30,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
@@ -127,7 +126,6 @@
         "buttons_79hBmM"
       ],
       "settings": {
-        "image": "shopify://shop_images/439366_99_09.jpg",
         "image_overlay_opacity": 30,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
@@ -167,12 +165,6 @@
             "collection": "xl-games"
           }
         },
-        "featured_collection_FQtTeq": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "cadeau-idee"
-          }
-        },
         "featured_collection_pQBRPk": {
           "type": "featured_collection",
           "settings": {
@@ -190,18 +182,6 @@
           "settings": {
             "collection": "paintball"
           }
-        },
-        "featured_collection_PHbxKr": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "outdoors"
-          }
-        },
-        "featured_collection_XtGUHt": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "watersport"
-          }
         }
       },
       "block_order": [
@@ -209,12 +189,9 @@
         "featured_collection_HQ8pA7",
         "featured_collection_RihkKX",
         "featured_collection_9MzwRk",
-        "featured_collection_FQtTeq",
         "featured_collection_pQBRPk",
         "featured_collection_fMH8LC",
-        "featured_collection_XXKdif",
-        "featured_collection_PHbxKr",
-        "featured_collection_XtGUHt"
+        "featured_collection_XXKdif"
       ],
       "custom_css": [
         ".icon-wrap {display: none;}"
@@ -268,7 +245,6 @@
         "buttons_qUTA7B"
       ],
       "settings": {
-        "image": "shopify://shop_images/439366_99_09.jpg",
         "image_overlay_opacity": 30,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
