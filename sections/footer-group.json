@@ -24,7 +24,7 @@
           "type": "link_list",
           "settings": {
             "heading": "",
-            "menu": "dev-footer-all"
+            "menu": "footer-all"
           }
         }
       },
@@ -32,9 +32,7 @@
         "brand_information_QxXtCU",
         "link_list_xHAmqV"
       ],
-      "custom_css": [
-
-      ],
+      "custom_css": [],
       "settings": {
         "color_scheme": "scheme-89272fcc-ec3f-4067-9a14-72d8f67af67d",
         "newsletter_enable": false,

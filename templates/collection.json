@@ -24,7 +24,7 @@
         "products_per_page": 16,
         "columns_desktop": 4,
         "color_scheme": "scheme-2c96eb9f-812b-4b2d-99c0-a754ac541f90",
-        "image_ratio": "portrait",
+        "image_ratio": "square",
         "image_shape": "default",
         "truncate_description": true,
         "show_product_variants": true,
@@ -38,7 +38,7 @@
         "filter_type": "horizontal",
         "enable_sorting": true,
         "columns_mobile": "2",
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36
       }
     }
