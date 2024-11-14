@@ -417,7 +417,10 @@
               </div>
             </div>
           {%- endif -%}
-          <div class="product-count light" role="status">
+
+          <!-- Desktop Products Count -->
+
+          {% comment %} <div class="product-count light" role="status">
             <h2 class="product-count__text text-body">
               <span id="ProductCountDesktop">
                 {%- if results.results_count -%}
@@ -433,11 +436,12 @@
               </span>
             </h2>
             {%- render 'loading-spinner' -%}
-          </div>
+          </div> {% endcomment %}
         {%- endif -%}
       </form>
     </facet-filters-form>
   {%- endif -%}
+
   {% comment %}  Drawer and mobile filter {% endcomment %}
   <menu-drawer
     class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide{% endif %}"
@@ -449,7 +453,8 @@
           <span class="svg-wrapper">
             {{- 'icon-filter.svg' | inline_asset_content -}}
           </span>
-          <span class="mobile-facets__open-label button-label medium-hide large-up-hide">
+          <!-- Label of Filter in Mobile -->
+          {% comment %} <span class="mobile-facets__open-label button-label medium-hide large-up-hide">
             {%- if enable_filtering and enable_sorting -%}
               {{ 'products.facets.filter_and_sort' | t }}
             {%- elsif enable_filtering -%}
@@ -457,12 +462,15 @@
             {%- elsif enable_sorting -%}
               {{ 'products.facets.sort_button' | t }}
             {%- endif -%}
-          </span>
+          </span> {% endcomment %}
+
+          <!-- Label of Filter in Desktop -->
           <span class="mobile-facets__open-label button-label small-hide">
             {%- if enable_filtering -%}
               {{ 'products.facets.filter_button' | t }}
             {%- endif -%}
           </span>
+          
         </span>
         <span tabindex="0" class="mobile-facets__close">
           <span class="svg-wrapper">
@@ -489,7 +497,9 @@
                     {{ 'products.facets.filter_button' | t }}
                   {%- endif -%}
                 </h2>
-                <p class="mobile-facets__count">
+
+                <!-- Menu Drawer Product Count in Mobile -->
+                {% comment %} <p class="mobile-facets__count">
                   {%- if results.results_count -%}
                     {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
                   {%- elsif results.products_count == results.all_products_count -%}
@@ -500,7 +510,7 @@
                       | t: product_count: results.products_count, count: results.all_products_count
                     }}
                   {%- endif -%}
-                </p>
+                </p> {% endcomment %}
               </div>
             </div>
             <div
@@ -868,7 +878,10 @@
       </form>
     </facet-filters-form>
   {%- endif -%}
-  <div
+
+  <!-- Mobile Product Count -->
+
+  {% comment %} <div
     class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide large-up-hide{% endif %}"
     role="status"
   >
@@ -887,7 +900,8 @@
       </span>
     </h2>
     {%- render 'loading-spinner' -%}
-  </div>
+  </div> {% endcomment %}
+
   {%- if filter_type == 'drawer' -%}
     <facet-filters-form class="facets facets-pill small-hide">
       <form id="FacetFiltersPillsForm" class="facets__form">
