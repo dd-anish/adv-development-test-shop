@@ -3497,22 +3497,6 @@ details-disclosure > details {
   }
 }
 
-
-/*  Custom Fonts */
-
-@font-face {
-  font-family: "Kanit-Bold";
-  src: url("{{ 'Kanit-Bold' | asset_url }}") format("woff2");
-  
-}
-
-@font-face {
-  font-family: 'Kanit-ExtraLight';
-  src: url("{{ 'Kanit-ExtraLight' | asset_url }}") format("woff2");
-  
-}
-
-
 /*********** Custom CSS for the custom theme ************/
 
 /* Font Sizes */
@@ -3578,25 +3562,25 @@ h5,
 
 /* Extra Small */
 .hsm {
-  font-size: calc(var(--font-heading-scale)* 1.3rem);
-  font-weight: var(--font-heading-weight);
+  font-size: calc(var(--font-heading-scale)* 1.4rem);
+  font-weight: calc(var(--font-heading-weight) - 200);
 }
 
 @media screen and (min-width: 750px) {
   .hsm {
-    font-size: calc(var(--font-heading-scale) * 1.5rem);
+    font-size: calc(var(--font-heading-scale) * 1.6rem);
   }
 
 }
 
 /* Extra Extra Small */
 .hxs {
-  font-size: calc(var(--font-heading-scale)* 1.2rem);
+  font-size: calc(var(--font-heading-scale)* 1.4rem);
 }
 
 @media screen and (min-width: 750px) {
   .hxs {
-    font-size: calc(var(--font-heading-scale) * 1.4rem);
+    font-size: calc(var(--font-heading-scale) * 1.5rem);
   }
 
 }

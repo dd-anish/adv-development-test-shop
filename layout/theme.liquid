@@ -41,20 +41,8 @@
 
     {{ content_for_header }}
 
-    {%- liquid
-      assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
-      assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
-      assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
-    %}
-
     {% style %}
-      
-      {{ settings.type_body_font | font_face: font_display: 'swap' }}
-      {{ body_font_bold | font_face: font_display: 'swap' }}
-      {{ body_font_italic | font_face: font_display: 'swap' }}
-      {{ body_font_bold_italic | font_face: font_display: 'swap' }}
-      {{ settings.type_header_font | font_face: font_display: 'swap' }}
-
+  
       {% for scheme in settings.color_schemes -%}
         {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
         {% if forloop.index == 1 -%}
@@ -101,23 +89,23 @@
       }
 
       :root {
-        /* --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
-        --font-body-style: {{ settings.type_body_font.style }};
-        --font-body-weight: {{ settings.type_body_font.weight }};
-        --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
 
-        --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
-        --font-heading-style: {{ settings.type_header_font.style }};
-        --font-heading-weight: {{ settings.type_header_font.weight }}; */
-
-        --font-body-family: 'Kanit-ExtraLight', sans-serif;
+        --font-body-family: 'Kanit', serif;
         --font-body-style: normal;
-        --font-body-weight: 500;
-        --font-body-weight-bold: 700;
-
-        --font-heading-family: 'Kanit-Bold', sans-serif;
+        --font-body-weight: 300;
+        --font-body-weight-bold: 500;
+      
+        --font-heading-family: 'Kanit', serif;
         --font-heading-style: normal;
-        --font-heading-weight: 900; 
+        --font-heading-weight: 700; 
+
+        --font-extra-bold: 800;
+        --font-bold: 700;   /* is font-heading-weight */
+        --font-semi-bold: 600;
+        --font-medium: 500; /* is font-body-weight-bold */
+        --font-regular: 400;  
+        --font-light: 300;  /* is font-body-weight */
+        --font-extra-light: 200;
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
