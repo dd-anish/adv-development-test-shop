@@ -16,6 +16,7 @@
   {{ 'quick-add.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
 
+
 {%- if section.settings.quick_add == 'standard' -%}
   <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -51,6 +52,12 @@
 
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+  <!-- Search Bar Start -->
+
+  
+
+  <!-- Search Bar End -->
+
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
@@ -138,6 +145,13 @@
           data-cascade
         {% endif %}
       >
+        <div class="search-bar">  
+          <form action="/search" method="get">  
+            <input type="search" name="q" placeholder="Search in this collection...">  
+            <input type="hidden" name="collection_id" value="{{ collection.id }}">  
+            <button type="submit">Search</button>  
+          </form>  
+        </div>  
         {%- if collection.products.size == 0 -%}
           <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
             <div class="loading-overlay gradient"></div>
@@ -208,9 +222,11 @@
       </div>
     </div>
   {%- endpaginate -%}
+
   {% if section.settings.image_shape == 'arch' %}
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}
+
 </div>
 
 {% schema %}
