@@ -224,6 +224,10 @@
         --text-decoration-spacing: {{ settings.text_decoration_spacing }}px;
         --text-decoration-color: {{ settings.text_decoration_color }};
         --text_decoration_desktop_adjustment: {{ settings.text_decoration_desktop_adjustment }}px;
+
+        --breadcrumb-background: {{ settings.breadcrumb_background }};
+        --breadcrumb-text-color: {{ settings.breadcrumb_text_color }};
+        --breadcrumb-border-radius: {{ settings.breadcrumb_radius }}px;
       }
 
       *,
@@ -317,8 +321,16 @@
     {% sections 'header-group' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
-      {%  section 'breadcrumb' %}
-      {% render 'breadcrumb-snippet' %}
+      <!-- Simple Breadcrumb -->
+      {% if settings.breadcrumb_type == 'simple' %}
+        {%  render 'breadcrumb-simple' %}  
+      {% endif %}
+
+      <!-- Nested Breadcrumb -->
+      {% if settings.breadcrumb_type == 'nested' %}
+        {%  render 'breadcrumb-nested' %}  
+      {% endif %}
+
       {{ content_for_layout }}
     </main>
 

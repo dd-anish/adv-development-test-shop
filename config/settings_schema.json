@@ -281,6 +281,81 @@
     ]
   },
   {
+    "name": "Breadcrumb",
+    "settings": [
+      {
+        "type": "select",
+        "id": "breadcrumb_type",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "nested",
+            "label": "Nested"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          }
+        ],
+        "default": "nested",
+      },
+      {
+        "type": "checkbox",
+        "id": "show_home_breadcrumb",
+        "label": "Enable Home Breadcrumb",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Nested Breadcrumb Options"
+      },
+      {
+        "type": "select",
+        "id": "nested_breadcrumb_option",
+        "options": [
+          {
+            "value": "show_only_nested_collection",
+            "label": "Show Only Nested Collection Breadcrumb"
+          },
+          {
+            "value": "show_nested_product_collection_breadcrumb",
+            "label": "Show Nested Product and Collection Breadcrumb"
+          }
+        ],
+        "default": "show_only_nested_collection"
+      },
+      {
+        "type": "header",
+        "content": "Breadcrumb Styling"
+      },
+      {
+        "type": "range",
+        "id": "breadcrumb_radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Breadcrumb Radius",
+        "default": 10
+      },
+      {
+        "type": "color",
+        "id": "breadcrumb_text_color",
+        "label": "Breadcrumb Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "breadcrumb_background",
+        "label": "Breadcrumb Background",
+        "default": "#ededed"
+      },
+    ]
+  },
+  {
     "name": "t:settings_schema.buttons.name",
     "settings": [
       {

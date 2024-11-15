@@ -1,3 +1,5 @@
+{{ "component-breadcrumb.css" |  asset_url | stylesheet_tag }}
+
 {% assign breadcrumb_enabled = true %}
 
 {%- if breadcrumb_enabled -%}
@@ -6,52 +8,78 @@
     <div class="breadcrumbs-container page-width">
       <nav class="breadcrumbs hsm" role="navigation" aria-label="breadcrumbs">
         <ol class="breadcrumbs__list">
-          <li class="breadcrumbs__item">
-            <a class="breadcrumbs__link" href="{{ routes.root_url }}" title="{{ 'general.breadcrumbs.home_link_title' | t }}">Home</a>
-            <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
-          </li>
+
+          {%- if settings.show_home_breadcrumb -%}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="{{ routes.root_url }}" title="{{ 'general.breadcrumbs.home_link_title' | t }}">Home</a>
+              <span class="svg-wrapper">
+                {{- 'icon-chevron-right.svg' | inline_asset_content -}}
+              </span>
+            </li>
+          {%- endif -%}
+
           {% assign template_name = template | split: '.' | first %}
+
           {%- case template_name -%}
             {%- when 'page' -%}
               <li class="breadcrumbs__item">
                 <a class="breadcrumbs__link" href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
               </li>
             {%- when 'product' -%}
-              {% comment %} {% if collection %}
-                {% if nested_collection %}
-                  {% for collection_list in nested_collection.value %}
+
+              <!-- Simple Product Breadcrumb -->
+              {% if settings.nested_breadcrumb_option == 'show_only_nested_collection' %}
+                {% if collection %}
+                  {% if nested_collection %}
+                    {% for collection_list in nested_collection.value %}
+                      <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="{{ collection_list.url }}">Meta P {{ collection_list.title }}</a>
+                        <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+                      </li>
+                    {% endfor %}
+                  {% endif %}
+                  <li class="breadcrumbs__item">
+                    <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+                    <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+                  </li>
+                {% endif %}
+
+              {% else if settings.nested_breadcrumb_option == 'show_nested_product_collection_breadcrumb' %}
+                <!-- Nested Product Breadcrumb -->
+                {% for collection in product.collections %}  
+                  {% if collection.metafields.custom.nested_collection_for_breadcrumb %}  
+                    {% for collection_list in collection.metafields.custom.nested_collection_for_breadcrumb.value %}  
+                      <li class="breadcrumbs__item">  
+                      <a class="breadcrumbs__link" href="{{ collection_list.url }}">Meta {{ collection_list.title }}</a>  
+                      <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>  
+                      </li>  
+                    {% endfor %}
+
+                    <!-- Immediate Parent Collection of Product -->
                     <li class="breadcrumbs__item">
-                      <a class="breadcrumbs__link" href="{{ collection_list.url }}">Meta P {{ collection_list.title }}</a>
+                      <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
                       <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
                     </li>
-                  {% endfor %}
-                {% endif %}
-                <li class="breadcrumbs__item">
-                  <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
-                  <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
-                </li>
-              {% endif %} {% endcomment %}
-              {% for collection in product.collections %}  
-                {% if collection.metafields.custom.nested_collection_for_breadcrumb %}  
-                  {% for collection_list in collection.metafields.custom.nested_collection_for_breadcrumb.value %}  
-                    <li class="breadcrumbs__item">  
-                    <a class="breadcrumbs__link" href="{{ collection_list.url }}">Meta {{ collection_list.title }}</a>  
-                    <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>  
-                    </li>  
-                  {% endfor %}  
-                {% endif %}
-                <li class="breadcrumbs__item">
-                  <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
-                  <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
-                </li>
-              {% endfor %}
+                  {% endif %}
+
+                  <!-- Immediate Parent Collection of Product -->
+                  {% comment %} <li class="breadcrumbs__item">
+                    <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+                    <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+                  </li> {% endcomment %}
+                {% endfor %}
+              {% endif %}
+
+              <!-- Product Title -->
               <li class="breadcrumbs__item">
                 <a class="breadcrumbs__link" href="{{ product.url }}" aria-current="page">T {{ product.title }}</a>
               </li>
+
             {%- when 'list-collections' -%}
               <li class="breadcrumbs__item">
                 <a class="breadcrumbs__link" href="{{ routes.collections_url }}">{{ 'sections.collection_list.collections' | t }}</a>
               </li>
+
             {%- when 'collection' and collection.handle -%}
               {% if nested_collection %}
                 {% for collection_list in nested_collection.value %}
@@ -64,10 +92,12 @@
               <li class="breadcrumbs__item">
                 <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">Last {{ collection.title }}</a>
               </li>
+
             {%- when 'blog' -%}
               <li class="breadcrumbs__item">
                 <a class="breadcrumbs__link" href="{{ blog.url }}">{{ blog.title | escape }}</a>
               </li>
+
             {%- when 'article' -%}
               <li class="breadcrumbs__item">
                 <a class="breadcrumbs__link" href="{{ blog.url }}">{{ blog.title }}</a>
@@ -76,10 +106,12 @@
               <li class="breadcrumbs__item">
                 <a class="breadcrumbs__link" href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
               </li>
+
             {%- when 'cart' -%}
               <li class="breadcrumbs__item">
                 <a class="breadcrumbs__link" href="{{ routes.cart_url }}">{{ 'sections.cart.title' | t }}</a>
               </li>
+
             {%- when 'search' -%}
               <li class="breadcrumbs__item">
                 {% if search.performed %}
@@ -88,6 +120,7 @@
                   <a class="breadcrumbs__link" href="{{ routes.search_url }}">{{- 'general.search.search' | t -}}</a>
                 {%- endif %}
               </li>
+              
             {%- else -%}
               {%- assign request_path = request.path -%}
               {%- for policy in shop.policies %}
