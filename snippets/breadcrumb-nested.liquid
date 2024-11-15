@@ -60,14 +60,15 @@
                     <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
                     <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
                   </li>
+                {% else %}
+                  <!-- Immediate Parent Collection of Product -->
+                  {% comment %} <li class="breadcrumbs__item">
+                    <a class="breadcrumbs__link" href="{{ collection.url }}"> {{ collection.title }}</a>
+                    <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+                  </li> {% endcomment %}
                 {% endif %}
-
-                <!-- Immediate Parent Collection of Product -->
-                {% comment %} <li class="breadcrumbs__item">
-                  <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
-                  <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
-                </li> {% endcomment %}
               {% endfor %}
+              
             {% endif %}
 
             <!-- Product Title -->
