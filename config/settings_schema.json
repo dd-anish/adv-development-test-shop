@@ -284,6 +284,11 @@
     "name": "Breadcrumb",
     "settings": [
       {
+        "type": "header",
+        "content": "Breadcrumb Settings",
+        "info": "Set the breadcrumb style"
+      },
+      {
         "type": "select",
         "id": "breadcrumb_type",
         "options": [
