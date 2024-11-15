@@ -284,11 +284,6 @@
     "name": "Breadcrumb",
     "settings": [
       {
-        "type": "header",
-        "content": "Breadcrumb Settings",
-        "info": "Set the breadcrumb style"
-      },
-      {
         "type": "select",
         "id": "breadcrumb_type",
         "options": [
@@ -306,6 +301,7 @@
           }
         ],
         "default": "nested",
+        "label": "Breadcrumb Type"
       },
       {
         "type": "checkbox",
@@ -330,7 +326,8 @@
             "label": "Show Nested Product and Collection Breadcrumb"
           }
         ],
-        "default": "show_only_nested_collection"
+        "default": "show_only_nested_collection",
+        "label": "Works only for Nested Breadcrumb",
       },
       {
         "type": "header",

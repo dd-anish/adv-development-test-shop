@@ -54,5 +54,5 @@
 .breadcrumbs__item .svg-wrapper {
     width: 1rem;
     height: 1rem;
-    color: rgb(0, 0, 0);
+    color: var(--breadcrumb-text-color)
 }

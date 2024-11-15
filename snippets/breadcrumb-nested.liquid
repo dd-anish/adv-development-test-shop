@@ -33,7 +33,7 @@
                   {% if nested_collection %}
                     {% for collection_list in nested_collection.value %}
                       <li class="breadcrumbs__item">
-                        <a class="breadcrumbs__link" href="{{ collection_list.url }}">Meta P {{ collection_list.title }}</a>
+                        <a class="breadcrumbs__link" href="{{ collection_list.url }}"> {{ collection_list.title }}</a>
                         <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
                       </li>
                     {% endfor %}
@@ -50,7 +50,7 @@
                   {% if collection.metafields.custom.nested_collection_for_breadcrumb %}  
                     {% for collection_list in collection.metafields.custom.nested_collection_for_breadcrumb.value %}  
                       <li class="breadcrumbs__item">  
-                      <a class="breadcrumbs__link" href="{{ collection_list.url }}">Meta {{ collection_list.title }}</a>  
+                      <a class="breadcrumbs__link" href="{{ collection_list.url }}"> {{ collection_list.title }}</a>  
                       <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>  
                       </li>  
                     {% endfor %}
@@ -72,7 +72,7 @@
 
               <!-- Product Title -->
               <li class="breadcrumbs__item">
-                <a class="breadcrumbs__link" href="{{ product.url }}" aria-current="page">T {{ product.title }}</a>
+                <a class="breadcrumbs__link" href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
               </li>
 
             {%- when 'list-collections' -%}
@@ -84,13 +84,13 @@
               {% if nested_collection %}
                 {% for collection_list in nested_collection.value %}
                   <li class="breadcrumbs__item">
-                    <a class="breadcrumbs__link" href="{{ collection_list.url }}">Meta {{ collection_list.title }}</a>
+                    <a class="breadcrumbs__link" href="{{ collection_list.url }}">{{ collection_list.title }}</a>
                     <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
                   </li>
                 {% endfor %}
               {% endif %}
               <li class="breadcrumbs__item">
-                <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">Last {{ collection.title }}</a>
+                <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
               </li>
 
             {%- when 'blog' -%}
