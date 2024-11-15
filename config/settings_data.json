@@ -143,12 +143,6 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
-      },
-      "breadcrumb": {
-        "type": "breadcrumb",
-        "settings": {
-          "show_home_breadcrumb": true
-        }
       }
     },
     "content_for_index": [],
