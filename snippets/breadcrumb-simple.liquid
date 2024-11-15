@@ -1,59 +1,6 @@
-<style>
-  .breadcrumbs-container {
-    margin: 2rem auto;
-  }
+{{ "component-breadcrumb.css" |  asset_url | stylesheet_tag }}
 
-  .breadcrumbs {
-    background: #dbdbdb;
-    padding: 1rem 1.5rem;
-    border-radius: var(--buttons-radius);
-    color: black;
-  }
-
-  .breadcrumbs__list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .breadcrumbs__item {
-    display: inline-block;
-    margin: 0 0.4rem;
-  }
-
-  .breadcrumbs__item:is(:last-child) {}
-
-  .breadcrumbs__link {
-    text-decoration: none;
-    color: inherit;
-    font-weight: var(--font-semi-bold);
-  }
-
-  .breadcrumbs__link[aria-current="page"] {
-    color: inherit;
-    font-weight: var(--font-semi-bold);
-    text-decoration: underline;
-    text-underline-offset: 0.4rem;
-  }
-
-  .breadcrumbs__link:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.5rem;
-  }
-
-  .breadcrumbs__link[aria-current="page"]:hover,
-  .breadcrumbs__link[aria-current="page"]:focus {
-    text-decoration: underline;
-    text-underline-offset: 0.5rem;
-    transition: text-underline-offset 0.3s ease-in-out;
-  }
-
-  .breadcrumbs__item .svg-wrapper {
-    width: 1rem;
-    height: 1rem;
-    color: rgb(0, 0, 0);
-  }
-</style>
+{% assign template = template.name %}
 
 {%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
   {%- assign t = template | split: '.' | first -%}
@@ -64,7 +11,7 @@
       role="navigation"
       aria-label="breadcrumbs">
       <ol class="breadcrumbs__list">
-        {%- if section.settings.show_home_breadcrumb -%}
+        {%- if settings.show_home_breadcrumb -%}
           <li class="breadcrumbs__item">
             <a class="breadcrumbs__link" href="/">Home</a>
             <span class="svg-wrapper">
@@ -174,21 +121,3 @@
   </div>
 {%- endunless -%}
 
-{% schema %}
-  {
-    "name": "Breadcrumb",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "show_home_breadcrumb",
-        "label": "Enable Home Breadcrumb",
-        "default": true
-      }
-    ],
-    "presets": [
-      {
-        "name": "Default"
-      }
-    ]
-  }
-{% endschema %}
