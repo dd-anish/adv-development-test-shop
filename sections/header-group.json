@@ -42,6 +42,7 @@
         "horizontal_alignment": "space-between",
         "vertical_alignment": "center",
         "menu": "desktop-menu",
+        "mobile-menu": "collections-list",
         "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
