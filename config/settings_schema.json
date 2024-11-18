@@ -686,6 +686,30 @@
         "default": false
       },
       {
+        "type": "select",
+        "id": "text_style_stock_label",
+        "options": [
+          {
+            "label": "uppercase",
+            "value": "uppercase"
+          },
+          {
+            "label": "lowercase",
+            "value": "lowercase"
+          },
+          {
+            "label": "capitalize",
+            "value": "capitalize"
+          },
+          {
+            "label": "none",
+            "value": "none"
+          }
+        ],
+        "default": "uppercase",
+        "label": "Text Style Stock Label"
+      },
+      {
         "type": "checkbox",
         "id": "show_sale_label",
         "label": "Show Sale Label",
