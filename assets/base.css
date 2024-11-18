@@ -962,9 +962,9 @@ summary::-webkit-details-marker {
     margin-left: calc(-1 * var(--grid-mobile-horizontal-spacing));
   }
 
-  /* .grid--2-col-tablet-down .grid__item {
+  .grid--2-col-tablet-down .grid__item {
     width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2);
-  } */
+  }
 
   .slider--tablet.grid--peek.grid--2-col-tablet-down .grid__item,
   .grid--peek .grid__item {
@@ -3682,6 +3682,19 @@ h6,
   margin-block-end: 1.67em;
 }
 
+/* Text */
+
+.text-capitalize{
+  text-transform: capitalize;
+}
+
+.text-uppercase{
+  text-transform: uppercase;
+}
+
+.text-lowercase{
+  text-transform: lowercase;
+}
 
 /* Button */
 

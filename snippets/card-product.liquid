@@ -223,7 +223,7 @@
                 {% endif %}
                 <!-- Product Status -->
                 {% if show_product_stock_status %}
-                  <div class="stock-status">
+                  <div class="stock-status text-{{ settings.text_style_stock_label }}">
                     {% if card_product.available %}
                       <span class="svg-wrapper svg-wrapper-stock-status svg-wrapper-in-stock-status">
                         {{ 'icon-inventory-status-custom.svg' | inline_asset_content }}
