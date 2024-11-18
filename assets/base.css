@@ -3735,3 +3735,21 @@ h6,
   }
 
 }
+
+
+/* Search Bar in Collection Page template-search__search*/
+
+.custom-search-bar .field__input-custom{
+  padding: 1.8rem 1.5rem 1.8rem 1.5rem;
+}
+
+.custom-search-bar-field:before, 
+.custom-search-bar-field:after, 
+.custom-search-bar-field:focus-visible,
+.custom-search-bar-field:focus {
+  border: 1px solid black;
+}
+
+.custom-search-bar-field:hover{
+  border: none;
+}

@@ -423,15 +423,15 @@
 }
 
 .card--standard > .card__content {
-  /* padding: 0 1rem; */
+  padding: 0 1rem;
 }
 
-@media screen and (min-width: 750px) {
+/* @media screen and (min-width: 750px) {
   .card--standard>.card__content {
-      padding: 0 3rem;
+      padding: 0 1rem;
     }
   
-}
+} */
 
 .card--standard > .card__content .card__information {
   padding-left: 4px;
@@ -612,7 +612,41 @@
 }
 
 
-/* Custom */
+/* Custom CSS */
+
+.product-card-wrapper.product-card-wrapper-custom .card{
+  border-radius: 0;
+}
+
+.card--standard .card__inner.card__inner-custom {
+  position: relative;
+  /* box-sizing: border-box;
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid rgba(var(--color-foreground), var(--border-opacity)); */
+}
+
+.card--standard .card__inner.card__inner-custom :after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  /* width: calc(var(--border-width) * 2 + 100%);
+  height: calc(var(--border-width) * 2 + 100%);
+  top: calc(var(--border-width) * -1);
+  left: calc(var(--border-width) * -1);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius) rgba(var(--color-shadow), var(--shadow-opacity)); */
+}
+
+.card .card__inner .card__media.card__media-custom {
+  /* overflow: hidden;
+  z-index: 0;
+  border-radius: calc(var(--border-radius) - var(--border-width) - var(--image-padding)); */
+  border-radius: 0;
+}
+
+.card--standard .card__content.card__content-custom {
+  border-radius: calc(var(--border-radius) - var(--border-width));
+}
 
 .price-add-to-cart-container{
   display: flex;
@@ -620,7 +654,7 @@
   align-items: center;
 }
 
-/* Custom */
+/* Product Card Info */
 
 .card__heading-text-truncate {
   display: -webkit-box;
@@ -635,8 +669,12 @@
 @media screen and (min-width: 750px) {
   .card__heading-text-truncate {
     min-height: 4rem;
-  }
-  
+  } 
+}
+
+/* Increased the specificity to override above card__heading a ::after */
+.card__content .card__information .card__heading.card__heading-custom a::after {
+  position: relative;
 }
 
 /* .card__content.card__content_with_media{

@@ -13,7 +13,9 @@
       <ol class="breadcrumbs__list">
         {%- if settings.show_home_breadcrumb -%}
           <li class="breadcrumbs__item">
-            <a class="breadcrumbs__link" href="/">Home</a>
+            <a class="breadcrumbs__link" href="/">
+              {{ settings.home_breadcrumb_text | strip_html }}
+            </a>
             <span class="svg-wrapper">
               {{- 'icon-chevron-right.svg' | inline_asset_content -}}
             </span>

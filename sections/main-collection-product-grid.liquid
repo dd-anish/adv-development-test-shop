@@ -109,9 +109,9 @@
             {%- endif -%}
             <main-search>
               <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-                <div class="field custom-search-bar">
+                <div class="field custom-search-bar custom-search-bar-field">
                   <input
-                    class="search__input field__input"
+                    class="search__input field__input field__input-custom"
                     id="Search-In-Template"
                     type="search"
                     name="q"
@@ -130,7 +130,8 @@
                       spellcheck="false"
                     {%- endif -%}
                   >
-                  <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
+                    <!-- No need of label for Custom Search -->
+                 {% comment %}  <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label> {% endcomment %}
                   <input name="options[prefix]" type="hidden" value="last">
 
                   {%- if settings.predictive_search_enabled -%}
