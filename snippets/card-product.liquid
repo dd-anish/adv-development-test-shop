@@ -116,7 +116,7 @@
               </a>
             </h3>
           </div>
-          <div class="card__badge {{ settings.badge_position }}">
+          <div class="card__badge {{ settings.badge_position }} text-{{ settings.text_style_sale_label }}">
             {%- if card_product.available == false and settings.show_out_of_stock_label -%}
               <span id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}" class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}">
                 {{- 'products.product.sold_out' | t -}}
@@ -601,7 +601,7 @@
             </div>
           </div>
 
-          <div class="card__badge {{ settings.badge_position }}">
+          <div class="card__badge {{ settings.badge_position }} text-{{ settings.text_style_sale_label }}">
             {%- if card_product.available == false and settings.show_out_of_stock_label  -%}
               <span id="Badge-{{ section_id }}-{{ card_product.id }}" class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}">
                 {{- 'products.product.sold_out' | t -}}
