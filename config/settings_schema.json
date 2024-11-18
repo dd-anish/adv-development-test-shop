@@ -680,6 +680,18 @@
     "name": "t:settings_schema.cards.name",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "show_out_of_stock_label",
+        "label": "Show Out of Stock Label",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_sale_label",
+        "label": "Show Sale Label",
+        "default": true
+      },
+      {
         "type": "select",
         "id": "card_style",
         "options": [
