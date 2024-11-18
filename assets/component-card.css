@@ -713,8 +713,13 @@
   color: rgb(200, 200, 200);
 }
 
-.stock-status .icon-inventory-status circle:first-of-type {
-  opacity: .3;
+.stock-status .icon-inventory-in-stock-status circle:first-of-type {
+  opacity: 0.3;
+  animation: outer-circle-opacity-blink 1s infinite alternate;
+}
+
+.stock-status .icon-inventory-out-of-stock-status circle:first-of-type {
+  opacity: .4;
 }
 
 @media screen and (min-width: 750px) {
@@ -730,8 +735,3 @@
 }
 
 
-
-/* .swatch.swatch--no-variant {
-  background-color: #373937;
-  opacity: 0.7;
-} */
