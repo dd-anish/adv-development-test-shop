@@ -327,16 +327,17 @@
 
               <!-- Add to Cart -->
               {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
+              
+              <!-- Checking if all variants are out of stock -->
+              {%- assign all_variants_out_of_stock = true -%}
+              {%- for variant in card_product.variants -%}
+                {%- if variant.available -%}
+                  {%- assign all_variants_out_of_stock = false -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+
               {% if quick_add == 'standard' %}
-                
-                <!-- Checking if all variants are out of stock -->
-                {%- assign all_variants_out_of_stock = true -%}
-                {%- for variant in card_product.variants -%}
-                  {%- if variant.available -%}
-                    {%- assign all_variants_out_of_stock = false -%}
-                    {%- break -%}
-                  {%- endif -%}
-                {%- endfor -%}
                 <!-- Quick Add Standard -->
                 <div class="quick-add no-js-hidden">
                   {%- liquid
