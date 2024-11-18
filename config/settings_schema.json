@@ -310,6 +310,12 @@
         "default": true
       },
       {
+        "type": "inline_richtext",
+        "id": "home_breadcrumb_text",
+        "label": "Home Breadcrumb Text",
+        "default": "Home"
+      },
+      {
         "type": "header",
         "content": "Nested Breadcrumb Options"
       },

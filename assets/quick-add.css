@@ -405,3 +405,13 @@ quick-add-bulk .quantity__input {
 .quantity__input-disabled {
   pointer-events: none;
 }
+
+
+/* Custom CSS */
+
+@media screen and (min-width: 750px) {
+  
+  .quick-add__submit {
+    width: 70px;
+  }
+}
