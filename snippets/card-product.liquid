@@ -221,17 +221,25 @@
                     {% endif %}
                   </div>
                 {% endif %}
+                <!-- Product Status -->
                 {% if show_product_stock_status %}
                   <div class="stock-status">
                     {% if card_product.available %}
+                      <span class="svg-wrapper svg-wrapper-stock-status svg-wrapper-in-stock-status">
+                        {{ 'icon-inventory-status-custom.svg' | inline_asset_content }}
+                      </span>
                       <span class="caption stock-status-caption">
-                        Op voorraad 
+                        {{ 'products.product.inventory_in_stock' | t }}
                       </span>
-                      <span class="svg-wrapper svg-checkmark-fill">
-                        {{- 'icon-checkmark-fill.svg' | inline_asset_content -}}
-                      </span>
+                     
                     {% else %}
-                      <span class="caption visually-hidden"></span>
+                      <span class="svg-wrapper svg-wrapper-stock-status svg-wrapper-out-of-stock-status">
+                        {{ 'icon-inventory-status-custom.svg' | inline_asset_content }}
+                      </span>
+                      <span class="caption stock-status-caption">
+                        {{ 'products.product.inventory_out_of_stock' | t }}
+                      </span>
+  
                     {% endif %}
                   </div>
                 {% endif %}

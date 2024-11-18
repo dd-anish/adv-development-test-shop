@@ -689,24 +689,42 @@
   min-height: 2rem;
 }
 
-.svg-checkmark-fill{
-  width: 1.4rem;
-  height: 1.4rem;
-  color: rgb(0, 0, 0);
+.stock-status {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.svg-wrapper.svg-wrapper-stock-status{
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.svg-wrapper-in-stock-status{
+  color: rgb(62, 214, 96);
+}
+
+.svg-wrapper-out-of-stock-status{
+  color: rgb(200, 200, 200);
+}
+
+.stock-status .icon-inventory-status circle:first-of-type {
+  opacity: .3;
 }
 
 @media screen and (min-width: 750px) {
-  .svg-checkmark-fill{
+
+  .stock-status {
+    gap: 0.5rem;
+  }
+
+  .svg-wrapper.svg-wrapper-stock-status {
     width: 1.5rem;
     height: 1.5rem;
   }
 }
 
-.stock-status{
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
+
 
 /* .swatch.swatch--no-variant {
   background-color: #373937;
