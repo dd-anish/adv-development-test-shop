@@ -48,7 +48,49 @@
 
             {% else if settings.nested_breadcrumb_option == 'show_nested_product_collection_breadcrumb' %}
               <!-- Nested Product Breadcrumb -->
-              {% for collection in product.collections %}  
+              {% if collection.metafields.custom.nested_collection_for_breadcrumb %}  
+                {% for collection_list in collection.metafields.custom.nested_collection_for_breadcrumb.value %}  
+                  <li class="breadcrumbs__item">  
+                  <a class="breadcrumbs__link" href="{{ collection_list.url }}"> {{ collection_list.title }}</a>  
+                  <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>  
+                  </li>  
+                {% endfor %}
+                <!-- Immediate Parent Collection of Product -->
+                <li class="breadcrumbs__item">
+                  <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+                  <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+                </li>
+              {% else %}
+                <li class="breadcrumbs__item">  
+
+                <!-- Solves the multiple collection issue but fails to load on Best Seller Section  -->
+                 <a class="breadcrumbs__link" href="{{ collection.url }}"> {{ collection.title }}</a>  
+                <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>  
+
+                <!-- Has Multiple Collections in Product Issue -->
+                {% comment %} {% for collection in product.collections %}
+                    {% if collection.metafields.custom.nested_collection_for_breadcrumb %}  
+                      {% for collection_list in collection.metafields.custom.nested_collection_for_breadcrumb.value %}  
+                       
+                        <li class="breadcrumbs__item">  
+                        <a class="breadcrumbs__link" href="{{ collection_list.url }}"> {{ collection_list.title }}</a>  
+                        <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>  
+                        </li>  
+                      {% endfor %}
+
+                      <!-- Immediate Parent Collection of Product -->
+                      <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+                        <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+                      </li>
+                    {% endif %}
+
+                {% endfor %} {% endcomment %}
+                </li>  
+              {% endif %}
+              
+              <!-- Old Code -->
+              {% comment %} {% for collection in product.collections %}  
                 {% if collection.metafields.custom.nested_collection_for_breadcrumb %}  
                   {% for collection_list in collection.metafields.custom.nested_collection_for_breadcrumb.value %}  
                     <li class="breadcrumbs__item">  
@@ -64,13 +106,12 @@
                   </li>
                 {% else %}
                   <!-- Immediate Parent Collection of Product -->
-                  {% comment %} <li class="breadcrumbs__item">
+                  <!-- <li class="breadcrumbs__item">
                     <a class="breadcrumbs__link" href="{{ collection.url }}"> {{ collection.title }}</a>
                     <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
-                  </li> {% endcomment %}
-                {% endif %}
-              {% endfor %}
-              
+                  </li>
+                {% endif %} -->
+              {% endfor %} {% endcomment %}
             {% endif %}
 
             <!-- Product Title -->
