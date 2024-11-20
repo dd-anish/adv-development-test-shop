@@ -1496,6 +1496,7 @@ a.product__text {
 
 
 /* Custom CSS */
+/* Use .custom-product__info-container as a parent in this section to target specific class  */
 
 .product__info-container>*+* {
   margin: 0;
@@ -1527,4 +1528,23 @@ a.product__text {
 .product .price__container {
   /* margin-bottom: 0.5rem; */
   margin-bottom: 0rem;
+}
+
+.custom-quantity-selector .price-per-item__container .svg-wrapper{
+  width: 1.2rem;
+}
+
+ .custom-product__info-container .product-form__buttons {
+   max-width: 50%;
+ }
+
+@media screen and (max-width: 749px) {
+  .custom-quantity-selector .quantity {
+    width: 100%;
+    min-height: calc((var(--inputs-border-width) * 2) + 4rem);
+  }
+
+  .custom-product__info-container .product-form__buttons {
+    max-width: 100%;
+  }
 }
