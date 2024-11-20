@@ -1524,3 +1524,7 @@ a.product__text {
   margin-top: 0;
 }
 
+.product .price__container {
+  /* margin-bottom: 0.5rem; */
+  margin-bottom: 0rem;
+}
