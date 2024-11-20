@@ -12,6 +12,7 @@ Usage:
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
+    class= '{% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding'
     {{ block.shopify_attributes }}>
     {%- for option in product.options_with_values -%}
       {%- liquid
