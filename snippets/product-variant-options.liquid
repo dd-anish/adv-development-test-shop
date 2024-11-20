@@ -77,6 +77,7 @@
       additional_props: input_dataset
     %}
   {%- elsif picker_type == 'button' -%}
+    <!-- None Type  -->
     <input
       type="radio"
       id="{{ input_id }}"
@@ -90,12 +91,14 @@
         class="disabled"
       {% endif %}
       {{ input_dataset }}
+      class="text-body--small"
     >
-    <label for="{{ input_id }}">
+    <label for="{{ input_id }}" class="text-body--small text-uppercase">
       {{ value -}}
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
+    <!-- Dropdown -->
     <option
       id="{{ input_id }}"
       value="{{ value | escape }}"

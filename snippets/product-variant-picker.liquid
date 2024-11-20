@@ -12,7 +12,7 @@ Usage:
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
-    class= '{% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding'
+    class= 'variant-selector-custom {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding'
     {{ block.shopify_attributes }}>
     {%- for option in product.options_with_values -%}
       {%- liquid
@@ -28,9 +28,12 @@ Usage:
         endif
       -%}
       {%- if picker_type == 'swatch' -%}
+        <!-- Color Swatches -->
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
-            {{ option.name }}:
+            <span class="option-key">
+              {{ option.name }}:
+            </span>
             <span data-selected-value>
               {{- option.selected_value -}}
             </span>
@@ -42,8 +45,13 @@ Usage:
            picker_type: picker_type %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
+        <!-- If no swatch select then none type -->
         <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
+          <legend class="form__label">
+            <span class="option-key">
+              {{ option.name }}:
+            </span>
+          </legend>
           {% render 'product-variant-options'
            , product: product,
            option: option,

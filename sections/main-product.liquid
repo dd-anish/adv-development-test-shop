@@ -756,25 +756,6 @@
 
 <script>
 
-/* document.addEventListener("DOMContentLoaded", () => {
-  const customBlocks = document.querySelectorAll(".custom-block-background");
-
-  // Remove any previous border-radius styles
-  customBlocks.forEach(block => {
-    block.style.borderRadius = "";
-  });
-
-  if (customBlocks.length > 0) {
-    // Add border-radius to the first block
-    customBlocks[0].style.borderTopLeftRadius = "20px";
-    customBlocks[0].style.borderTopRightRadius = "20px";
-
-    // Add border-radius to the last block
-    customBlocks[customBlocks.length - 1].style.borderBottomLeftRadius = "20px";
-    customBlocks[customBlocks.length - 1].style.borderBottomRightRadius = "20px";
-  }
-}); */
-
 function updateBlockStyles() {
   const customBlocks = document.querySelectorAll(".custom-block-background");
 
@@ -785,12 +766,12 @@ function updateBlockStyles() {
 
   if (customBlocks.length > 0) {
     // Add border-radius to the first block
-    customBlocks[0].style.borderTopLeftRadius = "20px";
-    customBlocks[0].style.borderTopRightRadius = "20px";
+    customBlocks[0].style.borderTopLeftRadius = "var(--buttons-radius)";
+    customBlocks[0].style.borderTopRightRadius = "var(--buttons-radius)";
 
     // Add border-radius to the last block
-    customBlocks[customBlocks.length - 1].style.borderBottomLeftRadius = "20px";
-    customBlocks[customBlocks.length - 1].style.borderBottomRightRadius = "20px";
+    customBlocks[customBlocks.length - 1].style.borderBottomLeftRadius = "var(--buttons-radius)";
+    customBlocks[customBlocks.length - 1].style.borderBottomRightRadius = "var(--buttons-radius)";
   }
 }
 
