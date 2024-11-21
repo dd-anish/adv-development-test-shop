@@ -219,11 +219,23 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
-                {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
-                    {{ product.description }}
+                <div class="product__description-container {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
+
+                  if
+                  <div class="product__description-heading">
+                    <h2 class="h2">
+                      {{ block.settings.heading | escape }}
+                    </h2>
                   </div>
-                {%- endif -%}
+                  <div class="product__description rte quick-add-hidden">
+                    {%- if product.description != blank and block.settings.show_short_description == false -%}
+                      {{ product.description }}
+                    {% else %}
+                      <!-- Short Description -->
+                      {{ product.metafields.custom.short_description }}
+                    {%- endif -%}
+                  </div>
+                </div>
               {%- when 'sku' -%}
                 <p
                   class="product__sku {% if block.settings.enable_background %} custom-block-background {% endif %}  {% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %} block-{{ block.id }}-padding"
@@ -236,24 +248,39 @@
                 </p>
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
+
+              <!-- Collapsible Block -->
               {%- when 'collapsible_tab' -%}
                 <div class="product__accordion accordion quick-add-hidden {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
                   <details id="Details-{{ block.id }}-{{ section.id }}">
                     <summary>
                       <div class="summary__title">
                         {% render 'icon-accordion', icon: block.settings.icon %}
-                        <h2 class="h4 accordion__title inline-richtext">
+                        <h2 class="h2 accordion__title inline-richtext">
                           {{ block.settings.heading | default: block.settings.page.title | escape }}
                         </h2>
                       </div>
-                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                      {{- 'icon-plus.svg' | inline_asset_content -}}
+                      {{- 'icon-minus.svg' | inline_asset_content -}}
                     </summary>
+
+                    <!-- Collapsible Summary Content -->
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ block.settings.content }}
-                      {{ block.settings.page.content }}
+
+                    <!-- Block Dynamic Richtext Content -->
+                    {{ block.settings.content }}
+
+                    <!-- Specifications List -->
+                    <!-- Specifications Table -->
+
+                    <!-- Shipping Options -->
+
+                    <!-- Block Dynamic Page Content -->
+                    {{ block.settings.page.content }}
                     </div>
                   </details>
                 </div>
+
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -1413,7 +1440,59 @@ if(Shopify.designMode){
     {
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
-      "limit": 1
+      "limit": 1,
+      "settings":[
+        {
+          "type": "checkbox",
+          "id": "enable_background",
+          "label": "Enable background",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Block Padding Setting"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Left padding",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "padding_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Right padding",
+          "default": 18
+        }
+      ]
     },
     {
       "type": "share",

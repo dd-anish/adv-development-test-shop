@@ -1575,3 +1575,22 @@ a.product__text {
     max-width: 100%;
   }
 }
+
+/* Collapsible Row */
+
+.product__accordion.accordion{
+  border-top: 0;
+  border-bottom: 0.2rem solid var(--text-decoration-color);
+}
+
+.text-link-underline-collapsible-summary {
+  color: var(--text-decoration-color);
+  text-decoration: underline;
+  text-underline-offset: var(--text-decoration-spacing);
+  text-decoration-thickness: var(--text-decoration-thickness);
+  text-decoration-color: var(--text-decoration-color);  
+}
+
+.accordion__content{
+  
+}

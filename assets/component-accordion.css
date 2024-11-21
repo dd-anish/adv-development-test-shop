@@ -3,6 +3,7 @@
   position: relative;
   line-height: 1;
   padding: 1.5rem 0;
+  align-items: center;
 }
 
 .accordion .summary__title {
@@ -55,4 +56,54 @@
 
 .accordion__content img {
   max-width: 100%;
+}
+
+
+/* Custom Collapsible Icon for Product Page */
+
+.accordion details > summary svg{  
+  width: 1.2rem;  
+  height: 1.2rem;  
+  /* fill: rgb(var(--color-foreground)); */  
+  color: #000;  
+  margin: 0 0.5rem 0 0;  
+  transition: transform 0.3s linear;  
+}  
+  
+.accordion details > summary .icon-minus {  
+  display: none;  
+}  
+  
+.accordion details[open] > summary .icon-minus {  
+  display: block;  
+  transform: rotate(0deg);  
+  animation: rotateIcon-minus 0.3s linear;  
+}  
+  
+.accordion details > summary .icon-plus {  
+  transform: rotate(90deg);  
+  transition: transform 0.3s linear;  
+  animation: rotateIcon-plus 0.3s linear;  
+}  
+  
+.accordion details[open] > summary .icon-plus {  
+  display: none;
+}  
+  
+@keyframes rotateIcon-minus {  
+  from {  
+    transform: rotate(90deg);  
+  }  
+  to {  
+    transform: rotate(0deg);  
+  }  
+}
+
+@keyframes rotateIcon-plus {  
+  from {  
+    transform: rotate(-90deg);  
+  }  
+  to {  
+    transform: rotate(0deg);  
+  }  
 }
