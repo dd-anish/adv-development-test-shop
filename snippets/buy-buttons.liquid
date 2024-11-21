@@ -70,18 +70,24 @@
               assign quantity_rule_soldout = true
             endif
           -%}
+          <!-- Add to Cart Text -->
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+            class="product-form__submit button button--full-width custom-product-form__submit {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} text-uppercase"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null
             %}
               disabled
             {% endif %}
-          >
+          > 
+            {% if show_leading_icon %}
+              
+                {{- 'icon-cart-2.svg' | inline_asset_content -}}
+       
+            {% endif %}
             <span>
               {%- if product.selected_or_first_available_variant == null -%}
                 {{ 'products.product.unavailable' | t }}
@@ -91,6 +97,11 @@
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
             </span>
+            {% if show_trailing_icon %}
+             
+                {{- 'icon-cart-2.svg' | inline_asset_content -}}
+        
+            {% endif %}
             {%- render 'loading-spinner' -%}
           </button>
           {%- if show_dynamic_checkout -%}

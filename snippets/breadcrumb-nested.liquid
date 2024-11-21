@@ -64,8 +64,8 @@
                 <li class="breadcrumbs__item">  
 
                 <!-- Solves the multiple collection issue but fails to load on Best Seller Section  -->
-                 <a class="breadcrumbs__link" href="{{ collection.url }}"> {{ collection.title }}</a>  
-                <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>  
+                {% comment %} <a class="breadcrumbs__link" href="{{ collection.url }}"> {{ collection.title }}</a>  
+                <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>   {% endcomment %}
 
                 <!-- Has Multiple Collections in Product Issue -->
                 {% comment %} {% for collection in product.collections %}
@@ -86,6 +86,33 @@
                     {% endif %}
 
                 {% endfor %} {% endcomment %}
+
+                {% if collection %}
+                  {% if collection.metafields.custom.nested_collection_for_breadcrumb %}  
+                    {% for collection_list in collection.metafields.custom.nested_collection_for_breadcrumb.value %}  
+                      
+                      <li class="breadcrumbs__item">  
+                      <a class="breadcrumbs__link" href="{{ collection_list.url }}"> {{ collection_list.title }}</a>  
+                      <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>  
+                      </li>  
+                    {% endfor %}
+
+                    <!-- Immediate Parent Collection of Product -->
+                    {% comment %}  <li class="breadcrumbs__item">
+                      <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+                      <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+                    </li> {% endcomment %}
+                  {% endif %}
+
+                  <!-- Immediate Parent Collection of Product -->
+                  <li class="breadcrumbs__item">
+                    <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+                    <span class="svg-wrapper">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+                  </li>
+                  {% else %}
+                    Test else
+                {% endif %}
+
                 </li>  
               {% endif %}
               
