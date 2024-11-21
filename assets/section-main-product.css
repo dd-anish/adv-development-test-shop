@@ -1603,3 +1603,7 @@ a.product__text {
   /* Adjust thickness */
   background-color: var(--text-decoration-color);
 }
+
+.accordion__content .spec-item .spec-item-icon{
+  display: block;
+}

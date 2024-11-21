@@ -272,7 +272,38 @@
                     {{ block.settings.content }}
 
                     <!-- Specifications List -->
+                    {% comment %} {{ product.metafields.custom.specifications_multi_list }} {% endcomment %}
+                    <ul>
+                      {% assign bullet_points = product.metafields.custom.specifications_multi_list | split: '\n' %}
+                      {% for line in bullet_points %}
+                        <li class="spec-item">
+                          {% if line contains '✅' %}
+                            <span class="spec-item-icon icon icon-check">
+                              Test 1
+                            </span>
+                          {% elsif line contains '❌' %}
+                            <span class="spec-item-icon icon icon-cross">
+                              Test 2
+                            </span>
+                          {% endif %}
+                          {{ line | remove: '✅' | remove: '❌' }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                    
                     <!-- Specifications Table -->
+                     {% assign table_rows = product.metafields.custom.specifications_table | split: '\n' %}
+                    <table>
+                      {% for row in table_rows %}
+                        {% assign parts = row | split: ':' %}
+                        <tr>
+                          <td><strong>{{ parts[0] | strip }}</strong></td>
+                          <td>{{ parts[1] | strip }}</td>
+                        </tr>
+                      {% endfor %}
+                    </table>
+
+                    {{ table_rows }}
 
                     <!-- Shipping Options -->
 
