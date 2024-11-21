@@ -220,13 +220,14 @@
                 </p>
               {%- when 'description' -%}
                 <div class="product__description-container {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
+                  {%- if block.settings.heading != blank -%}
+                    <div class="product__description-heading text-link-underline-product-description-heading">
+                      <h2 class="h2">
+                        {{ block.settings.heading | escape }}
+                      </h2>
+                    </div>
+                  {%- endif -%}
 
-                  if
-                  <div class="product__description-heading">
-                    <h2 class="h2">
-                      {{ block.settings.heading | escape }}
-                    </h2>
-                  </div>
                   <div class="product__description rte quick-add-hidden">
                     {%- if product.description != blank and block.settings.show_short_description == false -%}
                       {{ product.description }}
@@ -1005,7 +1006,7 @@ if(Shopify.designMode){
           "max": 50,
           "step": 2,
           "unit": "px",
-          "label": "t:sections.all.padding.padding_top",
+          "label": "t:sections.all.padding.padding_bottom",
           "default": 0
         },
         {
@@ -1449,6 +1450,18 @@ if(Shopify.designMode){
           "default": false
         },
         {
+          "type": "checkbox",
+          "id": "show_short_description",
+          "label": "Show short description",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Description"
+        },
+        {
           "type": "header",
           "content": "Block Padding Setting"
         },
@@ -1480,7 +1493,7 @@ if(Shopify.designMode){
           "step": 2,
           "unit": "px",
           "label": "Left padding",
-          "default": 18
+          "default": 0
         },
         {
           "type": "range",
@@ -1490,7 +1503,7 @@ if(Shopify.designMode){
           "step": 2,
           "unit": "px",
           "label": "Right padding",
-          "default": 18
+          "default": 0
         }
       ]
     },
