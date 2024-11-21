@@ -95,19 +95,9 @@
             "padding_right": 0
           }
         },
-        "collapsible_tab_tfihXF": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Productbeschrijving",
-            "icon": "none",
-            "content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
-            "page": "",
-            "enable_background": false,
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "padding_left": 0,
-            "padding_right": 0
-          }
+        "description": {
+          "type": "description",
+          "settings": {}
         },
         "collapsible_tab_ppnbak": {
           "type": "collapsible_tab",
@@ -137,11 +127,6 @@
             "padding_right": 0
           }
         },
-        "description": {
-          "type": "description",
-          "disabled": true,
-          "settings": {}
-        },
         "share": {
           "type": "share",
           "disabled": true,
@@ -163,10 +148,9 @@
         "price",
         "quantity_selector",
         "buy_buttons",
-        "collapsible_tab_tfihXF",
+        "description",
         "collapsible_tab_ppnbak",
         "collapsible_tab_B6RWhR",
-        "description",
         "share"
       ],
       "settings": {
