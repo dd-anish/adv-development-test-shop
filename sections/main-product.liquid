@@ -224,6 +224,7 @@
                 </p>
               {%- when 'description' -%}
                 <div class="product__description-container {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
+
                   {%- if block.settings.heading != blank -%}
                     <div class="product__description-heading text-link-underline-product-description-heading">
                       <h2 class="h3">
@@ -233,16 +234,11 @@
                   {%- endif -%}
 
                   <div class="product__description rte quick-add-hidden text-body">
-                    {%- if block.settings.show_short_description -%}
-                      <!-- Short Description -->
-                      {{ product.metafields.custom.short_description }}
-
-                      {% if product.metafields.custom.short_description == blank %}
-                        {{ product.description }}  
-                      {% endif %}
-                    {% else %}
-                      {{ product.description }}
-                    {%- endif -%}
+                  
+                      <div class="description-content" data-description>
+                        {{ product.description }}
+                      </div>
+                      <a href="#" class="toggle-description-link" data-toggle-description>Show More</a>
                   </div>
                 </div>
               {%- when 'sku' -%}
@@ -850,8 +846,24 @@ function updateBlockStyles() {
   }
 }
 
+function showMoreDescription(){
+
+  const description = document.querySelector('[data-description]');
+  const toggleLink = document.querySelector('[data-toggle-description]');
+
+  if (description && toggleLink) {
+    toggleLink.addEventListener('click', function (event) {
+      event.preventDefault();
+      description.classList.toggle('expanded');
+      const isExpanded = description.classList.contains('expanded');
+      toggleLink.textContent = isExpanded ? 'Show Less' : 'Show More';
+    });
+  }
+}
+
 // Run the script on page load
 document.addEventListener("DOMContentLoaded", updateBlockStyles);
+document.addEventListener("DOMContentLoaded", showMoreDescription);
 
 if(Shopify.designMode){
     // Listen for Shopify theme editor events
@@ -861,6 +873,13 @@ if(Shopify.designMode){
     document.addEventListener("shopify:section:deselect", updateBlockStyles);
     document.addEventListener("shopify:block:select", updateBlockStyles);
     document.addEventListener("shopify:block:deselect", updateBlockStyles);
+
+    document.addEventListener("shopify:section:load", showMoreDescription);
+    document.addEventListener("shopify:section:unload", showMoreDescription);
+    document.addEventListener("shopify:section:select", showMoreDescription);
+    document.addEventListener("shopify:section:deselect", showMoreDescription);
+    document.addEventListener("shopify:block:select", showMoreDescription);
+    document.addEventListener("shopify:block:deselect", showMoreDescription);
 }
 
 </script>
@@ -1492,12 +1511,6 @@ if(Shopify.designMode){
           "id": "enable_background",
           "label": "Enable background",
           "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "show_short_description",
-          "label": "Show short description",
-          "default": true
         },
         {
           "type": "text",
