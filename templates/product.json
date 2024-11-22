@@ -90,21 +90,32 @@
             "show_leading_icon": true,
             "show_trailing_icon": false,
             "padding_top": 18,
-            "padding_bottom": 18,
+            "padding_bottom": 0,
             "padding_left": 0,
             "padding_right": 0
           }
         },
         "description": {
           "type": "description",
-          "settings": {}
+          "settings": {
+            "enable_background": false,
+            "show_short_description": true,
+            "heading": "Description",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_left": 0,
+            "padding_right": 0
+          }
         },
         "collapsible_tab_ppnbak": {
           "type": "collapsible_tab",
           "settings": {
             "heading": "Specificaties",
             "icon": "none",
-            "content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
+            "content": "",
+            "display_product_specifications_list": true,
+            "display_product_specifications_table": true,
+            "display_shipping_options": false,
             "page": "",
             "enable_background": false,
             "padding_top": 0,
@@ -119,6 +130,9 @@
             "heading": "Verzendopties",
             "icon": "none",
             "content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
+            "display_product_specifications_list": false,
+            "display_product_specifications_table": false,
+            "display_shipping_options": false,
             "page": "",
             "enable_background": false,
             "padding_top": 0,
