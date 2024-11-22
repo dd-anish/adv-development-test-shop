@@ -1604,6 +1604,10 @@ a.product__text {
   background-color: var(--text-decoration-color);
 }
 
-.accordion__content .spec-item .spec-item-icon{
-  display: block;
+.accordion__content .spec-item{
+  list-style: none;
 }
+
+/* .accordion__content .spec-item .spec-item-icon{
+  display: block;
+} */
