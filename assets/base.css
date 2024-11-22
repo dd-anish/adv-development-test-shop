@@ -3505,7 +3505,7 @@ details-disclosure > details {
 .text-body {
   font-size: 1.5rem;
   letter-spacing: 0.06rem;
-  line-height: calc(1.2 / var(--font-body-scale));
+  line-height: calc(1.4 / var(--font-body-scale));
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
@@ -3696,6 +3696,38 @@ h6,
 .text-lowercase{
   text-transform: lowercase;
 }
+
+/* Font Weights */
+
+.font-extra-bold {
+  font-weight: var(--font-extra-bold);
+}
+
+.font-bold{
+  font-weight: var(--font-bold);
+}
+
+.font-semibold {
+  font-weight: var(--font-semi-bold);
+}
+
+.font-medium {
+  font-weight: var(--font-medium);
+}
+
+.font-regular{
+  font-weight: var(--font-regular);
+}
+
+.font-light {
+  font-weight: var(--font-light);
+}
+
+.font-extra-light{
+  font-weight: var(--font-extra-light);
+}
+
+
 
 /* Button */
 
