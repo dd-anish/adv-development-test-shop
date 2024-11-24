@@ -1,0 +1,97 @@
+<style>
+
+  .item_description {
+    position: relative;
+  }
+
+  .description-content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .description-content[data-collapsed="true"] {
+    -webkit-line-clamp: var(--truncate-line, 3); 
+  }
+
+  .description-content[data-collapsed="false"] {
+    -webkit-line-clamp: unset; 
+  }
+
+  .description-content > * {
+    margin-top: 0;
+  }
+
+  .description-button {
+    margin-top: 0.5rem;
+  }
+
+  .toggle-description-btn, .toggle-description-link {
+    cursor: pointer;
+    text-transform: capitalize;
+  }
+
+  /* Button CSS */
+  .toggle-description-btn{
+    background: rgba(var(--color-link),var(--alpha-link));
+    padding: 0.3rem 0.5rem;
+    color: rgb(234, 232, 232);
+    border-radius: 5px;
+    font-weight: 200;
+  }
+
+  .toggle-description-btn:hover{
+    background: rgb(var(--color-link));
+  }
+
+  /* Link CSS */
+  .item_description .toggle-description-link{
+    color: rgba(var(--color-link),var(--alpha-link));
+    text-decoration: underline;
+  }
+
+  .item_description .toggle-description-link:hover{
+    color: rgb(var(--color-link));
+    text-decoration-thickness: 0.1rem;
+  }
+
+</style>
+
+<div class="item_description text-body">
+  <div class="description-content" data-description data-collapsed="true" style="--truncate-line: {{ description_limit | default: 3 }};">
+
+    {% comment %} {{ item_description | strip_html }} used to ignore new lines {% endcomment %}
+    {{ item_description }}
+  </div>
+  <div class="description-button">
+    {% if show_more_type == 'button' %}
+      <button class="toggle-description-btn text-body--extra-small" data-toggle-description>
+        {{ show_more_text }}
+      </button>
+    {% else %}
+      <a href="#" class="toggle-description-link text-body--small" data-toggle-description>
+        {{ show_more_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggleButtons = document.querySelectorAll("[data-toggle-description]");
+        toggleButtons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const descriptionContent = btn.closest(".item_description").querySelector("[data-description]");
+            const isCollapsed = descriptionContent.getAttribute("data-collapsed") === "true";
+
+            descriptionContent.setAttribute("data-collapsed", !isCollapsed);
+            btn.textContent = isCollapsed ? "{{ show_less_text }}" : "{{ show_more_text }}";
+        });
+        });
+    });
+
+</script>

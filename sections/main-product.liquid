@@ -235,10 +235,18 @@
 
                   <div class="product__description rte quick-add-hidden text-body">
                   
-                      <div class="description-content" data-description>
+                      {% comment %} <div class="description-content" data-description>
                         {{ product.description }}
                       </div>
-                      <a href="#" class="toggle-description-link" data-toggle-description>Show More</a>
+                      <a href="#" class="toggle-description-link" data-toggle-description>Show More</a> {% endcomment %}
+
+                      {% render 'show-more-text-content',
+                        item_description: product.description,
+                        show_more_type: block.settings.show_more_type,
+                        show_more_text: block.settings.show_more_text, ,
+                        show_less_text: block.settings.show_less_text,
+                        description_limit: block.settings.description_limit %}
+
                   </div>
                 </div>
               {%- when 'sku' -%}
@@ -846,24 +854,8 @@ function updateBlockStyles() {
   }
 }
 
-function showMoreDescription(){
-
-  const description = document.querySelector('[data-description]');
-  const toggleLink = document.querySelector('[data-toggle-description]');
-
-  if (description && toggleLink) {
-    toggleLink.addEventListener('click', function (event) {
-      event.preventDefault();
-      description.classList.toggle('expanded');
-      const isExpanded = description.classList.contains('expanded');
-      toggleLink.textContent = isExpanded ? 'Show Less' : 'Show More';
-    });
-  }
-}
-
 // Run the script on page load
 document.addEventListener("DOMContentLoaded", updateBlockStyles);
-document.addEventListener("DOMContentLoaded", showMoreDescription);
 
 if(Shopify.designMode){
     // Listen for Shopify theme editor events
@@ -873,13 +865,6 @@ if(Shopify.designMode){
     document.addEventListener("shopify:section:deselect", updateBlockStyles);
     document.addEventListener("shopify:block:select", updateBlockStyles);
     document.addEventListener("shopify:block:deselect", updateBlockStyles);
-
-    document.addEventListener("shopify:section:load", showMoreDescription);
-    document.addEventListener("shopify:section:unload", showMoreDescription);
-    document.addEventListener("shopify:section:select", showMoreDescription);
-    document.addEventListener("shopify:section:deselect", showMoreDescription);
-    document.addEventListener("shopify:block:select", showMoreDescription);
-    document.addEventListener("shopify:block:deselect", showMoreDescription);
 }
 
 </script>
@@ -1519,6 +1504,43 @@ if(Shopify.designMode){
           "default": "Description"
         },
         {
+          "type": "select",
+          "id": "show_more_type",
+          "label": "Show more type",
+          "options": [
+            {
+              "value": "button",
+              "label": "Button"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            }
+          ],
+          "default": "button"
+        },
+        {
+          "type": "text",
+          "id": "show_more_text",
+          "label": "Show more text",
+          "default": "Show more"
+        },
+        {
+          "type": "text",
+          "id": "show_less_text",
+          "label": "Show less text",
+          "default": "Show less"
+        },
+        {
+          "type": "range",
+          "id": "description_limit",
+          "label": "Description limit",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 6
+        },
+        {
           "type": "header",
           "content": "Block Padding Setting"
         },
@@ -1530,7 +1552,7 @@ if(Shopify.designMode){
           "step": 2,
           "unit": "px",
           "label": "t:sections.all.padding.padding_top",
-          "default": 18
+          "default": 0
         },
         {
           "type": "range",
@@ -1550,7 +1572,7 @@ if(Shopify.designMode){
           "step": 2,
           "unit": "px",
           "label": "Left padding",
-          "default": 0
+          "default": 18
         },
         {
           "type": "range",
