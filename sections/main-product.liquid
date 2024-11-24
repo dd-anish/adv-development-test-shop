@@ -315,10 +315,6 @@
                         </table>
                       {% endif %}
 
-                      {{ block.settings.product_specifications }}
-
-                      {{ block.settings.specifications_table }}
-
                       <!-- Shipping Options -->
                       {% comment %} {% if block.settings.display_shipping_options %}
                         
@@ -326,7 +322,7 @@
                       {{ block.settings.shipping_options }}
 
                       <!-- Block Dynamic Page Content -->
-                      {{ block.settings.page.content }}
+                      {% comment %}  {{ block.settings.page.content }} {% endcomment %}
                     </div>
                   </details>
                 </div>
@@ -1937,24 +1933,9 @@ if(Shopify.designMode){
           "default": false
         },
         {
-          "type": "richtext",
-          "id": "product_specifications",
-          "label": "Product specifications"
-        },
-        {
-          "type": "richtext",
-          "id": "specifications_table",
-          "label": "Specifications table"
-        },
-        {
           "type": "text",
           "id": "shipping_options",
           "label": "Shipping options"
-        },
-        {
-          "type": "page",
-          "id": "page",
-          "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
         },
         {
           "type": "checkbox",
