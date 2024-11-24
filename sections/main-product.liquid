@@ -316,13 +316,11 @@
                       {% endif %}
 
                       <!-- Shipping Options -->
-                      {% comment %} {% if block.settings.display_shipping_options %}
-                        
-                      {% endif %} {% endcomment %}
-                      {{ block.settings.shipping_options }}
+                      {% if block.settings.display_shipping_options %}
+                        {{ product.metafields.custom.shipping_options }}  
+                      {% endif %}
+                      {% comment %} {{ block.settings.shipping_options }} {% endcomment %}
 
-                      <!-- Block Dynamic Page Content -->
-                      {% comment %}  {{ block.settings.page.content }} {% endcomment %}
                     </div>
                   </details>
                 </div>
@@ -1931,11 +1929,6 @@ if(Shopify.designMode){
           "id": "display_shipping_options",
           "label": "Display shipping options",
           "default": false
-        },
-        {
-          "type": "text",
-          "id": "shipping_options",
-          "label": "Shipping options"
         },
         {
           "type": "checkbox",
