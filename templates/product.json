@@ -35,18 +35,6 @@
             "padding_right": 18
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {
-            "enable_background": true,
-            "show_short_description": false,
-            "heading": "Productbeschrijving",
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "padding_left": 0,
-            "padding_right": 0
-          }
-        },
         "inventory_WmbcaK": {
           "type": "inventory",
           "settings": {
@@ -70,6 +58,21 @@
             "padding_bottom": 0,
             "padding_left": 18,
             "padding_right": 18
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "enable_background": true,
+            "heading": "",
+            "show_more_type": "button",
+            "show_more_text": "Show more",
+            "show_less_text": "Show less",
+            "description_limit": 6,
+            "padding_top": 18,
+            "padding_bottom": 0,
+            "padding_left": 18,
+            "padding_right": 0
           }
         },
         "price": {
@@ -114,10 +117,9 @@
             "heading": "Specificaties",
             "icon": "none",
             "content": "",
+            "shipping_options": "",
             "display_product_specifications_list": true,
             "display_product_specifications_table": true,
-            "display_shipping_options": false,
-            "page": "",
             "enable_background": false,
             "padding_top": 0,
             "padding_bottom": 0,
@@ -131,10 +133,9 @@
             "heading": "Verzendopties",
             "icon": "none",
             "content": "<p>We work with XYZ and take care of every </p>",
+            "shipping_options": "",
             "display_product_specifications_list": false,
             "display_product_specifications_table": false,
-            "display_shipping_options": false,
-            "page": "",
             "enable_background": false,
             "padding_top": 0,
             "padding_bottom": 0,
@@ -158,9 +159,9 @@
       "block_order": [
         "vendor",
         "title",
-        "description",
         "inventory_WmbcaK",
         "variant_picker",
+        "description",
         "price",
         "quantity_selector",
         "buy_buttons",
