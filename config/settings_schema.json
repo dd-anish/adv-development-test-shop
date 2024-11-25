@@ -37,6 +37,12 @@
     "name": "t:settings_schema.colors.name",
     "settings": [
       {
+        "type": "color",
+        "id": "theme_signature_color",
+        "label": "Theme Signature Color",
+        "default": "#c11717"
+      },
+      {
         "type": "color_scheme_group",
         "id": "color_schemes",
         "definition": [
