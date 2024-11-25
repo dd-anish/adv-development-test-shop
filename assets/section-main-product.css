@@ -302,9 +302,7 @@ a.product__text {
   }
 }
 
-.product__description-heading {
-  font-weight: 600;
-}
+
 
 .product--no-media .product__title,
 .product--no-media .product__text,
@@ -1496,6 +1494,7 @@ a.product__text {
 
 
 /* Custom CSS */
+
 /* Use .custom-product__info-container as a parent in this section to target specific class  */
 
 .product__info-container>*+* {
@@ -1576,6 +1575,7 @@ a.product__text {
   }
 }
 
+
 /* Collapsible Row */
 
 .product__accordion.accordion{
@@ -1583,8 +1583,9 @@ a.product__text {
   border-bottom: 0.2rem solid var(--text-decoration-color);
 }
 
-.accordion__content{
-  
+.product__accordion.accordion .accordion__content .shipping-options, .product__accordion.accordion .accordion__content .collapsible-richtext-content{
+  padding: 0;
+  margin: 0;
 }
 
 .text-link-underline-product-description-heading {
@@ -1647,7 +1648,6 @@ a.product__text {
     width: 1.8rem;
     height: 1.8rem;
   }
-  
 }
 
 
