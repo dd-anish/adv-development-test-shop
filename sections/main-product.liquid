@@ -287,19 +287,18 @@
                           {% assign bullet_points = product.metafields.custom.specifications_multi_list | newline_to_br | split: '<br />' %}
                           {% for line in bullet_points %}
                             <li class="spec-item">
-                              {% if line contains '++' %}
+                              {% if line contains '++' or line contains '✅' %}
                                 <span class="spec-item-icon">
                                   {{ 'icon-checkmark-square.svg' | inline_asset_content }}
                                 </span>
-                              {% elsif line contains '--' %}
+                              {% elsif line contains '--' or line contains '❌' %}
                                 <span class="spec-item-icon">
                                   {{ 'icon-crossmark-square.svg' | inline_asset_content }}
                                 </span>
                               {% endif %}
-                              {{ line | remove: '++' | remove: '--' }}
+                              {{ line | remove: '++' | remove: '--' | remove: '✅' | remove: '❌' }}
                             </li>
                           {% endfor %}
-                        
                         </ul>
                       {% endif %}
                     
