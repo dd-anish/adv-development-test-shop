@@ -133,7 +133,7 @@
             "heading": "Verzendopties",
             "icon": "none",
             "content": "<p>We work with XYZ and take care of every </p>",
-            "shipping_options": "",
+            "shipping_options": "{{ product.metafields.custom.shipping_options.value }}",
             "display_product_specifications_list": false,
             "display_product_specifications_table": false,
             "enable_background": false,
