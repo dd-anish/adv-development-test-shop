@@ -47,9 +47,9 @@
   width: calc(var(--font-heading-scale) * 2rem);
 }
 
-.accordion details[open] > summary .icon-caret {
+/* .accordion details[open] > summary .icon-caret {
   transform: rotate(180deg);
-}
+} */
 
 .accordion__content {
   margin-bottom: 1.5rem;
@@ -63,7 +63,7 @@
 }
 
 
-/* Custom Collapsible Icon for Product Page */
+/* Custom Collapsible Icon for Product Page and Collapsible Section */
 
 .accordion details > summary svg{  
   width: 1.2rem;  
