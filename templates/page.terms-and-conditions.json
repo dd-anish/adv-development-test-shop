@@ -17,64 +17,53 @@
         "padding_bottom": 36
       }
     },
+    "description_content_X9rdRp": {
+      "type": "description-content",
+      "settings": {
+        "heading": "ALGEMENE VOORWAARDEN",
+        "description": "<p>Adventure is a compelling concept that resonates deeply with the human spirit, embodying a quest for the unknown, the thrill of discovery, and the courage to step beyond comfort zones. It is often associated with journeys, challenges, and experiences that push individuals to their limits, offering a mix of exhilaration, uncertainty, and self-discovery.</p>",
+        "top_padding": 0,
+        "bottom_padding": 0
+      }
+    },
     "collapsible_content_BqCNWQ": {
       "type": "collapsible-content",
       "blocks": {
         "collapsible_row_N4TkiR": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Inklapbare rij",
+            "heading": "Hoodstuk één",
             "icon": "none",
-            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
+            "row_content": "<p>For many, <strong>adventure </strong>lies in nature, where rugged terrains, pristine forests, and roaring rivers provide the perfect backdrop for challenges. Activities like <em>hiking, kayaking, or camping</em> are not just about physical exertion but also about reconnecting with the wild and gaining a deeper appreciation for the planet's beauty and fragility. Check this <a href=\"/collections/all\" target=\"_blank\" title=\"All products\">link </a>here for more info</p>",
             "page": ""
           }
         },
         "collapsible_row_9CUjEG": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Inklapbare rij",
+            "heading": "Hoofdstuk twee",
             "icon": "none",
-            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
-            "page": ""
-          }
-        },
-        "collapsible_row_DiPDRi": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Inklapbare rij",
-            "icon": "none",
-            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
-            "page": ""
-          }
-        },
-        "collapsible_row_d9QUCV": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Inklapbare rij",
-            "icon": "none",
-            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsu </p>",
+            "row_content": "<p>Adventure is also closely tied to personal growth. <em>Overcoming fears,</em> solving problems in unfamiliar settings, and adapting to new situations build resilience and confidence. The <a href=\"/collections/all\" title=\"All products\">challenges </a>faced during an adventure often reveal <strong>strengths and abilities </strong>that remain dormant in ordinary circumstances, fostering a sense of accomplishment and a renewed belief in one's potential.</p>",
             "page": ""
           }
         }
       },
       "block_order": [
         "collapsible_row_N4TkiR",
-        "collapsible_row_9CUjEG",
-        "collapsible_row_DiPDRi",
-        "collapsible_row_d9QUCV"
+        "collapsible_row_9CUjEG"
       ],
       "settings": {
         "caption": "",
-        "heading": "Inklapbare content",
+        "heading": "",
         "heading_size": "h1",
-        "heading_alignment": "center",
+        "heading_alignment": "left",
         "layout": "none",
         "color_scheme": "",
         "container_color_scheme": "",
         "open_first_collapsible_row": false,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36
       }
     },
@@ -242,6 +231,7 @@
   },
   "order": [
     "main",
+    "description_content_X9rdRp",
     "collapsible_content_BqCNWQ",
     "featured_contact_collection_tB4ypR",
     "image_banner_n7VNet",
