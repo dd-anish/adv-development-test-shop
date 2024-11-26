@@ -24,7 +24,7 @@
           "type": "collapsible_row",
           "settings": {
             "heading": "Inklapbare rij",
-            "icon": "check_mark",
+            "icon": "none",
             "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
             "page": ""
           }
@@ -33,7 +33,7 @@
           "type": "collapsible_row",
           "settings": {
             "heading": "Inklapbare rij",
-            "icon": "check_mark",
+            "icon": "none",
             "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
             "page": ""
           }
@@ -42,7 +42,7 @@
           "type": "collapsible_row",
           "settings": {
             "heading": "Inklapbare rij",
-            "icon": "check_mark",
+            "icon": "none",
             "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
             "page": ""
           }
@@ -51,7 +51,7 @@
           "type": "collapsible_row",
           "settings": {
             "heading": "Inklapbare rij",
-            "icon": "check_mark",
+            "icon": "none",
             "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsu </p>",
             "page": ""
           }
