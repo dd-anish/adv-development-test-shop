@@ -102,12 +102,13 @@
 
 .collapsible-content summary:hover {
   background: rgba(var(--color-foreground), 0.04);
+  /* border-top-left-radius: var(--buttons-radius); */
 }
 
-.collapsible-content summary:hover .accordion__title {
+/* .collapsible-content summary:hover .accordion__title {
   text-decoration: underline;
   text-underline-offset: 0.3rem;
-}
+} */
 
 /* check for flexbox gap in older Safari versions */
 @supports not (inset: 10px) {
@@ -125,4 +126,19 @@
       padding-left: 7rem;
     }
   }
+}
+
+/* Custom */
+
+.accordion__content p{
+  font-size: 1.4rem;
+  font-weight: var(--font-regular);
+  line-height: normal;
+}
+
+@media screen and (min-width: 750px) {
+  .accordion__content p{
+    font-size: 1.5rem;
+  }
+  
 }

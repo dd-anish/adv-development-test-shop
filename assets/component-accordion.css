@@ -2,7 +2,8 @@
   display: flex;
   position: relative;
   line-height: 1;
-  padding: 1.5rem 0;
+  /* padding: 1.5rem 0; */
+  padding: 2rem 0;
   align-items: center;
 }
 
@@ -23,8 +24,10 @@
 .accordion {
   margin-top: 2.5rem;
   margin-bottom: 0;
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  /* border-top: 0.1rem solid rgba(var(--color-foreground), 0.08); 
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);*/
+  border-top: 0;
+  border-bottom: 0.2rem solid var(--theme-signature-color);
 }
 
 .accordion__title {
@@ -33,6 +36,7 @@
   min-height: 1.6rem;
   margin: 0;
   word-break: break-word;
+  padding-left: 0.5rem;
 }
 
 .accordion .svg-wrapper {

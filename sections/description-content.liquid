@@ -1,0 +1,80 @@
+{% style %}
+
+    .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+        padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+    
+{% endstyle %}
+
+
+<div class="section-{{ section.id }}-padding page-width">
+
+    {%- if section.settings.heading != blank -%}
+        <div class="text-link-underline-custom">
+            <h2 class="h3">
+            {{ section.settings.heading | strip_html | escape }}
+            </h2>
+        </div>
+    {%- endif -%}
+
+    <div class="section__description text-body--small-3 font-regular">
+
+        {{ section.settings.description |  strip_html | escape }}
+
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Description Content",
+        "settings": [
+            {
+                "type": "inline_richtext",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Heading"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Enter your description here.</p>"
+            },
+            {
+                "type": "header",
+                "content": "Section Style Settings"
+            },
+            {
+                "type": "range",
+                "id": "top_padding",
+                "label": "Top Padding",
+                "min": 0,
+                "max": 100,
+                "step": 4,
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "bottom_padding",
+                "label": "Bottom Padding",
+                "min": 0,
+                "max": 100,
+                "step": 4,
+                "default": 0
+            }
+        ],
+        "presets": [
+            {
+                "name": "Description Content"
+            }
+        ]
+    }
+{% endschema %}
