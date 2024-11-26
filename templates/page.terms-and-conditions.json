@@ -222,7 +222,7 @@
         "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">CONTACTEER </a>ONS",
         "heading_size": "h1",
         "card_style": "contact-card",
-        "allow_hover_on_images": false,
+        "allow_hover_on_images": true,
         "columns_desktop": 4,
         "color_scheme": "",
         "columns_mobile": "2",
