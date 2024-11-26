@@ -21,6 +21,7 @@
       "type": "description-content",
       "settings": {
         "heading": "ALGEMENE VOORWAARDEN",
+        "heading_size": "h1",
         "description": "<p>Adventure is a compelling concept that resonates deeply with the human spirit, embodying a quest for the unknown, the thrill of discovery, and the courage to step beyond comfort zones. It is often associated with journeys, challenges, and experiences that push individuals to their limits, offering a mix of exhilaration, uncertainty, and self-discovery.</p>",
         "top_padding": 0,
         "bottom_padding": 0
@@ -57,13 +58,14 @@
         "heading": "",
         "heading_size": "h1",
         "heading_alignment": "left",
+        "summary_heading_size": "h2",
         "layout": "none",
         "color_scheme": "",
         "container_color_scheme": "",
         "open_first_collapsible_row": false,
-        "image_ratio": "adapt",
-        "desktop_layout": "image_second",
-        "padding_top": 0,
+        "image_ratio": "small",
+        "desktop_layout": "image_first",
+        "padding_top": 36,
         "padding_bottom": 36
       }
     },
