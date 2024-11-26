@@ -109,6 +109,7 @@
         "featured_contact_standard_FaK6j6",
         "featured_contact_standard_tUHJc6"
       ],
+      "disabled": true,
       "settings": {
         "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">KOM MEER TE</a> WETEN",
         "heading_size": "h1",
@@ -155,6 +156,7 @@
         "heading_UAiBJN",
         "buttons_QxQyha"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/Banner_Image.webp",
         "image_overlay_opacity": 40,
