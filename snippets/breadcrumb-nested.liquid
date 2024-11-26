@@ -11,7 +11,7 @@
 
         {%- if settings.show_home_breadcrumb -%}
           <li class="breadcrumbs__item">
-            <a class="breadcrumbs__link" href="{{ routes.root_url }}" title="{{ 'general.breadcrumbs.home_link_title' | t }}">
+            <a class="breadcrumbs__link" href="{{ routes.root_url }}">
               {{ settings.home_breadcrumb_text | strip_html }}
             </a>
             <span class="svg-wrapper">
