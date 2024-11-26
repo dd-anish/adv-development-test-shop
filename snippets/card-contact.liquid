@@ -42,11 +42,16 @@
     .contact--standard{
         border-radius: var(--border-radius);
     }
+
+    /* Full BG Gray Card -> Contact Card */
+    .contact--card{
+        border-radius: var(--border-radius);
+    }
     
 {% endstyle %}
 
 <div class="contact-card-wrapper underline-links-hover">
-    <div class="contact-container {% if card_style == 'contact-card' %} color-{{ settings.card_color_scheme }} gradient {% endif %}">
+    <div class="contact-container {% if card_style == 'contact-card' %} color-{{ settings.card_color_scheme }} gradient contact--card {% endif %}">
 
         <div class="contact-card__inner">
 
