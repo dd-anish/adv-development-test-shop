@@ -82,7 +82,7 @@
                 >
                   <summary id="Summary-{{ block.id }}-{{ section.id }}">
                     {% render 'icon-accordion', icon: block.settings.icon %}
-                    <h3 class="accordion__title h3">
+                    <h3 class="accordion__title {{ section.settings.summary_heading_size }}">
                       {{ block.settings.heading | default: block.settings.page.title | escape }}
                     </h3>
                     {% comment %} {{- 'icon-caret.svg' | inline_asset_content -}} {% endcomment %}
@@ -133,8 +133,16 @@
       "id": "heading_size",
       "options": [
         {
+          "value": "hxsm",
+          "label": "Extra Small"
+        },
+        {
           "value": "h2",
           "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "hsm-md",
+          "label":"Small to Medium"
         },
         {
           "value": "h1",
@@ -175,6 +183,42 @@
         }
       ],
       "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "summary_heading_size",
+      "options": [
+        {
+          "value": "hxsm",
+          "label": "Extra Small"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "hsm-md",
+          "label":"Small to Medium"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_size.label"
     },
     {
       "type": "select",

@@ -19,7 +19,7 @@
 
     {%- if section.settings.heading != blank -%}
         <div class="text-link-underline-custom">
-            <h2 class="h3">
+            <h2 class="{{ section.settings.heading_size }}">
             {{ section.settings.heading | strip_html | escape }}
             </h2>
         </div>
@@ -36,12 +36,49 @@
     {
         "name": "Description Content",
         "settings": [
+            
             {
                 "type": "inline_richtext",
                 "id": "heading",
                 "label": "Heading",
                 "default": "Heading"
             },
+            {
+                "type": "select",
+                "id": "heading_size",
+                "options": [
+                    {
+                        "value": "hxsm",
+                        "label": "Extra Small"
+                    },
+                    {
+                        "value": "h2",
+                        "label": "t:sections.all.heading_size.options__1.label"
+                    },
+                    {
+                        "value": "hsm-md",
+                        "label":"Small to Medium"
+                    },
+                    {
+                        "value": "h1",
+                        "label": "t:sections.all.heading_size.options__2.label"
+                    },
+                    {
+                        "value": "h0",
+                        "label": "t:sections.all.heading_size.options__3.label"
+                    },
+                    {
+                        "value": "hxl",
+                        "label": "t:sections.all.heading_size.options__4.label"
+                    },
+                    {
+                        "value": "hxxl",
+                        "label": "t:sections.all.heading_size.options__5.label"
+                    }
+                ],
+                "default": "h1",
+                "label": "t:sections.all.heading_size.label"
+                },
             {
                 "type": "richtext",
                 "id": "description",
