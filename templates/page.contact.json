@@ -1,18 +1,69 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "form": {
-      "type": "contact-form",
+    "featured_contact_collection_tB4ypR": {
+      "type": "featured-contact-collection",
+      "blocks": {
+        "featured_contact_standard_qJhRN3": {
+          "type": "featured_contact_standard",
+          "settings": {
+            "featured_image": "shopify://shop_images/Icon_Contract.png",
+            "title": "Een vraag over je bestelling",
+            "url": "shopify://collections/archery-tag"
+          }
+        },
+        "featured_contact_standard_zbpiGm": {
+          "type": "featured_contact_standard",
+          "settings": {
+            "title": "Sample Contact Title",
+            "url": ""
+          }
+        },
+        "featured_contact_standard_FaK6j6": {
+          "type": "featured_contact_standard",
+          "settings": {
+            "title": "Sample Contact Title",
+            "url": ""
+          }
+        },
+        "featured_contact_standard_tUHJc6": {
+          "type": "featured_contact_standard",
+          "settings": {
+            "title": "Sample Contact Title",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_contact_standard_qJhRN3",
+        "featured_contact_standard_zbpiGm",
+        "featured_contact_standard_FaK6j6",
+        "featured_contact_standard_tUHJc6"
+      ],
       "settings": {
-        "heading": "",
+        "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">KOM MEER TE</a> WETEN",
         "heading_size": "h1",
-        "color_scheme": "scheme-1",
+        "card_style": "contact-standard",
+        "allow_hover_on_images": false,
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "columns_mobile": "2",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -20,6 +71,6 @@
   },
   "order": [
     "main",
-    "form"
+    "featured_contact_collection_tB4ypR"
   ]
 }
