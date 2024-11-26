@@ -26,8 +26,28 @@
         height: 100%;
     }
 
-    .contact-card__media svg{
-        background: rgba(193, 23, 23, 0.5);
+    /* Card Icons */
+    .contact-card__media .svg-wrapper{
+        width: 100%;
+        height: 100%;
+    }
+
+    .contact-card__media .svg-wrapper svg{
+        padding: 2rem;
+    }
+
+    .contact--card .contact-card__media svg{
+        /* Theme Signature Color in RGB */
+        /* background: rgba(193, 23, 23, 0.5); */
+        background: var(--theme-black-color);
+        fill:var(--theme-white-color);
+    }
+
+    @media screen and (min-width: 550px){
+        .contact-card__media .svg-wrapper svg{
+        padding: 3rem;
+    }
+
     }
 
     {% if allow_hover_on_images %} 
@@ -105,7 +125,7 @@
 
             {% if card_style == 'contact-standard' or card_style == 'contact-card' and icon_type == 'image' %}
                 {%- if card_contact.featured_image -%}
-                    <div class="contact-card__media contact-card__media-section-{{ section.id }} contact-media--transparent contact-media--hover-effect">
+                    <div class="contact-card__media contact-card__media-section-{{ section.id }}">
                         <img
                         srcset="
                             {%- if card_contact.featured_image.width >= 165 -%}{{ card_contact.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
@@ -135,6 +155,12 @@
                     {{ 'product-1' | placeholder_svg_tag }}
                     </div>
                 {%- endif -%}
+            {% endif %}
+
+            {% if card_style == 'contact-card' and icon_type == 'icon' %}
+                <div class="contact-card__media contact-card__media-section-{{ section.id }}">
+                    {% render 'icon-accordion', icon: card_contact.icon %}
+                </div>
             {% endif %}
 
             <div class="contact-card__content {% if card_style == 'contact-standard' %} color-{{ settings.card_color_scheme }} gradient contact--standard {% endif %}">
