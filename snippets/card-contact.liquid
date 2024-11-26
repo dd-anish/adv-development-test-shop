@@ -1,5 +1,9 @@
 {% style %}
 
+    .collection.contact-cards-container .collection__title, .collection.contact-cards-container .collection__title .title{
+        padding: 0;
+    }
+
     .contact-card-wrapper{
         height: 100%
     }
@@ -19,6 +23,10 @@
     .contact-card__media{
         overflow: hidden;
         border-radius: var(--border-radius);
+    }
+
+    .contact--standard .contact-card__media{
+        padding: 1rem;
     }
 
     .contact-card__media img, .contact-card__media svg{
@@ -97,6 +105,7 @@
         text-align: center;
         justify-content: center;
         gap: 1.5rem;
+        flex:1;
     }
 
     /* Card Content */
@@ -105,6 +114,8 @@
         display: flex;
         flex-direction: column;
         gap: 0.2rem;
+        flex: 1;
+        justify-content: space-between;
     }
 
     .contact--card-day-time-wrapper{
@@ -123,7 +134,7 @@
 {% endstyle %}
 
 <div class="contact-card-wrapper underline-links-hover">
-    <div class="contact-container {% if card_style == 'contact-card' %} color-{{ settings.card_color_scheme }} gradient contact--card {% endif %}">
+    <div class="contact-container {% if card_style == 'contact-standard' %} contact--standard {% endif %} {% if card_style == 'contact-card' %} color-{{ settings.card_color_scheme }} gradient contact--card {% endif %}">
 
         <div class="contact-card__inner">
 
@@ -183,23 +194,25 @@
                     {% if card_style == 'contact-card' %}
                         <div class="contact-card-more-content">
                             {%- if card_contact.description != blank -%}
-                            <div class="contact--card-description text-body--small-2 font-regular">
-                                {{- card_contact.description -}}
-                            </div>
+                                <div class="contact--card-description text-body--small-2 font-regular">
+                                    {{- card_contact.description -}}
+                                </div>
                             {%- endif -%}
 
-                            <div class="contact--card-day-time-wrapper text-body--small-3 font-medium">
-                                <span class="contact--card-day">
-                                    {{ card_contact.day }} 
-                                </span>
-                                <span class="bullet">
-                                    •
-                                </span>
-                                <span class="contact--card-time">
-                                    {{ card_contact.time }}
-                                </span>
-                                
-                            </div>
+                            {% if card_contact.day != blank and card_contact.time != blank %}     
+                                <div class="contact--card-day-time-wrapper text-body--small-3 font-medium">
+                                    <span class="contact--card-day">
+                                        {{ card_contact.day }} 
+                                    </span>
+                                    <span class="bullet">
+                                        •
+                                    </span>
+                                    <span class="contact--card-time">
+                                        {{ card_contact.time }}
+                                    </span>
+                                    
+                                </div>
+                            {% endif %}
                         </div>
                     {% endif %}
                 </div>

@@ -39,7 +39,7 @@
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
   <div
-    class="collection page-width isolate {% if show_mobile_slider %} page-width-desktop{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %} "
+    class="collection contact-cards-container page-width isolate {% if show_mobile_slider %} page-width-desktop{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %} "
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
@@ -53,32 +53,31 @@
     </div>
 
     <!-- Section Content -->
-   
-      <ul
-        data-id="{{ section.id }}"
-        class="grid product-grid contains-card contains-card--product grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
-        role="list"
-        aria-label="contact-card-list"
-      >
-        {% for block in section.blocks %}
-            <li
-            id="list-{{ section.id }}-{{ forloop.index }}"
-            class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            {% render 'card-contact',
-                card_contact: block.settings,
-                card_style: section.settings.card_style,
-                allow_hover_on_images: section.settings.allow_hover_on_images,
-                icon_type: block.settings.icon_type,
-                section: section
-            %}
-          </li>
-        {%- endfor -%}
-      </ul>
+    <ul
+      data-id="{{ section.id }}"
+      class="grid product-grid contains-card contains-card--product grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+      role="list"
+      aria-label="contact-card-list"
+    >
+      {% for block in section.blocks %}
+          <li
+          id="list-{{ section.id }}-{{ forloop.index }}"
+          class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
+        >
+          {% render 'card-contact',
+              card_contact: block.settings,
+              card_style: section.settings.card_style,
+              allow_hover_on_images: section.settings.allow_hover_on_images,
+              icon_type: block.settings.icon_type,
+              section: section
+          %}
+        </li>
+      {%- endfor -%}
+    </ul>
   </div>
 </div>
 
@@ -145,7 +144,7 @@
         {
           "value": "contact-card",
           "label": "Card"
-        },
+        }
       ],
       "default": "contact-standard"
     },
@@ -285,7 +284,7 @@
                 {
                     "type": "image_picker",
                     "id": "featured_image",
-                    "label": "Featured Contact Icon",
+                    "label": "Featured Contact Image",
                     "info": "Only USE when Icon Type is set to Image"
                 },
                 {
