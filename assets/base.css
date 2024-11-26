@@ -540,7 +540,7 @@ summary {
   position: relative;
 }
 
-summary .icon-caret {
+summary .icon-caret, summary .icon-plus, summary .icon-minus {
   position: absolute;
   height: 0.6rem;
   right: 1.5rem;

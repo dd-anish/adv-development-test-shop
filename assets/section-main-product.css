@@ -1586,7 +1586,7 @@ a.product__text {
 
 .product__accordion.accordion{
   border-top: 0;
-  border-bottom: 0.2rem solid var(--text-decoration-color);
+  border-bottom: 0.2rem solid var(--theme-signature-color);
 }
 
 .product__accordion.accordion .accordion__content .shipping-options, .product__accordion.accordion .accordion__content .collapsible-richtext-content{
