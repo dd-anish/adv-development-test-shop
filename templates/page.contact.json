@@ -31,8 +31,9 @@
         "featured_contact_standard_zbpiGm": {
           "type": "featured_contact_standard",
           "settings": {
-            "title": "Sample Contact Title",
-            "url": ""
+            "featured_image": "shopify://shop_images/Icon_Shippingbox.png",
+            "title": "Pick Up & Verzendingen",
+            "url": "shopify://collections"
           }
         },
         "featured_contact_standard_FaK6j6": {
