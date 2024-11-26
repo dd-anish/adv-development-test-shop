@@ -3753,8 +3753,6 @@ h6,
   font-weight: var(--font-extra-light);
 }
 
-
-
 /* Button */
 
 .button-normal{
@@ -3786,6 +3784,21 @@ h6,
   text-underline-offset: var(--text-decoration-spacing);
   text-decoration-thickness: var(--text-decoration-thickness);
   text-decoration-color: var(--text-decoration-color);  
+}
+
+.text-link-underline-custom {
+  position: relative;
+  display: inline-block;
+}
+
+.text-link-underline-custom::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  width: 70%;
+  height: 0.2rem;
+  background-color: var(--theme-signature-color);
 }
 
 @media screen and (min-width: 750px) {

@@ -1605,10 +1605,8 @@ a.product__text {
   bottom: 20%;
   left: 0;
   width: 70%;
-  /* Adjust percentage here */
   height: 0.2rem;
-  /* Adjust thickness */
-  background-color: var(--text-decoration-color);
+  background-color: var(--theme-signature-color);
 }
 
 .accordion__content.rte ul{
