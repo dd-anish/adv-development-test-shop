@@ -1,0 +1,210 @@
+{% style %}
+
+    .contact-card-wrapper{
+        height: 100%
+    }
+
+    .contact-container{
+        height: 100%;
+    }
+
+    .contact-card__inner{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        /* gap: 0.5rem; */
+    }
+
+    /* Card Image */
+    .contact-card__media{
+        overflow: hidden;
+        border-radius: var(--border-radius);
+    }
+
+    .contact-card__media img, .contact-card__media svg{
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Card Icons */
+    .contact--card .contact-card__media-icons{
+        border-radius: calc(var(--border-radius) * 2);
+    }
+
+    .contact-card__media .svg-wrapper{
+        width: 100%;
+        height: 100%;
+    }
+
+    .contact-card__media .svg-wrapper svg{
+        padding: 2rem;
+    }
+
+    .contact--card .contact-card__media svg{
+        /* Theme Signature Color in RGB */
+        /* background: rgba(193, 23, 23, 0.5); */
+        background: var(--theme-black-color);
+        fill:var(--theme-white-color);
+    }
+
+    @media screen and (min-width: 550px){
+        .contact-card__media .svg-wrapper svg{
+        padding: 3rem;
+    }
+
+    }
+
+    {% if allow_hover_on_images %} 
+        .contact-card__media-section-{{ section.id }} img:hover{
+            transform: scale(1.1);
+            transition: transform 0.8s;
+        }
+
+        .contact-card__media-section-{{ section.id }} svg:hover{
+            transform: scale(1.1);
+            transition: transform 0.8s;
+        }
+    {% endif %}
+
+    /* Card Content */
+    .contact-card__content{
+        padding:1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex:1;
+    }
+
+    /* Standard Cards */
+    .contact--standard{
+        border-radius: var(--border-radius);
+    }
+
+    /* Full BG Gray Card -> Contact Card */
+    .contact--card{
+        border-radius: var(--border-radius);
+    }
+
+    .contact--card .contact-card__media{
+        aspect-ratio: 1;
+        width: 40%;
+        margin: 0 auto;
+        margin-top: 2rem;
+    }
+
+    .contact-card__information--card{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    /* Card Content */
+
+    .contact-card-more-content{
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .contact--card-day-time-wrapper{
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .contact--card-day-time-wrapper .bullet{
+        color: var(--theme-signature-color);
+        display: flex;
+        align-items: center;
+    }
+
+{% endstyle %}
+
+<div class="contact-card-wrapper underline-links-hover">
+    <div class="contact-container {% if card_style == 'contact-card' %} color-{{ settings.card_color_scheme }} gradient contact--card {% endif %}">
+
+        <div class="contact-card__inner">
+
+            {% if card_style == 'contact-standard' or card_style == 'contact-card' and icon_type == 'image' %}
+                {%- if card_contact.featured_image -%}
+                    <div class="contact-card__media contact-card__media-section-{{ section.id }}">
+                        <img
+                        srcset="
+                            {%- if card_contact.featured_image.width >= 165 -%}{{ card_contact.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+                            {%- if card_contact.featured_image.width >= 330 -%}{{ card_contact.featured_image | image_url: width: 330 }} 330w,{%- endif -%}
+                            {%- if card_contact.featured_image.width >= 535 -%}{{ card_contact.featured_image | image_url: width: 535 }} 535w,{%- endif -%}
+                            {%- if card_contact.featured_image.width >= 750 -%}{{ card_contact.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
+                            {%- if card_contact.featured_image.width >= 1000 -%}{{ card_contact.featured_image | image_url: width: 1000 }} 1000w,{%- endif -%}
+                            {%- if card_contact.featured_image.width >= 1500 -%}{{ card_contact.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                            {%- if card_contact.featured_image.width >= 3000 -%}{{ card_contact.featured_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                            {{ card_contact.featured_image | image_url }} {{ card_contact.featured_image.width }}w"
+                        src="{{ card_contact.featured_image | image_url: width: 1500 }}"
+                        sizes="
+                            (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
+                            (min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %},
+                            calc(100vw - 3rem)"
+                        alt="{{ card_contact.featured_image.alt | escape }}"
+                        height="{{ card_contact.featured_image.height }}"
+                        width="{{ card_contact.featured_image.width }}"
+                        loading="lazy"
+                        class="motion-reduce"
+                        >
+                    </div>
+                {%- endif -%}
+
+                {%- if card_contact.featured_image == blank -%}
+                    <div class="contact-card__media contact-card__media-icons contact-card__media-section-{{ section.id }}">
+                    {{ 'product-1' | placeholder_svg_tag }}
+                    </div>
+                {%- endif -%}
+            {% endif %}
+
+            {% if card_style == 'contact-card' and icon_type == 'icon' %}
+                <div class="contact-card__media contact-card__media-icons contact-card__media-section-{{ section.id }}">
+                    {% render 'icon-accordion', icon: card_contact.icon %}
+                </div>
+            {% endif %}
+
+            <div class="contact-card__content {% if card_style == 'contact-standard' %} color-{{ settings.card_color_scheme }} gradient contact--standard {% endif %}">
+                <div class="contact-card__information {% if card_style == 'contact-card' %}contact-card__information--card {% endif %}">
+                    <h3 class="contact-card__heading h2 font-body-bold no-default-spacing">
+                        <a
+                            href="{{ card_contact.url }}"
+                            class="full-unstyled-link"
+                        >
+                            {%- if card_contact.title != blank -%}
+                                {{- card_contact.title | escape -}}
+                            {%- endif -%}
+                        </a>
+                    </h3>
+
+                    {% if card_style == 'contact-card' %}
+                        <div class="contact-card-more-content">
+                            {%- if card_contact.description != blank -%}
+                            <div class="contact--card-description text-body--small-2 font-regular">
+                                {{- card_contact.description -}}
+                            </div>
+                            {%- endif -%}
+
+                            <div class="contact--card-day-time-wrapper text-body--small-3 font-medium">
+                                <span class="contact--card-day">
+                                    {{ card_contact.day }} 
+                                </span>
+                                <span class="bullet">
+                                    •
+                                </span>
+                                <span class="contact--card-time">
+                                    {{ card_contact.time }}
+                                </span>
+                                
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
