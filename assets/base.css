@@ -3696,6 +3696,11 @@ h5,
 
 @media only screen and (min-width: 750px) {
 
+  h4,
+  .h4 {
+    font-size: calc(var(--font-heading-scale) * 1.7rem);
+  }
+
   h5,
   .h5 {
     font-size: calc(var(--font-heading-scale) * 1.3rem);
@@ -3791,7 +3796,22 @@ h6,
   display: inline-block;
 }
 
+.text-link-underline-custom-thin {
+  position: relative;
+  display: inline-block;
+}
+
 .text-link-underline-custom::after {
+  content: "";
+  position: absolute;
+  bottom: -5%;
+  left: 0;
+  width: var(--text-decoration-width);
+  height: var(--text-decoration-thickness);
+  background-color: var(--theme-signature-color);
+}
+
+.text-link-underline-custom-thin::after {
   content: "";
   position: absolute;
   bottom: -5%;
