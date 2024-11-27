@@ -40,7 +40,7 @@
           "settings": {
             "enable_background": true,
             "heading": "",
-            "show_more_type": "button",
+            "show_more_type": "link",
             "show_more_text": "Toon meer",
             "show_less_text": "Toon minder",
             "description_limit": 6,
