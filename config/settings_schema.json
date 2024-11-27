@@ -259,13 +259,13 @@
       },
       {
         "type": "range",
-        "id": "text_decoration_spacing",
+        "id": "text_decoration_width",
         "min": 0,
-        "max": 12,
-        "step": 1,
-        "unit": "px",
-        "label": "Underline Spacing",
-        "default": 4
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Underline Width",
+        "default": 60
       },
       {
         "type": "range",
@@ -282,7 +282,21 @@
         "id": "text_decoration_color",
         "label": "Underline Color",
         "default": "#C11717"
-      }
+      },
+      {
+        "type": "header",
+        "content": "Old Settings",
+      },
+      {
+        "type": "range",
+        "id": "text_decoration_spacing",
+        "min": 0,
+        "max": 12,
+        "step": 1,
+        "unit": "px",
+        "label": "Underline Spacing",
+        "default": 4
+      },
 
     ]
   },

@@ -1594,19 +1594,15 @@ a.product__text {
   margin: 0;
 }
 
-.text-link-underline-product-description-heading {
-  position: relative;
-  display: inline-block;
+.product__description-container .text-link-underline-custom::after {
+  height: calc(var(--text-decoration-thickness) - 1px);
 }
 
-.text-link-underline-product-description-heading::after {
-  content: '';
-  position: absolute;
-  bottom: 20%;
-  left: 0;
-  width: 70%;
-  height: 0.2rem;
-  background-color: var(--theme-signature-color);
+@media screen and (min-width: 750px) {
+  .product__description-container .text-link-underline-custom::after {
+    height: calc(var(--text-decoration-thickness) - 1px);
+  }
+  
 }
 
 .accordion__content.rte ul{
