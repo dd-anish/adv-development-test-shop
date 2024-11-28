@@ -35,21 +35,6 @@
             "padding_right": 18
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {
-            "enable_background": true,
-            "heading": "",
-            "show_more_type": "link",
-            "show_more_text": "Toon meer",
-            "show_less_text": "Toon minder",
-            "description_limit": 6,
-            "padding_top": 18,
-            "padding_bottom": 12,
-            "padding_left": 18,
-            "padding_right": 10
-          }
-        },
         "inventory_WmbcaK": {
           "type": "inventory",
           "settings": {
@@ -111,6 +96,21 @@
             "padding_right": 0
           }
         },
+        "description": {
+          "type": "description",
+          "settings": {
+            "enable_background": false,
+            "heading": "Beschrijving",
+            "show_more_type": "link",
+            "show_more_text": "Toon meer",
+            "show_less_text": "Toon minder",
+            "description_limit": 6,
+            "padding_top": 12,
+            "padding_bottom": 12,
+            "padding_left": 0,
+            "padding_right": 10
+          }
+        },
         "collapsible_tab_ppnbak": {
           "type": "collapsible_tab",
           "settings": {
@@ -159,12 +159,12 @@
       "block_order": [
         "vendor",
         "title",
-        "description",
         "inventory_WmbcaK",
         "variant_picker",
         "price",
         "quantity_selector",
         "buy_buttons",
+        "description",
         "collapsible_tab_ppnbak",
         "collapsible_tab_B6RWhR",
         "share"
