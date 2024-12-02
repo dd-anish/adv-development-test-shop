@@ -672,10 +672,10 @@
   } 
 }
 
-/* Increased the specificity to override above card__heading a ::after */
-.card__content .card__information .card__heading.card__heading-custom a::after {
+/* Increased the specificity to override above card__heading a ::after, it is used to avoid link effect on Card Image*/
+/* .card__content .card__information .card__heading.card__heading-custom a::after {
   position: relative;
-}
+} */
 
 /* .card__content.card__content_with_media{
   background-color: #f5f5f5;
