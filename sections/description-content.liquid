@@ -18,7 +18,7 @@
 <div class="section-{{ section.id }}-padding page-width">
 
     {%- if section.settings.heading != blank -%}
-        <h2 class="{{ section.settings.heading_size }} text-link-underline-custom">
+        <h2 class="{{ section.settings.heading_size }} text-link-underline unclickable-link">
             {{ section.settings.heading | strip_html | escape }}
         </h2>
     {%- endif -%}

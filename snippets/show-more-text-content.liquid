@@ -80,9 +80,10 @@
 
 <script>
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const toggleButtons = document.querySelectorAll("[data-toggle-description]");
-        toggleButtons.forEach((btn) => {
+    function toggleDescription(){
+
+      const toggleButtons = document.querySelectorAll("[data-toggle-description]");
+      toggleButtons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
             const descriptionContent = btn.closest(".item_description").querySelector("[data-description]");
@@ -91,7 +92,19 @@
             descriptionContent.setAttribute("data-collapsed", !isCollapsed);
             btn.textContent = isCollapsed ? "{{ show_less_text }}" : "{{ show_more_text }}";
         });
-        });
-    });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", toggleDescription);
+
+    if(Shopify.designMode){
+      document.addEventListener("shopify:section:load", toggleDescription);
+      document.addEventListener("shopify:section:unload", toggleDescription);
+      document.addEventListener("shopify:section:select", toggleDescription);
+      document.addEventListener("shopify:section:deselect", toggleDescription);
+      document.addEventListener("shopify:block:select", toggleDescription);
+      document.addEventListener("shopify:block:deselect", toggleDescription);
+      // document.addEventListener("shopify:section:reorder", toggleDescription);
+    }
 
 </script>

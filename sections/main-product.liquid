@@ -227,8 +227,8 @@
                 <div class="product__description-container {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
 
                   {%- if block.settings.heading != blank -%}
-                    <div class="product__description-heading">
-                      <h2 class="h3 text-link-underline-custom">
+                    <div class="product__description-heading unclickable-link">
+                      <h2 class="h3 text-link-underline unclickable-link">
                         {{ block.settings.heading | escape }}
                       </h2>
                     </div>

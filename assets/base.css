@@ -3781,6 +3781,12 @@ h6,
   
 }
 
+/* Unclickable Link */
+
+.unclickable-link {
+  pointer-events: none;
+}
+
 /* Text Link Underline CUSTOM CSS */
 
 .text-link-underline a{
