@@ -2356,11 +2356,30 @@ input[type='checkbox'] {
   max-width: 100%;
 }
 
-@media screen and (max-width: 749px) {
-  .header__heading-logo-wrapper .header__heading-logo {
-    width: 70%;
-  }
+.header__heading-logo-desktop, .header__heading-logo-mobile {
+  height: auto;
+  max-width: 100%;
 }
+
+.header__heading-logo-desktop {
+  display: none;
+}
+
+.header__heading-logo-mobile {
+  display: block;
+}
+
+@media screen and (min-width: 749px) {
+  .header__heading-logo-desktop {
+    display: block;
+  }
+
+  .header__heading-logo-mobile {
+    display: none;
+  }
+
+}
+
 
 .header__heading-logo-wrapper {
   width: 100%;
