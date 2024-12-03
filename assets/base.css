@@ -2356,6 +2356,12 @@ input[type='checkbox'] {
   max-width: 100%;
 }
 
+@media screen and (max-width: 749px) {
+  .header__heading-logo-wrapper .header__heading-logo {
+    width: 70%;
+  }
+}
+
 .header__heading-logo-wrapper {
   width: 100%;
   display: inline-block;
