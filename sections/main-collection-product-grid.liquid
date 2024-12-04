@@ -91,6 +91,7 @@
       width: 2.5rem;
       height: 2.5rem;
     }
+
   }
 
 {%- endstyle -%}
@@ -169,7 +170,7 @@
     <!-- Search Bar End -->
     
     <!-- Filter Start -->
-      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+      {% comment %} {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside
           aria-labelledby="verticalTitle"
           class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %} facets-wrapper-mobile desktop-hidden"
@@ -184,7 +185,7 @@
             paginate: paginate
           %}
         </aside>
-      {%- endif -%}
+      {%- endif -%} {% endcomment %}
     <!-- Filter End -->
   </div>
 
@@ -257,7 +258,7 @@
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
           <aside
             aria-labelledby="verticalTitle"
-            class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %} facets-wrapper-desktop mobile-hidden"
+            class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
             id="main-collection-filters"
             data-id="desktop-{{ section.id }}"
           >
