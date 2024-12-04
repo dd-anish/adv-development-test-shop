@@ -20,7 +20,6 @@
     },
     "product-grid": {
       "type": "main-collection-product-grid",
-      "disabled": true,
       "settings": {
         "products_per_page": 16,
         "columns_desktop": 4,
@@ -42,24 +41,10 @@
         "padding_top": 0,
         "padding_bottom": 16
       }
-    },
-    "55d8f282-e9fa-447c-9bab-ba53fb471760": {
-      "type": "apps",
-      "blocks": {
-        "951a0855-f23b-49b6-967d-9db9401c88da": {
-          "type": "shopify://apps/boost-ai-search-discovery/blocks/filter-product-list-ssr/7fc998ae-a150-4367-bab8-505d8a4503f7",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "951a0855-f23b-49b6-967d-9db9401c88da"
-      ],
-      "settings": {}
     }
   },
   "order": [
     "banner",
-    "product-grid",
-    "55d8f282-e9fa-447c-9bab-ba53fb471760"
+    "product-grid"
   ]
 }
