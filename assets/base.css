@@ -3532,6 +3532,27 @@ details-disclosure > details {
   margin: 0;
 }
 
+/* Mobile And Desktop Hidden */
+
+.desktop-hidden {
+  display: block;
+}
+
+.mobile-hidden {
+  display: none;
+}
+
+@media screen and (min-width: 750px) {
+
+  .desktop-hidden {
+    display: none;
+  }
+
+  .mobile-hidden {
+    display: block;
+  }
+  
+}
 
 /* Font Sizes */
 
