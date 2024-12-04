@@ -264,6 +264,15 @@
           "shadow": "#121212"
         }
       }
+    },
+    "blocks": {
+      "afd7441d-cb8a-488b-bc78-392a3e142053": {
+        "type": "shopify://apps/boost-ai-search-discovery/blocks/boost-sd-ssr/7fc998ae-a150-4367-bab8-505d8a4503f7",
+        "disabled": false,
+        "settings": {
+          "templateId": "y7sVtFgHt3"
+        }
+      }
     }
   },
   "presets": {
