@@ -169,11 +169,11 @@
     {% comment %} {% endpaginate %} {% endcomment %}
     <!-- Search Bar End -->
     
-    <!-- Filter Start -->
+    <!-- Filter Start works good in mobile and horizontal layout only -->
       {% comment %} {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside
           aria-labelledby="verticalTitle"
-          class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %} facets-wrapper-mobile desktop-hidden"
+          class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %} facets-wrapper-mobile"
           id="main-collection-filters"
           data-id="mobile-{{ section.id }}"
         >
