@@ -74,25 +74,34 @@ cart-drawer:not(.is-empty) .cart-drawer__collection {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .drawer__heading {
-  margin: 0 0 1rem;
+  /* margin: 0 0 1rem; */
+  margin: 0;
 }
 
+
+
 .drawer__close {
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
   padding: 0;
-  min-width: 4.4rem;
-  min-height: 4.4rem;
+  /* min-width: 4.4rem;
+  min-height: 4.4rem; */
   box-shadow: 0 0 0 0.2rem rgba(var(--color-button), 0);
-  position: absolute;
-  top: 10px;
-  right: -10px;
   color: rgb(var(--color-foreground));
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.cart-drawer__warnings .drawer__close.icon-close-cart-empty{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1.5rem;
 }
 
 .cart-drawer__warnings .drawer__close {
@@ -185,11 +194,11 @@ cart-drawer {
 }
 
 cart-drawer-items {
-  overflow: auto;
+  overflow: scroll;
   flex: 1;
 }
 
-@media screen and (max-height: 650px) {
+/* @media screen and (max-height: 650px) {
   cart-drawer-items {
     overflow: visible;
   }
@@ -197,7 +206,7 @@ cart-drawer-items {
   .drawer__inner {
     overflow: scroll;
   }
-}
+} */
 
 .cart-drawer .cart-item {
   display: grid;
@@ -267,7 +276,7 @@ cart-drawer-items {
 .cart-drawer .cart-item__totals {
   pointer-events: none;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: flex-end;
 }
 
@@ -402,4 +411,26 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   .cart-drawer .cart-item__error {
     margin-left: 0;
   }
+}
+
+
+/* Custom CSS */
+
+.text-clamping{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.cart-drawer .cart-items .quantity{
+  min-height: calc((var(--inputs-border-width) * 2) + 1.5rem);
+  /* width: calc(12rem / var(--font-body-scale) + var(--inputs-border-width) * 2); */
+  width: 80%;
+}
+
+.cart-item__quantity-wrapper .quantity-popover-container{
+  flex: 1; 
 }

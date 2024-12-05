@@ -26,6 +26,8 @@
   {%- endif -%}
 
   {%- style -%}
+
+    /* 25% Difference in Mobile compared to Desktop as 1 - 0.75 = 25% */
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -227,8 +229,8 @@
                 <div class="product__description-container {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
 
                   {%- if block.settings.heading != blank -%}
-                    <div class="product__description-heading">
-                      <h2 class="h3 text-link-underline-custom">
+                    <div class="product__description-heading unclickable-link">
+                      <h2 class="h3 text-link-underline unclickable-link">
                         {{ block.settings.heading | escape }}
                       </h2>
                     </div>
@@ -262,7 +264,7 @@
               <!-- Collapsible Block -->
               {%- when 'collapsible_tab' -%}
                 <div class="product__accordion accordion quick-add-hidden {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding text-body" {{ block.shopify_attributes }}>
-                  <details id="Details-{{ block.id }}-{{ section.id }}">
+                  <details id="Details-{{ block.id }}-{{ section.id }}" {% if block.settings.expand_by_default %} open {% endif %}>
                     <summary>
                       <div class="summary__title">
                         {% render 'icon-accordion', icon: block.settings.icon %}
@@ -278,49 +280,81 @@
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
 
                       <!-- Block Dynamic Richtext Content -->
-                      <p class="collapsible-richtext-content">
-                        {{ block.settings.content | strip_html }}
-                      </p>
+                      {% if block.settings.content != blank %}
+                        <div class="collapsible-richtext-content rte">
+                          {{ block.settings.content }}
+                        </div>
+                      {% endif %}
+                     
+
+                      <!-- Product Description -->
+                      {% if block.settings.product_description != blank %}
+                        {% render 'show-more-text-content',
+                        item_description: block.settings.product_description,
+                        show_more_type: block.settings.show_more_type,
+                        show_more_text: block.settings.show_more_text, ,
+                        show_less_text: block.settings.show_less_text,
+                        description_limit: block.settings.description_limit 
+                        %}
+                      {% endif %}
 
                       <!-- Specifications List => Product Metafield -->
                       {% if block.settings.display_product_specifications_list %}
-                        <ul class="accordion__content-ul text-body">
+                        
+                        {% if product.metafields.custom.specifications_multi_list != blank %}
+
                           {% assign bullet_points = product.metafields.custom.specifications_multi_list | newline_to_br | split: '<br />' %}
-                          {% for line in bullet_points %}
-                            <li class="spec-item">
-                              {% if line contains '++' or line contains '✅' %}
-                                <span class="spec-item-icon">
-                                  {{ 'icon-checkmark-square.svg' | inline_asset_content }}
-                                </span>
-                              {% elsif line contains '--' or line contains '❌' %}
-                                <span class="spec-item-icon">
-                                  {{ 'icon-crossmark-square.svg' | inline_asset_content }}
-                                </span>
-                              {% endif %}
-                              {{ line | remove: '++' | remove: '--' | remove: '✅' | remove: '❌' }}
-                            </li>
-                          {% endfor %}
-                        </ul>
+                          <ul class="accordion__content-ul text-body">
+                            
+                            {% for line in bullet_points %}
+                              <li class="spec-item">
+                                {% if line contains '++' or line contains '✅' %}
+                                  <span class="spec-item-icon">
+                                    {{ 'icon-checkmark-square.svg' | inline_asset_content }}
+                                  </span>
+                                {% elsif line contains '--' or line contains '❌' %}
+                                  <span class="spec-item-icon">
+                                    {{ 'icon-crossmark-square.svg' | inline_asset_content }}
+                                  </span>
+                                {% endif %}
+                                {{ line | remove: '++' | remove: '--' | remove: '✅' | remove: '❌' }}
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% else %}
+                          <div>
+                            No Advantages/Disadvantages available.
+                          </div>
+                        {% endif %}  
                       {% endif %}
                     
                       <!-- Specifications Table => Product Metafield -->
                       {% if block.settings.display_product_specifications_table %}
-                        {% assign table_rows = product.metafields.custom.specifications_table| newline_to_br | split: '<br />' %}
-                        <table class="accordion__content-table text-body">
-                          {% for row in table_rows %}
-                            {% assign parts = row | split: ':' %}
-                            <tr class="table-row">
-                              <td class="table-col-1 font-semibold">{{ parts[0] | strip }}</td>
-                              <td class="table-col-2">{{ parts[1] | strip }}</td>
-                            </tr>
-                          {% endfor %}
-                        </table>
+                        {% if product.metafields.custom.specifications_table != blank %}
+                          {% assign table_rows = product.metafields.custom.specifications_table | newline_to_br | split: '<br />' %}
+                          <table class="accordion__content-table text-body">
+                            {% for row in table_rows %}
+                              {% assign parts = row | split: ':' %}
+                              <tr class="table-row">
+                                <td class="table-col-1 font-semibold">{{ parts[0] | strip }}</td>
+                                <td class="table-col-2">{{ parts[1] | strip }}</td>
+                              </tr>
+                            {% endfor %}
+                          </table>
+                        {% else %}
+                        {% comment %}
+                          Leaving Blank for now
+                        {% endcomment %}
+                          
+                        {% endif %}
                       {% endif %}
 
                       <!-- Shipping Options -->
-                      <p class="shipping-options">
-                        {{ block.settings.shipping_options }}
-                      </p>
+                      {% if product.available %}
+                        <p class="shipping-options">
+                          {{ block.settings.shipping_options }}
+                        </p>
+                      {% endif %}
 
                     </div>
                   </details>
@@ -1500,6 +1534,10 @@ if(Shopify.designMode){
           "default": "Description"
         },
         {
+          "type": "header",
+          "content": "Show more/less setting"
+        },
+        {
           "type": "select",
           "id": "show_more_type",
           "label": "Show more type",
@@ -1519,13 +1557,13 @@ if(Shopify.designMode){
           "type": "text",
           "id": "show_more_text",
           "label": "Show more text",
-          "default": "Show more"
+          "default": "Toon meer"
         },
         {
           "type": "text",
           "id": "show_less_text",
           "label": "Show less text",
-          "default": "Show less"
+          "default": "Toon minder"
         },
         {
           "type": "range",
@@ -1905,13 +1943,18 @@ if(Shopify.designMode){
               "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__44.label"
             }
           ],
-          "default": "check_mark",
+          "default": "none",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.label"
         },
         {
           "type": "richtext",
           "id": "content",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+        },
+        {
+          "type": "richtext",
+          "id": "product_description",
+          "label": "Product Description"
         },
         {
           "type": "text",
@@ -1932,8 +1975,55 @@ if(Shopify.designMode){
         },
         {
           "type": "checkbox",
+          "id": "expand_by_default",
+          "label": "Expand by default",
+          "default": false
+        },
+        {
+          "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background"
+        },
+        {
+          "type": "header",
+          "content": "Show more/less setting"
+        },
+        {
+          "type": "select",
+          "id": "show_more_type",
+          "label": "Show more type",
+          "options": [
+            {
+              "value": "button",
+              "label": "Button"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            }
+          ],
+          "default": "button"
+        },
+        {
+          "type": "text",
+          "id": "show_more_text",
+          "label": "Show more text",
+          "default": "Toon meer"
+        },
+        {
+          "type": "text",
+          "id": "show_less_text",
+          "label": "Show less text",
+          "default": "Toon minder"
+        },
+        {
+          "type": "range",
+          "id": "description_limit",
+          "label": "Description limit",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 6
         },
         {
           "type": "header",

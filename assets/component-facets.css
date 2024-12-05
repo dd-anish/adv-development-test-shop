@@ -1134,7 +1134,8 @@ input.mobile-facets__checkbox {
   .facets__form-vertical {
     display: flex;
     flex-direction: column;
-    width: 26rem;
+    /* width: 26rem; */
+    width: 22rem;
   }
 
   .facets__disclosure-vertical {
@@ -1164,6 +1165,7 @@ input.mobile-facets__checkbox {
 
   .facets-vertical .facets-wrapper {
     padding-right: 3rem;
+    padding-left: 0.5rem;
   }
 
   .facets-vertical .facets-wrapper--no-filters {
@@ -1251,5 +1253,20 @@ input.mobile-facets__checkbox {
 
   .facets-vertical .active-facets__button-remove {
     padding: 0 1rem 1rem;
+  }
+}
+
+/* Custom CSS */
+
+@media screen and (min-width: 749px) {
+  .facets-container{
+    position: sticky;
+    top: 0;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width: 1023px) {
+  .facets__form-vertical {
+    width: 20rem;
   }
 }

@@ -2147,10 +2147,10 @@ input[type='checkbox'] {
 
 .announcement-bar__message {
   text-align: center;
-  padding: 1rem 0;
   margin: 0;
   letter-spacing: 0.1rem;
-  min-height: 3.8rem;
+  /* padding: 1rem 0;
+  min-height: 3.8rem; */
 }
 
 .announcement-bar-slider--fade-in-next .announcement-bar__message,
@@ -2355,6 +2355,31 @@ input[type='checkbox'] {
   height: auto;
   max-width: 100%;
 }
+
+.header__heading-logo-desktop, .header__heading-logo-mobile {
+  height: auto;
+  max-width: 100%;
+}
+
+.header__heading-logo-desktop {
+  display: none;
+}
+
+.header__heading-logo-mobile {
+  display: block;
+}
+
+@media screen and (min-width: 749px) {
+  .header__heading-logo-desktop {
+    display: block;
+  }
+
+  .header__heading-logo-mobile {
+    display: none;
+  }
+
+}
+
 
 .header__heading-logo-wrapper {
   width: 100%;
@@ -3507,6 +3532,27 @@ details-disclosure > details {
   margin: 0;
 }
 
+/* Mobile And Desktop Hidden */
+
+.desktop-hidden {
+  display: block;
+}
+
+.mobile-hidden {
+  display: none;
+}
+
+@media screen and (min-width: 750px) {
+
+  .desktop-hidden {
+    display: none;
+  }
+
+  .mobile-hidden {
+    display: block;
+  }
+  
+}
 
 /* Font Sizes */
 
@@ -3520,6 +3566,11 @@ details-disclosure > details {
 }
 
 /* Custom Body Font Size */
+
+.text-body--extra-extra-small {
+  font-size: 1rem;
+  line-height: calc(1.2 / var(--font-body-scale));
+}
 
 .text-body--extra-small {
   font-size: 1.1rem;
@@ -3543,12 +3594,16 @@ details-disclosure > details {
 
 @media screen and (min-width: 750px) {
 
+  .text-body--extra-extra-small {
+    font-size: 1.1rem;
+  }
+
   .text-body--extra-small {
     font-size: 1.2rem;
   }
 
   .text-body--small {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
   .text-body--small-2 {
@@ -3696,6 +3751,11 @@ h5,
 
 @media only screen and (min-width: 750px) {
 
+  h4,
+  .h4 {
+    font-size: calc(var(--font-heading-scale) * 1.7rem);
+  }
+
   h5,
   .h5 {
     font-size: calc(var(--font-heading-scale) * 1.3rem);
@@ -3776,6 +3836,12 @@ h6,
   
 }
 
+/* Unclickable Link */
+
+.unclickable-link {
+  pointer-events: none;
+}
+
 /* Text Link Underline CUSTOM CSS */
 
 .text-link-underline a{
@@ -3791,7 +3857,22 @@ h6,
   display: inline-block;
 }
 
+.text-link-underline-custom-thin {
+  position: relative;
+  display: inline-block;
+}
+
 .text-link-underline-custom::after {
+  content: "";
+  position: absolute;
+  bottom: -5%;
+  left: 0;
+  width: var(--text-decoration-width);
+  height: var(--text-decoration-thickness);
+  background-color: var(--theme-signature-color);
+}
+
+.text-link-underline-custom-thin::after {
   content: "";
   position: absolute;
   bottom: -5%;
@@ -3844,4 +3925,22 @@ h6,
 
 .custom-search-bar-field:hover{
   border: none;
+}
+
+/* Breadcrumb CSS */
+
+.one-line-text-truncate {
+  display: -webkit-box;
+  min-height: 1rem;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .one-line-text-truncate {
+    min-height: 1rem;
+  }
 }
