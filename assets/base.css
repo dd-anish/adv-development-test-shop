@@ -3753,7 +3753,7 @@ h5,
 
   h4,
   .h4 {
-    font-size: calc(var(--font-heading-scale) * 1.7rem);
+    font-size: calc(var(--font-heading-scale) * 1.6rem);
   }
 
   h5,
