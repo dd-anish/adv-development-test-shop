@@ -18,7 +18,9 @@
           "type": "announcement",
           "settings": {
             "text": "GRATIS VERZENDING VANAF 100 EURO",
-            "link": ""
+            "link": "",
+            "font_size": "text-body--extra-extra-small",
+            "font_weight": "font-semibold"
           }
         }
       },
@@ -32,7 +34,9 @@
         "auto_rotate": true,
         "change_slides_speed": 3,
         "enable_country_selector": false,
-        "enable_language_selector": false
+        "enable_language_selector": false,
+        "padding_top": 8,
+        "padding_bottom": 8
       }
     },
     "header": {
