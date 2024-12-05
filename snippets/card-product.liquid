@@ -29,46 +29,6 @@
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {   
-  const swatchInputs = document.querySelectorAll('.swatch-input__input');   
-   
-  swatchInputs.forEach(function(input) {   
-  input.addEventListener('click', function(event) {   
-   const productId = event.target.getAttribute('form').replace('product-form-', '').replace('template--', '').replace('__product-grid', '');   
-   const variantId = event.target.getAttribute('data-option-value-id');   
-   const modal = document.getElementById(`QuickAdd-${productId}`);   
-   
-   if (modal) {   
-    // Open the modal with the pre-selected variant   
-    modal.querySelector('.quick-add-modal__content-info').innerHTML = '';   
-    modal.querySelector('.quick-add-modal__content-info').appendChild(renderVariantInfo(variantId, productId));   
-    modal.classList.add('is-open');   
-   } else {   
-    console.error(`Modal not found for product ID ${productId}`);   
-   }  
-  });   
-  });   
-});
-
-  
-function renderVariantInfo(variantId, productId) {  
-  // Render the variant information (e.g., product image, price, etc.)  
-  // You can use the `variantId` and `productId` to fetch the variant data from your Shopify store  
-  // For demonstration purposes, I'll just return a simple HTML string  
-  return `  
-   <h2>Variant ${variantId}</h2>  
-   <p>Product ID: ${productId}</p>  
-  `;  
-  console.log("Clicked");
-  
-  console.log('variantId', variantId);
-  console.log('productId', productId);
-  
-}
-
-</script>
-
 {% style %}
   {% if settings.animate_product_stock_status %}
     @keyframes outer-circle-opacity-blink {
