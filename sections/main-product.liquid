@@ -298,55 +298,91 @@
                         %}
                       {% endif %}
 
-                      <!-- Specifications List => Product Metafield -->
-                      {% if block.settings.display_product_specifications_list %}
+                      <!-- Advantages / Disadvantages -->
+                      {% if block.settings.display_product_advantages_disadvantages %}
                         
-                        {% if product.metafields.custom.specifications_multi_list != blank %}
-
-                          {% assign bullet_points = product.metafields.custom.specifications_multi_list | newline_to_br | split: '<br />' %}
-                          <ul class="accordion__content-ul text-body">
-                            
-                            {% for line in bullet_points %}
-                              <li class="spec-item">
-                                {% if line contains '++' or line contains '✅' %}
-                                  <span class="spec-item-icon">
-                                    {{ 'icon-checkmark-square.svg' | inline_asset_content }}
-                                  </span>
-                                {% elsif line contains '--' or line contains '❌' %}
-                                  <span class="spec-item-icon">
-                                    {{ 'icon-crossmark-square.svg' | inline_asset_content }}
-                                  </span>
+                        <ul class="accordion__content-ul text-body">
+                            {% if product.metafields.custom.advantage_1 != blank or product.metafields.custom.disadvantage_1 != blank %}
+                           
+                              <!-- Loop through advantages -->
+                              {% assign advantages = "advantage_1,advantage_2,advantage_3" | split: ',' %}
+                              {% for advantage_key in advantages %}
+                                {% assign advantage_value = product.metafields.custom[advantage_key] %}
+                                {% if advantage_value != blank %}
+                                  <li class="advantage_disadvantage-item">
+                                    <span class="advantage_disadvantage-item-icon">
+                                      {{ 'icon-checkmark-square.svg' | inline_asset_content }}
+                                    </span>
+                                    {{ advantage_value }}
+                                  </li>
                                 {% endif %}
-                                {{ line | remove: '++' | remove: '--' | remove: '✅' | remove: '❌' }}
+                              {% endfor %}
+
+                              <!-- Loop through disadvantages -->
+                              {% assign disadvantages = "disadvantage_1,disadvantage_2,disadvantage_3" | split: ',' %}
+                              {% for disadvantage_key in disadvantages %}
+                                {% assign disadvantage_value = product.metafields.custom[disadvantage_key] %}
+                                {% if disadvantage_value != blank %}
+                                  <li class="advantage_disadvantage-item">
+                                    <span class="advantage_disadvantage-item-icon">
+                                      {{ 'icon-crossmark-square.svg' | inline_asset_content }}
+                                    </span>
+                                    {{ disadvantage_value }}
+                                  </li>
+                                {% endif %}
+                              {% endfor %}
+                            {% else %}
+                              <li class="advantage_disadvantage-item">
+                                No advantages or disadvantages.
                               </li>
-                            {% endfor %}
+                            {% endif %}
                           </ul>
-                        {% else %}
-                          <div>
-                            No Advantages/Disadvantages available.
-                          </div>
-                        {% endif %}  
                       {% endif %}
                     
                       <!-- Specifications Table => Product Metafield -->
                       {% if block.settings.display_product_specifications_table %}
-                        {% if product.metafields.custom.specifications_table != blank %}
-                          {% assign table_rows = product.metafields.custom.specifications_table | newline_to_br | split: '<br />' %}
+
+                          {% comment %} Define metafields and their labels {% endcomment %}
+
+                          {% assign specifications = "custom.height:Height,custom.width:Width,custom.depth:Depth,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,options.color:Material" %}
+
+                          {% assign specifications = specifications | split: ',' %}
                           <table class="accordion__content-table text-body">
-                            {% for row in table_rows %}
-                              {% assign parts = row | split: ':' %}
-                              <tr class="table-row">
-                                <td class="table-col-1 font-semibold">{{ parts[0] | strip }}</td>
-                                <td class="table-col-2">{{ parts[1] | strip }}</td>
-                              </tr>
+                            {% for specification in specifications %}
+                              {% assign parts = specification | split: ':' %}
+                              {% assign key = parts[0] %}
+                              {% assign label = parts[1] %}
+                              {% assign value = '' %}
+
+                              {% comment %} Split key to get namespace and specific key {% endcomment %}
+                              {% assign key_parts = key | split: '.' %}
+                              {% assign namespace = key_parts[0] %}
+                              {% assign specific_key = key_parts[1] %}
+
+                              {% comment %} Fetch the value based on the key {% endcomment %}
+                              {% if key == "vendor" %}
+                                {% assign value = product.vendor %}
+                              {% elsif key == "weight" and product.variants.first.weight != 0.0 %}
+                                {% assign value = product.variants.first.weight | weight_with_unit %}
+                              {% elsif key == "options.color" %}
+                                {% for option in product.options_with_values %}
+                                  {% if option.name == "Color" or option.name == "Kleur" %}
+                                    {% assign value = option.values | join: ", " %}
+                                  {% endif %}
+                                {% endfor %}
+                              {% else %}
+                                {% assign value = product.metafields[namespace][specific_key] %}
+                              {% endif %}
+                             
+                              {% comment %} Render row only if the value exists {% endcomment %}
+                              {% if value != blank %}
+                                <tr class="table-row">
+                                  <td class="table-col-1 font-semibold">{{ label }}</td>
+                                  <td class="table-col-2">{{ value }}</td>
+                                </tr>
+                              {% endif %}
                             {% endfor %}
                           </table>
-                        {% else %}
-                        {% comment %}
-                          Leaving Blank for now
-                        {% endcomment %}
-                          
-                        {% endif %}
                       {% endif %}
 
                       <!-- Shipping Options -->
@@ -1963,8 +1999,8 @@ if(Shopify.designMode){
         },
         {
           "type": "checkbox",
-          "id": "display_product_specifications_list",
-          "label": "Display product specifications list",
+          "id": "display_product_advantages_disadvantages",
+          "label": "Display product advantages/disadvantages",
           "default": false
         },
         {
@@ -1977,6 +2013,7 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "expand_by_default",
           "label": "Expand by default",
+          "info": "This will make the tab expanded(open) by default",
           "default": false
         },
         {
@@ -2037,7 +2074,7 @@ if(Shopify.designMode){
           "step": 2,
           "unit": "px",
           "label": "t:sections.all.padding.padding_top",
-          "default": 18
+          "default": 0
         },
         {
           "type": "range",
