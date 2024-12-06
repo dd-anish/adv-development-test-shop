@@ -173,7 +173,7 @@ cart-drawer {
 .cart-drawer__form {
   flex-grow: 1;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .cart-drawer__collection {
@@ -451,7 +451,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   display: flex;
   align-items: flex-end;
   flex: none;
- 
+  
 }
 
 @media screen and (min-width: 749px) {
@@ -508,5 +508,5 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 .cart-drawer__footer{
   background: var(--theme-grey-color);
   border-radius: var(--buttons-radius);
-  padding: 1rem;
+  padding: 1.5rem 1rem;
 }

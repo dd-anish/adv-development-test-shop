@@ -574,6 +574,7 @@
 
         <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
           {%- if cart.cart_level_discount_applications.size > 0 -%}
+            <!-- Discounts -->
             <div>
               <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                 {%- for discount in cart.cart_level_discount_applications -%}
@@ -587,12 +588,22 @@
             </div>
           {%- endif -%}
 
+          <!-- Totals -->
           <div class="totals" role="status">
-            <h2 class="totals__total text-link-underline-custom-thin">{{ 'sections.cart.estimated_total' | t }}</h2>
+            <div class="heading-with-note">
+              <h2 class="totals__total text-link-underline-custom-thin">{{ 'sections.cart.estimated_total' | t }}</h2>
+              {% if cart.taxes_included %}
+                <span class="VAT-note">
+                  inclusief BTW
+                </span>
+              {% endif %}
+              
+            </div>
             <p class="totals__total-value font-bold">{{ cart.total_price | money_with_currency }}</p>
           </div>
 
-          <small class="tax-note caption-large rte">
+          <!-- Tax and Shipping Info -->
+          <small class="tax-note caption-large rte visually-hidden">
             {%- if cart.duties_included and cart.taxes_included -%}
               {%- if shop.shipping_policy.body == blank -%}
                 {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
