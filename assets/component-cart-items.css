@@ -217,9 +217,15 @@ cart-remove-button .icon-remove {
   /* margin-top: 0.4rem; */
 }
 
-.product-option * {
+/* .product-option * {
   display: inline;
   margin: 0;
+} */
+
+.product-option {
+  display: flex;
+  margin: 0;
+  gap: 0.5rem;
 }
 
 .cart-items thead th {

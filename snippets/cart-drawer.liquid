@@ -168,9 +168,31 @@
                                     {%- for option in item.options_with_values -%}
                                       <div class="product-option font-body-bold ">
                                         <dt>{{ option.name }}:</dt>
-                                        <dd class="font-light">
+                                        <dd class="font-light label-custom-swatches">
                                           {{ option.value -}}
-                                          {%- unless forloop.last %}, {% endunless %}
+                                         
+                                          {%- if option.name == 'Color' or option.name == 'Kleur' -%}  
+                                            {%- case option.value -%}  
+                                              {%- when 'Rood' -%}  
+                                                <span class="color-swatch" style="background-color: #FF0000;"></span>  
+                                              {%- when 'Blauw' -%}  
+                                                <span class="color-swatch" style="background-color: #0000FF;"></span>  
+                                              {%- when 'Groen' -%}  
+                                                <span class="color-swatch" style="background-color: #00FF00;"></span>  
+                                              {%- when 'Geel' -%}
+                                                  <span class="color-swatch" style="background-color: #FFFF00;"></span>
+                                              {%- when 'Zwart' -%}
+                                                <span class="color-swatch" style="background-color: #000000;"></span>
+                                              {%- when 'Wit' -%}
+                                                <span class="color-swatch"
+                                                style="background-color: #FFFFFF; border: 1px solid #CCCCCC;"></span>
+                                              {%- when 'Roze' -%}
+                                                <span class="color-swatch" style="background-color: #f57af1;"></span>
+                                                  
+                                              {%- else -%}  
+                                                <span class="color-swatch" style="background-color: #CCCCCC;"></span>  
+                                            {%- endcase -%}  
+                                          {%- endif -%}  
                                         </dd>
                                       </div>
                                     {%- endfor -%}

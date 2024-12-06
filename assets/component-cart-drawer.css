@@ -461,3 +461,17 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 .cart-item__original-price{
   padding-top: 0.5rem;
 }
+
+.color-swatch {
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 30%;
+}
+
+.label-custom-swatches{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
