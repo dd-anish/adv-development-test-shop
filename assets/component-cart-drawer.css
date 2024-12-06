@@ -17,8 +17,9 @@
 
 .drawer__inner {
   height: 100%;
-  width: 40rem;
-  max-width: calc(100vw - 3rem);
+  /* width: 40rem;
+  max-width: calc(100vw - 3rem); */
+  width: 100%;
   padding: 0 1.5rem;
   border: 0.1rem solid rgba(var(--color-foreground), 0.2);
   border-right: 0;
@@ -416,6 +417,12 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 
 /* Custom CSS */
 
+@media screen and (min-width: 425px) {
+  .drawer__inner {
+    width: 40rem;
+  }
+}
+
 .text-clamping{
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -443,10 +450,26 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   display: flex;
   align-items: flex-end;
   flex: none;
-  padding-right: 1rem;
+ 
+}
+
+@media screen and (min-width: 749px) {
+  .total-price-container {
+    padding-right: 1rem;
+  }
+  
 }
 
 /* Quantity Input */
+
+@media screen and (max-width: 350px) {
+
+  .cart-drawer .cart-items .quantity {
+    
+      width: 100%;
+    }
+  
+}
 
 .cart-drawer .cart-items .quantity{
   min-height: calc((var(--inputs-border-width) * 2) + 1.5rem);
