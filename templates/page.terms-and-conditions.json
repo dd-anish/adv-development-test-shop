@@ -59,7 +59,7 @@
         "heading_size": "h1",
         "heading_alignment": "left",
         "summary_heading_size": "h2",
-        "layout": "none",
+        "layout": "full-width",
         "color_scheme": "",
         "container_color_scheme": "",
         "open_first_collapsible_row": false,
