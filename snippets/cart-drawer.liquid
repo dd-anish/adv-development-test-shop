@@ -64,10 +64,8 @@
 
       <!-- Cart Header -->
       <div class="drawer__header">
-        <h2 class="drawer__heading text-link-underline unclickable-link text-capitalize">
-          <a href="#">
-            {{ 'sections.cart.title' | t }}
-          </a>
+        <h2 class="drawer__heading text-link-underline-custom-thin">
+          {{ 'sections.cart.title' | t }}
         </h2>
         <button
           class="drawer__close"
@@ -575,8 +573,8 @@
         <!-- Subtotals -->
 
         <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
-          <div>
-            {%- if cart.cart_level_discount_applications.size > 0 -%}
+          {%- if cart.cart_level_discount_applications.size > 0 -%}
+            <div>
               <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                 {%- for discount in cart.cart_level_discount_applications -%}
                   <li class="discounts__discount discounts__discount--end">
@@ -586,12 +584,12 @@
                   </li>
                 {%- endfor -%}
               </ul>
-            {%- endif -%}
-          </div>
+            </div>
+          {%- endif -%}
 
           <div class="totals" role="status">
-            <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-            <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+            <h2 class="totals__total text-link-underline-custom-thin">{{ 'sections.cart.estimated_total' | t }}</h2>
+            <p class="totals__total-value font-bold">{{ cart.total_price | money_with_currency }}</p>
           </div>
 
           <small class="tax-note caption-large rte">
