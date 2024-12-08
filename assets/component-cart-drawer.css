@@ -516,3 +516,13 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
+
+/* Cart Error */
+
+.cart-item__error-custom{
+    font-size: 1.2rem;
+    line-height: 1.1;
+    letter-spacing: 0.1rem;
+    color: red;
+    padding-bottom: 1rem;
+}

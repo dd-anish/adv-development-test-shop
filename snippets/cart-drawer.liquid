@@ -86,6 +86,8 @@
         </button>
       </div>
 
+      <div id="CartDrawer-CartErrors" class="cart-item__error-custom" role="alert"></div>
+
       <!-- Cart Content | Items -->
       <cart-drawer-items
         {% if cart == empty %}
@@ -257,12 +259,27 @@
                               {%- else -%}
                                 
                                 <div class="product-option font-body-bold cart-item__original-price {% if item.variant.compare_at_price %} cart-item_sale-price {% endif %}">
+
+                                  <!-- Cart Item Original Price -->
                                   {% if item.variant.compare_at_price %}
                                     <span class="cart-item__compare_at_price font-light">
                                     {{ item.variant.compare_at_price | money }}
                                   </span>
                                   {% endif %}
+
+                                  <!-- Cart Item OG/Sale Price -->
                                   {{ item.original_price | money }}
+
+                                  <!-- Sale Discount Percentage -->
+                                  {% if item.variant.compare_at_price and settings.show_sale_discount_percentage_in_cart %}
+                                    {% assign discount = item.variant.compare_at_price | minus: item.original_price %}
+                                    {% assign discount_percentage = discount | times: 100 | divided_by: item.variant.compare_at_price %}
+
+
+                                    <span class="cart-item__discount_percentage_on_sale font-light">
+                                      {{ discount_percentage | round }}% {{ settings.sale_discount_text }}
+                                    </span>
+                                  {% endif %}
                                 </div>
                               {%- endif -%}
 
@@ -568,7 +585,7 @@
               {{ 'accessibility.loading' | t }}
             </p>
           </div>
-          <div id="CartDrawer-CartErrors" role="alert"></div>
+          {% comment %} <div id="CartDrawer-CartErrors" role="alert"></div> {% endcomment %}
         </form>
       </cart-drawer-items>
 
