@@ -64,9 +64,16 @@
 
       <!-- Cart Header -->
       <div class="drawer__header">
-        <h2 class="drawer__heading text-link-underline-custom-thin">
-          {{ 'sections.cart.title' | t }}
-        </h2>
+        <div class="">
+          <h2 class="drawer__heading text-link-underline-custom-thin">
+            {{ 'sections.cart.title' | t }}
+          </h2>
+          <span class="text-body--small font-light">
+              ({{ cart.item_count }} artikelen)
+          </span>
+        </div>
+
+        
         <button
           class="drawer__close"
           type="button"
@@ -96,7 +103,7 @@
               <div class="drawer__cart-items-wrapper">
                 <table class="cart-items" role="table">
                   <!-- Hide the Caption Table Row Header -->
-                  {% comment %} <thead role="rowgroup" class="visually-hidden">
+                  {% comment %} <thead role="rowgroup">
                     <tr role="row">
                       <th id="CartDrawer-ColumnProductImage" role="columnheader">
                         <span class="visually-hidden">{{ 'sections.cart.headings.image' | t }}</span>
