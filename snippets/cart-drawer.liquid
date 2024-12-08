@@ -148,7 +148,14 @@
                               height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
                             >
                           {% endif %}
+
+                          {% if item.variant.compare_at_price && settings.show_sale_badge_in_cart %}
+                            <span id="Badge-{{ section.id }}-{{ item.id }}" class="cart-item__sale_badge color-{{ settings.sale_badge_color_scheme }} text-uppercase">
+                              {{- 'products.product.on_sale' | t -}}
+                            </span>
+                          {% endif %}
                         </td>
+
                         <!-- Title Column Div -->
                         <td class="cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
                           {%- if settings.show_vendor -%}
