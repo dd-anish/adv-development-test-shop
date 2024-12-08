@@ -64,9 +64,16 @@
 
       <!-- Cart Header -->
       <div class="drawer__header">
-        <h2 class="drawer__heading text-link-underline-custom-thin">
-          {{ 'sections.cart.title' | t }}
-        </h2>
+        <div class="">
+          <h2 class="drawer__heading text-link-underline-custom-thin">
+            {{ 'sections.cart.title' | t }}
+          </h2>
+          <span class="text-body--small font-light">
+              ({{ cart.item_count }} artikelen)
+          </span>
+        </div>
+
+        
         <button
           class="drawer__close"
           type="button"
@@ -96,7 +103,7 @@
               <div class="drawer__cart-items-wrapper">
                 <table class="cart-items" role="table">
                   <!-- Hide the Caption Table Row Header -->
-                  {% comment %} <thead role="rowgroup" class="visually-hidden">
+                  {% comment %} <thead role="rowgroup">
                     <tr role="row">
                       <th id="CartDrawer-ColumnProductImage" role="columnheader">
                         <span class="visually-hidden">{{ 'sections.cart.headings.image' | t }}</span>
@@ -141,7 +148,14 @@
                               height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
                             >
                           {% endif %}
+
+                          {% if item.variant.compare_at_price && settings.show_sale_badge_in_cart %}
+                            <span id="Badge-{{ section.id }}-{{ item.id }}" class="cart-item__sale_badge color-{{ settings.sale_badge_color_scheme }} text-uppercase">
+                              {{- 'products.product.on_sale' | t -}}
+                            </span>
+                          {% endif %}
                         </td>
+
                         <!-- Title Column Div -->
                         <td class="cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
                           {%- if settings.show_vendor -%}
@@ -241,7 +255,13 @@
                                   </strong>
                                 </div>
                               {%- else -%}
-                                <div class="product-option font-body-bold cart-item__original-price">
+                                
+                                <div class="product-option font-body-bold cart-item__original-price {% if item.variant.compare_at_price %} cart-item_sale-price {% endif %}">
+                                  {% if item.variant.compare_at_price %}
+                                    <span class="cart-item__compare_at_price font-light">
+                                    {{ item.variant.compare_at_price | money }}
+                                  </span>
+                                  {% endif %}
                                   {{ item.original_price | money }}
                                 </div>
                               {%- endif -%}
@@ -281,8 +301,13 @@
                                       </span>
                                     </div>
                                   {%- else -%}
+                                    {% if item.variant.compare_at_price %}
+                                      <span class="cart-item__compare_at_price font-light">
+                                        {{ item.variant.compare_at_price | times: item.quantity | money }}
+                                      </span>
+                                    {% endif %}
                                     <span class="price price--end">
-                                      <span class="h4">
+                                      <span class="h4 {% if item.variant.compare_at_price %} cart-item_sale-price {% endif %}">
                                         {{ item.original_line_price | money }}
                                       </span>
                                     </span>
@@ -650,7 +675,7 @@
           <button
             type="submit"
             id="CartDrawer-Checkout"
-            class="cart__checkout-button button"
+            class="cart__checkout-button button text-uppercase font-bold"
             name="checkout"
             form="CartDrawer-Form"
             {% if cart == empty %}
