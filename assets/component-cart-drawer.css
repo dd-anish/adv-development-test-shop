@@ -442,6 +442,9 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 .product-options-price-container{
   width: 100%;
   color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 .product-options-price-container dl{

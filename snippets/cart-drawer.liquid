@@ -248,7 +248,13 @@
                                   </strong>
                                 </div>
                               {%- else -%}
-                                <div class="product-option font-body-bold cart-item__original-price">
+                                
+                                <div class="product-option font-body-bold cart-item__original-price {% if item.variant.compare_at_price %} cart-item_sale-price {% endif %}">
+                                  {% if item.variant.compare_at_price %}
+                                    <span class="cart-item__compare_at_price font-light">
+                                    {{ item.variant.compare_at_price | money }}
+                                  </span>
+                                  {% endif %}
                                   {{ item.original_price | money }}
                                 </div>
                               {%- endif -%}
@@ -288,8 +294,13 @@
                                       </span>
                                     </div>
                                   {%- else -%}
+                                    {% if item.variant.compare_at_price %}
+                                      <span class="cart-item__compare_at_price font-light">
+                                        {{ item.variant.compare_at_price | times: item.quantity | money }}
+                                      </span>
+                                    {% endif %}
                                     <span class="price price--end">
-                                      <span class="h4">
+                                      <span class="h4 {% if item.variant.compare_at_price %} cart-item_sale-price {% endif %}">
                                         {{ item.original_line_price | money }}
                                       </span>
                                     </span>

@@ -374,3 +374,16 @@ cart-remove-button .icon-remove {
     }
   
 } */
+
+/* Cart Sale Price */
+
+.cart-item_sale-price{
+  color: var(--theme-signature-color);
+}
+
+.cart-item__compare_at_price{
+  text-decoration: line-through;
+  text-decoration-color: var(--theme-signature-color);
+  color: #000;
+  font-size: 1.2rem;
+}
