@@ -101,7 +101,7 @@
   <div class="collection-search-bar-and-filter">
     <!-- Search Bar Start -->
     {% comment %} {% paginate search.results by 24 %} {% endcomment %}
-      <div class="template-search template-search-custom {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %} section-{{ section.id }}-padding">
+      <div class="template-search template-search-custom {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %}">
         <div class="template-search__header page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
 
           <div class="template-search__search">
@@ -170,22 +170,14 @@
     <!-- Search Bar End -->
     
     <!-- Filter Start works good in mobile and horizontal layout only -->
-      {% comment %} {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-        <aside
-          aria-labelledby="verticalTitle"
-          class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %} facets-wrapper-mobile"
-          id="main-collection-filters"
-          data-id="mobile-{{ section.id }}"
-        >
-          {% render 'facets',
-            results: collection,
-            enable_filtering: section.settings.enable_filtering,
-            enable_sorting: section.settings.enable_sorting,
-            filter_type: section.settings.filter_type,
-            paginate: paginate
-          %}
-        </aside>
-      {%- endif -%} {% endcomment %}
+      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+
+        <button class="filter-button-mobile">
+          <span class="svg-wrapper">
+            {% render 'icon-filter-figma' %}
+          </span>
+        </button>
+      {%- endif -%}
     <!-- Filter End -->
   </div>
 
@@ -356,6 +348,30 @@
   {%- endif -%}
 
 </div>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+  const filterButton = document.querySelector('.filter-button-mobile');
+  const detailsElement = document.querySelector('.mobile-facets__disclosure');
+
+  if (filterButton && detailsElement) {
+    filterButton.addEventListener('click', function() {
+      // Toggle the 'open' attribute
+      detailsElement.toggleAttribute('open');
+      
+      // Add 'menu-opening' class when 'open' is toggled
+      if (detailsElement.hasAttribute('open')) {
+        detailsElement.classList.add('menu-opening');
+      } else {
+        detailsElement.classList.remove('menu-opening');
+      }
+    });
+  }
+});
+
+</script>
 
 {% schema %}
 {

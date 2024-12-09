@@ -37,6 +37,7 @@
   grid-column: 2;
   grid-row: 1;
   padding-left: 2.5rem;
+  margin-top: 1.5rem;
 }
 
 @media screen and (min-width: 990px) {
