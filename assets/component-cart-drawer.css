@@ -523,6 +523,10 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   z-index: 1;
 }
 
+.totals-subtotal{
+  margin-top: 2rem;
+}
+
 /* Cart Error */
 
 .cart-item__error-custom{
