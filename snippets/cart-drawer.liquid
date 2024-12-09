@@ -648,10 +648,16 @@
 
           <!-- Subtotal -->
           <div class="totals totals-subtotal">
-            <h3 class="totals__subtotal text-body--small-3 font-semibold"> Subtotal </h3>
-  
+            <h3 class="totals__subtotal text-body--small-3 font-semibold"> 
+              Subtotal 
+
+            </h3>
+            {% assign tax_custom = cart.total_price | times:0.21 %}
             <span class="h3">
-              {{ cart.total_price | times: 0.21 | money_with_currency }}
+
+              {% comment %} {{ cart.total_price | divided_by: 1.21 | money_with_currency }} {% endcomment %}
+              {{ cart.total_price | minus: tax_custom | money_with_currency }}
+
             </span>
           </div>
 
