@@ -342,9 +342,12 @@
                       <!-- Specifications Table => Product Metafield -->
                       {% if block.settings.display_product_specifications_table %}
 
+                          {% comment %} {{ product.variants.first.weight | weight_with_unit }}
+                          {{ product.variants | json }} {% endcomment %}
+
                           {% comment %} Define metafields and their labels {% endcomment %}
 
-                          {% assign specifications = "custom.height:Height,custom.width:Width,custom.depth:Depth,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,options.color:Material" %}
+                          {% assign specifications = "custom.height:Height,custom.width:Width,custom.depth:Depth,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,custom.material:Material" %}
 
                           {% assign specifications = specifications | split: ',' %}
                           <table class="accordion__content-table text-body">
