@@ -684,9 +684,19 @@
 
 .variants-stocks-status-container {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   min-height: 2rem;
+}
+
+@media screen and (max-width: 425px) {
+  .variants-stocks-status-container {
+    flex-direction: column-reverse;
+    align-items: start;
+    gap: 0.5rem;
+  }
+  
 }
 
 .stock-status {
