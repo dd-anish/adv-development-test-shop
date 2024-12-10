@@ -213,9 +213,7 @@
                 {% if show_product_variants %}
                   <div class="variants">
                     {% if card_product.variants.size > 1 %}
-                    {% comment %}
-                      {% render 'product-variant-picker', product: card_product, product_form_id: card_product.id %} 
-                    {% endcomment %}  
+            
                     <!-- Custom Snippet for Product card to show variants in Shop View -->
                     {% render 'card-product-variant-picker', product: card_product, block: block, product_form_id: product_form_id %}
  

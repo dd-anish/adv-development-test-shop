@@ -688,6 +688,8 @@
   justify-content: space-between;
   align-items: center;
   min-height: 2rem;
+  flex-wrap: wrap-reverse;
+  gap: 1rem;
 }
 
 @media screen and (max-width: 425px) {

@@ -620,8 +620,32 @@
         ],
         "default": "dashed",
         "label": "No Product Variant border style"
+      },
+      {
+        "type": "header",
+        "content": "Product Card More Variant Icon"
+      },
+      {
+        "type": "color",
+        "id": "more_variant_icon_color",
+        "label": "More Variant Icon color",
+        "default": "#626262"
+      },
+      {
+        "type": "color",
+        "id": "more_variant_icon_stroke_color",
+        "label": "More Variant Icon stroke color",
+        "default": "#292929"
+      },
+      {
+        "type": "range",
+        "id": "more_variant_icon_stroke_width",
+        "min": 0,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.2,
       }
-    ]
+    ],
   },
   {
     "name": "t:settings_schema.inputs.name",

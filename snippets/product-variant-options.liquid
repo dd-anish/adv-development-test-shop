@@ -20,7 +20,14 @@
   assign product_form_id = 'product-form-' | append: section.id
 -%}
 
+
 {%- for value in option.values -%}
+
+  {% if show_only_2_values %}
+    {%- if forloop.index > 2 -%}  
+    {%- break -%}  
+    {%- endif -%}  
+  {% endif %}
   {%- liquid
     assign swatch_focal_point = null
     if value.swatch.image
@@ -121,3 +128,16 @@
     </option>
   {%- endif -%}
 {%- endfor -%}
+
+{% if show_only_2_values %}
+  {%- if option.values.size > 2 -%}  
+  <div class="product-form__input--swatch product-form__input--swatch-custom">  
+   <span class="swatch-input__input"> </span>  
+   <label class="swatch-input__label" title="More Colors">  
+    <a class="swatch swatch--more" href="{{ product.url | within: collection }}">  
+      {{ 'icon-plus.svg' | inline_asset_content }}
+    </a>  
+   </label>  
+  </div>  
+  {%- endif -%}
+{% endif %}

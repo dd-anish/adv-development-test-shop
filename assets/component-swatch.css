@@ -23,3 +23,35 @@
   border-style: dashed;
   border-color: rgba(var(--color-foreground), 0.5);
 }
+
+/* Custom CSS */
+
+.product-form__input--swatch-custom{
+  gap:0.1rem
+}
+
+.swatch--more{
+  border: 0;
+}
+
+.swatch--more{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.swatch--more svg{
+  color: var(--more_variant_icon_color);
+  stroke: var(--more_variant_icon_stroke_color);
+  width: 100%;
+  height: 100%;
+
+}
+
+.swatch--more svg path {
+  stroke-width: var(--more_variant_icon_stroke_width); 
+}
+
+.product-form__input--swatch-custom:hover svg path,
+.product-form__input--swatch-custom:hover .swatch--more svg path {
+  stroke-width: calc(var(--more_variant_icon_stroke_width, 1) + 0.2);
+}
