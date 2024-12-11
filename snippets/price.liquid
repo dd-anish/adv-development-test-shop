@@ -38,6 +38,7 @@
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
+
 -%}
 
 {%- unless target == null and placeholder == null -%}
@@ -84,20 +85,33 @@
           </span>
         {%- endif -%}
       </div>
+     {% comment %}  {{ product.price_varies }}
+      {{ product.compare_at_price_varies }}
+      {{ compare_at_price }} {% endcomment %}
+      {%- unless product.price_varies == false and product.compare_at_price_varies %}
       <div class="price__sale">
-        {%- unless product.price_varies == false and product.compare_at_price_varies %}
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
           <span>
             <s class="price-item price-item--regular">
               {{ compare_at_price | money }}
             </s>
           </span>
-        {%- endunless -%}
-        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
-        <span class="price-item price-item--sale price-item--last">
-          {{ money_price }}
-        </span>
+          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
+          <span class="price-item price-item--sale price-item--last">
+            {{ money_price }}
+          </span>
       </div>
+      {%- endunless -%}
+      {% if show_tax_price %}
+        {% assign tax_price = price | times: 0.21  %}
+        <span class="price_without_tax h2 font-extra-light">
+          {{ price |  minus: tax_price | money }}
+
+          <p class="tax_excluded-text no-default-spacing font-extra-light text-body--extra-small">
+            {{ 'products.product.taxes_excluded' | t }}
+          </p>
+        </span>
+      {% endif %}
       <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
         <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
         <span class="price-item price-item--last">
