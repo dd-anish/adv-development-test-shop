@@ -20,7 +20,6 @@
   assign product_form_id = 'product-form-' | append: section.id
 -%}
 
-
 {%- for value in option.values -%}
 
   {% if show_only_2_values %}
@@ -70,6 +69,15 @@
       <span class="visually-hidden">{{ value | escape }}</span>
       {{ label_unavailable }}
     {%- endcapture -%}
+
+    {% comment %} Get Specific Variant ID {% endcomment %}
+    {% assign variant_id = '' %}  
+    {% for variant in product.variants %}  
+      {% if variant.options contains value %}  
+        {% assign variant_id = variant.id %}  
+      {% endif %}  
+    {% endfor %}  
+
     {%
       render 'swatch-input',
       id: input_id,
@@ -81,7 +89,11 @@
       visually_disabled: option_disabled,
       shape: block.settings.swatch_shape,
       help_text: help_text,
-      additional_props: input_dataset
+      additional_props: input_dataset,
+      product: product,
+      variant_id: variant_id,
+      clickable_variant_colors: clickable_variant_colors
+
     %}
   {%- elsif picker_type == 'button' -%}
     <!-- None Type  -->
@@ -131,9 +143,13 @@
 
 {% if show_only_2_values %}
   {%- if option.values.size > 2 -%}  
+  {% comment %} Keep the struture as it is to apply the dawn's CSS {% endcomment %}
   <div class="product-form__input--swatch product-form__input--swatch-custom">  
-   <span class="swatch-input__input"> </span>  
-   <label class="swatch-input__label" title="More Colors">  
+    {% comment %} An Hidden Input {% endcomment %}
+    <span class="swatch-input__input"> </span>  
+
+    {% comment %} Input Label {% endcomment %}
+    <label class="swatch-input__label" title="More Colors">  
     <a class="swatch swatch--more" href="{{ product.url | within: collection }}">  
       {{ 'icon-plus.svg' | inline_asset_content }}
     </a>  

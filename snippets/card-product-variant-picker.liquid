@@ -9,6 +9,8 @@ Usage:
 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 
+{% comment %} {{ product.variants | json }} {% endcomment %}
+
 {%- unless product.has_only_default_variant -%}
     <variant-selects
       id="variant-selects-{{ section.id }}"
@@ -42,7 +44,8 @@ Usage:
              option: option,
              block: block,
              picker_type: picker_type,
-             show_only_2_values: true
+             show_only_2_values: true,
+             clickable_variant_colors: true
              %}
         </fieldset>
         {%- elsif picker_type == 'button' -%}
@@ -92,3 +95,11 @@ Usage:
       </script>
     </variant-selects>
   {%- endunless -%}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {  
+    
+    
+
+});
+  </script>

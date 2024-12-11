@@ -33,6 +33,7 @@ variant-selects {
   height: 1px;
   width: 1px;
 }
+.product-form__input span 
 
 .product-form__input input[type='radio']:not(.disabled):not(.visually-disabled) + label > .label-unavailable {
   display: none;
@@ -183,3 +184,10 @@ variant-selects {
   display: flex;
   gap: 0.5rem;
 }
+
+/* .product-form__input--swatch .swatch-disabled-custom label{
+  border-color: rgba(var(--color-foreground), 0.1);
+  color: rgba(var(--color-foreground), 0.6);
+  text-decoration: line-through;
+  opacity: .4;
+} */
