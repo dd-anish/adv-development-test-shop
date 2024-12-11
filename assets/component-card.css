@@ -724,7 +724,7 @@
 .svg-wrapper-out-of-stock-status{
   color: rgb(200, 200, 200);
 }
-
+/* Can be removed as base.css has code
 .stock-status .icon-inventory-in-stock-status circle:first-of-type {
   opacity: 0.3;
   animation: outer-circle-opacity-blink 1s infinite alternate;
@@ -732,7 +732,7 @@
 
 .stock-status .icon-inventory-out-of-stock-status circle:first-of-type {
   opacity: .4;
-}
+} */
 
 @media screen and (min-width: 750px) {
 

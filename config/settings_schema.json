@@ -477,6 +477,17 @@
     ]
   },
   {
+    "name": "Stock Status Indicators",
+    "settings": [
+      {
+        "type": "color",
+        "id": "in_stock_status_color",
+        "label": "In Stock Status Color",
+        "default": "rgb(62, 214, 96)"
+      },
+    ]
+  },
+  {
     "name": "t:settings_schema.variant_pills.name",
     "settings": [
       {

@@ -16,6 +16,7 @@
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
 
+
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
     {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
@@ -181,13 +182,14 @@
                   id="Inventory-{{ section.id }}"
                   role="status"
                 >
-                  {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
+                  {% comment %} inventory_management : Only visible at Product Level {% endcomment %}
+                  {% comment %} inventory_policy : Is visible at Product Level and Variant Level {% endcomment %}
+                  {% comment %} product.selected_or_first_available_variant.inventory_management == 'shopify' {% endcomment %}
+                  {%- if product.selected_or_first_available_variant.inventory_policy == 'deny' -%}
                     {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-                      {%- if product.selected_or_first_available_variant.inventory_quantity
-                          <= block.settings.inventory_threshold
-                      -%}
+                      {%- if product.selected_or_first_available_variant.inventory_quantity < block.settings.inventory_threshold -%}
                         <span class="svg-wrapper" style="color: rgb(238, 148, 65)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
+                          {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
                         </span>
                         {%- if block.settings.show_inventory_quantity -%}
                           {{-
@@ -199,29 +201,58 @@
                         {%- endif -%}
                       {%- else -%}
                         <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
+                          {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
                         </span>
-                        {%- if block.settings.show_inventory_quantity -%}
+                        {% comment %} Number of Quantity {% endcomment %}
+                        {% comment %} {%- if block.settings.show_inventory_quantity -%}
                           {{-
                             'products.product.inventory_in_stock_show_count'
                             | t: quantity: product.selected_or_first_available_variant.inventory_quantity
                           -}}
                         {%- else -%}
                           {{- 'products.product.inventory_in_stock' | t -}}
-                        {%- endif -%}
+                        {%- endif -%} {% endcomment %}
+                        {{- 'products.product.inventory_in_stock' | t -}}
                       {%- endif -%}
                     {%- else -%}
-                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-                        <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                        </span>
-                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                      <span class="svg-wrapper" style="color: rgb(200, 200, 200)">
+                        {{- 'icon-inventory-out-of-stock-status.svg' | inline_asset_content -}}
+                      </span>
+                      {{- 'products.product.inventory_out_of_stock' | t -}}
+                    {%- endif -%}
+
+                  {%- elsif product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+                    {%- if product.selected_or_first_available_variant.inventory_quantity > 0 
+                        and product.selected_or_first_available_variant.inventory_quantity < block.settings.inventory_threshold -%}
+                      <span class="svg-wrapper" style="color: rgb(238, 148, 65)">
+                        {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
+                      </span>
+                      {%- if block.settings.show_inventory_quantity -%}
+                        {{-
+                          'products.product.inventory_low_stock_show_count'
+                          | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                        -}}
                       {%- else -%}
+                        {{- 'products.product.inventory_low_stock' | t -}}
+                      {%- endif -%}
+                    
+                    {% elsif product.selected_or_first_available_variant.inventory_quantity > 0 %}
+                      <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
+                          {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
+                      </span>
+                      {{- 'products.product.inventory_in_stock' | t -}}
+                    {%- else -%}
+                      {% if block.settings.show_out_of_stock_status %}
                         <span class="svg-wrapper" style="color: rgb(200, 200, 200)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
+                          {{- 'icon-inventory-out-of-stock-status.svg' | inline_asset_content -}}
                         </span>
                         {{- 'products.product.inventory_out_of_stock' | t -}}
-                      {%- endif -%}
+                      {% else %}
+                        <span class="svg-wrapper" style="color: rgb(17, 195, 195)">
+                          {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
+                        </span>
+                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                      {% endif %}
                     {%- endif -%}
                   {%- endif -%}
                 </p>
@@ -1266,6 +1297,12 @@ if(Shopify.designMode){
           "id": "show_inventory_quantity",
           "label": "t:sections.main-product.blocks.inventory.settings.show_inventory_quantity.label",
           "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_out_of_stock_status",
+          "label": "Show out of stock status",
+          "default": false
         },
         {
           "type": "checkbox",
