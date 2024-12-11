@@ -237,7 +237,9 @@
                 <!-- Product Status -->
                 {% if show_product_stock_status %}
                   <div class="stock-status text-{{ settings.text_style_stock_label }}">
-                    {% comment %} {% for variant in card_product.variants %}
+                    {% comment %} 
+                      Can be removed
+                      {% for variant in card_product.variants %}
                       {% if variant.inventory_quantity <= 0 and variant.inventory_policy == 'continue' %}
                         <p class="inventory-status">Available for Pre-Order</p>
                       {% elsif variant.inventory_quantity > 0 %}
