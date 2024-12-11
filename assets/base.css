@@ -3944,3 +3944,14 @@ h6,
     min-height: 1rem;
   }
 }
+
+/* For Product Card Status */
+
+.icon-inventory-in-stock-status circle:first-of-type {
+  opacity: 0.3;
+  animation: outer-circle-opacity-blink 0.6s infinite alternate;
+}
+
+.icon-inventory-out-of-stock-status circle:first-of-type {
+  opacity: .3;
+}
