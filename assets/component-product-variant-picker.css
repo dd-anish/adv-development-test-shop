@@ -185,6 +185,7 @@ variant-selects {
   gap: 0.5rem;
 }
 
+/* Can be removed if Out Of Stock Swatch in Product Card is working fine */
 /* .product-form__input--swatch .swatch-disabled-custom label{
   border-color: rgba(var(--color-foreground), 0.1);
   color: rgba(var(--color-foreground), 0.6);

@@ -237,6 +237,18 @@
                 <!-- Product Status -->
                 {% if show_product_stock_status %}
                   <div class="stock-status text-{{ settings.text_style_stock_label }}">
+                    {% for variant in card_product.variants %}
+                      {% if variant.inventory_quantity <= 0 and variant.inventory_policy == 'continue' %}
+                        <p class="inventory-status">Available for Pre-Order</p>
+                      {% elsif variant.inventory_quantity > 0 %}
+                        <p class="inventory-status">In Stock</p>
+                      {% else %}
+                        <p class="inventory-status">Out of Stock</p>
+                      {% endif %}
+                    {% endfor %}
+                   {% comment %}  {{ card_product.variants[0].inventory_quantity }}
+                    {{ card_product.variants[0].inventory_policy }} {% endcomment %}
+                    
                     {% if card_product.available %}
                       <span class="svg-wrapper svg-wrapper-stock-status svg-wrapper-in-stock-status">
                         {{ 'icon-inventory-in-stock-status.svg' | inline_asset_content }}
