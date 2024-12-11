@@ -25,28 +25,42 @@
     %}
 {% endcomment %}
 
-<input
-  type="{{ type | default: 'radio' }}"
-  id="{{ id }}"
-  name="{{ name }}"
-  value="{{ value }}"
-  form="{{ product_form_id }}"
-  class="swatch-input__input{% if visually_disabled %} visually-disabled{% endif %}"
-  {% if checked %}
-    checked
-  {% endif %}
-  {% if disabled %}
-    disabled
-  {% endif %}
-  {% if additional_props %}
-    {{ additional_props }}
-  {% endif %}
->
-<label
-  for="{{ id }}"
-  title="{{ value }}"
-  class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
->
-  {% render 'swatch', swatch: swatch, shape: shape %}
-  {{ help_text }}
-</label>
+{% if clickable_variant_colors %}
+  <a href="{{ product.url | within: collection }}?variant={{ variant_id }}" class="{% if visually_disabled %} swatch-disabled-custom {% endif %} test">  
+    <span class="swatch-input__input"> </span>
+    <label
+      for="{{ id }}"
+      title="{{ value }}"
+      class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
+    >
+      {% render 'swatch', swatch: swatch, shape: shape %}
+      {{ help_text }}
+    </label>
+  </a>
+{% else %}
+  <input
+    type="{{ type | default: 'radio' }}"
+    id="{{ id }}"
+    name="{{ name }}"
+    value="{{ value }}"
+    form="{{ product_form_id }}"
+    class="swatch-input__input{% if visually_disabled %} visually-disabled{% endif %}"
+    {% if checked %}
+      checked
+    {% endif %}
+    {% if disabled %}
+      disabled
+    {% endif %}
+    {% if additional_props %}
+      {{ additional_props }}
+    {% endif %}
+  >
+  <label
+    for="{{ id }}"
+    title="{{ value }}"
+    class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
+  >
+    {% render 'swatch', swatch: swatch, shape: shape %}
+    {{ help_text }}
+  </label>
+{% endif %}

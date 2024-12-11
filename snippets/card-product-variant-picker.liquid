@@ -9,12 +9,15 @@ Usage:
 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 
+{% comment %} {{ product.variants | json }} {% endcomment %}
+
 {%- unless product.has_only_default_variant -%}
     <variant-selects
       id="variant-selects-{{ section.id }}"
       data-section="{{ section.id }}"
       {{ block.shopify_attributes }}>
       {%- for option in product.options_with_values -%}
+        {% comment %} {{ option | json }} {% endcomment %}
         {%- liquid
           assign swatch_count = option.values | map: 'swatch' | compact | size
           assign picker_type = block.settings.picker_type
@@ -27,6 +30,7 @@ Usage:
             endif
           endif
         -%}
+        {% comment %} {{ swatch_count }} {% endcomment %}
         {%- if picker_type == 'swatch' -%}
           <fieldset class="js product-form__input product-form__input--swatch card_product-variant-picker">
             <legend class="form__label visually-hidden">
@@ -39,7 +43,10 @@ Usage:
              , product: product,
              option: option,
              block: block,
-             picker_type: picker_type %}
+             picker_type: picker_type,
+             show_only_2_values: true,
+             clickable_variant_colors: true
+             %}
         </fieldset>
         {%- elsif picker_type == 'button' -%}
             Button Picker
@@ -88,3 +95,11 @@ Usage:
       </script>
     </variant-selects>
   {%- endunless -%}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {  
+    
+    
+
+});
+  </script>

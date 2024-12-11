@@ -85,3 +85,27 @@
   transform: rotate(-45deg);
   transform-origin: left;
 }
+
+/* Custom CSS */
+
+.swatch-disabled-custom .swatch-input__label>.swatch{
+  opacity: 0.4;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Display crossed out line over swatch when input is disabled */
+.swatch-disabled-custom .swatch-input__label>.swatch::after {
+  /* Diagonal of a square = length of the side * sqrt(2)  */
+  --diagonal--size: calc(var(--swatch-input--size) * 1.414);
+  --crossed-line--size: 0.1rem;
+  content: '';
+  position: absolute;
+  bottom: calc(var(--crossed-line--size) * -0.8);
+  left: 0;
+  width: var(--diagonal--size);
+  height: var(--crossed-line--size);
+  background-color: rgb(var(--color-foreground));
+  transform: rotate(-45deg);
+  transform-origin: left;
+}

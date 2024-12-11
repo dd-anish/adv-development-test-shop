@@ -33,6 +33,7 @@ variant-selects {
   height: 1px;
   width: 1px;
 }
+.product-form__input span 
 
 .product-form__input input[type='radio']:not(.disabled):not(.visually-disabled) + label > .label-unavailable {
   display: none;
@@ -147,7 +148,7 @@ variant-selects {
 
 .product-form__input--swatch .swatch-input__input + .swatch-input__label {
   /* --swatch-input--size: 3.6rem; */
-  --swatch-input--size: 1.4rem;
+  --swatch-input--size: 1.6rem;
   /* margin: 0.7rem 1.2rem 0.2rem 0; */
 }
 
@@ -183,3 +184,10 @@ variant-selects {
   display: flex;
   gap: 0.5rem;
 }
+
+/* .product-form__input--swatch .swatch-disabled-custom label{
+  border-color: rgba(var(--color-foreground), 0.1);
+  color: rgba(var(--color-foreground), 0.6);
+  text-decoration: line-through;
+  opacity: .4;
+} */
