@@ -3713,7 +3713,7 @@ h1,
 /* Small */
 h2,
 .h2 {
-  font-size: calc(var(--font-heading-scale) * 1.6rem);
+  font-size: calc(var(--font-heading-scale) * 1.8rem);
 }
 
 @media only screen and (min-width: 750px) {
@@ -3726,7 +3726,7 @@ h2,
 
 h3,
 .h3 {
-  font-size: calc(var(--font-heading-scale) * 1.7rem);
+  font-size: calc(var(--font-heading-scale) * 1.6rem);
 }
 
 @media only screen and (min-width: 750px) {

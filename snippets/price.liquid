@@ -38,7 +38,7 @@
   if target == product and product.price_varies and show_from_word
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
-  
+
 -%}
 
 {%- unless target == null and placeholder == null -%}
@@ -109,10 +109,10 @@
 
       {% if show_tax_price %}
         {% assign tax_price = price | times: 0.21  %}
-        <span class="price_without_tax h2 font-extra-light">
+        <span class="price_without_tax {{ tax_price_font_size }} {{ tax_price_font_weight }}">
           {{ price |  minus: tax_price | money }}
 
-          <p class="tax_excluded-text no-default-spacing font-extra-light text-body--extra-small">
+          <p class="tax_excluded-text no-default-spacing {{ tax_price_font_weight }} {{ tax_text_font_size }}">
             {{ 'products.product.taxes_excluded' | t }}
           </p>
         </span>

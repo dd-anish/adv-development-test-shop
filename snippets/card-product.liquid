@@ -273,6 +273,7 @@
 
             <!-- Price Div-->
             <div class="price-add-to-cart-container">
+              
               {% render 'price',
                  product: card_product,
                  price_class: '',
@@ -281,7 +282,9 @@
                  show_strikethrough_price: show_strikethrough_price,
                  price_horizontal_alignment: price_horizontal_alignment,
                  price_vertical_alignment: price_vertical_alignment,
-                 price_gap: price_gap
+                 price_gap: price_gap,
+                 tax_price_font_size: tax_price_font_size,
+                 tax_price_font_weight: tax_price_font_weight
                 %}
               <!-- Price -->
               {%- if card_product.quantity_price_breaks_configured? -%}
