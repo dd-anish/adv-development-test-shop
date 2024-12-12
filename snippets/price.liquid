@@ -41,17 +41,25 @@
 
 -%}
 
+
+{% style %}
+  .price--on-sale .price__sale{
+    display: flex;
+    
+  }
+{% endstyle %}
+
 {%- unless target == null and placeholder == null -%}
   <div class="
       price
       {%- if price_class %} {{ price_class }}{% endif -%}
       {%- if available == false %} price--sold-out{% endif -%}
-      {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true and show_strikethrough_price %} price--on-sale{% endif -%}
+      {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true and show_strikethrough_price %} price--on-sale {% endif -%}
       {%- if compare_at_price > price and product.quantity_price_breaks_configured? %} volume-pricing--sale-badge{% endif -%}
       {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
       {%- if show_badges %} price--show-badge{% endif -%}
-      {%- if compare_at_price > price %} price--on-sale-custom-color {% endif -%}
-    ">
+      {%- if compare_at_price > price %} price--on-sale-custom-color {% endif -%}"
+      >
     <div class="price__container">
       {%- comment -%}
         Explanation of description list:
@@ -85,23 +93,27 @@
           </span>
         {%- endif -%}
       </div>
-     {% comment %}  {{ product.price_varies }}
-      {{ product.compare_at_price_varies }}
-      {{ compare_at_price }} {% endcomment %}
+
+      {% comment %}  
+        {{ product.price_varies }}
+        {{ product.compare_at_price_varies }}
+        {{ compare_at_price }} 
+      {% endcomment %}
       {%- unless product.price_varies == false and product.compare_at_price_varies %}
-      <div class="price__sale">
-          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-          <span>
-            <s class="price-item price-item--regular">
-              {{ compare_at_price | money }}
-            </s>
-          </span>
+      <div class="price__sale" {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true and show_strikethrough_price %} style=" flex-direction: {{ price_horizontal_alignment }}; align-items: {{ price_vertical_alignment }}; gap: {{ price_gap }}px;"  {% endif -%}>
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
           <span class="price-item price-item--sale price-item--last">
             {{ money_price }}
           </span>
+          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+          <span class="original-price-div">
+            <s class="price-item price-item--regular">
+              {{ compare_at_price | money }}
+            </s>
+          </span>
       </div>
       {%- endunless -%}
+
       {% if show_tax_price %}
         {% assign tax_price = price | times: 0.21  %}
         <span class="price_without_tax h2 font-extra-light">
@@ -112,6 +124,7 @@
           </p>
         </span>
       {% endif %}
+
       <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
         <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
         <span class="price-item price-item--last">
@@ -127,6 +140,7 @@
         </span>
       </small>
     </div>
+
     {%- if show_badges -%}
       <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
         {{ 'products.product.on_sale' | t }}

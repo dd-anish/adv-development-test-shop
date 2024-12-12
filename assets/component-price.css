@@ -22,7 +22,7 @@
 
 .price .price-item {
   display: inline-block;
-  margin: 0 1rem 0 0;
+  /* margin: 0 1rem 0 0; */
 }
 
 .price__regular .price-item--regular {
@@ -86,9 +86,9 @@
 }
 
 .price--on-sale .price__sale {
-  display: initial;
+  /* display: initial;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 }
 
 .price--center {
@@ -131,4 +131,13 @@
     margin-left: 0.5rem;
   }
   
+}
+
+.price--on-sale .original-price-div{
+    line-height: 1;
+    display: flex;
+}
+
+.price--on-sale .price .price-item{
+  margin: 0;
 }

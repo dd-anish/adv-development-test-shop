@@ -143,7 +143,11 @@
                     use_variant: true,
                     price_class: 'price--extra-extra-large',
                     show_badges: false,
-                    show_tax_price: true
+                    show_strikethrough_price: section.settings.show_strikethrough_price,
+                    price_horizontal_alignment: section.settings.price_horizontal_alignment,
+                    price_vertical_alignment: section.settings.price_vertical_alignment,
+                    price_gap: section.settings.price_gap,
+                    show_tax_price: section.settings.show_tax_price
                   -%}
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
@@ -3184,6 +3188,80 @@ if(Shopify.designMode){
       "id": "custom_block_background_color",
       "label": "Custom block background color",
       "default": "#f5f5f5"
+    },
+    {
+        "type": "header",
+        "content": "Price Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_strikethrough_price",
+      "default": true,
+      "label": "Show Strikethrough Price"
+    },
+    {
+      "type": "select",
+      "id": "price_horizontal_alignment",
+      "options": [
+        {
+          "value": "row",
+          "label": "Original Price at End"
+        },
+        {
+          "value": "column",
+          "label": "Original Price at Bottom"
+        },
+        {
+          "value": "row-reverse",
+          "label": "Original Price at Start"
+        },
+        {
+          "value": "column-reverse",
+          "label": "Original Price at Top"
+        }
+      ],
+      "default": "row",
+      "label": "Horizontal Alignment"
+    },
+    {
+      "type": "select",
+      "id": "price_vertical_alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "baseline",
+          "label": "Baseline"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "flex-start",
+      "label": "Vertical Alignment"
+    },
+    {
+      "type": "range",
+      "id": "price_gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Price Gap",
+      "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tax_price",
+      "default": true,
+      "label": "Show Tax Price"
     },
     {
       "type": "header",
