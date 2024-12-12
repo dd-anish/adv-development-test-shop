@@ -35,19 +35,11 @@
     assign money_price_max = price_max | money_with_currency
   endif
 
-  if target == product and product.price_varies
+  if target == product and product.price_varies and show_from_word
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
-
+  
 -%}
-
-
-{% style %}
-  .price--on-sale .price__sale{
-    display: flex;
-    
-  }
-{% endstyle %}
 
 {%- unless target == null and placeholder == null -%}
   <div class="
@@ -98,9 +90,10 @@
         {{ product.price_varies }}
         {{ product.compare_at_price_varies }}
         {{ compare_at_price }} 
-      {% endcomment %}
-      {%- unless product.price_varies == false and product.compare_at_price_varies %}
+      {% endcomment %}      
+     
       <div class="price__sale" {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true and show_strikethrough_price %} style=" flex-direction: {{ price_horizontal_alignment }}; align-items: {{ price_vertical_alignment }}; gap: {{ price_gap }}px;"  {% endif -%}>
+      {%- unless product.price_varies == false and product.compare_at_price_varies %}
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
           <span class="price-item price-item--sale price-item--last">
             {{ money_price }}
@@ -111,8 +104,8 @@
               {{ compare_at_price | money }}
             </s>
           </span>
-      </div>
-      {%- endunless -%}
+        {%- endunless -%}
+        </div>
 
       {% if show_tax_price %}
         {% assign tax_price = price | times: 0.21  %}

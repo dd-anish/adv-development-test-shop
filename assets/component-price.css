@@ -89,6 +89,7 @@
   /* display: initial;
   flex-direction: row;
   flex-wrap: wrap; */
+  display: flex;
 }
 
 .price--center {
