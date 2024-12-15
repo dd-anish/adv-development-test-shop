@@ -346,6 +346,12 @@
         "default": "Home"
       },
       {
+        "type": "url",
+        "id": "home_breadcrumb_url",
+        "label": "Home Breadcrumb URL",
+        "default": "/collections/all"
+      },
+      {
         "type": "header",
         "content": "Nested Breadcrumb Options"
       },
