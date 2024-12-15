@@ -324,9 +324,17 @@
                       quick_add: section.settings.quick_add,
                       section_id: section.id,
                       truncate_description: section.settings.truncate_description,
-                      show_strikethrough_price : section.settings.show_strikethrough_price,
                       show_product_variants: section.settings.show_product_variants,
-                      show_product_stock_status: section.settings.show_product_stock_status
+                      show_product_stock_status: section.settings.show_product_stock_status,
+                      show_strikethrough_price: section.settings.show_strikethrough_price,
+                      price_horizontal_alignment: section.settings.price_horizontal_alignment,
+                      price_vertical_alignment: section.settings.price_vertical_alignment,
+                      price_gap: section.settings.price_gap,
+                      show_tax_price: section.settings.show_tax_price,
+                      tax_price_font_size: section.settings.tax_price_font_size,
+                      tax_price_font_weight: section.settings.tax_price_font_weight
+                      tax_text_font_size: section.settings.tax_text_font_size,
+                      original_price_size: section.settings.original_price_size
                     %}
                   </li>
                   {%- assign skip_card_product_styles = true -%}
@@ -488,12 +496,6 @@
     },
     {
       "type": "checkbox",
-      "id": "show_strikethrough_price",
-      "default": false,
-      "label": "Show Strikethrough Price"
-    },
-    {
-      "type": "checkbox",
       "id": "show_secondary_image",
       "default": true,
       "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
@@ -531,6 +533,168 @@
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
         }
       ]
+    },
+    {
+        "type": "header",
+        "content": "Price Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_strikethrough_price",
+      "default": true,
+      "label": "Show Strikethrough Price"
+    },
+    {
+      "type": "select",
+      "id": "original_price_size",
+      "options": [
+        {
+          "value": "text-body--extra-extra-small",
+          "label": "Extra Small"
+        },
+        {
+          "value": "text-body--extra-small",
+          "label": "Small"
+        },
+        {
+          "value": "text-body--small",
+          "label": "Regular"
+        },
+        {
+          "value": "text-body--large",
+          "label": "Large"
+        }
+      ],
+      "default": "text-body--extra-extra-small",
+      "label": "Original Price Font Size"
+    },
+    {
+      "type": "select",
+      "id": "price_horizontal_alignment",
+      "options": [
+        {
+          "value": "row",
+          "label": "Original Price at End"
+        },
+        {
+          "value": "column",
+          "label": "Original Price at Bottom"
+        },
+        {
+          "value": "row-reverse",
+          "label": "Original Price at Start"
+        },
+        {
+          "value": "column-reverse",
+          "label": "Original Price at Top"
+        }
+      ],
+      "default": "row",
+      "label": "Horizontal Alignment"
+    },
+    {
+      "type": "select",
+      "id": "price_vertical_alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "baseline",
+          "label": "Baseline"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "flex-start",
+      "label": "Vertical Alignment"
+    },
+    {
+      "type": "range",
+      "id": "price_gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Price Gap",
+      "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tax_price",
+      "default": true,
+      "label": "Show Tax Price"
+    },
+    {
+      "type": "select",
+      "id": "tax_price_font_size",
+      "options": [
+        {
+          "value": "text-body--extra-extra-small",
+          "label": "Extra Small"
+        },
+        {
+          "value": "h4",
+          "label": "Small"
+        },
+        {
+          "value": "h3",
+          "label": "Medium"
+        },
+        {
+          "value": "h2",
+          "label": "Large"
+        }
+      ],
+      "default": "text-body--extra-extra-small",
+      "label": "Tax Price Font Size"
+    },
+    {
+      "type": "select",
+      "id": "tax_price_font_weight",
+      "options": [
+        {
+          "value": "font-regular",
+          "label": "Normal"
+        },
+        {
+          "value": "font-light",
+          "label": "Light"
+        },
+        {
+          "value": "font-extra-light",
+          "label": "Extra Light"
+        }
+      ],
+      "default": "font-extra-light",
+      "label": "Tax Price Font Weight"
+    },
+    {
+      "type": "select",
+      "id": "tax_text_font_size",
+      "options": [
+        {
+          "value": "text-body--small",
+          "label": "Regular"
+        },
+        {
+          "value": "text-body--extra-small",
+          "label": "Small"
+        },
+        {
+          "value": "text-body--extra-extra-small",
+          "label": "Extra Small"
+        }
+      ],
+      "default": "text-body--extra-small",
+      "label": "Tax Text Font Size"
     },
     {
       "type": "header",
