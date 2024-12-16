@@ -667,8 +667,8 @@
 .price-add-to-cart-container{
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  /* align-items: end; */
+  /* align-items: center; */
+  align-items: end;
   min-height: 4rem;
 }
 
@@ -743,13 +743,13 @@
   flex: none;
 }
 
-.svg-wrapper-in-stock-status{
+/* .svg-wrapper-in-stock-status{
   color: rgb(62, 214, 96);
 }
 
 .svg-wrapper-out-of-stock-status{
   color: rgb(200, 200, 200);
-}
+} */
 
 /* Can be removed as base.css has code
 .stock-status .icon-inventory-in-stock-status circle:first-of-type {

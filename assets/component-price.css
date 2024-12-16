@@ -139,3 +139,7 @@
 .price--on-sale .price .price-item{
   margin: 0;
 }
+
+.tax_excluded-text{
+  flex: none;
+}
