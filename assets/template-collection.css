@@ -129,6 +129,13 @@
   }
 } 
 
+
+/* Card Alignment */
+
+.featured-collection-custom .card__information {
+  gap: 0.5rem;
+}
+
 @media screen and (max-width: 425px) {
 
   .featured-collection-custom .slider--tablet.grid--peek.grid--2-col-tablet-down .grid__item,
