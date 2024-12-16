@@ -616,6 +616,7 @@
 
 .product-card-wrapper.product-card-wrapper-custom .card{
   border-radius: 0;
+  --shadow-opacity:0;
 }
 
 .card--standard .card__inner.card__inner-custom {
@@ -647,6 +648,13 @@
 .card--standard .card__content.card__content-custom {
   border-radius: calc(var(--border-radius) - var(--border-width));
 }
+
+.card--standard .card__content.card__content_with_media.card__content-custom{
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+
 
 /* Card Alignment */
 
