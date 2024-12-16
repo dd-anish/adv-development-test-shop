@@ -346,6 +346,12 @@
         "default": "Home"
       },
       {
+        "type": "url",
+        "id": "home_breadcrumb_url",
+        "label": "Home Breadcrumb URL",
+        "default": "/collections/all"
+      },
+      {
         "type": "header",
         "content": "Nested Breadcrumb Options"
       },
@@ -480,11 +486,39 @@
     "name": "Stock Status Indicators",
     "settings": [
       {
+        "type": "range",
+        "id": "inventory_threshold",
+        "label": "t:sections.main-product.blocks.inventory.settings.inventory_threshold.label",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "info": "t:sections.main-product.blocks.inventory.settings.inventory_threshold.info",
+        "default": 10
+      },
+      {
         "type": "color",
         "id": "in_stock_status_color",
-        "label": "In Stock Status Color",
-        "default": "rgb(62, 214, 96)"
+        "label": "In Stock Status",
+        "default": "#3ed660"
       },
+      {
+        "type": "color",
+        "id": "low_stock_status_color",
+        "label": "Low Stock Status",
+        "default": "#ee9441"
+      },
+      {
+        "type": "color",
+        "id": "continue_selling_stock_status_color",
+        "label": "Continue Selling Stock Status",
+        "default": "#11c3c3"
+      },
+      {
+        "type": "color",
+        "id": "out_of_stock_status_color",
+        "label": "Out of Stock Status",
+        "default": "#c8c8c8"
+      }
     ]
   },
   {

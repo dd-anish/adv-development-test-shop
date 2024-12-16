@@ -14,7 +14,7 @@
             <span class="svg-wrapper">
               {{- 'icon-chevron-left.svg' | inline_asset_content -}}
             </span>
-            <a class="breadcrumbs__link" href="{{ routes.root_url }}">
+            <a class="breadcrumbs__link" href="{{ settings.home_breadcrumb_url }}">
               {{ settings.home_breadcrumb_text | strip_html }}
             </a>
           </li>

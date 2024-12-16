@@ -35,9 +35,10 @@
     assign money_price_max = price_max | money_with_currency
   endif
 
-  if target == product and product.price_varies
+  if target == product and product.price_varies and show_from_word
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
+
 -%}
 
 {%- unless target == null and placeholder == null -%}
@@ -45,12 +46,12 @@
       price
       {%- if price_class %} {{ price_class }}{% endif -%}
       {%- if available == false %} price--sold-out{% endif -%}
-      {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true and show_strikethrough_price %} price--on-sale{% endif -%}
+      {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true and show_strikethrough_price %} price--on-sale {% endif -%}
       {%- if compare_at_price > price and product.quantity_price_breaks_configured? %} volume-pricing--sale-badge{% endif -%}
       {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
       {%- if show_badges %} price--show-badge{% endif -%}
-      {%- if compare_at_price > price %} price--on-sale-custom-color {% endif -%}
-    ">
+      {%- if compare_at_price > price %} price--on-sale-custom-color {% endif -%}"
+      >
     <div class="price__container">
       {%- comment -%}
         Explanation of description list:
@@ -84,20 +85,39 @@
           </span>
         {%- endif -%}
       </div>
-      <div class="price__sale">
-        {%- unless product.price_varies == false and product.compare_at_price_varies %}
+
+      {% comment %}  
+        {{ product.price_varies }}
+        {{ product.compare_at_price_varies }}
+        {{ compare_at_price }} 
+      {% endcomment %}      
+     
+      <div class="price__sale" {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true and show_strikethrough_price %} style=" flex-direction: {{ price_horizontal_alignment }}; align-items: {{ price_vertical_alignment }}; gap: {{ price_gap }}px;"  {% endif -%}>
+      {%- unless product.price_varies == false and product.compare_at_price_varies %}
+          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
+          <span class="price-item price-item--sale price-item--last">
+            {{ money_price }}
+          </span>
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-          <span>
-            <s class="price-item price-item--regular">
+          <span class="original-price-div">
+            <s class="price-item price-item--regular {{ original_price_size }}">
               {{ compare_at_price | money }}
             </s>
           </span>
         {%- endunless -%}
-        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
-        <span class="price-item price-item--sale price-item--last">
-          {{ money_price }}
+        </div>
+
+      {% if show_tax_price %}
+        {% assign tax_price = price | times: 0.21  %}
+        <span class="price_without_tax {{ tax_price_font_size }} {{ tax_price_font_weight }} {% if tax_text_uppercase %} text-uppercase {% endif %}">
+          {{ price |  minus: tax_price | money }}
+
+          <p class="tax_excluded-text no-default-spacing {{ tax_price_font_weight }} {{ tax_text_font_size }}">
+            {{ 'products.product.taxes_excluded' | t }}
+          </p>
         </span>
-      </div>
+      {% endif %}
+
       <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
         <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
         <span class="price-item price-item--last">
@@ -113,6 +133,7 @@
         </span>
       </small>
     </div>
+
     {%- if show_badges -%}
       <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
         {{ 'products.product.on_sale' | t }}

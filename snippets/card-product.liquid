@@ -170,7 +170,9 @@
             {%- endif -%}
 
             <!-- Description -->
-            <span class="caption-large light">{{ block.settings.description | escape }}</span>
+             {% if block.settings.description != blank %}
+              <span class="caption-large light">{{ block.settings.description | escape }}</span>
+             {% endif %}
 
             <!-- Rating -->
             {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
@@ -249,7 +251,7 @@
                       {% endif %}
                     {% endfor %} {% endcomment %}
                     
-                    {% if card_product.available %}
+                    {% comment %} {% if card_product.available %}
                       <span class="svg-wrapper svg-wrapper-stock-status svg-wrapper-in-stock-status">
                         {{ 'icon-inventory-in-stock-status.svg' | inline_asset_content }}
                       </span>
@@ -265,6 +267,37 @@
                         {{ 'products.product.inventory_out_of_stock' | t }}
                       </span>
   
+                    {% endif %} {% endcomment %}
+                    {% if card_product.selected_or_first_available_variant.inventory_quantity > 0 and card_product.selected_or_first_available_variant.inventory_quantity < settings.inventory_threshold %}
+                      <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.low_stock_status_color }}">
+                        {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
+                      </span>
+                      <span class="caption stock-status-caption">
+                        {{- 'products.product.inventory_low_stock' | t -}}
+                      </span>
+                    {% elsif card_product.selected_or_first_available_variant.inventory_quantity > 0 %}
+                      <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.in_stock_status_color }}">
+                          {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
+                      </span>
+                      <span class="caption stock-status-caption">
+                        {{ 'products.product.inventory_in_stock' | t }}
+                      </span>
+                    {% else %}
+                      {% if card_product.selected_or_first_available_variant.inventory_policy == 'continue' %}
+                        <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.continue_selling_stock_status_color }}">
+                          {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
+                        </span>
+                        <span class="caption stock-status-caption">
+                          {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                        </span>
+                      {% else %}
+                          <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.out_of_stock_status_color }}">
+                            {{- 'icon-inventory-out-of-stock-status.svg' | inline_asset_content -}}
+                          </span>
+                          <span class="caption stock-status-caption">
+                            {{ 'products.product.inventory_out_of_stock' | t }}
+                          </span>
+                      {% endif %}
                     {% endif %}
                   </div>
                 {% endif %}
@@ -273,11 +306,21 @@
 
             <!-- Price Div-->
             <div class="price-add-to-cart-container">
-              {% render 'price'
-                , product: card_product
-                , price_class: ''
-                , show_compare_at_price: true 
-                , show_strikethrough_price: show_strikethrough_price
+              
+              {% render 'price',
+                 product: card_product,
+                 price_class: '',
+                 show_compare_at_price: true,
+                 show_tax_price: show_tax_price,
+                 show_strikethrough_price: show_strikethrough_price,
+                 price_horizontal_alignment: price_horizontal_alignment,
+                 price_vertical_alignment: price_vertical_alignment,
+                 price_gap: price_gap,
+                 original_price_size: original_price_size
+                 tax_price_font_size: tax_price_font_size,
+                 tax_price_font_weight: tax_price_font_weight,
+                 tax_text_font_size: tax_text_font_size,
+                 tax_text_uppercase: tax_text_uppercase,
                 %}
               <!-- Price -->
               {%- if card_product.quantity_price_breaks_configured? -%}

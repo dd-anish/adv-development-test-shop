@@ -3567,6 +3567,22 @@ details-disclosure > details {
 
 /* Custom Body Font Size */
 
+.font-small-8-px-fix {
+  font-size: 0.8rem;
+}
+
+.font-small-9-px-fix {
+  font-size: 0.8rem;
+}
+
+.font-small-8-px {
+  font-size: 0.8rem;
+}
+
+.font-small-1-rem{
+  font-size: 1rem;
+}
+
 .text-body--extra-extra-small {
   font-size: 1rem;
   line-height: calc(1.2 / var(--font-body-scale));
@@ -3593,6 +3609,10 @@ details-disclosure > details {
 }
 
 @media screen and (min-width: 750px) {
+
+  .font-small-8-px {
+    font-size: 1rem;
+  }
 
   .text-body--extra-extra-small {
     font-size: 1.1rem;
@@ -3713,7 +3733,7 @@ h1,
 /* Small */
 h2,
 .h2 {
-  font-size: calc(var(--font-heading-scale) * 1.6rem);
+  font-size: calc(var(--font-heading-scale) * 1.8rem);
 }
 
 @media only screen and (min-width: 750px) {
@@ -3726,7 +3746,7 @@ h2,
 
 h3,
 .h3 {
-  font-size: calc(var(--font-heading-scale) * 1.7rem);
+  font-size: calc(var(--font-heading-scale) * 1.6rem);
 }
 
 @media only screen and (min-width: 750px) {

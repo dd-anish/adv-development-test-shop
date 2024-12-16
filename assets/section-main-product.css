@@ -294,7 +294,7 @@ a.product__text {
   }
 
   .product__info-container .price--on-sale .price-item--regular {
-    font-size: 1.6rem;
+    /* font-size: 1.6rem; */
   }
 
   .product__info-container > *:first-child {
@@ -1531,8 +1531,8 @@ a.product__text {
 }
 
 .product .price__container {
-  /* margin-bottom: 0.5rem; */
-  margin-bottom: 0rem;
+  margin-bottom: 0.5rem;
+  /* line-height: 1.2; */
 }
 
 .custom-quantity-selector .price-per-item__container .svg-wrapper{
