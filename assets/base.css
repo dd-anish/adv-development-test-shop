@@ -3567,6 +3567,14 @@ details-disclosure > details {
 
 /* Custom Body Font Size */
 
+.font-small-8-px {
+  font-size: 0.8rem;
+}
+
+.font-small-1-rem{
+  font-size: 1rem;
+}
+
 .text-body--extra-extra-small {
   font-size: 1rem;
   line-height: calc(1.2 / var(--font-body-scale));
@@ -3593,6 +3601,10 @@ details-disclosure > details {
 }
 
 @media screen and (min-width: 750px) {
+
+  .font-small-8-px {
+    font-size: 1rem;
+  }
 
   .text-body--extra-extra-small {
     font-size: 1.1rem;

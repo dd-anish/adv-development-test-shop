@@ -109,7 +109,7 @@
 
       {% if show_tax_price %}
         {% assign tax_price = price | times: 0.21  %}
-        <span class="price_without_tax {{ tax_price_font_size }} {{ tax_price_font_weight }}">
+        <span class="price_without_tax {{ tax_price_font_size }} {{ tax_price_font_weight }} {% if tax_text_uppercase %} text-uppercase {% endif %}">
           {{ price |  minus: tax_price | money }}
 
           <p class="tax_excluded-text no-default-spacing {{ tax_price_font_weight }} {{ tax_text_font_size }}">

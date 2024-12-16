@@ -330,11 +330,12 @@
                       price_horizontal_alignment: section.settings.price_horizontal_alignment,
                       price_vertical_alignment: section.settings.price_vertical_alignment,
                       price_gap: section.settings.price_gap,
+                      original_price_size: section.settings.original_price_size,
                       show_tax_price: section.settings.show_tax_price,
                       tax_price_font_size: section.settings.tax_price_font_size,
                       tax_price_font_weight: section.settings.tax_price_font_weight
                       tax_text_font_size: section.settings.tax_text_font_size,
-                      original_price_size: section.settings.original_price_size
+                      tax_text_uppercase: section.settings.tax_text_uppercase
                     %}
                   </li>
                   {%- assign skip_card_product_styles = true -%}
@@ -549,6 +550,10 @@
       "id": "original_price_size",
       "options": [
         {
+          "value": "font-small-1-rem",
+          "label": "Extra Extra Small"
+        },
+        {
           "value": "text-body--extra-extra-small",
           "label": "Extra Small"
         },
@@ -565,7 +570,7 @@
           "label": "Large"
         }
       ],
-      "default": "text-body--extra-extra-small",
+      "default": "font-small-1-rem",
       "label": "Original Price Font Size"
     },
     {
@@ -637,6 +642,10 @@
       "id": "tax_price_font_size",
       "options": [
         {
+          "value": "font-small-1-rem",
+          "label": "Extra Extra Small"
+        },
+        {
           "value": "text-body--extra-extra-small",
           "label": "Extra Small"
         },
@@ -653,7 +662,7 @@
           "label": "Large"
         }
       ],
-      "default": "text-body--extra-extra-small",
+      "default": "font-small-1-rem",
       "label": "Tax Price Font Size"
     },
     {
@@ -677,9 +686,19 @@
       "label": "Tax Price Font Weight"
     },
     {
+      "type": "checkbox",
+      "id": "tax_text_uppercase",
+      "label": "Uppercase Tax Text",
+      "default": true
+    },
+    {
       "type": "select",
       "id": "tax_text_font_size",
       "options": [
+        {
+          "value": "font-small-8-px",
+          "label": "Extra Extra Small"
+        },
         {
           "value": "text-body--small",
           "label": "Regular"
@@ -693,7 +712,7 @@
           "label": "Extra Small"
         }
       ],
-      "default": "text-body--extra-small",
+      "default": "font-small-8-px",
       "label": "Tax Text Font Size"
     },
     {

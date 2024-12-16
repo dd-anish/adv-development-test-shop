@@ -667,8 +667,8 @@
 .price-add-to-cart-container{
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
-  align-items: end;
+  align-items: center;
+  /* align-items: end; */
   min-height: 4rem;
 }
 
@@ -709,10 +709,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  min-height: 2rem;
+  align-items: start;
+  /* min-height: 2rem; */
+  min-height: 2.3rem;
   flex-wrap: wrap-reverse;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 @media screen and (max-width: 425px) {

@@ -185,8 +185,8 @@
       },
       "product_variants": "Productvarianten",
       "taxes_included": "inclusief BTW",
-      "taxes_included_short": "incl. BTW",
-      "taxes_excluded": "excl. BTW",
+      "taxes_included_short": "incl BTW",
+      "taxes_excluded": "excl BTW",
       "duties_included": "Douanerechten inbegrepen.",
       "duties_and_taxes_included": "Douanerechten en belastingen inbegrepen."
     },
