@@ -119,6 +119,10 @@
 
 /* Custom */
 
+.price__sale , .price__regular{
+  line-height: 0.8;
+}
+
 .price--on-sale-custom-color{
    color: #b41d1c;
 }
