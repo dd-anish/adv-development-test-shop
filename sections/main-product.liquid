@@ -233,7 +233,7 @@
                   <!-- Continue Selling Products when Out Of Stock -->
                   {%- elsif product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
                     {%- if product.selected_or_first_available_variant.inventory_quantity > 0 
-                        and product.selected_or_first_available_variant.inventory_quantity < block.settings.inventory_threshold -%}
+                        and product.selected_or_first_available_variant.inventory_quantity < settings.inventory_threshold -%}
                       <span class="svg-wrapper" style="color: {{ settings.low_stock_status_color }}">
                         {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
                       </span>
@@ -1290,17 +1290,7 @@ if(Shopify.designMode){
             }
           ],
           "default": "body",
-          "label": "t:sections.main-product.blocks.inventory.settings.text_style.label",
-        },
-        {
-          "type": "range",
-          "id": "inventory_threshold",
-          "label": "t:sections.main-product.blocks.inventory.settings.inventory_threshold.label",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "info": "t:sections.main-product.blocks.inventory.settings.inventory_threshold.info",
-          "default": 10
+          "label": "t:sections.main-product.blocks.inventory.settings.text_style.label"
         },
         {
           "type": "checkbox",

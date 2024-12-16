@@ -268,14 +268,20 @@
                       </span>
   
                     {% endif %} {% endcomment %}
-                    {% if card_product.selected_or_first_available_variant.inventory_quantity > 0 %}
+                    {% if card_product.selected_or_first_available_variant.inventory_quantity > 0 and card_product.selected_or_first_available_variant.inventory_quantity < settings.inventory_threshold %}
+                      <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.low_stock_status_color }}">
+                        {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
+                      </span>
+                      <span class="caption stock-status-caption">
+                        {{- 'products.product.inventory_low_stock' | t -}}
+                      </span>
+                    {% elsif card_product.selected_or_first_available_variant.inventory_quantity > 0 %}
                       <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.in_stock_status_color }}">
                           {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
                       </span>
                       <span class="caption stock-status-caption">
                         {{ 'products.product.inventory_in_stock' | t }}
                       </span>
-
                     {% else %}
                       {% if card_product.selected_or_first_available_variant.inventory_policy == 'continue' %}
                         <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.continue_selling_stock_status_color }}">
