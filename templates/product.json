@@ -42,7 +42,7 @@
             "show_inventory_quantity": false,
             "show_out_of_stock_status": false,
             "enable_background": true,
-            "padding_top": 18,
+            "padding_top": 10,
             "padding_bottom": 0,
             "padding_left": 18,
             "padding_right": 18
@@ -54,7 +54,7 @@
             "picker_type": "button",
             "swatch_shape": "circle",
             "enable_background": true,
-            "padding_top": 18,
+            "padding_top": 10,
             "padding_bottom": 0,
             "padding_left": 18,
             "padding_right": 18
@@ -65,7 +65,7 @@
           "settings": {
             "enable_background": true,
             "show_tax_and_more_info": false,
-            "padding_top": 18,
+            "padding_top": 10,
             "padding_bottom": 6,
             "padding_left": 18,
             "padding_right": 18
