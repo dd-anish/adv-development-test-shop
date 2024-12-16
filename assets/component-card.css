@@ -139,7 +139,8 @@
 
 .card__information {
   grid-row-start: 2;
-  padding: 1.3rem 1rem;
+  /* padding: 1.3rem 1rem; */
+  padding: 1rem;
 }
 
 .card:not(.ratio) > .card__content {
@@ -268,8 +269,8 @@
 
 @media screen and (min-width: 750px) {
   .card__information {
-    padding-bottom: 1.7rem;
-    padding-top: 1.7rem;
+    /* padding-bottom: 1.7rem;
+    padding-top: 1.7rem; */
   }
 }
 
@@ -424,6 +425,13 @@
 
 .card--standard > .card__content {
   padding: 0 1rem;
+}
+
+@media screen and (max-width: 370px) {
+  .card--standard > .card__content {
+    padding: 0 0.1rem 0 0.5rem;
+  }
+  
 }
 
 /* @media screen and (min-width: 750px) {
@@ -677,7 +685,9 @@
   justify-content: space-between;
   /* align-items: center; */
   align-items: end;
-  min-height: 4rem;
+  /* min-height: 4rem; */
+  padding-top: 0.3rem;
+
 }
 
 /* Product Card Info */
@@ -728,7 +738,7 @@
   .variants-stocks-status-container {
     flex-direction: column-reverse;
     align-items: start;
-    gap: 0.5rem;
+    gap: 1rem;
   }
   
 }
