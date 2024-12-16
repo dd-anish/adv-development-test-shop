@@ -713,7 +713,7 @@
   /* min-height: 2rem; */
   min-height: 2.3rem;
   flex-wrap: wrap-reverse;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 @media screen and (max-width: 425px) {
@@ -748,6 +748,7 @@
 .svg-wrapper-out-of-stock-status{
   color: rgb(200, 200, 200);
 }
+
 /* Can be removed as base.css has code
 .stock-status .icon-inventory-in-stock-status circle:first-of-type {
   opacity: 0.3;

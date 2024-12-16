@@ -251,7 +251,7 @@
                       {% endif %}
                     {% endfor %} {% endcomment %}
                     
-                    {% if card_product.available %}
+                    {% comment %} {% if card_product.available %}
                       <span class="svg-wrapper svg-wrapper-stock-status svg-wrapper-in-stock-status">
                         {{ 'icon-inventory-in-stock-status.svg' | inline_asset_content }}
                       </span>
@@ -267,6 +267,31 @@
                         {{ 'products.product.inventory_out_of_stock' | t }}
                       </span>
   
+                    {% endif %} {% endcomment %}
+                    {% if card_product.selected_or_first_available_variant.inventory_quantity > 0 %}
+                      <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.in_stock_status_color }}">
+                          {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
+                      </span>
+                      <span class="caption stock-status-caption">
+                        {{ 'products.product.inventory_in_stock' | t }}
+                      </span>
+
+                    {% else %}
+                      {% if card_product.selected_or_first_available_variant.inventory_policy == 'continue' %}
+                        <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.continue_selling_stock_status_color }}">
+                          {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
+                        </span>
+                        <span class="caption stock-status-caption">
+                          {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                        </span>
+                      {% else %}
+                          <span class="svg-wrapper svg-wrapper-stock-status" style="color: {{ settings.out_of_stock_status_color }}">
+                            {{- 'icon-inventory-out-of-stock-status.svg' | inline_asset_content -}}
+                          </span>
+                          <span class="caption stock-status-caption">
+                            {{ 'products.product.inventory_out_of_stock' | t }}
+                          </span>
+                      {% endif %}
                     {% endif %}
                   </div>
                 {% endif %}
