@@ -733,12 +733,14 @@
 
 .stock-status-caption {
   font-size: 1rem;
-  color: rgba(var(--color-foreground), 0.75)
+  color: rgba(var(--color-foreground), 0.75);
+  flex: none;
 }
 
 .svg-wrapper.svg-wrapper-stock-status{
   width: 1.2rem;
   height: 1.2rem;
+  flex: none;
 }
 
 .svg-wrapper-in-stock-status{
