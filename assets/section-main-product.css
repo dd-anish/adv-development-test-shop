@@ -1535,6 +1535,29 @@ a.product__text {
   /* line-height: 1.2; */
 }
 
+
+/* Quanity Input */
+
+@media screen and (min-width: 750px) {
+  .custom-quantity-selector-buy-button-container {
+    display: flex;
+  }
+
+  .custom-quantity-selector-buy-button-container .product-form__input{
+    flex:1;
+    max-width: unset;
+    min-width: none;
+  }
+
+  .custom-quantity-selector-buy-button-container .quantity{
+    width: unset;
+  }
+
+  .custom-quantity-selector-buy-button-container .quantity__button{
+    flex-shrink: none;
+  }
+}
+
 .custom-quantity-selector .price-per-item__container .svg-wrapper{
   width: 1.2rem;
 }
