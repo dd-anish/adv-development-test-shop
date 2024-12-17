@@ -2867,6 +2867,13 @@ details-disclosure > details {
   font-weight: var(--font-medium);
 }
 
+@media screen and (max-width: 568px){
+  .badge {
+    font-size: 1rem;
+    padding: 0.4rem 1rem;;
+  }
+}
+
 .gradient {
   background: rgb(var(--color-background));
   background: var(--gradient-background);
