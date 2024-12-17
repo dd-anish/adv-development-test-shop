@@ -525,6 +525,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 
 .totals-subtotal{
   margin-top: 2rem;
+  color: #000;
 }
 
 /* Cart Error */

@@ -24,6 +24,7 @@
 
         {%- case template_name -%}
           {%- when 'page' -%}
+            <!-- The Page Breadcrumb -->
             <li class="breadcrumbs__item">
               <a class="breadcrumbs__link" href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
             </li>
@@ -40,10 +41,25 @@
                     </li>
                   {% endfor %}
                 {% endif %}
-                <li class="breadcrumbs__item">
-                  <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
-                  <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
-                </li>
+                {% unless collection.url contains 'collections/all' %}  
+                  <li class="breadcrumbs__item">  
+                    <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>  
+                    <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>  
+                  </li>  
+                {% endunless %}  
+              {% else %}
+                <!-- if products are visited via 'collections/all'  -->
+                {% comment %} Not that much accurate, need to use Metafield
+                {% for col in product.collections %}  
+                  {% unless col.url contains 'collections/all' %}  
+                    <li class="breadcrumbs__item">  
+                    <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>  
+                    <a class="breadcrumbs__link" href="{{ col.url }}">{{ col.title }}</a>  
+                    </li>  
+                    {% break %}  
+                  {% endunless %}  
+                {% endfor %} 
+                {% endcomment %}
               {% endif %}
 
             {% else if settings.nested_breadcrumb_option == 'show_nested_product_collection_breadcrumb' %}
@@ -109,10 +125,13 @@
                 </li>
               {% endfor %}
             {% endif %}
-            <li class="breadcrumbs__item">
-              <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
-              <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
-            </li>
+
+              {% unless collection.url contains 'collections/all' %}  
+                <li class="breadcrumbs__item">  
+                  <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>  
+                  <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>  
+                </li>  
+              {% endunless %}
 
           {%- when 'blog' -%}
             <li class="breadcrumbs__item">

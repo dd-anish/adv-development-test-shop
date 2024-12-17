@@ -3,7 +3,7 @@ slider-component {
     5rem,
     calc((100vw - var(--page-width) + 10rem - var(--grid-desktop-horizontal-spacing)) / 2)
   ); */
-  --desktop-margin-left-first-item: 0rem;
+  --desktop-margin-left-first-item: 0.5rem;
   position: relative;
   display: block;
 }

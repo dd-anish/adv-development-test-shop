@@ -146,6 +146,10 @@ variant-selects {
   flex-wrap: wrap;
 }
 
+.product-form__input--swatch:last-child{
+  gap: 0;
+}
+
 .product-form__input--swatch .swatch-input__input + .swatch-input__label {
   /* --swatch-input--size: 3.6rem; */
   --swatch-input--size: 1.6rem;

@@ -1799,6 +1799,20 @@
       },
       {
         "type": "checkbox",
+        "id": "show_subtotal_in_cart",
+        "label": "Show Subtotal in Cart",
+        "info": "Only in Cart Drawer",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_savings_on_promo",
+        "label": "Show Savings on Promo",
+        "info": "Only in Cart Drawer",
+        "default": true
+      },
+      {
+        "type": "checkbox",
         "id": "show_cart_note",
         "label": "t:settings_schema.cart.settings.show_cart_note.label",
         "default": false
