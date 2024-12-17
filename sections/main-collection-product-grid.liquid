@@ -72,6 +72,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;  
+      gap: 1rem;
     }
 
     .template-search-custom{
@@ -98,11 +99,11 @@
 
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
-  <div class="collection-search-bar-and-filter">
+  <div class="collection-search-bar-and-filter page-width">
     <!-- Search Bar Start -->
     {% comment %} {% paginate search.results by 24 %} {% endcomment %}
       <div class="template-search template-search-custom {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %}">
-        <div class="template-search__header page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
+        <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
 
           <div class="template-search__search">
             {%- if settings.predictive_search_enabled -%}
