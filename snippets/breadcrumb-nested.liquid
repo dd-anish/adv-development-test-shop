@@ -24,6 +24,7 @@
 
         {%- case template_name -%}
           {%- when 'page' -%}
+            <!-- The Page Breadcrumb -->
             <li class="breadcrumbs__item">
               <a class="breadcrumbs__link" href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
             </li>
@@ -109,10 +110,13 @@
                 </li>
               {% endfor %}
             {% endif %}
-            <li class="breadcrumbs__item">
-              <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
-              <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
-            </li>
+
+              {% unless collection.url contains 'collections/all' %}  
+                <li class="breadcrumbs__item">  
+                  <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>  
+                  <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>  
+                </li>  
+              {% endunless %}
 
           {%- when 'blog' -%}
             <li class="breadcrumbs__item">
