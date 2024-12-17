@@ -71,25 +71,13 @@
             "padding_right": 18
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {
-            "enable_background": false,
-            "enable_quantity_label": false,
-            "display_buy_buttons": true,
-            "padding_top": 18,
-            "padding_bottom": 0,
-            "padding_left": 0,
-            "padding_right": 0
-          }
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "display_quantity_selector": true,
             "enable_quantity_label": false,
             "show_dynamic_checkout": false,
-            "show_gift_card_recipient": false,
+            "show_gift_card_recipient": true,
             "enable_background": false,
             "show_leading_icon": true,
             "show_trailing_icon": false,
@@ -206,7 +194,6 @@
         "inventory_WmbcaK",
         "variant_picker",
         "price",
-        "quantity_selector",
         "buy_buttons",
         "collapsible_tab_49DeiL",
         "collapsible_tab_3KfKLt",
