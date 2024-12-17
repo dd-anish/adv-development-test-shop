@@ -29,7 +29,7 @@
           "type": "title",
           "settings": {
             "enable_background": true,
-            "padding_top": 18,
+            "padding_top": 10,
             "padding_bottom": 0,
             "padding_left": 18,
             "padding_right": 18
@@ -65,7 +65,7 @@
           "settings": {
             "enable_background": true,
             "show_tax_and_more_info": false,
-            "padding_top": 10,
+            "padding_top": 14,
             "padding_bottom": 6,
             "padding_left": 18,
             "padding_right": 18
@@ -76,6 +76,7 @@
           "settings": {
             "enable_background": false,
             "enable_quantity_label": false,
+            "display_buy_buttons": true,
             "padding_top": 18,
             "padding_bottom": 0,
             "padding_left": 0,
@@ -85,6 +86,8 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "display_quantity_selector": true,
+            "enable_quantity_label": false,
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false,
             "enable_background": false,
@@ -112,7 +115,7 @@
             "show_more_text": "Toon meer",
             "show_less_text": "Toon minder",
             "description_limit": 6,
-            "padding_top": 18,
+            "padding_top": 14,
             "padding_bottom": 0,
             "padding_left": 0,
             "padding_right": 0
@@ -224,10 +227,11 @@
         "tax_price_font_weight": "font-extra-light",
         "tax_text_font_size": "text-body--extra-small",
         "original_price_size": "text-body--small-3",
+        "tax_price_margin_left": 2,
         "media_size": "small",
         "constrain_to_viewport": true,
         "media_fit": "contain",
-        "gallery_layout": "columns",
+        "gallery_layout": "thumbnail_slider",
         "media_position": "left",
         "image_zoom": "lightbox",
         "mobile_thumbnails": "show",
@@ -291,6 +295,7 @@
         "tax_price_font_weight": "font-extra-light",
         "tax_text_uppercase": true,
         "tax_text_font_size": "font-small-8-px-fix",
+        "tax_price_margin_left": 0,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
