@@ -41,10 +41,24 @@
                     </li>
                   {% endfor %}
                 {% endif %}
-                <li class="breadcrumbs__item">
-                  <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
-                  <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
-                </li>
+                {% unless collection.url contains 'collections/all' %}  
+                  <li class="breadcrumbs__item">  
+                    <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>  
+                    <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>  
+                  </li>  
+                {% endunless %}  
+              {% else %}
+                {% comment %} Not that much accurate, need to use Metafield
+                {% for col in product.collections %}  
+                  {% unless col.url contains 'collections/all' %}  
+                    <li class="breadcrumbs__item">  
+                    <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>  
+                    <a class="breadcrumbs__link" href="{{ col.url }}">{{ col.title }}</a>  
+                    </li>  
+                    {% break %}  
+                  {% endunless %}  
+                {% endfor %} 
+                {% endcomment %}
               {% endif %}
 
             {% else if settings.nested_breadcrumb_option == 'show_nested_product_collection_breadcrumb' %}
