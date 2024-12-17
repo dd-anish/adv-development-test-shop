@@ -289,6 +289,8 @@
       "caption": "Artikelen in winkelwagen",
       "remove_title": "{{ title }} verwijderen",
       "note": "Speciale instructies voor bestelling",
+      "subtotal": "Subtotaal",
+      "savings_on_promos": "Savings on PROMOS",
       "checkout": "VERDER NAAR BESTELLEN",
       "empty": "Je winkelwagen is leeg",
       "cart_error": "Er is een fout opgetreden bij het bijwerken van je winkelwagen. Probeer het opnieuw.",

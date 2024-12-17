@@ -6,7 +6,7 @@
 }
 
 .totals > * {
-  font-size: 1.6rem;
+  /* font-size: 1.6rem; */
   margin: 0;
 }
 
@@ -45,7 +45,7 @@
 }
 
 
-/* Custom */
+/* Custom CSS */
 
 .totals{
   align-items: center;
@@ -55,11 +55,20 @@
   bottom: -30%;
 }
 
+.totals-subtotal .totals__subtotal, 
+.totals-savings .totals__savings {
+  font-size: 1.3rem;
+}
+
+.totals-subtotal .totals__subtotal{
+  opacity: 1;
+}
+
 .heading-with-note {
   display: flex;
   justify-content: start;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: baseline;
+  gap: 0.3rem;
   /* flex-wrap: wrap; */
 }
 
@@ -79,6 +88,17 @@
     font-size: 1.5rem;
   }
   .totals__total-value {
-      font-size: 1.6rem;
+    font-size: 1.6rem;
+  }
+
+  .heading-with-note .VAT-note {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 750px){
+  .totals .totals-subtotal h3,
+    .totals .totals-savings h3 {
+      font-size: 1.4rem;
     }
 }
