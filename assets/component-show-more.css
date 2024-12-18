@@ -1,10 +1,41 @@
 .button-show-more {
-  padding-left: 0;
   justify-content: flex-start;
+  /* padding-left: 0; */
   padding-bottom: 1.1rem;
 }
 
 .button-show-more,
 .button-show-less {
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: inherit;
+}
+
+/* Custom CSS */
+
+.show-more-button-wrapper{
+  display: flex;
+}
+
+.show-more-button-wrapper .button-show-more{
+  text-decoration: none;
+}
+
+.show-more-button-wrapper .underlined-link:hover{
+  text-decoration: underline;
+  text-decoration-thickness: inherit;
+  text-decoration-color: var(--theme-signature-color);
+}
+
+.show-more-button-wrapper .button-show-more-label{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button-show-more-label .svg-wrapper{
+  width: 1rem;
+  height: 1rem;
+  color: black;
 }

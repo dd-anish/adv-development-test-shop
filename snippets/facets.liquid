@@ -7,6 +7,7 @@
   - enable_sorting: {Boolean} Show sorting when true
   - filter_type: {String} Type of filter
   - paginate: {Object}
+  - enable_sticky_sorting: {Boolean} Show sticky sorting when true
 
   Usage:
   {% render 'facets', results: collection, enable_filtering: true, enable_sorting: true, filter_type: 'vertical', paginate: paginate %}
@@ -28,7 +29,8 @@
   endif
 -%}
 
-<div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+<!-- Filters in Desktop -->
+<div class="facets-container {% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
     <facet-filters-form class="facets small-hide">
       <form
@@ -72,12 +74,13 @@
                     </a>
                   </facet-remove>
                 </div>
+                <!-- Active Filter -->
                 {%- for filter in results.filters -%}
                   {%- for value in filter.active_values -%}
                     <facet-remove>
                       <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
                         <span class="active-facets__button-inner button button--tertiary">
-                          {{ filter.label | escape }}: {{ value.label | escape }}
+                          {{ filter.label | escape }}:  {{ value.label | escape }}
                           <span class="svg-wrapper">
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
                           </span>
@@ -278,17 +281,23 @@
                         </ul>
                       </fieldset>
                       {%- if filter.values.size > show_more_number and filter_type == 'vertical' -%}
-                        <show-more-button>
+                        <show-more-button class="show-more-button-wrapper">
                           <button
                             class="button-show-more link underlined-link"
                             id="Show-More-{{ forloop.index }}-{{ section.id }}"
                             type="button"
                           >
-                            <span class="label-show-more label-text"
-                              ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t -}}
+                            <span class="button-show-more-label label-show-more label-text">
+                              <span aria-hidden="true" class="svg-wrapper">
+                                {{ 'icon-plus.svg' | inline_asset_content }}
+                              </span>
+                              {{ 'products.facets.show_more' | t -}}
                             </span>
-                            <span class="label-show-less label-text hidden"
-                              ><span aria-hidden="true">- </span>{{ 'products.facets.show_less' | t -}}
+                            <span class="button-show-more-label label-show-less label-text hidden">
+                              <span aria-hidden="true" class="svg-wrapper">
+                                {{ 'icon-minus.svg' | inline_asset_content }}
+                              </span>
+                              {{ 'products.facets.show_less' | t -}}
                             </span>
                           </button>
                         </show-more-button>
@@ -306,7 +315,7 @@
                   >
                     <summary class="facets__summary caption-large focus-offset">
                       <div>
-                        <span>{{ filter.label | escape }}</span>
+                        <span class="facets__summary-label">{{ filter.label | escape }}</span>
                         {{- 'icon-caret.svg' | inline_asset_content -}}
                       </div>
                     </summary>
@@ -474,7 +483,7 @@
         </span>
         <span tabindex="0" class="mobile-facets__close">
           <span class="svg-wrapper">
-            {{- 'icon-close.svg' | inline_asset_content -}}
+            {{- 'icon-close-circle.svg' | inline_asset_content -}}
           </span>
         </span>
       </summary>
@@ -513,6 +522,7 @@
                 </p> {% endcomment %}
               </div>
             </div>
+            <!-- Mobile Active Facets -->
             <div class="active-facets active-facets-mobile medium-hide large-up-hide">
               {%- for filter in results.filters -%}
                 {%- for value in filter.active_values -%}
@@ -553,6 +563,43 @@
                 </a>
               </facet-remove>
             </div>
+            {%- if enable_sorting and enable_sticky_sorting -%}
+              <div class="sticky-sorting-mobile">
+                <div
+                  id="Details-Mobile-SortBy-{{ section.id }}"
+                  class="mobile-facets__details js-filter{% if filter_type == 'drawer' %} medium-hide large-up-hide{% endif %}"
+                  data-index="mobile-{{ forloop.index }}"
+                >
+                  <div class="mobile-facets__summary">
+                    <div class="mobile-facets__sort">
+                      <label for="SortBy-mobile">{{ 'products.facets.sort_by_label' | t }}</label>
+                      <div class="select">
+                        <select
+                          name="sort_by"
+                          class="select__select"
+                          id="SortBy-mobile"
+                          aria-describedby="a11y-refresh-page-message"
+                        >
+                          {%- for option in results.sort_options -%}
+                            <option
+                              value="{{ option.value | escape }}"
+                              {% if option.value == sort_by %}
+                                selected="selected"
+                              {% endif %}
+                            >
+                              {{ option.name | escape }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        <span class="svg-wrapper">
+                          {{- 'icon-caret.svg' | inline_asset_content -}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              {%- endif -%}
             <div
               id="FacetsWrapperMobile"
               class="mobile-facets__main has-submenu gradient"
@@ -569,6 +616,7 @@
                   %}
 
                   {% case filter.type %}
+                    <!-- Case for Checkboxes in Submenu for Mobile -->
                     {% when 'boolean', 'list' %}
                       <details
                         id="Details-Mobile-{{ filter.param_name | escape }}-{{ section.id }}"
@@ -579,7 +627,7 @@
                           <div>
                             <span>{{ filter.label | escape }}</span>
                             <span class="mobile-facets__arrow">
-                              {{- 'icon-arrow.svg' | inline_asset_content -}}
+                              {{- 'icon-caret.svg' | inline_asset_content -}}
                             </span>
                           </div>
                         </summary>
@@ -587,8 +635,9 @@
                           id="FacetMobile-{{ forloop.index }}-{{ section.id }}"
                           class="mobile-facets__submenu gradient"
                         >
+                          <!-- Back Button Hidden In Submenu -->
                           <button
-                            class="mobile-facets__close-button link link--text focus-inset"
+                            class="mobile-facets__close-button link link--text focus-inset visually-hidden"
                             aria-expanded="true"
                             type="button"
                           >
@@ -694,8 +743,8 @@
                               </li>
                             {%- endfor -%}
                           </ul>
-
-                          <div class="mobile-facets__footer gradient">
+                          <!-- Buttons Hidden In Submenu -->
+                          <div class="mobile-facets__footer gradient visually-hidden">
                             <facet-remove class="mobile-facets__clear-wrapper">
                               <a href="{{ filter.url_to_remove }}" class="mobile-facets__clear underlined-link">
                                 {{- 'products.facets.clear' | t -}}
@@ -711,6 +760,8 @@
                           </div>
                         </div>
                       </details>
+
+                    <!-- Case for Price Range in Submenu for Mobile -->
                     {% when 'price_range' %}
                       <details
                         id="Details-Mobile-{{ filter.param_name | escape }}-{{ section.id }}"
@@ -721,7 +772,7 @@
                           <div>
                             <span>{{ filter.label | escape }}</span>
                             <span class="mobile-facets__arrow">
-                              {{- 'icon-arrow.svg' | inline_asset_content -}}
+                              {{- 'icon-caret.svg' | inline_asset_content -}}
                             </span>
                           </div>
                         </summary>
@@ -729,8 +780,9 @@
                           id="FacetMobile-{{ forloop.index }}-{{ section.id }}"
                           class="mobile-facets__submenu gradient"
                         >
+                          <!-- Back Button Hidden In Submenu for Price -->
                           <button
-                            class="mobile-facets__close-button link link--text focus-inset"
+                            class="mobile-facets__close-button link link--text focus-inset visually-hidden"
                             aria-expanded="true"
                             type="button"
                           >
@@ -746,7 +798,9 @@
                           <price-range class="facets__price">
                             {% render 'price-facet', filter: filter, id_prefix: 'Mobile-Filter-' %}
                           </price-range>
-                          <div class="mobile-facets__footer">
+
+                          <!-- Submenu Footer Buttons -->
+                          <div class="mobile-facets__footer visually-hidden">
                             <facet-remove class="mobile-facets__clear-wrapper">
                               <a href="{{ filter.url_to_remove }}" class="mobile-facets__clear underlined-link">
                                 {{- 'products.facets.clear' | t -}}
@@ -754,7 +808,7 @@
                             </facet-remove>
                             <button
                               type="button"
-                              class="button button--primary"
+                              class="button button--primary "
                               onclick="this.closest('.mobile-facets__wrapper').querySelector('summary').click()"
                             >
                               {{ 'products.facets.apply' | t }}
@@ -766,7 +820,7 @@
                 {%- endfor -%}
               {%- endif -%}
 
-              {%- if enable_sorting -%}
+              {%- if enable_sorting and enable_sticky_sorting == false -%}
                 <div
                   id="Details-Mobile-SortBy-{{ section.id }}"
                   class="mobile-facets__details js-filter{% if filter_type == 'drawer' %} medium-hide large-up-hide{% endif %}"
