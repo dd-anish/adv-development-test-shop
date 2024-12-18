@@ -777,6 +777,7 @@ a.active-facets__button.focused .active-facets__button-inner {
   align-items: center;
   display: flex;
   justify-content: center;
+  font-size: 1.3rem;
 }
 
 .mobile-facets {
