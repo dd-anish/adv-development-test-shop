@@ -10,7 +10,7 @@
 }
 
 .mobile-facets__list {
-  overflow-y: auto;
+  /* overflow-y: auto; */
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -1363,7 +1363,7 @@ input.mobile-facets__checkbox {
 
 /* Custom CSS for the Facets */
 
-.mobile-facets__arrow .icon-arrow{
+.mobile-facets__arrow .icon-caret{
   width: 1.4rem;
 }
 
