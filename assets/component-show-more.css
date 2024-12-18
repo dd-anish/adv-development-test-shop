@@ -18,7 +18,12 @@
   display: flex;
 }
 
+.show-more-button-wrapper .button-show-more{
+  text-decoration: none;
+}
+
 .show-more-button-wrapper .underlined-link:hover{
+  text-decoration: underline;
   text-decoration-thickness: inherit;
   text-decoration-color: var(--theme-signature-color);
 }
