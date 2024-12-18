@@ -394,7 +394,10 @@
                           {% assign specifications = specifications | split: ',' %}
                           <table class="accordion__content-table text-body">
                             {% for specification in specifications %}
-                              {% assign parts = specification | split: ':' %}
+                              
+                              {% comment %} ["custom.height", "Height"] {% endcomment %}
+                              {% assign parts = specification | split: ':' %} 
+
                               {% assign key = parts[0] %}
                               {% assign label = parts[1] %}
                               {% assign value = '' %}
@@ -409,19 +412,13 @@
                                 {% assign value = product.vendor %}
                               {% elsif key == "weight" and product.variants.first.weight != 0.0 %}
                                 {% assign value = product.variants.first.weight | weight_with_unit %}
-                              {% elsif key == "options.color" %}
-                                {% for option in product.options_with_values %}
-                                  {% if option.name == "Color" or option.name == "Kleur" %}
-                                    {% assign value = option.values | join: ", " %}
-                                  {% endif %}
-                                {% endfor %}
                               {% else %}
                                 {% assign value = product.metafields[namespace][specific_key] %}
                               {% endif %}
                              
                               {% comment %} Render row only if the value exists {% endcomment %}
                               {% if value != blank %}
-                                <tr class="table-row">
+                                <tr class="table-row" data-specification-key="{{ key }}">
                                   <td class="table-col-1 font-semibold">{{ label }}</td>
                                   <td class="table-col-2">{{ value }}</td>
                                 </tr>
@@ -954,6 +951,7 @@
 <script>
 
 function updateBlockStyles() {
+
   const customBlocks = document.querySelectorAll(".custom-block-background");
 
   console.log("Triggered");
@@ -986,6 +984,35 @@ if(Shopify.designMode){
     document.addEventListener("shopify:block:select", updateBlockStyles);
     document.addEventListener("shopify:block:deselect", updateBlockStyles);
 }
+
+// document.addEventListerner("DOMContentLoaded")
+
+// Get the variant select element  
+const variantSelect = document.querySelector('variant-selects');  
+
+console.log("Variantsssss")
+// Add an event listener to the variant select element  
+variantSelect.addEventListener('change', (event) => {  
+
+console.log("Variant Changed")
+  // Get the selected variant  
+  const selectedVariantId = event.target.querySelector('input[name="id"]').value;  
+  const selectedVariant = product.variants.find((variant) => variant.id === parseInt(selectedVariantId));  
+
+  console.log("Variant ID: " + selectedVariantId);
+  
+
+  // Update the weight value  
+  const weightRow = document.querySelector('.table-row[data-specification-key="weight"]');  
+  if (weightRow) {  
+  const weightValue = `$${selectedVariant.weight}$$ {selectedVariant.unit}`;  
+  
+  console.log("Weight Selected: " + selectedVariant.weight);
+  console.log("Weight Updated: " + weightValue);
+  weightRow.querySelector('.table-col-2').textContent = weightValue;  
+  }  
+});  
+
 
 </script>
 
