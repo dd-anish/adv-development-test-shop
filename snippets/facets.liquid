@@ -73,12 +73,13 @@
                     </a>
                   </facet-remove>
                 </div>
+                <!-- Active Filter -->
                 {%- for filter in results.filters -%}
                   {%- for value in filter.active_values -%}
                     <facet-remove>
                       <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
                         <span class="active-facets__button-inner button button--tertiary">
-                          {{ filter.label | escape }}: {{ value.label | escape }}
+                          {{ filter.label | escape }}:  {{ value.label | escape }}
                           <span class="svg-wrapper">
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
                           </span>
@@ -279,17 +280,23 @@
                         </ul>
                       </fieldset>
                       {%- if filter.values.size > show_more_number and filter_type == 'vertical' -%}
-                        <show-more-button>
+                        <show-more-button class="show-more-button-wrapper">
                           <button
                             class="button-show-more link underlined-link"
                             id="Show-More-{{ forloop.index }}-{{ section.id }}"
                             type="button"
                           >
-                            <span class="label-show-more label-text"
-                              ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t -}}
+                            <span class="button-show-more-label label-show-more label-text">
+                              <span aria-hidden="true" class="svg-wrapper">
+                                {{ 'icon-plus.svg' | inline_asset_content }}
+                              </span>
+                              {{ 'products.facets.show_more' | t -}}
                             </span>
-                            <span class="label-show-less label-text hidden"
-                              ><span aria-hidden="true">- </span>{{ 'products.facets.show_less' | t -}}
+                            <span class="button-show-more-label label-show-less label-text hidden">
+                              <span aria-hidden="true" class="svg-wrapper">
+                                {{ 'icon-minus.svg' | inline_asset_content }}
+                              </span>
+                              {{ 'products.facets.show_less' | t -}}
                             </span>
                           </button>
                         </show-more-button>
@@ -307,7 +314,7 @@
                   >
                     <summary class="facets__summary caption-large focus-offset">
                       <div>
-                        <span>{{ filter.label | escape }}</span>
+                        <span class="facets__summary-label">{{ filter.label | escape }}</span>
                         {{- 'icon-caret.svg' | inline_asset_content -}}
                       </div>
                     </summary>
