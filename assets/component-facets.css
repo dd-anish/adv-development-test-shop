@@ -611,7 +611,7 @@ span.active-facets__button-inner {
   min-height: 0;
   min-width: 0;
   /* padding: 0.25rem 1.25rem; */
-  padding: 5rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   display: flex;
   align-items: center;
 }
