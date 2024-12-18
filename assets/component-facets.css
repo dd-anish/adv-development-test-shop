@@ -11,6 +11,10 @@
 
 .mobile-facets__list {
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0.5rem 0rem 1rem 0rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -310,9 +314,16 @@
   padding: 2rem 2.4rem;
 }
 
+
 .facets-layout-list--swatch {
   /* --swatch-input--size: 2.4rem; */
   --swatch-input--size: 1.8rem;
+}
+
+@media screen and (max-width: 750px) {
+  .facets-layout-list--swatch {
+    --swatch-input--size: 2rem;
+  } 
 }
 
 .facets-layout-list--swatch .swatch-input__input+.swatch-input__label {
@@ -554,7 +565,9 @@
 
 .facets__price {
   display: flex;
-  padding: 2rem;
+  /* padding: 2rem; */
+  padding: 0 1.5rem;
+  margin: 1rem 0 1.5rem;
 }
 
 .facets__price .field + .field-currency {
@@ -849,7 +862,11 @@ a.active-facets__button.focused .active-facets__button-inner {
 }
 
 .mobile-facets__info {
-  padding: 0 2.6rem;
+  /* padding: 0 2.6rem; */
+  padding: 0 1.5rem;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  margin: 0;
 }
 
 .mobile-facets__heading {
@@ -1011,8 +1028,10 @@ details.menu-opening .mobile-facets__close .svg-wrapper {
   gap: 1rem;
 }
 
+/* Transition Behaviour of the Filters */
+
 .js .mobile-facets__submenu {
-  position: absolute;
+/* position: absolute;
   top: 0;
   width: 100%;
   bottom: 0;
@@ -1021,24 +1040,42 @@ details.menu-opening .mobile-facets__close .svg-wrapper {
   transform: translateX(100%);
   visibility: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
+  /* background-color: rgb(var(--color-background)); */
+  position: relative ;
+  top: auto;
+  left: auto;
+  width: 100%;
+  transform: none ;
+  visibility: visible;
+  z-index: 1;
+  display: none;
 }
 
-.js details[open] > .mobile-facets__submenu {
+/* .js details[open] > .mobile-facets__submenu {
   transition: transform 0.4s cubic-bezier(0.29, 0.63, 0.44, 1), visibility 0.4s cubic-bezier(0.29, 0.63, 0.44, 1);
+} */
+
+/* Show submenu when parent details is open */
+.js details[open]> .mobile-facets__submenu {
+  display: block;
 }
 
-.js details[open].menu-opening > .mobile-facets__submenu {
+/* .js details[open].menu-opening > .mobile-facets__submenu {
   transform: translateX(0);
   visibility: visible;
 }
+ */
+/* .js details[open]>.menu-opening, 
+.js details[open]>.mobile-facets__submenu {
+  transition: none;
+} */
 
-.js .menu-drawer__submenu .mobile-facets__submenu {
-  overflow-y: auto;
-}
 
+/* Comment the visibility which is needed to unhide */
 .js .mobile-facets .submenu-open {
-  visibility: hidden; /* hide menus from screen readers when hidden by submenu */
+  /* hide menus from screen readers when hidden by submenu */
+  /* visibility: hidden;  */
 }
 
 .mobile-facets__item {
@@ -1059,25 +1096,31 @@ input.mobile-facets__checkbox {
 }
 
 .mobile-facets__label {
-  padding: 1.5rem 2rem 1.5rem 2.5rem;
+  /* padding: 1.5rem 2rem 1.5rem 2.5rem; */
+  padding: 0 1.5rem;
   width: 100%;
   transition: background-color 0.2s ease;
   word-break: break-word;
   display: flex;
+  align-items: center;
 }
 
 .mobile-facets__label > svg {
-  background-color: rgb(var(--color-background));
+  /* background-color: rgb(var(--color-background)); */
+  background-color: transparent;
   position: relative;
   z-index: 2;
   margin-right: 1.2rem;
   flex-shrink: 0;
+  height: 1.5rem;
 }
 
 .mobile-facets__label .icon-checkmark {
   position: absolute;
-  top: 1.9rem;
-  left: 2.8rem;
+  /* top: 1.9rem;
+  left: 2.8rem; */
+  top: 0.3rem;
+  left: 1.8rem;
   visibility: hidden;
   width: 11px;
   height: 9px;
@@ -1253,6 +1296,7 @@ input.mobile-facets__checkbox {
   .facets-vertical .facets__price {
     /* padding: 0.5rem 0.5rem 0.5rem 0; */
     padding: 1rem 0 2rem;
+    margin: inherit;
   }
 
   .facets-vertical .facets__price .field:last-of-type {
@@ -1317,7 +1361,7 @@ input.mobile-facets__checkbox {
   }
 }
 
-/* Custom CSS */
+/* Custom CSS for the Facets */
 
 .mobile-facets__arrow .icon-arrow{
   width: 1.4rem;
@@ -1330,6 +1374,10 @@ input.mobile-facets__checkbox {
 
 .mobile-facets__details{
   padding: 0 0.5rem;
+}
+
+.mobile-facets__details:not(:first-child){
+  border-top: .1rem solid rgba(var(--theme-signature-color-rgb), .5);
 }
 
 .mobile-facets__details .mobile-facets__sort .select .svg-wrapper{
@@ -1353,6 +1401,27 @@ input.mobile-facets__checkbox {
 
 .mobile-facets__sort .select__select:focus{
   box-shadow: none;
+}
+
+
+/* Mobile Label */
+.facet-checkbox__text{
+  font-size: 1.2rem;
+}
+
+/* Price Submenu */
+.mobile-facets__submenu .field__input{
+    padding: 0.5rem 1rem;
+    height: fit-content;
+    min-height: unset;
+    font-size: 1.2rem;
+  }
+
+  .mobile-facets__submenu .field__input:focus~.field__label,  
+.mobile-facets__submenu .field__input:not(:placeholder-shown)~.field__label {  
+  font-size: 0;  
+  opacity: 0;  
+  visibility: hidden;  
 }
 
 @media screen and (min-width: 749px) {

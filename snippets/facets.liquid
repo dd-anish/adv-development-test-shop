@@ -577,6 +577,7 @@
                   %}
 
                   {% case filter.type %}
+                    <!-- Case for Checkboxes in Submenu for Mobile -->
                     {% when 'boolean', 'list' %}
                       <details
                         id="Details-Mobile-{{ filter.param_name | escape }}-{{ section.id }}"
@@ -595,8 +596,9 @@
                           id="FacetMobile-{{ forloop.index }}-{{ section.id }}"
                           class="mobile-facets__submenu gradient"
                         >
+                          <!-- Back Button Hidden In Submenu -->
                           <button
-                            class="mobile-facets__close-button link link--text focus-inset"
+                            class="mobile-facets__close-button link link--text focus-inset visually-hidden"
                             aria-expanded="true"
                             type="button"
                           >
@@ -702,8 +704,8 @@
                               </li>
                             {%- endfor -%}
                           </ul>
-
-                          <div class="mobile-facets__footer gradient">
+                          <!-- Buttons Hidden In Submenu -->
+                          <div class="mobile-facets__footer gradient visually-hidden">
                             <facet-remove class="mobile-facets__clear-wrapper">
                               <a href="{{ filter.url_to_remove }}" class="mobile-facets__clear underlined-link">
                                 {{- 'products.facets.clear' | t -}}
@@ -719,6 +721,8 @@
                           </div>
                         </div>
                       </details>
+
+                    <!-- Case for Price Range in Submenu for Mobile -->
                     {% when 'price_range' %}
                       <details
                         id="Details-Mobile-{{ filter.param_name | escape }}-{{ section.id }}"
@@ -737,8 +741,9 @@
                           id="FacetMobile-{{ forloop.index }}-{{ section.id }}"
                           class="mobile-facets__submenu gradient"
                         >
+                          <!-- Back Button Hidden In Submenu for Price -->
                           <button
-                            class="mobile-facets__close-button link link--text focus-inset"
+                            class="mobile-facets__close-button link link--text focus-inset visually-hidden"
                             aria-expanded="true"
                             type="button"
                           >
@@ -754,7 +759,9 @@
                           <price-range class="facets__price">
                             {% render 'price-facet', filter: filter, id_prefix: 'Mobile-Filter-' %}
                           </price-range>
-                          <div class="mobile-facets__footer">
+
+                          <!-- Submenu Footer Buttons -->
+                          <div class="mobile-facets__footer visually-hidden">
                             <facet-remove class="mobile-facets__clear-wrapper">
                               <a href="{{ filter.url_to_remove }}" class="mobile-facets__clear underlined-link">
                                 {{- 'products.facets.clear' | t -}}
@@ -762,7 +769,7 @@
                             </facet-remove>
                             <button
                               type="button"
-                              class="button button--primary"
+                              class="button button--primary "
                               onclick="this.closest('.mobile-facets__wrapper').querySelector('summary').click()"
                             >
                               {{ 'products.facets.apply' | t }}
