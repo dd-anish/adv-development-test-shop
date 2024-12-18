@@ -615,7 +615,7 @@ button.facets__button {
     padding: 1rem;
     border-bottom: 0.1rem solid rgba(var(--color-foreground),.08);
     /* box-shadow: 0px 4px 8px -6px rgba(var(--color-shadow), 0.5); */
-    box-shadow: 0px 4px 5px -3px rgba(var(--color-shadow), 0.5);
+    /* box-shadow: 0px 4px 5px -3px rgba(var(--color-shadow), 0.5); */
   }
   
 }
@@ -1422,6 +1422,19 @@ input.mobile-facets__checkbox {
   font-size: 0;  
   opacity: 0;  
   visibility: hidden;  
+}
+
+/* Sticky Sorting */
+
+.sticky-sorting-mobile{
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 5px -3px rgba(var(--color-shadow), .5);
+  border-bottom: .1rem solid rgba(var(--color-foreground), .08);
+  z-index: 2;
+}
+
+.sticky-sorting-mobile .mobile-facets__summary{
+  padding: 0 1.5rem;
 }
 
 @media screen and (min-width: 749px) {
