@@ -1328,6 +1328,10 @@ input.mobile-facets__checkbox {
   min-height: calc(3.5rem + var(--buttons-border-width) * 2);
 }
 
+.mobile-facets__details{
+  padding: 0 0.5rem;
+}
+
 .mobile-facets__details .mobile-facets__sort .select .svg-wrapper{
     height: auto;
     width: 1.3rem;
