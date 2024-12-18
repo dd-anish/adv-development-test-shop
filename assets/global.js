@@ -1074,7 +1074,7 @@ class VariantSelects extends HTMLElement {
   }
 
   testFunc() {
-    console.log("Testing Func");
+    // console.log("Testing Func");
   }
   
 

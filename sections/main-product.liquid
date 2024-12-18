@@ -985,8 +985,10 @@ if(Shopify.designMode){
     document.addEventListener("shopify:block:deselect", updateBlockStyles);
 }
 
-// document.addEventListerner("DOMContentLoaded")
+// Code 1
 
+// document.addEventListerner("DOMContentLoaded")
+/* 
 // Get the variant select element  
 const variantSelect = document.querySelector('variant-selects');  
 
@@ -1011,7 +1013,77 @@ console.log("Variant Changed")
   console.log("Weight Updated: " + weightValue);
   weightRow.querySelector('.table-col-2').textContent = weightValue;  
   }  
-});  
+});   */
+
+// Code 2 
+
+/* const productVariants = {{ product.variants | json }};  
+  
+  // Get the variant select element  
+  const variantSelect = document.querySelector('select[name="id"]');  
+  
+  console.log("Selected Variant:", variantSelect);
+  
+  // Add an event listener to the variant select element  
+  variantSelect.addEventListener('change', (event) => {  
+   // Get the selected variant  
+   const selectedVariantId = event.target.value;  
+   const selectedVariant = productVariants.find((variant) => variant.id === parseInt(selectedVariantId));  
+  
+     console.log("Selected Variant ID:", selectedVariantId);
+   // Update the weight value  
+   const weightRow = document.querySelector('.table-row[data-specification-key="weight"]');  
+   if (weightRow) {  
+    const weightValue = `$${selectedVariant.weight}$$ {selectedVariant.unit}`;  
+    weightRow.querySelector('.table-col-2').textContent = weightValue;  
+   }  
+  });   */
+
+  // Code 3
+
+/* document.addEventListener('DOMContentLoaded', () => {
+    const productVariants = {{ product.variants | json }};
+    
+    document.addEventListener('optionValueSelectionChange', (event) => {
+        const selectedVariantId = event.detail.variant.id;
+        const selectedVariant = productVariants.find((variant) => variant.id === selectedVariantId);
+
+        console.log("Running optionValueSelectionChange")
+
+        if (!selectedVariant) {
+            console.error('Selected variant not found.');
+            return;
+        }
+
+        // Update weight or other details
+        const weightRow = document.querySelector('.table-row[data-specification-key="weight"]');
+        if (weightRow) {
+            const weightValue = `${selectedVariant.weight} ${selectedVariant.weight_unit}`;
+            weightRow.querySelector('.table-col-2').textContent = weightValue;
+        }
+        else{
+          console.log("Not Found")
+        }
+    });
+}); */
+
+// Code 4
+
+
+/* document.addEventListener('DOMContentLoaded', () => {
+    console.log("Script loaded"); // Check if script runs
+    
+    const variantSelect = document.querySelector('[data-variant-selector] select');
+    if (!variantSelect) {
+        console.error('Variant select not found');
+        return;
+    }
+
+    variantSelect.addEventListener('change', (event) => {
+        console.log('Change event fired:', event.target.value);
+    });
+}); */
+
 
 
 </script>
