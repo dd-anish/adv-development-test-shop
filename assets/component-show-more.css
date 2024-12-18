@@ -28,9 +28,7 @@
   text-decoration-color: var(--theme-signature-color);
 }
 
-.show-more-button-wrapper
-
-.button-show-more-label{
+.show-more-button-wrapper .button-show-more-label{
   display: flex;
   align-items: center;
   gap: 0.5rem;

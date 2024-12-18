@@ -263,7 +263,8 @@
 }
 
 .facets__summary .icon-caret {
-  right: 0;
+  /* right: 0; */
+  right: 2%;
 }
 
 .facets__display {
@@ -1293,6 +1294,7 @@ input.mobile-facets__checkbox {
 /* Custom CSS */
 
 @media screen and (min-width: 749px) {
+
   .facets-container{
     position: sticky;
     top: 0;
@@ -1315,10 +1317,17 @@ input.mobile-facets__checkbox {
   opacity: 0;  
   visibility: hidden;  
 }
+
 }
 
 @media screen and (min-width: 750px) and (max-width: 1023px) {
   .facets__form-vertical {
     width: 20rem;
   }
+}
+
+.facets-vertical .active-facets-vertical-filter .active-facets__button-wrapper .underlined-link:hover{
+  text-decoration: underline;
+  text-decoration-thickness: inherit;
+  text-decoration-color: var(--theme-signature-color);
 }
