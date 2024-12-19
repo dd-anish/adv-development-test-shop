@@ -358,7 +358,7 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 }
 
 .menu-drawer__submenu{
-  
+  padding: 1rem 0;
 }
 
 .menu-list-parent{
@@ -391,4 +391,12 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 
 .menu-list-parent li:last-child, .menu-list-child li:last-child{
   border-bottom: none;
+}
+
+.menu-drawer__sub-menu-item{
+  padding: 0;
+}
+
+.menu-drawer__submenu.menu-drawer__sub-sub-menu{
+  padding: 1.5rem 0;
 }
