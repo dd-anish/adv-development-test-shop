@@ -20,6 +20,52 @@
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
+
+            <!-- Bundles Option -->
+            <ul class="menu-drawer__menu has-submenu list-menu">
+              <li>
+               {% for bundle in shop.metaobjects.bundles.values %} 
+                  
+                    {% comment %} {{ shop.metaobjects.bundles.values | json }} {% endcomment %}
+                      {% comment %} {% for bundle in shop.metaobjects.bundles.values %}
+                        {{ bundle.title }} || {{ bundle.handle }}
+                        <div class="bundle-item">
+                          <img src="{{ bundle.image | image_url }}" alt="Bundle Image">
+                          <p>{{ bundle.description_2  }}</p>
+                          <a href="{{ bundle.url }}">Check Bundle</a>
+                        </div>
+                      {% endfor %}  {% endcomment %}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ bundle.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active {% endif %} menu-container-no-sublink"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {% if bundle.image  != blank %}
+                        <img src="{{ bundle.image | image_url }}" alt="{{ link.title }}" class="menu-link-image" />
+                      {% endif %}
+
+                      <div class="parent-menu-item-info">
+                        <h2>
+                          {{ bundle.title | escape }}
+                        </h2>
+
+                        {% if bundle.description_2 %}
+                          <p class="text-body--extra-small">{{ bundle.description_2 }}</p>
+                        {% endif %}
+                      </div>
+
+                      <span class="svg-wrapper">
+                        {{- 'icon-chevron-right.svg' | inline_asset_content -}}
+                      </span> 
+                    </a>  
+                    {% endfor %}
+              </li>
+            </ul>
+
+            <!-- Collection Lists -->
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- for link in section.settings.mobile-menu.links -%}
                 <li>
@@ -194,6 +240,11 @@
                   {%- endif -%}
                 </li>
               {%- endfor -%}
+            </ul>
+
+            <!-- Promotional -->
+            <ul class="menu-drawer__menu has-submenu list-menu">
+                      
             </ul>
           </nav>
           
