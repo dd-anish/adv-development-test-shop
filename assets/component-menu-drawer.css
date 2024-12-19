@@ -295,8 +295,15 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 
 /* Ensure submenus don't affect main drawer scroll */
 .menu-drawer__navigation {
+  display: flex;
+  flex-direction: column;
+}
+.menu-drawer__navigation .menu-drawer__menu{
   padding: 1rem 0;
-  height: auto;
+}
+
+.menu-drawer__menu:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, .3);
 }
 
 
