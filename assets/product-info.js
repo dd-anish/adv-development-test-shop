@@ -191,6 +191,8 @@ if (!customElements.get('product-info')) {
           updateSourceFromDestination('Inventory', ({ innerText }) => innerText === '');
           updateSourceFromDestination('Volume');
           updateSourceFromDestination('Price-Per-Item', ({ classList }) => classList.contains('hidden'));
+          
+          // Added to update the Specifications of the product
           updateSourceFromDestination("Specifications");
           
           this.updateQuantityRules(this.sectionId, html);
