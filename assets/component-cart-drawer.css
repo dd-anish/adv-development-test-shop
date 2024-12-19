@@ -518,7 +518,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 .cart-drawer__footer{
   background: var(--theme-grey-color);
   border-radius: var(--buttons-radius);
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 1rem 1rem;
   box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
