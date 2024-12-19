@@ -137,6 +137,7 @@
                   </a>
                 </div>
               {%- when 'price' -%}
+                
                 <div id="price-{{ section.id }}" role="status" class="{% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
                   {%- render 'price',
                     product: product,
@@ -392,7 +393,7 @@
                           {% assign specifications = "custom.height:Height,custom.width:Width,custom.depth:Depth,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,custom.material:Material" %}
 
                           {% assign specifications = specifications | split: ',' %}
-                          <table class="accordion__content-table text-body">
+                          <table class="accordion__content-table text-body" id="Specifications-{{ section.id }}">
                             {% for specification in specifications %}
                               
                               {% comment %} ["custom.height", "Height"] {% endcomment %}
@@ -410,15 +411,15 @@
                               {% comment %} Fetch the value based on the key {% endcomment %}
                               {% if key == "vendor" %}
                                 {% assign value = product.vendor %}
-                              {% elsif key == "weight" and product.variants.first.weight != 0.0 %}
-                                {% assign value = product.variants.first.weight | weight_with_unit %}
+                              {% elsif key == "weight" and product.selected_or_first_available_variant.weight != 0.0 %}
+                                {% assign value = product.selected_or_first_available_variant.weight | weight_with_unit %}
                               {% else %}
                                 {% assign value = product.metafields[namespace][specific_key] %}
                               {% endif %}
                              
                               {% comment %} Render row only if the value exists {% endcomment %}
                               {% if value != blank %}
-                                <tr class="table-row" data-specification-key="{{ key }}">
+                                <tr class="table-row">
                                   <td class="table-col-1 font-semibold">{{ label }}</td>
                                   <td class="table-col-2">{{ value }}</td>
                                 </tr>
@@ -984,107 +985,6 @@ if(Shopify.designMode){
     document.addEventListener("shopify:block:select", updateBlockStyles);
     document.addEventListener("shopify:block:deselect", updateBlockStyles);
 }
-
-// Code 1
-
-// document.addEventListerner("DOMContentLoaded")
-/* 
-// Get the variant select element  
-const variantSelect = document.querySelector('variant-selects');  
-
-console.log("Variantsssss")
-// Add an event listener to the variant select element  
-variantSelect.addEventListener('change', (event) => {  
-
-console.log("Variant Changed")
-  // Get the selected variant  
-  const selectedVariantId = event.target.querySelector('input[name="id"]').value;  
-  const selectedVariant = product.variants.find((variant) => variant.id === parseInt(selectedVariantId));  
-
-  console.log("Variant ID: " + selectedVariantId);
-  
-
-  // Update the weight value  
-  const weightRow = document.querySelector('.table-row[data-specification-key="weight"]');  
-  if (weightRow) {  
-  const weightValue = `$${selectedVariant.weight}$$ {selectedVariant.unit}`;  
-  
-  console.log("Weight Selected: " + selectedVariant.weight);
-  console.log("Weight Updated: " + weightValue);
-  weightRow.querySelector('.table-col-2').textContent = weightValue;  
-  }  
-});   */
-
-// Code 2 
-
-/* const productVariants = {{ product.variants | json }};  
-  
-  // Get the variant select element  
-  const variantSelect = document.querySelector('select[name="id"]');  
-  
-  console.log("Selected Variant:", variantSelect);
-  
-  // Add an event listener to the variant select element  
-  variantSelect.addEventListener('change', (event) => {  
-   // Get the selected variant  
-   const selectedVariantId = event.target.value;  
-   const selectedVariant = productVariants.find((variant) => variant.id === parseInt(selectedVariantId));  
-  
-     console.log("Selected Variant ID:", selectedVariantId);
-   // Update the weight value  
-   const weightRow = document.querySelector('.table-row[data-specification-key="weight"]');  
-   if (weightRow) {  
-    const weightValue = `$${selectedVariant.weight}$$ {selectedVariant.unit}`;  
-    weightRow.querySelector('.table-col-2').textContent = weightValue;  
-   }  
-  });   */
-
-  // Code 3
-
-/* document.addEventListener('DOMContentLoaded', () => {
-    const productVariants = {{ product.variants | json }};
-    
-    document.addEventListener('optionValueSelectionChange', (event) => {
-        const selectedVariantId = event.detail.variant.id;
-        const selectedVariant = productVariants.find((variant) => variant.id === selectedVariantId);
-
-        console.log("Running optionValueSelectionChange")
-
-        if (!selectedVariant) {
-            console.error('Selected variant not found.');
-            return;
-        }
-
-        // Update weight or other details
-        const weightRow = document.querySelector('.table-row[data-specification-key="weight"]');
-        if (weightRow) {
-            const weightValue = `${selectedVariant.weight} ${selectedVariant.weight_unit}`;
-            weightRow.querySelector('.table-col-2').textContent = weightValue;
-        }
-        else{
-          console.log("Not Found")
-        }
-    });
-}); */
-
-// Code 4
-
-
-/* document.addEventListener('DOMContentLoaded', () => {
-    console.log("Script loaded"); // Check if script runs
-    
-    const variantSelect = document.querySelector('[data-variant-selector] select');
-    if (!variantSelect) {
-        console.error('Variant select not found');
-        return;
-    }
-
-    variantSelect.addEventListener('change', (event) => {
-        console.log('Change event fired:', event.target.value);
-    });
-}); */
-
-
 
 </script>
 
