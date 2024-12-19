@@ -27,14 +27,14 @@
                {% for bundle in shop.metaobjects.bundles.values %} 
                   
                     {% comment %} {{ shop.metaobjects.bundles.values | json }} {% endcomment %}
-                      {% comment %} {% for bundle in shop.metaobjects.bundles.values %}
-                        {{ bundle.title }} || {{ bundle.handle }}
-                        <div class="bundle-item">
-                          <img src="{{ bundle.image | image_url }}" alt="Bundle Image">
-                          <p>{{ bundle.description_2  }}</p>
-                          <a href="{{ bundle.url }}">Check Bundle</a>
-                        </div>
-                      {% endfor %}  {% endcomment %}
+                    {% comment %} {% for bundle in shop.metaobjects.bundles.values %}
+                      {{ bundle.title }} || {{ bundle.handle }}
+                      <div class="bundle-item">
+                        <img src="{{ bundle.image | image_url }}" alt="Bundle Image">
+                        <p>{{ bundle.description_2  }}</p>
+                        <a href="{{ bundle.url }}">Check Bundle</a>
+                      </div>
+                    {% endfor %}  {% endcomment %}
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
                       href="{{ bundle.url }}"
