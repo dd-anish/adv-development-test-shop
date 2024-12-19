@@ -137,6 +137,7 @@
                   </a>
                 </div>
               {%- when 'price' -%}
+                
                 <div id="price-{{ section.id }}" role="status" class="{% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
                   {%- render 'price',
                     product: product,
@@ -384,17 +385,19 @@
                       <!-- Specifications Table => Product Metafield -->
                       {% if block.settings.display_product_specifications_table %}
 
-                          {% comment %} {{ product.variants.first.weight | weight_with_unit }}
-                          {{ product.variants | json }} {% endcomment %}
-
                           {% comment %} Define metafields and their labels {% endcomment %}
 
-                          {% assign specifications = "custom.height:Height,custom.width:Width,custom.depth:Depth,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,custom.material:Material" %}
+                          {% comment %} {% assign specifications = "custom.height:Height,custom.width:Width,custom.depth:Depth,custom.variant_width: Variant Width,custom.variant_height: Variant Height,custom.variant_depth: Variant Depth,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,custom.material:Material" %} {% endcomment %}
+
+                          {% assign specifications = "custom.variant_width:Width,custom.variant_height:Height,custom.variant_depth:Depth,custom.archer_tag: Archery Tag,custom.bumperballs:Bumperballs,custom.paintball:Paintball,custom.water_sports: Water Sports,custom.xl_games: XL Games,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,custom.material:Material" %}
 
                           {% assign specifications = specifications | split: ',' %}
-                          <table class="accordion__content-table text-body">
+                          <table class="accordion__content-table text-body" id="Specifications-{{ section.id }}">
                             {% for specification in specifications %}
-                              {% assign parts = specification | split: ':' %}
+                              
+                              {% comment %} ["custom.height", "Height"] {% endcomment %}
+                              {% assign parts = specification | split: ':' %} 
+
                               {% assign key = parts[0] %}
                               {% assign label = parts[1] %}
                               {% assign value = '' %}
@@ -407,18 +410,19 @@
                               {% comment %} Fetch the value based on the key {% endcomment %}
                               {% if key == "vendor" %}
                                 {% assign value = product.vendor %}
-                              {% elsif key == "weight" and product.variants.first.weight != 0.0 %}
-                                {% assign value = product.variants.first.weight | weight_with_unit %}
-                              {% elsif key == "options.color" %}
-                                {% for option in product.options_with_values %}
-                                  {% if option.name == "Color" or option.name == "Kleur" %}
-                                    {% assign value = option.values | join: ", " %}
-                                  {% endif %}
-                                {% endfor %}
+                              {% elsif key == "weight" and product.selected_or_first_available_variant.weight != 0.0 %}
+                                {% assign value = product.selected_or_first_available_variant.weight | weight_with_unit %}
+                              {% elsif key contains "variant" %}
+                                {% assign value = product.selected_or_first_available_variant.metafields[namespace][specific_key] %}
                               {% else %}
                                 {% assign value = product.metafields[namespace][specific_key] %}
                               {% endif %}
-                             
+
+                              {% comment %} Check if the value is a JSON object {% endcomment %}
+                              {% if key contains "variant" and value != blank %}
+                                {% assign value = value.value | append: " " | append: value.unit %}
+                              {% endif %}
+
                               {% comment %} Render row only if the value exists {% endcomment %}
                               {% if value != blank %}
                                 <tr class="table-row">
@@ -954,6 +958,7 @@
 <script>
 
 function updateBlockStyles() {
+
   const customBlocks = document.querySelectorAll(".custom-block-background");
 
   console.log("Triggered");
