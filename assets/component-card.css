@@ -730,19 +730,13 @@
   justify-content: space-between;
   align-items: start;
   /* min-height: 2rem; */
-  min-height: 2.3rem;
-  flex-wrap: wrap-reverse;
+  /* min-height: 2.3rem; */
+  /* flex-wrap: wrap-reverse; */
   gap: 1rem;
 }
 
-@media screen and (max-width: 425px) {
-  .variants-stocks-status-container {
-    flex-direction: column-reverse;
-    align-items: start;
-    gap: 1rem;
-  }
-  
-}
+
+
 
 .stock-status {
   display: flex;
@@ -754,6 +748,7 @@
   font-size: 1rem;
   color: rgba(var(--color-foreground), 0.75);
   flex: none;
+  line-height: normal;
 }
 
 .svg-wrapper.svg-wrapper-stock-status{
@@ -762,28 +757,15 @@
   flex: none;
 }
 
-/* .svg-wrapper-in-stock-status{
-  color: rgb(62, 214, 96);
-}
-
-.svg-wrapper-out-of-stock-status{
-  color: rgb(200, 200, 200);
-} */
-
-/* Can be removed as base.css has code
-.stock-status .icon-inventory-in-stock-status circle:first-of-type {
-  opacity: 0.3;
-  animation: outer-circle-opacity-blink 1s infinite alternate;
-}
-
-.stock-status .icon-inventory-out-of-stock-status circle:first-of-type {
-  opacity: .4;
-} */
 
 @media screen and (min-width: 750px) {
 
   .stock-status {
     gap: 0.5rem;
+  }
+
+  .stock-status-caption {
+    font-size: 1rem;
   }
 
   .svg-wrapper.svg-wrapper-stock-status {
@@ -793,3 +775,35 @@
 }
 
 
+
+@media screen and (min-width: 750px) {
+  .variants-stocks-status-container .product-form__input--swatch .swatch-input__input + .swatch-input__label {
+    /* --swatch-input--size: 2.8rem; */
+    --swatch-input--size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+
+  .variants-stocks-status-container .product-form__input--swatch .swatch-input__input + .swatch-input__label {
+    /* --swatch-input--size: 3.6rem; */
+    --swatch-input--size: 1.2rem;
+    /* margin: 0.7rem 1.2rem 0.2rem 0; */
+  }
+  
+  .stock-status-caption {
+    font-size: 0.9rem;
+  }
+
+  .svg-wrapper.svg-wrapper-stock-status{
+    width: 1rem;
+    height: 1rem;
+  }
+
+
+  .variants-stocks-status-container .variants .caption{
+    letter-spacing: .01rem;
+  }
+
+  
+}
