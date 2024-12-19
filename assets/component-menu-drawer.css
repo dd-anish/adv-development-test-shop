@@ -236,7 +236,8 @@ details[open]>.menu-drawer__submenu {
 .menu-drawer__menu-item > .svg-wrapper {
   width: 15px;
   position: absolute;
-  right: 3rem;
+  /* right: 3rem; */
+  right: 2.5rem;
   top: 50%;
   transform: translateY(-50%);
   transform-origin: center;
@@ -294,7 +295,7 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 
 /* Ensure submenus don't affect main drawer scroll */
 .menu-drawer__navigation {
-  padding: 3rem 0;
+  padding: 1rem 0;
   height: auto;
 }
 
