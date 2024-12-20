@@ -27,7 +27,7 @@
               <li>
               {% comment %} {{ shop.metaobjects.bundles.values | json }} {% endcomment %}
                 {% for metaobject in metaobjects_bundles %}
-
+                    {{ metaobject.system.handle }}
                     {% case metaobject.custom_handle %}
                       {% when "bundles-handle" %}
 
