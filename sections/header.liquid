@@ -129,7 +129,10 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}" style="
+       --bundle-bg-color: {{ section.settings.bundle_background_color }};
+       --bundle-desc-bg-color: {{ section.settings.bundle_description_background_color }};
+     ">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'
@@ -588,14 +591,30 @@
     {
       "type": "link_list",
       "id": "mobile-bundles-menu",
-      "default": "main-menu",
-      "label": "Mobile Menu"
+      "label": "Mobile Bundles Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bundle_background",
+      "label": "Enable Bundle Background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bundle_background_color",
+      "label": "Bundle Background Color",
+      "default": "#c9fed0"
+    },
+    {
+      "type": "color",
+      "id": "bundle_description_background_color",
+      "label": "Bundle Description Background Color",
+      "default": "#66ff80"
     },
     {
       "type": "link_list",
       "id": "mobile-contact-us-menu",
-      "default": "main-menu",
-      "label": "Mobile Menu"
+      "label": "Mobile Contact Us Menu"
     },
     {
       "type": "select",
