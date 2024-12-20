@@ -31,12 +31,10 @@
 }
 
 .swatch--more{
+  /* width: 1.5rem;
+  height: 1.5rem; */
+  display: flex;
   border: 0;
-}
-
-.swatch--more{
-  width: 1.5rem;
-  height: 1.5rem;
 }
 
 .swatch--more svg{

@@ -598,10 +598,9 @@
               <h2 class="totals__total text-link-underline-custom-thin">{{ 'sections.cart.estimated_total' | t }}</h2>
               {% if cart.taxes_included %}
                 <span class="VAT-note">
-                   {{ 'products.product.taxes_included' | t }}
+                   {{ 'products.product.taxes_included_short' | t }}
                 </span>
               {% endif %}
-
             </div>
             <p class="totals__total-value font-bold">{{ cart.total_price | money }}</p>
           </div>
@@ -609,9 +608,16 @@
           <!-- Subtotal -->
           {% if settings.show_subtotal_in_cart %}
             <div class="totals totals-subtotal">
-              <h3 class="totals__subtotal font-medium"> 
-                {{ 'sections.cart.subtotal' | t }}
-              </h3>
+              <div class="heading-with-note">
+                <h3 class="totals__subtotal font-medium no-default-spacing"> 
+                  {{ 'sections.cart.subtotal' | t }}
+                </h3>
+                {% if cart.taxes_included %}
+                  <span class="VAT-note">
+                    {{ 'products.product.taxes_excluded' | t }}
+                  </span>
+                {% endif %}
+              </div>
               {% assign tax_custom = cart.total_price | times:0.21 %}
               <span class="h4 font-semibold">
   

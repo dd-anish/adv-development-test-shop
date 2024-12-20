@@ -119,12 +119,12 @@
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",
-      "inventory_in_stock": "In stock",
+      "inventory_in_stock": "Op voorraad", /* Op voorraad */
       "inventory_in_stock_show_count": "{{ quantity }} in stock",
-      "inventory_low_stock": "Low stock",
+      "inventory_low_stock": "Voorraad laag", /* Low stock */
       "inventory_low_stock_show_count": "Low stock: {{ quantity }} left",
-      "inventory_out_of_stock": "Out of stock",
-      "inventory_out_of_stock_continue_selling": "Quickly available again",
+      "inventory_out_of_stock": "Niet op voorraad", /* Out of stock */
+      "inventory_out_of_stock_continue_selling": "snel terug",/* Quickly available again */
       "sku": "SKU",
       "on_sale": "Sale",
       "product_variants": "Product variants",
