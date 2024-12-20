@@ -25,38 +25,37 @@
             <!-- Bundles Option -->
             <ul class="menu-drawer__menu has-submenu list-menu">
               <li>
-              {% comment %} {{ shop.metaobjects.bundles.values | json }} {% endcomment %}
-                {% for metaobject in metaobjects_bundles %}
-                    {{ metaobject.system.handle }}
-                    {% case metaobject.custom_handle %}
-                      {% when "bundles-handle" %}
+          
+                 {%- for link in section.settings.mobile-bundles-menu.links -%}
+                    {% comment %} {{ link.title }}
+                    {{ link.object | json }} {% endcomment %}
 
-                        <a
-                          id="HeaderDrawer-{{ metaobject.custom_handle }}"
-                          href="{{ metaobject.url }}"
-                          class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active {% endif %} menu-container-no-sublink"
-                          {% if link.current %}
-                            aria-current="page"
-                          {% endif %} >
-                          {% if metaobject.image  != blank %}
-                            <img src="{{ metaobject.image | image_url }}" alt="{{ metaobject.title }}" class="menu-link-image" />
-                          {% endif %}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ link.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active {% endif %} menu-container-no-sublink"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %} >
+                      {% if link.object.featured_image  != blank %}
+                        <img src="{{ link.object.featured_image | image_url }}" alt="{{ link.title }}" class="menu-link-image" />
+                      {% endif %}
 
-                          <div class="parent-menu-item-info">
-                            <h2>
-                              {{ metaobject.title | escape }}
-                            </h2>
+                      <div class="parent-menu-item-info">
+                        <h2>
+                          {{ link.title | escape }}
+                        </h2>
 
-                            {% if metaobject.description_2 %}
-                              <p class="text-body--extra-small">{{ metaobject.description_2 }}</p>
-                            {% endif %}
-                          </div>
+                        {% if link.object.description %}
+                          <p class="text-body--extra-small">{{ link.object.description |  strip_html }}</p>
+                        {% endif %}
+                      </div>
 
-                          <span class="svg-wrapper">
-                            {{- 'icon-chevron-right.svg' | inline_asset_content -}}
-                          </span> 
-                        </a>  
-                    {% endcase %}
+                      <span class="svg-wrapper">
+                        {{- 'icon-chevron-right.svg' | inline_asset_content -}}
+                      </span> 
+                    </a>  
+           
                 {% endfor %}
                 
                 
