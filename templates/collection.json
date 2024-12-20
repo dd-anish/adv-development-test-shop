@@ -47,7 +47,7 @@
         "enable_filtering": true,
         "filter_type": "vertical",
         "enable_sorting": true,
-        "enable_sticky_sorting": false,
+        "enable_sticky_sorting": true,
         "columns_mobile": "2",
         "padding_top": 12,
         "padding_bottom": 20
