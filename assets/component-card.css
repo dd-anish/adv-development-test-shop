@@ -728,15 +728,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   /* min-height: 2rem; */
   /* min-height: 2.3rem; */
   /* flex-wrap: wrap-reverse; */
   gap: 1rem;
 }
-
-
-
 
 .stock-status {
   display: flex;
@@ -767,6 +764,16 @@
   .stock-status-caption {
     font-size: 1rem;
   }
+}
+
+
+/* Swatch Input Variants Size */
+
+@media screen and (min-width: 1140px) {
+  .variants-stocks-status-container .product-form__input--swatch .swatch-input__input + .swatch-input__label {
+    /* --swatch-input--size: 2.8rem; */
+    --swatch-input--size: 1.6rem;
+  }
 
   .svg-wrapper.svg-wrapper-stock-status {
     width: 1.5rem;
@@ -774,12 +781,15 @@
   }
 }
 
-
-
-@media screen and (min-width: 750px) {
-  .variants-stocks-status-container .product-form__input--swatch .swatch-input__input + .swatch-input__label {
+@media screen and (min-width: 425px) and (max-width: 1140px) {
+  .variants-stocks-status-container .product-form__input--swatch .swatch-input__input+.swatch-input__label {
     /* --swatch-input--size: 2.8rem; */
     --swatch-input--size: 1.4rem;
+  }
+
+  .svg-wrapper.svg-wrapper-stock-status {
+    width: 1.3rem;
+    height: 1.3rem;
   }
 }
 
