@@ -116,7 +116,7 @@
                             </span>
                             {{ link.title | escape }}
                           </button>
-                          <ul class="menu-drawer__menu list-menu menu-list-parent" role="list" tabindex="-1">
+                          <ul class="menu-drawer__menu list-menu menu-list-parent menu-no-padding-gap" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}
                               <li>
                                 {%- if childlink.links == blank -%}
@@ -165,7 +165,7 @@
                                         {{ childlink.title | escape }}
                                       </button>
                                       <ul
-                                        class="menu-drawer__menu list-menu menu-list-child"
+                                        class="menu-drawer__menu list-menu menu-list-child menu-no-padding-gap"
                                         role="list"
                                         tabindex="-1"
                                       >

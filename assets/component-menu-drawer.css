@@ -15,6 +15,8 @@ Grand Child Menu - hxs =  1.3rem
 .menu-drawer__menu-item.child-link-title {
   font-size: 1.4rem;
   font-weight: 900;
+  margin-left: 1rem;
+  padding: 0;
 }
 
 .grand-child-link-menu {
@@ -358,11 +360,13 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 }
 
 .menu-drawer__submenu{
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
+  padding-top: 1rem;
 }
 
 .menu-list-parent{
-  background: #f7f7f7;
+  /* background: #f7f7f7; */
+  background: var(--theme-grey-color);
   /* padding-left: 2rem; */
   border-radius: var(--buttons-radius);
 }
@@ -381,12 +385,14 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 .menu-list-parent li{
   border-bottom: 1px solid #000;
   margin: 0 1.5rem;
-  padding: 0.5rem 0;
+  /* padding: 0.5rem 0; */
+  padding: 1rem 0;
 }
 
 .menu-list-child li {
   border-bottom: 1px dashed #000;
-  padding: 0.3rem 0;
+  /* padding: 0.3rem 0; */
+  padding: 1rem 0;
 }
 
 .menu-list-parent li:last-child, .menu-list-child li:last-child{
@@ -398,7 +404,16 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 }
 
 .menu-drawer__submenu.menu-drawer__sub-sub-menu{
-  padding: 1.5rem 0;
+  /* padding: 1.5rem 0; */
+}
+
+
+/* Adjusting Children and Grandchildren Gaps and Padding */
+
+.menu-drawer__navigation .menu-drawer__menu.menu-no-padding-gap{
+  padding: 0;
+  gap: 0;
+  margin: 0;
 }
 
 
