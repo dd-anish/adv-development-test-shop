@@ -400,3 +400,19 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 .menu-drawer__submenu.menu-drawer__sub-sub-menu{
   padding: 1.5rem 0;
 }
+
+
+/* Bundles CSS */
+
+.menu-drawer__bundle-menu.enable-bundle-background .menu-drawer__menu-item{
+  background: var(--bundle-bg-color);
+  border-radius: 10px;
+}
+
+.menu-drawer__bundle-menu .parent-menu-item-info p{
+    color: #000;
+    background: var(--bundle-desc-bg-color);
+    padding: 0.2rem 1rem;
+    border-radius: 5px;
+    text-transform: capitalize;
+}

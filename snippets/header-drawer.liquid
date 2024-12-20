@@ -20,9 +20,8 @@
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
-
             <!-- Bundles Option -->
-            <ul class="menu-drawer__menu has-submenu list-menu">
+            <ul class="menu-drawer__menu menu-drawer__bundle-menu {% if section.settings.enable_bundle_background %} enable-bundle-background {% endif %} has-submenu list-menu">
               <li>
           
                  {%- for link in section.settings.mobile-bundles-menu.links -%}
