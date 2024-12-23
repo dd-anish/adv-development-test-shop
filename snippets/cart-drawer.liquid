@@ -18,6 +18,7 @@
 </style>
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
+  {% assign promo_product_present = false %}
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
     <div
@@ -158,6 +159,7 @@
                           {% endif %}
 
                           {% if item.variant.compare_at_price and settings.show_sale_badge_in_cart %}
+                            {% assign promo_product_present = true %}
                             <span id="Badge-{{ section.id }}-{{ item.id }}" class="cart-item__sale_badge color-{{ settings.sale_badge_color_scheme }} text-uppercase">
                               {{- 'products.product.on_sale' | t -}}
                             </span>
@@ -592,10 +594,34 @@
             </div>
           {%- endif -%}
 
+          <!-- Savings on PROMO -->
+          {% if settings.show_savings_on_promo and promo_product_present %}
+            {% comment %} Calculation for PROMO Savings {% endcomment %}
+            {% for item in cart.items %}  
+              {% if item.variant.compare_at_price %}  
+              {% assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity %}  
+            
+              {% assign profit_on_promo_products = profit_on_promo_products | plus: original_price_with_quantity |  minus: item.original_line_price %}  
+              {% endif %}  
+            {% endfor %} 
+            
+            <!-- Savings on PROMO DIV -->
+            <div class="totals totals-savings {% if settings.show_separator_line_below_savings %} totals-savings-bottom-border {% endif %}">  
+              <h3 class="totals__savings text-capitalize font-medium">  
+                {{ 'sections.cart.savings_on_promos' | t: profit_on_promo_products: profit_on_promo_products }}
+              </h3>  
+              <span class="h4 font-light">  
+                {{ profit_on_promo_products |  money }}
+              </span>  
+            </div>
+          {% endif %}
+
           <!-- Totals -->
           <div class="totals" role="status">
             <div class="heading-with-note">
-              <h2 class="totals__total text-link-underline-custom-thin">{{ 'sections.cart.estimated_total' | t }}</h2>
+              <h2 class="totals__total">
+                {{ 'sections.cart.estimated_total' | t }}
+              </h2>
               {% if cart.taxes_included %}
                 <span class="VAT-note">
                    {{ 'products.product.taxes_included_short' | t }}
@@ -604,7 +630,7 @@
             </div>
             <p class="totals__total-value font-bold">{{ cart.total_price | money }}</p>
           </div>
-
+          
           <!-- Subtotal -->
           {% if settings.show_subtotal_in_cart %}
             <div class="totals totals-subtotal">
@@ -625,28 +651,6 @@
                 {{ cart.total_price | minus: tax_custom | money }}
   
               </span>
-            </div>
-          {% endif %}
-
-           <!-- Savings on PROMO -->
-          {% if settings.show_savings_on_promo %}
-            {% comment %} Calculation for PROMO Savings {% endcomment %}
-            {% for item in cart.items %}  
-              {% if item.variant.compare_at_price %}  
-              {% assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity %}  
-            
-              {% assign profit_on_promo_products = profit_on_promo_products | plus: original_price_with_quantity |  minus: item.original_line_price %}  
-              {% endif %}  
-            {% endfor %} 
-
-            <!-- Savings on PROMO DIV -->
-            <div class="totals totals-savings">  
-              <h3 class="totals__savings text-capitalize font-medium">  
-                {{ 'sections.cart.savings_on_promos' | t: profit_on_promo_products: profit_on_promo_products }}
-              </h3>  
-              <span class="h4 font-light">  
-                {{ profit_on_promo_products |  money }}
-              </span>  
             </div>
           {% endif %}
 

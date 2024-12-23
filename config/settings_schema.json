@@ -1813,6 +1813,13 @@
       },
       {
         "type": "checkbox",
+        "id": "show_separator_line_below_savings",
+        "label": "Show Separator Line Below Savings",
+        "info": "Only in Cart Drawer",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "show_cart_note",
         "label": "t:settings_schema.cart.settings.show_cart_note.label",
         "default": false

@@ -817,3 +817,25 @@
 
   
 }
+
+/* Bundle Product */
+
+.bundle-product-tag{
+  font-size: 1rem;
+  background: #f597f2;
+  line-height: 1;
+  padding: 0.2rem 0.3rem;
+  border-radius: 0.3rem;
+  letter-spacing: 0.01rem;
+  display: flex;
+}
+
+@media screen and (min-width: 750px) {
+  .bundle-product-tag{
+    font-size: 1.2rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.4rem;
+    letter-spacing: 0.04rem;
+  }
+  
+}

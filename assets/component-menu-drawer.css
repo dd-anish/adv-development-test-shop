@@ -34,7 +34,8 @@ Grand Child Menu - hxs =  1.3rem
 }
 
 .menu-drawer summary.menu-drawer__menu-item {
-  padding-right: 5.2rem;
+  /* padding-right: 5.2rem; */
+  padding-right: 2.7rem;
 }
 
 /* .menu-drawer__menu-item--active,
@@ -300,7 +301,7 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 .menu-drawer__navigation {
   display: flex;
   flex-direction: column;
-  padding: 1rem 1.5rem;
+  padding: 0rem 1.5rem;
 }
 
 .menu-drawer__navigation .menu-drawer__menu{
@@ -322,6 +323,14 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
   aspect-ratio: 1 / 1;
 }
 
+@media screen and (max-width: 425px) {
+  
+  .menu-link-image {
+      width: 80px;
+    }
+  
+}
+
 /* .parent-menu-item{
   width: 100%;
   display: flex;
@@ -339,6 +348,7 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 .menu-container-no-sublink{
   /* padding: 0 2rem;
   margin-right: 1rem; */
+  padding-right: 2.7rem;
 }
 
 .parent-menu-item-info{
