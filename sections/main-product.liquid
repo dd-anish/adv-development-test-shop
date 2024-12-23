@@ -403,7 +403,7 @@
 
                           {% comment %} {% assign specifications = "custom.height:Height,custom.width:Width,custom.depth:Depth,custom.variant_width: Variant Width,custom.variant_height: Variant Height,custom.variant_depth: Variant Depth,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,custom.material:Material" %} {% endcomment %}
 
-                          {% assign specifications = "custom.variant_width:Width,custom.variant_height:Height,custom.variant_depth:Depth,custom.archer_tag: Archery Tag,custom.bumperballs:Bumperballs,custom.paintball:Paintball,custom.water_sports: Water Sports,custom.xl_games: XL Games,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,custom.material:Material" %}
+                          {% assign specifications = "custom.variant_width:Width,custom.variant_height:Height,custom.variant_depth:Depth,custom.archery_tag: Archery Tag,custom.bumperballs:Bumperballs,custom.paintball:Paintball,custom.water_sports: Water Sports,custom.xl_games: XL Games,custom.outdoor_camping: Outdoor Camping,custom.electronics:Electronics,custom.bug_a_salt:Bug A Salt,custom.guarantee:Guarantee,vendor:Brand,weight:Weight,custom.material:Material" %}
 
                           {% assign specifications = specifications | split: ',' %}
                           <table class="accordion__content-table text-body" id="Specifications-{{ section.id }}">
@@ -412,14 +412,14 @@
                               {% comment %} ["custom.height", "Height"] {% endcomment %}
                               {% assign parts = specification | split: ':' %} 
 
-                              {% assign key = parts[0] %}
-                              {% assign label = parts[1] %}
+                              {% assign key = parts[0] %}     <!-- custom.height -->
+                              {% assign label = parts[1] %}   <!-- Height -->
                               {% assign value = '' %}
 
                               {% comment %} Split key to get namespace and specific key {% endcomment %}
                               {% assign key_parts = key | split: '.' %}
-                              {% assign namespace = key_parts[0] %}
-                              {% assign specific_key = key_parts[1] %}
+                              {% assign namespace = key_parts[0] %} <!-- custom -->
+                              {% assign specific_key = key_parts[1] %} <!-- height -->
 
                               {% comment %} Fetch the value based on the key {% endcomment %}
                               {% if key == "vendor" %}
@@ -427,8 +427,10 @@
                               {% elsif key == "weight" and product.selected_or_first_available_variant.weight != 0.0 %}
                                 {% assign value = product.selected_or_first_available_variant.weight | weight_with_unit %}
                               {% elsif key contains "variant" %}
+                                {% comment %} Variant Metafields {% endcomment %}
                                 {% assign value = product.selected_or_first_available_variant.metafields[namespace][specific_key] %}
                               {% else %}
+                                {% comment %} Product / Category Metafields {% endcomment %}
                                 {% assign value = product.metafields[namespace][specific_key] %}
                               {% endif %}
 
