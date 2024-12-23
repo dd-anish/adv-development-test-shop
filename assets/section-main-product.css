@@ -392,8 +392,8 @@ a.product__text {
   }
 
   .product__media-wrapper slider-component:not(.thumbnail-slider--no-slide) {
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
+    /* margin-left: -1.5rem;
+    margin-right: -1.5rem; */
   }
 
   .slider.product__media-list::-webkit-scrollbar {
@@ -1723,5 +1723,15 @@ a.product__text {
 .custom-media-gallery .svg-wrapper .icon{
   
   width: auto;
-  height: 2rem;
+  height: 1rem;
+}
+
+/* Product Thumbnail Carousel */
+
+.product--thumbnail_slider .thumbnail-slider{
+  margin: 0 auto;
+}
+
+.product-thumbnail-slider .slider.slider--mobile{
+  margin-bottom: 0;
 }

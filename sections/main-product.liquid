@@ -49,7 +49,9 @@
         --custom-block-background-color: {{ section.settings.custom_block_background_color }};
     }
 
-   {%- for block in section.blocks -%}
+  
+    /* Redering Padding for each blocks */
+    {%- for block in section.blocks -%}
       .block-{{ block.id }}-padding {
         padding-top: {{ block.settings.padding_top | times: 0.75 | round: 0 | default: 0 }}px;
         padding-bottom: {{ block.settings.padding_bottom | times: 0.75 | round: 0 | default: 0 }}px;
@@ -66,6 +68,18 @@
         }
       }
     {%- endfor -%}
+
+    .product-thumbnail-slider{
+      width: {{ section.settings.thumbnail_slider_width }}rem;
+      padding-bottom: {{ section.settings.thumbnail_slider_padding_bottom }}rem;
+    }
+
+    @media screen and (min-width: 750px) {
+      .product-thumbnail-slider{
+        width: calc({{ section.settings.thumbnail_slider_width }}rem + 5rem);
+        padding-bottom: 0;
+      }
+    }
 
   {%- endstyle -%}
 
@@ -3133,6 +3147,26 @@ if(Shopify.designMode){
       "id": "enable_sticky_info",
       "default": true,
       "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "range",
+      "id": "thumbnail_slider_width",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 25,
+      "unit": "rem",
+      "label": "Thumbnail Slider Width"
+    },
+    {
+      "type": "range",
+      "id": "thumbnail_slider_padding_bottom",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 1,
+      "unit": "rem",
+      "label": "Thumbnail Slider Padding Bottom"
     },
     {
       "type": "color_scheme",
