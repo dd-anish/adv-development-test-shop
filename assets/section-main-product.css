@@ -1726,12 +1726,14 @@ a.product__text {
   height: 1rem;
 }
 
-/* Product Thumbnail Carousel */
+/* Product Thumbnail Carousel (classes in product-media-gallery snippet) */
 
+/* Dawn's Default Class */
 .product--thumbnail_slider .thumbnail-slider{
   margin: 0 auto;
 }
 
+/* Custom Class in product-media-gallery snippet*/
 .product-thumbnail-slider .slider.slider--mobile{
   margin-bottom: 0;
 }
