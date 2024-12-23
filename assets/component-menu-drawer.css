@@ -300,7 +300,7 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
 .menu-drawer__navigation {
   display: flex;
   flex-direction: column;
-  padding: 1rem 1.5rem;
+  padding: 0rem 1.5rem;
 }
 
 .menu-drawer__navigation .menu-drawer__menu{
