@@ -214,6 +214,13 @@
               <div class="variants-stocks-status-container"> 
                 {% if show_product_variants %}
                   <div class="variants">
+                   
+                    {% if card_product.type != blank %}
+                      <span class="bundle-product-tag font-semibold">
+                        {{ card_product.type | upcase }}
+                      </span>
+                    {% endif %}
+
                     {% if card_product.variants.size > 1 %}
             
                     <!-- Custom Snippet for Product card to show variants in Shop View -->
