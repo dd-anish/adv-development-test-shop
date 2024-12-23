@@ -524,7 +524,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 }
 
 .totals-subtotal{
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   color: #000;
 }
 
@@ -536,4 +536,11 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
     letter-spacing: 0.1rem;
     color: red;
     padding-bottom: 1rem;
+}
+
+/* Savings */
+
+.totals-savings-bottom-border{
+  border-bottom: 0.2rem solid var(--theme-signature-color);
+  padding-bottom: 1rem;
 }
