@@ -71,109 +71,74 @@
         "padding_bottom": 36
       }
     },
-    "image_banner_n7VNet": {
-      "type": "image-banner",
+    "collapsible_content_JrVQkL": {
+      "type": "collapsible-content",
       "blocks": {
-        "heading_WBzhHW": {
-          "type": "heading",
+        "collapsible_row_7L7Vdc": {
+          "type": "collapsible_row",
           "settings": {
-            "heading": "Heb je al gehoord van",
-            "heading_size": "h2"
+            "heading": "Leveringsvoorkeur van m’n pakje",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
+            "page": ""
           }
         },
-        "heading_UAiBJN": {
-          "type": "heading",
+        "collapsible_row_br66xn": {
+          "type": "collapsible_row",
           "settings": {
-            "heading": "CORNHOLE?",
-            "heading_size": "h1"
+            "heading": "Retourneermogelijkheden",
+            "icon": "none",
+            "row_content": "<p>2nd OPEN Needed</p>",
+            "page": ""
           }
         },
-        "buttons_QxQyha": {
-          "type": "buttons",
+        "collapsible_row_mEQmfP": {
+          "type": "collapsible_row",
           "settings": {
-            "button_label_1": "BEKIJK DIT PRODUCT",
-            "button_link_1": "shopify://collections/archery-tag",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "heading": "Leveringsvoorkeur van m’n pakje",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_43aaKr": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Leveringsvoorkeur van m’n pakje",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_JDzeH3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Inklapbare rij",
+            "icon": "none",
+            "row_content": "",
+            "page": ""
           }
         }
       },
       "block_order": [
-        "heading_WBzhHW",
-        "heading_UAiBJN",
-        "buttons_QxQyha"
+        "collapsible_row_7L7Vdc",
+        "collapsible_row_br66xn",
+        "collapsible_row_mEQmfP",
+        "collapsible_row_43aaKr",
+        "collapsible_row_JDzeH3"
       ],
       "settings": {
-        "image": "shopify://shop_images/Banner_Image.webp",
-        "image_overlay_opacity": 40,
-        "image_height": "medium",
-        "desktop_content_position": "middle-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-21817ef0-4f10-4dd3-93de-ece7ea6d7d5d",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
-    },
-    "featured_contact_collection_UhndFf": {
-      "type": "featured-contact-collection",
-      "blocks": {
-        "featured_contact_card_HrwM7h": {
-          "type": "featured_contact_card",
-          "settings": {
-            "icon_type": "icon",
-            "icon": "call",
-            "featured_image": "shopify://shop_images/OG_XL_Games_Sumo_Wrestling_Set_Kids_2.webp",
-            "title": "Bel ons",
-            "url": "",
-            "description": "Ons team is op de lijn",
-            "day": "Ma-Vrij",
-            "time": "9-17"
-          }
-        },
-        "featured_contact_card_VEx3mf": {
-          "type": "featured_contact_card",
-          "settings": {
-            "icon_type": "icon",
-            "icon": "email",
-            "title": "Email ons",
-            "url": "shopify://pages/contact",
-            "description": "Ons team is online",
-            "day": "Ma-Vrij",
-            "time": "9-17"
-          }
-        },
-        "featured_contact_card_LAGDft": {
-          "type": "featured_contact_card",
-          "disabled": true,
-          "settings": {
-            "icon_type": "icon",
-            "icon": "location",
-            "title": "Sample Title",
-            "url": "",
-            "description": "Ons team is online",
-            "day": "Ma-Vrij",
-            "time": "9-17"
-          }
-        }
-      },
-      "block_order": [
-        "featured_contact_card_HrwM7h",
-        "featured_contact_card_VEx3mf",
-        "featured_contact_card_LAGDft"
-      ],
-      "settings": {
-        "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">CONTACTEER </a>ONS",
+        "caption": "",
+        "heading": "Inklapbare content",
         "heading_size": "h1",
-        "card_style": "contact-card",
-        "allow_hover_on_images": true,
-        "columns_desktop": 5,
+        "heading_alignment": "center",
+        "summary_heading_size": "h2",
+        "layout": "full-width",
         "color_scheme": "",
-        "columns_mobile": "2",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -182,7 +147,6 @@
   "order": [
     "main",
     "featured_contact_collection_tB4ypR",
-    "image_banner_n7VNet",
-    "featured_contact_collection_UhndFf"
+    "collapsible_content_JrVQkL"
   ]
 }
