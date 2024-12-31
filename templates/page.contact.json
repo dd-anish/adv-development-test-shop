@@ -25,7 +25,7 @@
           "settings": {
             "featured_image": "shopify://shop_images/Icon_Contract.png",
             "title": "Een vraag over je bestelling",
-            "url": "shopify://collections/archery-tag"
+            "url": "shopify://pages/een-vraag-over-je-bestelling"
           }
         },
         "featured_contact_standard_zbpiGm": {
@@ -33,7 +33,7 @@
           "settings": {
             "featured_image": "shopify://shop_images/Icon_Shippingbox.png",
             "title": "Pick Up & Verzendingen",
-            "url": "shopify://collections"
+            "url": "shopify://pages/contact"
           }
         },
         "featured_contact_standard_FaK6j6": {
@@ -41,7 +41,7 @@
           "settings": {
             "featured_image": "shopify://shop_images/Icon_B2B.png",
             "title": "B2B Order",
-            "url": "shopify://blogs/news"
+            "url": "shopify://pages/contact-form-business"
           }
         },
         "featured_contact_standard_tUHJc6": {
