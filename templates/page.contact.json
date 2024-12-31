@@ -48,8 +48,8 @@
           "type": "featured_contact_standard",
           "settings": {
             "featured_image": "shopify://shop_images/Icon_Shippingbox_1.png",
-            "title": "Sample Title",
-            "url": "shopify://collections"
+            "title": "Veelgestelde Vragen",
+            "url": "shopify://pages/veelgestelde-vraag"
           }
         }
       },
