@@ -3888,6 +3888,11 @@ h6,
   text-decoration-color: var(--text-decoration-color);  
 }
 
+.text-link-color a{
+  color: var(--theme-signature-color);
+  text-decoration: none;
+}
+
 .text-link-underline-custom {
   position: relative;
   display: inline-block;

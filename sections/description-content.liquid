@@ -1,3 +1,5 @@
+{{ 'section-description-content.css'  | asset_url | stylesheet_tag }}
+
 {% style %}
 
     .section-{{ section.id }}-padding {
@@ -14,32 +16,50 @@
     
 {% endstyle %}
 
+{% if section.settings.color_text %} {% endif %}
 
-<div class="section-{{ section.id }}-padding page-width">
+<div class="section-{{ section.id }}-padding page-width description-content">
 
     {%- if section.settings.heading != blank -%}
-        <h2 class="{{ section.settings.heading_size }} text-link-underline unclickable-link">
-            {{ section.settings.heading | strip_html | escape }}
+        <h2 class="unclickable-link {{ section.settings.heading_size }} {% if section.settings.underline_text %}  text-link-underline {% endif %} {% if section.settings.color_text %} text-link-color {% endif %}">
+            {{ section.settings.heading }}
         </h2>
     {%- endif -%}
 
-    <div class="section__description text-body--small-3 font-regular">
+    {% if section.settings.sub_heading != blank %}
+        <div class="font-regular {{ section.settings.sub_heading_size }} {% if section.settings.underline_text %}  text-link-underline {% endif %} {% if section.settings.color_text %} text-link-color {% endif %}">
+            {{ section.settings.sub_heading }}
+        </div>
+    {% endif %}
 
-        {{ section.settings.description |  strip_html | escape }}
-
-    </div>
+    {% if section.settings.description != blank %}
+        <div class="section__description font-regular {{ section.settings.description_size }} {% if section.settings.underline_text %}  text-link-underline {% endif %} {% if section.settings.color_text %} text-link-color {% endif %}">
+            {{ section.settings.description }}
+        </div>
+    {% endif %}
 </div>
 
 {% schema %}
     {
         "name": "Description Content",
         "settings": [
-            
             {
-                "type": "inline_richtext",
+                "type": "checkbox",
+                "id": "underline_text",
+                "label": "Underline Text",
+                "default": true
+            },
+            {
+                "type": "checkbox",
+                "id": "color_text",
+                "label": "Color Text",
+                "default": false
+            },
+            {
+                "type": "richtext",
                 "id": "heading",
                 "label": "Heading",
-                "default": "Heading"
+                "default": "<p>Heading</p>"
             },
             {
                 "type": "select",
@@ -76,12 +96,66 @@
                 ],
                 "default": "h1",
                 "label": "t:sections.all.heading_size.label"
-                },
+            },
+            {
+                "type": "richtext",
+                "id": "sub_heading",
+                "default": "<p>Sub Heading</p>",
+                "label": "Sub Heading"
+            },
+            {
+                "type": "select",
+                "id": "sub_heading_size",
+                "options": [
+                    {
+                        "value": "text-body--small",
+                        "label": "Small"
+                    },
+                    {
+                        "value": "text-body--extra-small",
+                        "label": "Extra Small"
+                    },
+                    {
+                        "value": "text-body--extra-extra-small",
+                        "label": "Extra Extra Small"
+                    },
+                    {
+                        "value": "text-body--small-3",
+                        "label": "Regular"
+                    }
+                ],
+                "default": "text-body--small",
+                "label": "Sub Heading Size"
+            },
             {
                 "type": "richtext",
                 "id": "description",
                 "label": "Description",
                 "default": "<p>Enter your description here.</p>"
+            },
+            {
+                "type": "select",
+                "id": "description_size",
+                "options": [
+                    {
+                        "value": "text-body--small",
+                        "label": "Small"
+                    },
+                    {
+                        "value": "text-body--extra-small",
+                        "label": "Extra Small"
+                    },
+                    {
+                        "value": "text-body--extra-extra-small",
+                        "label": "Extra Extra Small"
+                    },
+                    {
+                        "value": "text-body--small-3",
+                        "label": "Regular"
+                    }
+                ],
+                "default": "text-body--small-3",
+                "label": "Description Size"
             },
             {
                 "type": "header",
