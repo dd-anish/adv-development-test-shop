@@ -17,12 +17,17 @@
         "padding_bottom": 36
       }
     },
-    "description_content_X9rdRp": {
+    "description_content_UyNt49": {
       "type": "description-content",
       "settings": {
-        "heading": "<a href=\"/collections\" title=\"All collections\">ALGEMENE VOORWAARDEN VOORWAARDEN</a>",
+        "underline_text": true,
+        "color_text": false,
+        "heading": "<p><a href=\"https://adventure-store-test-shop.myshopify.com/collections\" title=\"All collections\">ALGEMENE VOORWAARDEN VOORWAARDEN</a></p>",
         "heading_size": "h1",
+        "sub_heading": "",
+        "sub_heading_size": "text-body--small",
         "description": "<p>Adventure is a compelling concept that resonates deeply with the human spirit, embodying a quest for the unknown, the thrill of discovery, and the courage to step beyond comfort zones. It is often associated with journeys, challenges, and experiences that push individuals to their limits, offering a mix of exhilaration, uncertainty, and self-discovery. Adventure is a compelling concept that resonates deeply with the human spirit, embodying a quest for the unknown, the thrill of discovery, and the courage to step beyond comfort zones. It is often associated with journeys, challenges, and experiences that push individuals to their limits, offering a mix of exhilaration, uncertainty, and self-discovery.</p>",
+        "description_size": "text-body--small-3",
         "top_padding": 0,
         "bottom_padding": 0
       }
@@ -65,7 +70,7 @@
         "open_first_collapsible_row": false,
         "image_ratio": "small",
         "desktop_layout": "image_first",
-        "padding_top": 12,
+        "padding_top": 0,
         "padding_bottom": 12
       }
     },
@@ -235,7 +240,7 @@
   },
   "order": [
     "main",
-    "description_content_X9rdRp",
+    "description_content_UyNt49",
     "collapsible_content_BqCNWQ",
     "featured_contact_collection_tB4ypR",
     "image_banner_n7VNet",
