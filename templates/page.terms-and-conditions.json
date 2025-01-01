@@ -28,7 +28,7 @@
         "sub_heading_size": "text-body--small",
         "description": "<p>Adventure is a compelling concept that resonates deeply with the human spirit, embodying a quest for the unknown, the thrill of discovery, and the courage to step beyond comfort zones. It is often associated with journeys, challenges, and experiences that push individuals to their limits, offering a mix of exhilaration, uncertainty, and self-discovery. Adventure is a compelling concept that resonates deeply with the human spirit, embodying a quest for the unknown, the thrill of discovery, and the courage to step beyond comfort zones. It is often associated with journeys, challenges, and experiences that push individuals to their limits, offering a mix of exhilaration, uncertainty, and self-discovery.</p>",
         "description_size": "text-body--small-3",
-        "top_padding": 0,
+        "top_padding": 8,
         "bottom_padding": 0
       }
     },
