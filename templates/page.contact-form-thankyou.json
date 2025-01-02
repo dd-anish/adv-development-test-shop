@@ -1,0 +1,113 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "description_content_UDLVAT": {
+      "type": "description-content",
+      "settings": {
+        "underline_text": false,
+        "color_text": true,
+        "heading": "<p>Veelgestelde vraag<a href=\"/collections/all\" target=\"_blank\" title=\"All products\">?</a> </p>",
+        "heading_size": "h0",
+        "sub_heading": "<p>Staat je vraag er niet tussen, neem <a href=\"/pages/contact\" target=\"_blank\" title=\"Contact Us\">contact </a>met ons op.</p>",
+        "sub_heading_size": "text-body--small",
+        "description": "",
+        "description_size": "text-body--small-3",
+        "top_padding": 0,
+        "bottom_padding": 0
+      }
+    },
+    "collapsible_content_JrVQkL": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_7L7Vdc": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Leveringsvoorkeur van m’n pakje",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_br66xn": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Retourneermogelijkheden",
+            "icon": "none",
+            "row_content": "<p>2nd OPEN Needed</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_mEQmfP": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Leveringsvoorkeur van m’n pakje",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_43aaKr": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Leveringsvoorkeur van m’n pakje",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_JDzeH3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Inklapbare rij",
+            "icon": "none",
+            "row_content": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_7L7Vdc",
+        "collapsible_row_br66xn",
+        "collapsible_row_mEQmfP",
+        "collapsible_row_43aaKr",
+        "collapsible_row_JDzeH3"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "summary_heading_size": "h2",
+        "layout": "full-width",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "description_content_UDLVAT",
+    "collapsible_content_JrVQkL"
+  ]
+}
