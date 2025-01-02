@@ -69,6 +69,34 @@
           >
           <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
         </div>
+        
+        {%- if section.settings.show_business_fields -%}  
+          <div class="field">  
+            <input  
+            type="text"  
+            id="ContactForm-company-name"  
+            class="field__input"  
+            name="contact[{{ 'templates.contact.form.company_name' | t }}]"  
+            placeholder="contact[{{ 'templates.contact.form.company_name' | t }}]"  
+            >  
+            <label class="field__label" for="ContactForm-company-name">
+              {{ 'templates.contact.form.company_name' | t }}
+            </label>  
+          </div>  
+          <div class="field">  
+            <input  
+            type="text"  
+            id="ContactForm-vat-number"  
+            class="field__input"  
+            name="contact[{{ 'templates.contact.form.vat_number' | t }}]"  
+            placeholder="contact[{{ 'templates.contact.form.vat_number' | t }}]"  
+            >  
+            <label class="field__label" for="ContactForm-vat-number">
+              {{ 'templates.contact.form.vat_number' | t }}
+            </label>  
+          </div>  
+        {%- endif -%}  
+
         <div class="field field--with-error">
           <input
             autocomplete="email"
@@ -117,20 +145,29 @@
         >
         <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
       </div>
+       
       <div class="field">
+        {% if section.settings.show_business_fields %}
+          {% assign comment_type = 'templates.contact.form.comment_business' | t %}
+        {% else %}
+          {% assign comment_type = 'templates.contact.form.comment' | t %}
+        {% endif %}
+
+       
         <textarea
           rows="10"
           id="ContactForm-body"
           class="text-area field__input"
-          name="contact[{{ 'templates.contact.form.comment' | t }}]"
-          placeholder="{{ 'templates.contact.form.comment' | t }}"
+          name="contact[{{ comment_type }}]"
+          placeholder="contact[{{ comment_type }}]"
         >
           {{- form.body -}}
         </textarea>
         <label class="form__label field__label" for="ContactForm-body">
-          {{- 'templates.contact.form.comment' | t -}}
+          {{ comment_type }}
         </label>
       </div>
+
       <div class="contact__button">
         <button type="submit" class="button text-uppercase font-regular">
           {{ 'templates.contact.form.send' | t }}
@@ -182,6 +219,12 @@
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_business_fields",
+      "default": false,
+      "label": "Show business fields"
     },
     {
       "type": "color_scheme",
