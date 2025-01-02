@@ -17,19 +17,38 @@
         "padding_bottom": 36
       }
     },
+    "description_content_48rPNn": {
+      "type": "description-content",
+      "settings": {
+        "text_decoration_type": "color_text",
+        "heading": "<p>Howdy<a href=\"/collections/all\" target=\"_blank\" title=\"All products\">, </a>Partner<a href=\"/collections\" target=\"_blank\" title=\"All collections\">.</a></p>",
+        "heading_size": "h0",
+        "sub_heading": "",
+        "sub_heading_size": "text-body--small",
+        "description": "",
+        "description_size": "text-body--small-3",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "button--primary",
+        "top_padding": 0,
+        "bottom_padding": 0
+      }
+    },
     "contact_form_XTjCLR": {
       "type": "contact-form",
       "settings": {
-        "heading": "Contactformulier",
+        "heading": "",
         "heading_size": "h1",
+        "show_business_fields": true,
         "color_scheme": "",
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36
       }
     }
   },
   "order": [
     "main",
+    "description_content_48rPNn",
     "contact_form_XTjCLR"
   ]
 }
