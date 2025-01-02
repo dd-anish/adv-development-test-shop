@@ -13,9 +13,25 @@
     margin: 0;
 }
 
+.description-content .button{
+    background: var(--theme-signature-color);
+}
+
+.description-content .button:after, .button:not([disabled]):hover:after {
+    box-shadow: none;
+}
+
+.description-content .button:hover{
+    box-shadow: 0 0 0 1px rgba(var(--theme-signature-color-rgb) ,0.5);
+}
+
 @media screen and (min-width: 750px){
     .description-content{
         margin: 2rem auto;
+    }
+
+    .description-content .button {
+        width: fit-content;
     }
     
 }

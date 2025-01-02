@@ -28,8 +28,13 @@
       if settings.animations_reveal_on_scroll
         assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
       endif
+
+      # assign success_page = settings.contact_form_success_page 
     -%}
-    {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+
+    {% comment %} {{ success_page }} {% endcomment %}
+    
+    {%- form 'contact', id: 'ContactForm', class: contact_form_class, return_to: '/pages/contact-form-thank-you-page' -%}
       {%- if form.posted_successfully? -%}
         <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
           {{- 'icon-success.svg' | inline_asset_content -}}

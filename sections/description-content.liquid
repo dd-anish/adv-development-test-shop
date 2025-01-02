@@ -37,6 +37,12 @@
             {{ section.settings.description }}
         </div>
     {% endif %}
+
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="button text-uppercase font-medium {{ section.settings.button_style }}">
+            {{ section.settings.button_label }}
+        </a>
+    {% endif %}
 </div>
 
 {% schema %}
@@ -156,6 +162,36 @@
                 ],
                 "default": "text-body--small-3",
                 "label": "Description Size"
+            },
+            {
+                "type": "text",
+                "id": "button_label",
+                "label": "Button Label"
+            },
+            {
+                "type": "url",
+                "id": "button_link",
+                "label": "Button Link"
+            },
+            {
+                "type": "select",
+                "id": "button_style",
+                "label": "Button Style",
+                "options": [
+                    {
+                        "value": "button",
+                        "label": "Button"
+                    },
+                    {
+                        "value": "button--secondary",
+                        "label": "Secondary Button"
+                    },
+                    {
+                        "value": "button--tertiary",
+                        "label": "Tertiary Button"
+                    }
+                ],
+                "default": "button"
             },
             {
                 "type": "header",
