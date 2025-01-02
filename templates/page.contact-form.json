@@ -20,8 +20,7 @@
     "description_content_6BckA4": {
       "type": "description-content",
       "settings": {
-        "underline_text": false,
-        "color_text": true,
+        "text_decoration_type": "color_text",
         "heading": "<p>Hallo<a href=\"/pages/terms-conditions\" target=\"_blank\" title=\"Algemene voorwaarden\">.</a></p>",
         "heading_size": "h0",
         "sub_heading": "<p>Check zeker ook onze <a href=\"/pages/veelgestelde-vraag\" title=\"Veelgestelde vraag?\">veelgestelde vragen </a>eens! </p>",
@@ -42,7 +41,7 @@
         "heading_size": "h1",
         "show_business_fields": false,
         "color_scheme": "",
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36
       }
     }
