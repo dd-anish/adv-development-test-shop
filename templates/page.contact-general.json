@@ -20,14 +20,16 @@
     "description_content_UDLVAT": {
       "type": "description-content",
       "settings": {
-        "underline_text": false,
-        "color_text": true,
+        "text_decoration_type": "color_text",
         "heading": "<p>Veelgestelde vraag<a href=\"/collections/all\" target=\"_blank\" title=\"All products\">?</a> </p>",
         "heading_size": "h0",
         "sub_heading": "<p>Staat je vraag er niet tussen, neem <a href=\"/pages/contact\" target=\"_blank\" title=\"Contact Us\">contact </a>met ons op.</p>",
         "sub_heading_size": "text-body--small",
         "description": "",
         "description_size": "text-body--small-3",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "button--primary",
         "top_padding": 0,
         "bottom_padding": 0
       }
@@ -49,7 +51,7 @@
           "settings": {
             "heading": "Retourneermogelijkheden",
             "icon": "none",
-            "row_content": "<p>2nd OPEN Needed</p>",
+            "row_content": "<p>Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf Lorem ipsum dolor sit amet consecturu loresdf </p>",
             "page": ""
           }
         },
