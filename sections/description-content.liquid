@@ -16,30 +16,28 @@
     
 {% endstyle %}
 
-{% if section.settings.color_text %} {% endif %}
-
 <div class="section-{{ section.id }}-padding page-width description-content">
 
     {%- if section.settings.heading != blank -%}
-        <h2 class="unclickable-link {{ section.settings.heading_size }} {% if section.settings.underline_text %}  text-link-underline {% endif %} {% if section.settings.color_text %} text-link-color {% endif %}">
+        <h2 class="unclickable-link {{ section.settings.heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline {% endif %}">
             {{ section.settings.heading }}
         </h2>
     {%- endif -%}
 
     {% if section.settings.sub_heading != blank %}
-        <div class="font-regular {{ section.settings.sub_heading_size }} {% if section.settings.underline_text %}  text-link-underline {% endif %} {% if section.settings.color_text %} text-link-color {% endif %}">
+        <div class="font-regular {{ section.settings.sub_heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline {% endif %}">
             {{ section.settings.sub_heading }}
         </div>
     {% endif %}
 
     {% if section.settings.description != blank %}
-        <div class="section__description font-regular {{ section.settings.description_size }} {% if section.settings.underline_text %}  text-link-underline {% endif %} {% if section.settings.color_text %} text-link-color {% endif %}">
+        <div class="section__description font-regular {{ section.settings.description_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline {% endif %}">
             {{ section.settings.description }}
         </div>
     {% endif %}
 
     {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a href="{{ section.settings.button_link }}" class="button text-uppercase font-medium {{ section.settings.button_style }}">
+        <a href="{{ section.settings.button_link }}" class="button {{ section.settings.button_style }} text-uppercase font-medium ">
             {{ section.settings.button_label }}
         </a>
     {% endif %}
@@ -50,16 +48,20 @@
         "name": "Description Content",
         "settings": [
             {
-                "type": "checkbox",
-                "id": "underline_text",
-                "label": "Underline Text",
-                "default": true
-            },
-            {
-                "type": "checkbox",
-                "id": "color_text",
-                "label": "Color Text",
-                "default": false
+                "type": "select",
+                "id": "text_decoration_type",
+                "label": "Text Decoration Type",
+                "options": [
+                    {
+                    "value": "underline_text",
+                    "label": "Underline Text"
+                    },
+                    {
+                    "value": "color_text",
+                    "label": "Color Text"
+                    }
+                ],
+                "default": "underline_text"
             },
             {
                 "type": "richtext",
@@ -179,7 +181,7 @@
                 "label": "Button Style",
                 "options": [
                     {
-                        "value": "button",
+                        "value": "button--primary",
                         "label": "Button"
                     },
                     {
@@ -191,7 +193,7 @@
                         "label": "Tertiary Button"
                     }
                 ],
-                "default": "button"
+                "default": "button--primary"
             },
             {
                 "type": "header",
