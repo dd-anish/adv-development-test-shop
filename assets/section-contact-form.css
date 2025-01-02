@@ -22,6 +22,7 @@
 
 .contact__button {
   margin-top: 3rem;
+
 }
 
 @media screen and (min-width: 750px) {
@@ -36,4 +37,77 @@
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2rem;
   }
+}
+
+
+/* Custom CSS */
+
+
+/* Outline Black CSS */
+
+.adv-contact-form .field::after {
+  box-shadow: none;
+}
+
+.adv-contact-form .field:not([disabled]):hover::after {
+  box-shadow: none;
+}
+
+.adv-contact-form :focus-visible {
+  box-shadow: none;
+  outline: none;
+}
+
+.adv-contact-form .field__input:focus {
+  box-shadow: none;
+}
+
+/* Input Color Border Bottom */
+
+.adv-contact-form .field__input{
+  border-bottom: 2px solid var(--theme-signature-color);
+  border-radius: 0;
+}
+
+.adv-contact-form .field__input{
+  padding: 0;
+}
+
+.adv-contact-form .field__label, .adv-contact-form .field__input:focus~.field__label, .field__input:not(:placeholder-shown)~.field__label{
+  left: 0;
+}
+
+/* Flexing the Input and Label */
+
+.adv-contact-form .field{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.adv-contact-form .field__label{
+  position: relative;
+  font-weight: 400;
+}
+
+/* Submit Button */
+
+.contact__button .button{
+  width: 100%;
+  background: var(--theme-signature-color);
+}
+
+.contact__button .button:after,
+.button:not([disabled]):hover:after {
+  box-shadow: none;
+}
+
+.contact__button .button:hover {
+  box-shadow: 0 0 0 1px rgba(var(--theme-signature-color-rgb), 0.5);
+}
+
+@media screen and (min-width: 750px) {
+  .contact__button .button {
+    width: fit-content;
+  }
+  
 }

@@ -24,9 +24,9 @@
       <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
     {%- endif -%}
     {%- liquid
-      assign contact_form_class = 'isolate'
+      assign contact_form_class = 'isolate adv-contact-form'
       if settings.animations_reveal_on_scroll
-        assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
+        assign contact_form_class = 'isolate adv-contact-form scroll-trigger animate--slide-in'
       endif
 
       # assign success_page = settings.contact_form_success_page 
@@ -132,7 +132,7 @@
         </label>
       </div>
       <div class="contact__button">
-        <button type="submit" class="button">
+        <button type="submit" class="button text-uppercase font-regular">
           {{ 'templates.contact.form.send' | t }}
         </button>
       </div>
