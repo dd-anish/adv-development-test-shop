@@ -7,6 +7,13 @@
 
 
 {%- style -%}
+
+  :root{
+    --number_of_columns_on_desktop: {{ section.settings.columns_desktop }};
+    --padding-for-icon-on-desktop: {{ 10.0 | divided_by: section.settings.columns_desktop | round: 2 }}rem;
+
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -40,7 +47,7 @@
     <!-- Section Content -->
     <ul
       data-id="{{ section.id }}"
-      class="grid product-grid contains-card contains-card--product grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+      class="grid product-grid contains-card contains-card--product grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down "
       role="list"
       aria-label="contact-card-list"
     >
