@@ -17,11 +17,30 @@
         "padding_bottom": 36
       }
     },
+    "description_content_6BckA4": {
+      "type": "description-content",
+      "settings": {
+        "underline_text": false,
+        "color_text": true,
+        "heading": "<p>Hallo<a href=\"/pages/terms-conditions\" target=\"_blank\" title=\"Algemene voorwaarden\">.</a></p>",
+        "heading_size": "h0",
+        "sub_heading": "<p>Check zeker ook onze <a href=\"/pages/veelgestelde-vraag\" title=\"Veelgestelde vraag?\">veelgestelde vragen </a>eens! </p>",
+        "sub_heading_size": "text-body--small",
+        "description": "",
+        "description_size": "text-body--small-3",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "button",
+        "top_padding": 0,
+        "bottom_padding": 0
+      }
+    },
     "contact_form_QMaVX6": {
       "type": "contact-form",
       "settings": {
-        "heading": "Contactformulier",
+        "heading": "",
         "heading_size": "h1",
+        "show_business_fields": false,
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
@@ -30,6 +49,7 @@
   },
   "order": [
     "main",
+    "description_content_6BckA4",
     "contact_form_QMaVX6"
   ]
 }
