@@ -30,8 +30,8 @@
         "button_label": "",
         "button_link": "",
         "button_style": "button--primary",
-        "top_padding": 0,
-        "bottom_padding": 0
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "collapsible_content_JrVQkL": {
@@ -99,7 +99,7 @@
         "layout": "full-width",
         "color_scheme": "",
         "container_color_scheme": "",
-        "open_first_collapsible_row": false,
+        "open_first_collapsible_row": true,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
         "padding_top": 0,
