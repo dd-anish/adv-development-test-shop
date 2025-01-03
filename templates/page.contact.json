@@ -64,7 +64,7 @@
         "heading_size": "h1",
         "card_style": "contact-standard",
         "allow_hover_on_images": false,
-        "columns_desktop": 6,
+        "columns_desktop": 4,
         "color_scheme": "",
         "columns_mobile": "2",
         "padding_top": 36,
