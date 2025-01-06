@@ -23,7 +23,7 @@
         "text_decoration_type": "color_text",
         "heading": "<p>Aangename kennismaking<a href=\"/pages/terms-conditions\" title=\"Algemene voorwaarden\">,</a> <br/>tot binnenkort<a href=\"/collections\" title=\"All collections\">.</a></p>",
         "heading_size": "h0",
-        "sub_heading": "<p>Check zeker ook je <a href=\"/pages/veelgestelde-vraag\" target=\"_blank\" title=\"Veelgestelde vraag?\">spam map</a> in je mailbox eens! </p>",
+        "sub_heading": "<p>I am the Buzinesss</p>",
         "sub_heading_size": "text-body--small",
         "description": "",
         "description_size": "text-body--small-3",
@@ -31,7 +31,7 @@
         "button_link": "/",
         "button_style": "button--primary",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 16
       }
     }
   },
