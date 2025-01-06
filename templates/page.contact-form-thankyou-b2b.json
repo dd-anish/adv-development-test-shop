@@ -1,0 +1,42 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "description_content_UDLVAT": {
+      "type": "description-content",
+      "settings": {
+        "text_decoration_type": "color_text",
+        "heading": "<p>Aangename kennismaking<a href=\"/pages/terms-conditions\" title=\"Algemene voorwaarden\">,</a> <br/>tot binnenkort<a href=\"/collections\" title=\"All collections\">.</a></p>",
+        "heading_size": "h0",
+        "sub_heading": "<p>Check zeker ook je <a href=\"/pages/veelgestelde-vraag\" target=\"_blank\" title=\"Veelgestelde vraag?\">spam map</a> in je mailbox eens! </p>",
+        "sub_heading_size": "text-body--small",
+        "description": "",
+        "description_size": "text-body--small-3",
+        "button_label": "TERUG NAAR DE STARTPAGINA",
+        "button_link": "/",
+        "button_style": "button--primary",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "description_content_UDLVAT"
+  ]
+}
