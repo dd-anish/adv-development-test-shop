@@ -7,6 +7,7 @@
 
 
 {%- style -%}
+
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
   }
@@ -26,7 +27,38 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+    {%- for block in section.blocks -%}
+
+        .footer__content-top .footer__blocks-wrapper .block-{{ block.id }} .footer-block{
+            text-align: {{ block.settings.text_alignment_mobile }};
+        }
+
+        .block-{{ block.id }} .footer-block{
+            width: {{ block.settings.width_of_block }}%;
+        }
+
+        .block-{{ block.id }} {
+            grid-row: span var(--grid-row-span-mobile);
+            grid-column: span var(--grid-column-span-mobile);
+        }
+
+        @media (min-width: 750px) {
+            .block-{{ block.id }} {
+                grid-row: span var(--grid-row-span-desktop);
+                grid-column: span var(--grid-column-span-desktop);
+            }
+
+            .footer__content-top .footer__blocks-wrapper .block-{{ block.id }} .footer-block{
+                text-align: {{ block.settings.text_alignment_desktop }};
+            }
+        }
+
+    {%- endfor -%}
+  
 {%- endstyle -%}
+
+
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
   {%- liquid
@@ -64,14 +96,22 @@
           -%}
           <!-- Footer Top Content Wrapper Grid -->
           <div
-            class="footer__blocks-wrapper footer-top-content{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="footer__blocks-wrapper footer-top-content {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
             {% endif %}
           >
             {%- for block in section.blocks -%}
               <!-- Footer Block -->
-               <div class="grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}">
+               <div 
+                class="grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }} block-{{ block.id }} {{ block.settings.hide_in }}" 
+                style="
+                    --grid-row-span-mobile: {{ block.settings.grid_row_span_mobile }};
+                    --grid-column-span-mobile: {{ block.settings.grid_column_span_mobile }};
+                    --grid-row-span-desktop: {{ block.settings.grid_row_span_desktop }};
+                    --grid-column-span-desktop: {{ block.settings.grid_column_span_desktop }};
+                    "
+               >
                   <div
                     class="footer-block grid__item {% if block.type == 'link_list' %} footer-block--menu {% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                     {{ block.shopify_attributes }}
@@ -82,37 +122,23 @@
                   >
                     <!-- Footer Block Heading -->
                     {%- if block.settings.heading != blank -%}
-                      <h2 class="footer-block__heading inline-richtext h2">{{- block.settings.heading -}}</h2>
+                      <h2 class="footer-block__heading inline-richtext hsm text-uppercase">{{- block.settings.heading -}}</h2>
                     {%- endif -%}
 
                     {%- case block.type -%}
                       {%- when '@app' -%}
                         {% render block %}
                       {%- when 'text' -%}
-                        <div class="footer-block__details-content rte">
-                          {{ block.settings.subtext }}
-                        </div>
 
-                      <!-- Link List Block -->
-                      {%- when 'link_list' -%}
-                        {% if block.settings.menu != blank %}
-                          <ul class="footer-menu-parent footer-block__details-content list-unstyled grid">
-                            
-                            {% for link in block.settings.menu.links %}
-                              <li class="grid__item {% if link.title == 'Contact' %} footer-menu-item--contact {% endif %}">
-                                <a class="link link--text list-menu__item list-menu__item--link hsm">
-                                  {{ link.title }}
-                                </a>
+                        <ul class="footer-block__details-content list-unstyled">
+                            <li>
+                                <!-- Socials Block -->
+                                {%- if block.settings.show_social_icons and has_social_icons -%}
+                                    {%- render 'social-icons', class: 'footer__list-social' -%}
+                                {%- endif -%}
 
-                                {% if link.title == 'Follow Us' or link.title == 'Volg Ons' %}
-                                  <!-- Social Icons -->
-                                    {%- if section.settings.show_social and has_social_icons -%}
-                                      {%- render 'social-icons', class: 'footer__list-social' -%}
-                                    {%- endif -%}
-                                {% endif %}
-
-                                {% if link.title == 'Payments' or link.title == 'Betaalmethoden' %}
-                                  {%- if section.settings.payment_enable -%}
+                                <!-- Payments Block -->
+                                {%- if block.settings.show_payments -%}
                                     <div class="footer__payment">
                                       <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
 
@@ -126,34 +152,31 @@
                                         {%- endfor -%}
                                       </ul>
                                     </div>
-                                  {%- endif -%}                                  
-                                {% endif %}
-      
-                                {% if link.links.size > 0 %}
-                                  <ul class="footer-menu-child list-unstyled">
-                                    {% for child_link in link.links %}
-                                      <li class="">
-                                        <a href="{{ child_link.url }}" class="link link--text list-menu__item list-menu__item--link {% if child_link.active %} list-menu__item--active {% endif %} text-body--small">
-                                          {{ child_link.title }}
-                                        </a>
-      
-                                        {% if child_link.links.size > 0 %}
-                                          <ul class="footer-menu-grand-child">
-                                            {% for grandchild_link in child_link.links %}
-                                              <li>
-                                                <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
-                                              </li>
-                                            {% endfor %}
-                                          </ul>
-                                        {% endif %}
-                                      </li>
-                                    {% endfor %}
-                                  </ul>
-                                {% endif %}
-                              </li>
-                            {% endfor %}
-                          </ul>
-                        {% endif %}
+                                {%- endif -%} 
+
+                                <div class="footer-block__details-content rte text-body--small">
+                                    {{ block.settings.subtext }}
+                                </div>
+                                
+                            </li>
+                        </ul>
+
+                      <!-- Link List Block -->
+                      {%- when 'link_list' -%}
+                        {%- if block.settings.menu != blank -%}
+                        <ul class="footer-block__details-content list-unstyled">
+                            {%- for link in block.settings.menu.links -%}
+                            <li>
+                                <a
+                                href="{{ link.url }}"
+                                class="link link--text list-menu__item text-body--small list-menu__item--link {% if link.active %} list-menu__item--active{% endif %}"
+                                >
+                                {{ link.title | escape }}
+                                </a>
+                            </li>
+                            {%- endfor -%}
+                        </ul>
+                        {%- endif -%}
 
                       <!-- Brand Information Block -->
                       {%- when 'brand_information' -%}
@@ -394,7 +417,7 @@
 
 {% schema %}
 {
-  "name": "t:sections.footer.name",
+  "name": "Footer",
   "blocks": [
     {
       "type": "@app"
@@ -415,7 +438,117 @@
           "default": "footer",
           "label": "t:sections.footer.blocks.link_list.settings.menu.label",
           "info": "t:sections.footer.blocks.link_list.settings.menu.info"
-        }
+        },
+        {
+            "type": "select",
+            "id": "hide_in",
+            "label": "Hide in",
+            "options": [
+                {
+                    "value": "mobile-hidden",
+                    "label": "Mobile"
+                },
+                {
+                    "value": "desktop-hidden",
+                    "label": "Desktop"
+                },
+                {
+                    "value": "none",
+                    "label": "No hide"
+                }
+            ],
+            "default": "none"
+        },
+        {
+            "type": "range",
+            "id": "width_of_block",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "%",
+            "label": "Width",
+            "default": 100
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row_span_mobile",  
+            "label": "Grid row span (mobile)",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column_span_mobile",  
+            "label": "Grid column span (mobile)",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_row_span_desktop",  
+            "label": "Grid row span (desktop)",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column_span_desktop",  
+            "label": "Grid column span (desktop)",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+        {
+            "type": "select",
+            "id": "text_alignment_mobile",
+            "label": "Text alignment on mobile",
+            "default": "center",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "text_alignment_desktop",
+            "label": "Text alignment on desktop",
+            "default": "center",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ]
+        },
       ]
     },
     {
@@ -433,9 +566,79 @@
         {
           "type": "checkbox",
           "id": "show_social",
-          "default": true,
+          "default": false,
           "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
           "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
+        },
+        {
+            "type": "select",
+            "id": "hide_in",
+            "label": "Hide in",
+            "options": [
+                {
+                    "value": "mobile-hidden",
+                    "label": "Mobile"
+                },
+                {
+                    "value": "desktop-hidden",
+                    "label": "Desktop"
+                },
+                {
+                    "value": "none",
+                    "label": "No hide"
+                }
+            ],
+            "default": "none"
+        },
+        {
+            "type": "range",
+            "id": "width_of_block",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "%",
+            "label": "Width",
+            "default": 100
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row_span_mobile",  
+            "label": "Grid row span (mobile)",  
+            "options": [  
+                { "value": "1", "label": "1" },  
+                { "value": "2", "label": "2" },  
+                { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column_span_mobile",  
+            "label": "Grid column span (mobile)",  
+            "options": [  
+                { "value": "1", "label": "1" },  
+                { "value": "2", "label": "2" },  
+                { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_row_span_desktop",  
+            "label": "Grid row span (desktop)",  
+            "options": [  
+                { "value": "1", "label": "1" },  
+                { "value": "2", "label": "2" },  
+                { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column_span_desktop",  
+            "label": "Grid column span (desktop)",  
+            "options": [  
+                { "value": "1", "label": "1" },  
+                { "value": "2", "label": "2" },  
+                { "value": "3", "label": "3" }  
+            ]  
         }
       ]
     },
@@ -454,7 +657,129 @@
           "id": "subtext",
           "default": "t:sections.footer.blocks.text.settings.subtext.default",
           "label": "t:sections.footer.blocks.text.settings.subtext.label"
-        }
+        },
+        {
+            "type": "checkbox",
+            "id": "show_social_icons",
+            "default": false,
+            "label": "Show social icons"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_payments",
+            "default": false,
+            "label": "Show payments"
+        },
+        {
+            "type": "select",
+            "id": "hide_in",
+            "label": "Hide in",
+            "options": [
+                {
+                    "value": "mobile-hidden",
+                    "label": "Mobile"
+                },
+                {
+                    "value": "desktop-hidden",
+                    "label": "Desktop"
+                },
+                {
+                    "value": "none",
+                    "label": "No hide"
+                }
+            ],
+            "default": "none"
+        },
+        {
+            "type": "range",
+            "id": "width_of_block",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "%",
+            "label": "Width",
+            "default": 100
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row_span_mobile",  
+            "label": "Grid row span (mobile)",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column_span_mobile",  
+            "label": "Grid column span (mobile)",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_row_span_desktop",  
+            "label": "Grid row span (desktop)",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column_span_desktop",  
+            "label": "Grid column span (desktop)",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+          {
+            "type": "select",
+            "id": "text_alignment_mobile",
+            "label": "Text alignment on mobile",
+            "default": "center",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "text_alignment_desktop",
+            "label": "Text alignment on desktop",
+            "default": "center",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ]
+        },
       ]
     },
     {
@@ -627,15 +952,10 @@
       "default": 36
     }
   ],
-  "default": {
-    "blocks": [
-      {
-        "type": "link_list"
-      },
-      {
-        "type": "text"
-      }
-    ]
-  }
+"presets": [
+    {
+    "name": "Footer"
+    }
+],
 }
 {% endschema %}
