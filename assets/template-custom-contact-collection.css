@@ -1,0 +1,183 @@
+.collection.contact-cards-container .collection__title,
+.collection.contact-cards-container .collection__title .title {
+    padding: 0;
+}
+
+.contact-card-wrapper {
+    height: 100%
+}
+
+.contact-container {
+    height: 100%;
+}
+
+.contact-card__inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* gap: 0.5rem; */
+}
+
+/* Card Image */
+.contact-card__media {
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+/* Variable Not Working from Schema */
+/* .contact--standard .contact-card__media {
+    padding: var(--contact-card-image-padding)px;
+} */
+
+.contact-card__media img,
+.contact-card__media svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Card Icons */
+.contact--card .contact-card__media-icons {
+    border-radius: calc(var(--border-radius) * 2);
+}
+
+.contact-card__media .svg-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.contact-card__media .svg-wrapper svg {
+    padding: 2rem;
+}
+
+.contact--card .contact-card__media svg {
+    /* Theme Signature Color in RGB */
+    /* background: rgba(193, 23, 23, 0.5); */
+    background: var(--theme-black-color);
+    fill: var(--theme-white-color);
+}
+
+@media screen and (min-width: 767px) {
+
+    .contact-card__media .svg-wrapper svg {
+        /*  padding: 2.5rem; */
+        border-radius: calc(var(--border-radius) * 2);
+    }
+}
+
+/* Card Content */
+.contact-card__content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Standard Cards */
+.contact--standard {
+    border-radius: var(--border-radius);
+}
+
+/* Full BG Gray Card -> Contact Card */
+.contact--card {
+    border-radius: var(--border-radius);
+}
+
+/* Card Cards */
+.contact--card .contact-card__media {
+    aspect-ratio: 1;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.contact-card__information--card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+@media screen and (min-width: 768px) {
+
+    .contact--card .contact-card__inner {
+        flex-direction: row;
+        height: fit-content;
+    }
+
+    .contact--card .contact-card__content {
+        flex-direction: row;
+    }
+
+    .contact--card .contact-card__media {
+        flex: none;
+        aspect-ratio: 1;
+        width: 40%;
+        margin: 1rem;
+        padding: var(--padding-for-icon-on-desktop);
+    }
+}
+
+/* Card Content */
+
+.contact-card-more-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.contact--card-day-time-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.contact--card-day-time-wrapper .bullet {
+    color: var(--theme-signature-color);
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+    .contact-card-more-content {
+        flex: none;
+        justify-content: normal;
+    }
+}
+
+
+/* Figma Like Card CSS */
+
+.contact-card__heading a:after {
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.contact--standard .contact-card__media {
+    padding: 2rem;
+}
+
+.contact-card__information .h2{
+    font-size: 1.3rem;
+}
+
+@media screen and (min-width: 768px) {
+
+    .contact--standard .contact-card__media {
+        padding: 4rem;
+    }
+
+    .contact-card__information .h2 {
+        font-size: 1.5rem;
+    }
+
+}

@@ -3,6 +3,7 @@
 
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'template-custom-contact-collection.css' | asset_url | stylesheet_tag }}
 
 
 
@@ -11,6 +12,9 @@
   :root{
     --number_of_columns_on_desktop: {{ section.settings.columns_desktop }};
     --padding-for-icon-on-desktop: {{ 10.0 | divided_by: section.settings.columns_desktop | round: 2 }}rem;
+
+    /* Variable Not Working from Schema */
+    --contact-card-image-padding: {{ section.settings.contact_card_image_padding }};
 
   }
 
@@ -40,6 +44,8 @@
       {%- if section.settings.title != blank -%}
         <h2 class="title text-link-underline {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} unclickable-link">
           {{ section.settings.title }}
+          {{ section.settings.contact_card_image_padding }}
+
         </h2>
       {%- endif -%}
     </div>
@@ -154,6 +160,16 @@
       "step": 1,
       "default": 4,
       "label": "t:sections.collection-list.settings.columns_desktop.label"
+    },
+    {
+      "type": "range",
+      "id": "contact_card_image_padding",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "t:settings_schema.global.settings.image_padding.label",
+      "default": 0
     },
     {
       "type": "color_scheme",

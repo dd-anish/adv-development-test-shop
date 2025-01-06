@@ -28,12 +28,9 @@
       if settings.animations_reveal_on_scroll
         assign contact_form_class = 'isolate adv-contact-form scroll-trigger animate--slide-in'
       endif
-
-      # assign success_page = settings.contact_form_success_page 
+      
     -%}
 
-    {% comment %} {{ success_page }} {% endcomment %}
-    
     {%- form 'contact', id: 'ContactForm', class: contact_form_class, return_to: '/pages/contact-form-thank-you-page' -%}
       {%- if form.posted_successfully? -%}
         <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
@@ -66,8 +63,13 @@
             name="contact[{{ 'templates.contact.form.name' | t }}]"
             value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
             placeholder="{{ 'templates.contact.form.name' | t }}"
+            required  
           >
-          <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
+          <label class="field__label" for="ContactForm-name">
+            {{ 'templates.contact.form.name' | t }}
+            <span aria-hidden="true">*</span>
+
+          </label>
         </div>
         
         {%- if section.settings.show_business_fields -%}  
@@ -77,10 +79,12 @@
             id="ContactForm-company-name"  
             class="field__input"  
             name="contact[{{ 'templates.contact.form.company_name' | t }}]"  
-            placeholder="contact[{{ 'templates.contact.form.company_name' | t }}]"  
+            placeholder="contact[{{ 'templates.contact.form.company_name' | t }}]"
+            required
             >  
             <label class="field__label" for="ContactForm-company-name">
               {{ 'templates.contact.form.company_name' | t }}
+              <span aria-hidden="true">*</span>
             </label>  
           </div>  
           <div class="field">  
@@ -89,10 +93,12 @@
             id="ContactForm-vat-number"  
             class="field__input"  
             name="contact[{{ 'templates.contact.form.vat_number' | t }}]"  
-            placeholder="contact[{{ 'templates.contact.form.vat_number' | t }}]"  
+            placeholder="contact[{{ 'templates.contact.form.vat_number' | t }}]"
+            required
             >  
             <label class="field__label" for="ContactForm-vat-number">
               {{ 'templates.contact.form.vat_number' | t }}
+               <span aria-hidden="true">*</span>
             </label>  
           </div>  
         {%- endif -%}  
@@ -113,6 +119,7 @@
               aria-describedby="ContactForm-email-error"
             {% endif %}
             placeholder="{{ 'templates.contact.form.email' | t }}"
+            required
           >
           <label class="field__label" for="ContactForm-email">
             {{- 'templates.contact.form.email' | t }}
@@ -142,8 +149,12 @@
           pattern="[0-9\-]*"
           value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
           placeholder="{{ 'templates.contact.form.phone' | t }}"
+          required
         >
-        <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+        <label class="field__label" for="ContactForm-phone">
+          {{ 'templates.contact.form.phone' | t }}
+          <span aria-hidden="true">*</span>
+        </label>
       </div>
        
       <div class="field">
@@ -160,6 +171,7 @@
           class="text-area field__input"
           name="contact[{{ comment_type }}]"
           placeholder="contact[{{ comment_type }}]"
+          required
         >
           {{- form.body -}}
         </textarea>
