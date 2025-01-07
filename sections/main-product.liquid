@@ -169,22 +169,30 @@
                 
                 <div id="price-{{ section.id }}" role="status" class="{% if block.settings.enable_background %} custom-block-background {% endif %}block-{{ block.id }}" 
                 {{ block.shopify_attributes }}>
-                  {%- render 'price',
-                    product: product,
-                    use_variant: true,
-                    price_class: 'price--extra-extra-large',
-                    show_badges: false,
-                    show_strikethrough_price: section.settings.show_strikethrough_price,
-                    price_horizontal_alignment: section.settings.price_horizontal_alignment,
-                    price_vertical_alignment: section.settings.price_vertical_alignment,
-                    price_gap: section.settings.price_gap,
-                    show_tax_price: section.settings.show_tax_price,
-                    tax_price_font_size: section.settings.tax_price_font_size,
-                    tax_price_font_weight: section.settings.tax_price_font_weight
-                    tax_text_font_size: section.settings.tax_text_font_size,
-                    original_price_size: section.settings.original_price_size,
-                    tax_price_margin_left: section.settings.tax_price_margin_left,
-                  -%}
+                  <div class="variant_picker_price_container">
+
+                    {% if block.settings.show_variant_picker %}
+                      {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id, variant_picker_with_price_block: true %}
+                    {% endif %}
+
+
+                    {%- render 'price',
+                      product: product,
+                      use_variant: true,
+                      price_class: 'price--extra-extra-large',
+                      show_badges: false,
+                      show_strikethrough_price: section.settings.show_strikethrough_price,
+                      price_horizontal_alignment: section.settings.price_horizontal_alignment,
+                      price_vertical_alignment: section.settings.price_vertical_alignment,
+                      price_gap: section.settings.price_gap,
+                      show_tax_price: section.settings.show_tax_price,
+                      tax_price_font_size: section.settings.tax_price_font_size,
+                      tax_price_font_weight: section.settings.tax_price_font_weight
+                      tax_text_font_size: section.settings.tax_text_font_size,
+                      original_price_size: section.settings.original_price_size,
+                      tax_price_margin_left: section.settings.tax_price_margin_left,
+                    -%}
+                  </div>
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
@@ -1291,6 +1299,53 @@
           "id": "show_tax_and_more_info",
           "label": "Show tax and more info",
           "default": false
+        },
+        {
+          "type": "header",
+          "content": "Settings for Variant Picker"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_variant_picker",
+          "label": "Show variant picker",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__1.label"
+            },
+            {
+              "value": "button",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label"
+            }
+          ],
+          "default": "button",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
+        },
+        {
+          "id": "swatch_shape",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.label",
+          "type": "select",
+          "info": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.info",
+          "options": [
+            {
+              "value": "circle",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__1.label"
+            },
+            {
+              "value": "square",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__2.label"
+            },
+            {
+              "value": "none",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__3.label"
+            }
+          ],
+          "default": "circle"
         },
         {
           "type": "header",

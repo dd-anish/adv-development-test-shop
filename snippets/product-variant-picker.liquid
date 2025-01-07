@@ -8,12 +8,12 @@ Accepts:
 Usage:
 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+
 {%- unless product.has_only_default_variant -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
-    class= 'variant-selector-custom {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding block-{{ block.id }}'
-    style="--grid-row: span {{ block.settings.grid_row }}; --grid-column: span {{ block.settings.grid_column }}"
+    class= 'variant-selector-custom {% if block.settings.enable_background %} custom-block-background {% endif %} {% if variant_picker_with_price_block != true %} block-{{ block.id }} {% endif %}'
     {{ block.shopify_attributes }}>
     {%- for option in product.options_with_values -%}
       {%- liquid

@@ -178,6 +178,7 @@ variant-selects {
   display: flex;
   flex-direction: column;
   gap:1rem;
+  align-self: center;
 }
 
 .variant-selector-custom .form__label .option-key{
@@ -186,6 +187,7 @@ variant-selects {
 
 .product-form__input--pill{
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 

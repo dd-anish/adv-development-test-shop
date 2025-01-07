@@ -285,7 +285,7 @@ a.product__text {
 }
 
 .product .price__container {
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
 }
 
 .product .price dl {
@@ -1540,10 +1540,19 @@ a.product__text {
 }
 
 .product .price__container {
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
   /* line-height: 1.2; */
 }
 
+
+/* Variant Picker and Price Block */
+
+.variant_picker_price_container{
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: end;
+}
 
 /* Quanity Input */
 
