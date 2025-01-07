@@ -445,7 +445,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   color: black;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: center;
 }
 
 .product-options-price-container dl{

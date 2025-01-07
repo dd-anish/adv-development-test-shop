@@ -1820,6 +1820,12 @@
       },
       {
         "type": "checkbox",
+        "id": "show_promo_produuct_original_price_total",
+        "label": "Show Promo Product Original Price Total",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "show_cart_note",
         "label": "t:settings_schema.cart.settings.show_cart_note.label",
         "default": false

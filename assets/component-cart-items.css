@@ -391,6 +391,11 @@ cart-remove-button .icon-remove {
   text-decoration-color: var(--theme-signature-color);
   color: #000;
   font-size: 1.2rem;
+  line-height: 1;
+}
+
+.cart-item__item_current_price{
+  line-height: 1.1;
 }
 
 .cart-item__discount_percentage_on_sale{
@@ -424,5 +429,9 @@ cart-remove-button .icon-remove {
 /* Cart Price Product Option */
 
 .product-option-custom-for-price{
-  flex-wrap: wrap-reverse;
+  /* flex-wrap: wrap-reverse; */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: start;
 }
