@@ -170,7 +170,10 @@ product-info {
 /* Form Elements */
 .product-form__input {
   /* comment the below if the 1st input is taking 100% width */
-  flex: 0 0 100%;
+  /* flex: 0 0 100%; */
+
+  /* Changed to Auto due to Display Grid */
+  flex:auto;
   padding: 0;
   margin: 0 0 1.2rem 0;
   max-width: 44rem;
@@ -220,6 +223,12 @@ product-info {
 
 .product__info-container > * + * {
   margin: 1.5rem 0;
+}
+
+/* Two Columns in The Product Info Container */
+.product__info-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .product__info-container iframe {
