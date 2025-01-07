@@ -129,12 +129,12 @@
                       {%- when '@app' -%}
                         {% render block %}
                       {%- when 'text' -%}
-
+                        
                         <ul class="footer-block__details-content list-unstyled">
                             <li>
                                 <!-- Socials Block -->
                                 {%- if block.settings.show_social_icons and has_social_icons -%}
-                                    {%- render 'social-icons', class: 'footer__list-social' -%}
+                                    {%- render 'social-icons', class: 'footer__list-social', block: block -%}
                                 {%- endif -%}
 
                                 <!-- Payments Block -->
@@ -144,7 +144,7 @@
 
                                       {% assign enabled_payment_types = 'visa,american_express,google_pay' | remove: ' ' | split: ',' %}
 
-                                      <ul class="list list-payment" role="list">
+                                      <ul class="list list-payment" role="list" style="justify-content: {% if block.settings.text_alignment_mobile == 'left' %} start {% elsif block.settings.text_alignment_mobile == 'right' %} end {% else %} center {% endif %} ;">
                                         {%- for type in enabled_payment_types -%}
                                           <li class="list-payment__item">
                                             {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
@@ -639,7 +639,47 @@
                 { "value": "2", "label": "2" },  
                 { "value": "3", "label": "3" }  
             ]  
-        }
+        },
+        {
+            "type": "select",
+            "id": "text_alignment_mobile",
+            "label": "Text alignment on mobile",
+            "default": "center",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "text_alignment_desktop",
+            "label": "Text alignment on desktop",
+            "default": "center",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ]
+        },
       ]
     },
     {

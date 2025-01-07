@@ -445,11 +445,12 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   color: black;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: center;
 }
 
 .product-options-price-container dl{
   margin: 0;
+  padding-bottom: 0.5rem;
 }
 
 .total-price-container{
@@ -488,7 +489,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 }
 
 .cart-item__original-price{
-  padding-top: 0.5rem;
+  /* padding-top: 0.5rem; */
 }
 
 

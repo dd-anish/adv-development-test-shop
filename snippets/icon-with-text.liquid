@@ -37,7 +37,8 @@
   endif
 -%}
 <ul
-  class="icon-with-text icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %} {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding"
+  class="icon-with-text icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %} {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding block-{{ block.id }}"
+  style="--grid-row: span {{ block.settings.grid_row }}; --grid-column: span {{ block.settings.grid_column }}"
   {{ block.shopify_attributes }}
 >
   {%- unless heading_1_empty -%}

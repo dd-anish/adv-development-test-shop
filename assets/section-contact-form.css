@@ -90,7 +90,9 @@
 
 .adv-contact-form .field__label{
   position: relative;
-  font-weight: 400;
+  font-weight: 700;
+  color: black;
+  font-size: 1.2rem;
 }
 
 /* Submit Button */
@@ -113,5 +115,8 @@
   .contact__button .button {
     width: fit-content;
   }
-  
+
+  .adv-contact-form .field__label {
+    font-size: 1.5rem;
+  }
 }

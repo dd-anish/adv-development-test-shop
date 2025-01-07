@@ -45,22 +45,31 @@
       background-color: {{ section.settings.custom_block_background_color }};
     }
 
-    :root {
+   /*  :root {
         --custom-block-background-color: {{ section.settings.custom_block_background_color }};
-    }
+    } */
 
   
     /* Redering Padding for each blocks */
     {%- for block in section.blocks -%}
-      .block-{{ block.id }}-padding {
-        padding-top: {{ block.settings.padding_top | times: 0.75 | round: 0 | default: 0 }}px;
-        padding-bottom: {{ block.settings.padding_bottom | times: 0.75 | round: 0 | default: 0 }}px;
-        padding-left: {{ block.settings.padding_left | times: 0.75 | round: 0 | default: 0 }}px;
-        padding-right: {{ block.settings.padding_right | times: 0.75 | round: 0 | default: 0 }}px;
+
+      .block-{{ block.id }} {
+
+          grid-row: span {{ block.settings.grid_row }};
+          grid-column: span {{ block.settings.grid_column }};
+          padding-top: {{ block.settings.padding_top | times: 0.75 | round: 0 | default: 0 }}px;
+          padding-bottom: {{ block.settings.padding_bottom | times: 0.75 | round: 0 | default: 0 }}px;
+          padding-left: {{ block.settings.padding_left | times: 0.75 | round: 0 | default: 0 }}px;
+          padding-right: {{ block.settings.padding_right | times: 0.75 | round: 0 | default: 0 }}px;
+          border-top-left-radius: {{ block.settings.border_radius_top_left | default: 0 }}px;
+          border-top-right-radius: {{ block.settings.border_radius_top_right | default: 0 }}px;
+          border-bottom-left-radius: {{ block.settings.border_radius_bottom_left | default: 0 }}px;
+          border-bottom-right-radius: {{ block.settings.border_radius_bottom_right | default: 0 }}px;
       }
 
       @media screen and (min-width: 750px) {
-        .block-{{ block.id }}-padding {
+
+        .block-{{ block.id }} {
           padding-top: {{ block.settings.padding_top | default: 0 }}px;
           padding-bottom: {{ block.settings.padding_bottom | default: 0 }}px;
           padding-left: {{ block.settings.padding_left | default: 0 }}px;
@@ -132,17 +141,22 @@
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
+
               {%- when '@app' -%}
                 {% render block %}
+
               {%- when 'text' -%}
                 <p
-                  class="product__text inline-richtext {% if block.settings.enable_background %} custom-block-background {% endif %} {% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %} block-{{ block.id }}-padding"
+                  class="product__text inline-richtext {% if block.settings.enable_background %} custom-block-background {% endif %} {% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %} block-{{ block.id }}"
                   {{ block.shopify_attributes }}
                 >
                   {{- block.settings.text -}}
                 </p>
+
               {%- when 'title' -%}
-                <div class="product__title {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
+
+                <div class="product__title {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}" 
+                {{ block.shopify_attributes }}>
                   <h1>{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
                     <h2 class="h1">
@@ -150,25 +164,35 @@
                     </h2>
                   </a>
                 </div>
+
               {%- when 'price' -%}
                 
-                <div id="price-{{ section.id }}" role="status" class="{% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
-                  {%- render 'price',
-                    product: product,
-                    use_variant: true,
-                    price_class: 'price--extra-extra-large',
-                    show_badges: false,
-                    show_strikethrough_price: section.settings.show_strikethrough_price,
-                    price_horizontal_alignment: section.settings.price_horizontal_alignment,
-                    price_vertical_alignment: section.settings.price_vertical_alignment,
-                    price_gap: section.settings.price_gap,
-                    show_tax_price: section.settings.show_tax_price,
-                    tax_price_font_size: section.settings.tax_price_font_size,
-                    tax_price_font_weight: section.settings.tax_price_font_weight
-                    tax_text_font_size: section.settings.tax_text_font_size,
-                    original_price_size: section.settings.original_price_size,
-                    tax_price_margin_left: section.settings.tax_price_margin_left,
-                  -%}
+                <div id="price-{{ section.id }}" role="status" class="{% if block.settings.enable_background %} custom-block-background {% endif %}block-{{ block.id }}" 
+                {{ block.shopify_attributes }}>
+                  <div class="variant_picker_price_container">
+
+                    {% if block.settings.show_variant_picker %}
+                      {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id, variant_picker_with_price_block: true %}
+                    {% endif %}
+
+
+                    {%- render 'price',
+                      product: product,
+                      use_variant: true,
+                      price_class: 'price--extra-extra-large',
+                      show_badges: false,
+                      show_strikethrough_price: section.settings.show_strikethrough_price,
+                      price_horizontal_alignment: section.settings.price_horizontal_alignment,
+                      price_vertical_alignment: section.settings.price_vertical_alignment,
+                      price_gap: section.settings.price_gap,
+                      show_tax_price: section.settings.show_tax_price,
+                      tax_price_font_size: section.settings.tax_price_font_size,
+                      tax_price_font_weight: section.settings.tax_price_font_weight
+                      tax_text_font_size: section.settings.tax_text_font_size,
+                      original_price_size: section.settings.original_price_size,
+                      tax_price_margin_left: section.settings.tax_price_margin_left,
+                    -%}
+                  </div>
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
@@ -178,7 +202,7 @@
                 <!-- Tax Text -->
                 {% if block.settings.show_tax_and_more_info %}  
                   {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                    <div class="product__tax caption rte {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding">
+                    <div class="product__tax caption rte {% if block.settings.enable_background %} custom-block-background {% endif %}">
                       {%- if cart.duties_included and cart.taxes_included -%}
                         {{ 'products.product.duties_and_taxes_included' | t }}
                       {%- elsif cart.taxes_included -%}
@@ -200,9 +224,10 @@
                     {{ form | payment_terms }}
                   {%- endform -%}
                 </div>
+
               {%- when 'inventory' -%}
                 <p
-                  class="product__inventory {% if block.settings.enable_background %} custom-block-background {% endif %}  {% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %} block-{{ block.id }}-padding"
+                  class="product__inventory {% if block.settings.enable_background %} custom-block-background {% endif %}  {% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %} block-{{ block.id }}"
                   {{ block.shopify_attributes }}
                   id="Inventory-{{ section.id }}"
                   role="status"
@@ -283,7 +308,7 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
-                <div class="product__description-container {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding" {{ block.shopify_attributes }}>
+                <div class="product__description-container {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}" {{ block.shopify_attributes }}>
 
                   {%- if block.settings.heading != blank -%}
                     <div class="product__description-heading unclickable-link">
@@ -307,10 +332,9 @@
                 </div>
               {%- when 'sku' -%}
                 <p
-                  class="product__sku {% if block.settings.enable_background %} custom-block-background {% endif %}  {% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %} block-{{ block.id }}-padding"
+                  class="product__sku {% if block.settings.enable_background %} custom-block-background {% endif %}  {% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %} block-{{ block.id }}"
                   id="Sku-{{ section.id }}"
-                  role="status"
-                  {{ block.shopify_attributes }}
+                  role="status" {{ block.shopify_attributes }}
                 >
                   <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
                   {{- product.selected_or_first_available_variant.sku -}}
@@ -320,7 +344,7 @@
 
               <!-- Collapsible Block -->
               {%- when 'collapsible_tab' -%}
-                <div class="product__accordion accordion quick-add-hidden {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding text-body" {{ block.shopify_attributes }}>
+                <div class="product__accordion accordion quick-add-hidden {% if block.settings.enable_background %} custom-block-background {% endif %} text-body block-{{ block.id }}" {{ block.shopify_attributes }}>
                   <details id="Details-{{ block.id }}-{{ section.id }}" {% if block.settings.expand_by_default %} open {% endif %}>
                     <summary>
                       <div class="summary__title">
@@ -463,12 +487,12 @@
             
             
               {%- when 'buy_buttons' -%}
-                <div class="custom-quantity-selector-buy-button-container">
+                <div class="custom-quantity-selector-buy-button-container {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}" {{ block.shopify_attributes }}>
+
                   {% if block.settings.display_quantity_selector %}
                     <div
                     id="Quantity-Form-{{ section.id }}"
-                    class="product-form__input product-form__quantity custom-quantity-selector {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding  {% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top {% endif %}"
-                    {{ block.shopify_attributes }}
+                    class="product-form__input product-form__quantity custom-quantity-selector {% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top {% endif %}"
                     >
                       {% comment %} TODO: enable theme-check once `item_count_for_variant` is accepted as valid filter {% endcomment %}
                       {% # theme-check-disable %}
@@ -695,8 +719,7 @@
 
               {%- when 'popup' -%}
                 <modal-opener
-                  class="product-popup-modal__opener quick-add-hidden"
-                  data-modal="#PopupModal-{{ block.id }}"
+                  class="product-popup-modal__opener quick-add-hidden block-{{ block.id }}" data-modal="#PopupModal-{{ block.id }}"
                   {{ block.shopify_attributes }}
                 >
                   <button
@@ -720,7 +743,8 @@
                 
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
-                  <div class="rating-wrapper {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}-padding">
+                  <div class="rating-wrapper {% if block.settings.enable_background %} custom-block-background {% endif %} block-{{ block.id }}" 
+                  >
                     {% liquid
                       assign rating_decimal = 0
                       assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
@@ -756,9 +780,10 @@
                     </p>
                   </div>
                 {%- endif -%}
+
               {%- when 'complementary' -%}
                 <product-recommendations
-                  class="complementary-products quick-add-hidden {% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
+                  class="complementary-products quick-add-hidden {% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %} block-{{ block.id }}"
                   data-url="{{ routes.product_recommendations_url }}?limit={{ block.settings.product_list_limit }}&intent=complementary"
                   data-section-id="{{ section.id }}"
                   data-product-id="{{ product.id }}"
@@ -905,6 +930,7 @@
                     <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
                   {%- endif -%}
                 </product-recommendations>
+
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
             {%- endcase -%}
@@ -971,45 +997,6 @@
   </div>
 </product-info>
 
-<script>
-
-function updateBlockStyles() {
-
-  const customBlocks = document.querySelectorAll(".custom-block-background");
-
-  console.log("Triggered");
-
-  // Reset border-radius styles
-  customBlocks.forEach(block => {
-    block.style.borderRadius = "";
-  });
-
-  if (customBlocks.length > 0) {
-    // Add border-radius to the first block
-    customBlocks[0].style.borderTopLeftRadius = "var(--buttons-radius)";
-    customBlocks[0].style.borderTopRightRadius = "var(--buttons-radius)";
-
-    // Add border-radius to the last block
-    customBlocks[customBlocks.length - 1].style.borderBottomLeftRadius = "var(--buttons-radius)";
-    customBlocks[customBlocks.length - 1].style.borderBottomRightRadius = "var(--buttons-radius)";
-  }
-}
-
-// Run the script on page load
-document.addEventListener("DOMContentLoaded", updateBlockStyles);
-
-if(Shopify.designMode){
-    // Listen for Shopify theme editor events
-    document.addEventListener("shopify:section:load", updateBlockStyles);
-    document.addEventListener("shopify:section:unload", updateBlockStyles);
-    document.addEventListener("shopify:section:select", updateBlockStyles);
-    document.addEventListener("shopify:section:deselect", updateBlockStyles);
-    document.addEventListener("shopify:block:select", updateBlockStyles);
-    document.addEventListener("shopify:block:deselect", updateBlockStyles);
-}
-
-</script>
-
 {% schema %}
 {
   "name": "t:sections.main-product.name",
@@ -1052,7 +1039,76 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+        {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1109,9 +1165,78 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": true
         },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
          {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
+        },
+        {
           "type": "header",
           "content": "Block Padding Setting"
         },
@@ -1166,6 +1291,7 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": true
         },
         {
@@ -1174,7 +1300,122 @@ if(Shopify.designMode){
           "label": "Show tax and more info",
           "default": false
         },
+        {
+          "type": "header",
+          "content": "Settings for Variant Picker"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_variant_picker",
+          "label": "Show variant picker",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__1.label"
+            },
+            {
+              "value": "button",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label"
+            }
+          ],
+          "default": "button",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
+        },
+        {
+          "id": "swatch_shape",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.label",
+          "type": "select",
+          "info": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.info",
+          "options": [
+            {
+              "value": "circle",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__1.label"
+            },
+            {
+              "value": "square",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__2.label"
+            },
+            {
+              "value": "none",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__3.label"
+            }
+          ],
+          "default": "circle"
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
          {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
+        },
+        {
           "type": "header",
           "content": "Block Padding Setting"
         },
@@ -1248,9 +1489,78 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
         },
          {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
+        },
+        {
           "type": "header",
           "content": "Block Padding Setting"
         },
@@ -1337,9 +1647,78 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": true
         },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
          {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
+        },
+        {
           "type": "header",
           "content": "Block Padding Setting"
         },
@@ -1431,7 +1810,76 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": true
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1513,7 +1961,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "checkbox",
@@ -1526,6 +1975,74 @@ if(Shopify.designMode){
           "id": "show_trailing_icon",
           "label": "Show trailing icon",
           "default": false
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1582,6 +2099,7 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": false
         },
         {
@@ -1630,6 +2148,74 @@ if(Shopify.designMode){
           "max": 10,
           "step": 1,
           "default": 6
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1699,7 +2285,76 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1760,7 +2415,76 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -2040,7 +2764,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "header",
@@ -2082,6 +2807,74 @@ if(Shopify.designMode){
           "max": 10,
           "step": 1,
           "default": 6
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -2147,7 +2940,76 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -2207,7 +3069,76 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
+        },
+        {
+          "type": "header",
+          "content": "Block Grid Setting"
+        },
+        {  
+            "type": "select",  
+            "id": "grid_row",  
+            "label": "Grid Row Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },  
+        {  
+            "type": "select",  
+            "id": "grid_column",  
+            "label": "Grid Column Span",  
+            "options": [  
+            { "value": "1", "label": "1" },  
+            { "value": "2", "label": "2" },  
+            { "value": "3", "label": "3" }  
+            ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",

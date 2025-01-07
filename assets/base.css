@@ -3996,3 +3996,22 @@ h6,
 .icon-inventory-out-of-stock-status circle:first-of-type {
   opacity: .3;
 }
+
+
+/* Contact Form */
+
+@media screen and (min-width: 750px) {
+  
+  .field__input:focus~.field__label,
+    .field__input:not(:placeholder-shown)~.field__label,
+    .field__input:-webkit-autofill~.field__label,
+    .customer .field input:focus~label,
+    .customer .field input:not(:placeholder-shown)~label,
+    .customer .field input:-webkit-autofill~label {
+      font-size: 1.3rem;
+      top: calc(var(--inputs-border-width) + 0.5rem);
+      left: calc(var(--inputs-border-width) + 2rem);
+      letter-spacing: 0.0rem;
+    }
+  
+}

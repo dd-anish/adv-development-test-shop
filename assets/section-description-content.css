@@ -13,6 +13,13 @@
     margin: 0;
 }
 
+@media screen and (max-width: 749px){
+
+    .description-content .button {
+        padding: 0;
+    }
+}
+
 .description-content .button.button--primary{
     background: var(--theme-signature-color);
 }
@@ -40,3 +47,7 @@
     
 }
 
+
+.description-content .h0{
+    line-height: 1;
+}

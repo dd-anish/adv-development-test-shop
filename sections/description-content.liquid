@@ -7,16 +7,27 @@
         padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      .section-{{ section.id }}.description-content {
+        gap: {{ section.settings.gap_between_items_on_mobile }}rem;
     }
-  }
+
+    @media screen and (min-width: 750px) {
+        .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+        }
+
+        .section-{{ section.id }}.description-content {
+            gap: {{ section.settings.gap_between_items_on_desktop }}rem;
+        }
+    }
+
+
+
     
 {% endstyle %}
 
-<div class="section-{{ section.id }}-padding page-width description-content">
+<div class="section-{{ section.id }} section-{{ section.id }}-padding page-width description-content">
 
     {%- if section.settings.heading != blank -%}
         <h2 class="unclickable-link {{ section.settings.heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline {% endif %}">
@@ -206,6 +217,7 @@
                 "min": 0,
                 "max": 100,
                 "step": 4,
+                "unit": "px",
                 "default": 0
             },
             {
@@ -215,8 +227,29 @@
                 "min": 0,
                 "max": 100,
                 "step": 4,
+                "unit": "px",
                 "default": 0
-            }
+            },
+            {
+                "type": "range",
+                "id": "gap_between_items_on_mobile",
+                "label": "Gap Between Items on Mobile",
+                "min": 0,
+                "max": 50,
+                "step": 1,
+                "unit": "rem",
+                "default": 2
+            },
+            {
+                "type": "range",
+                "id": "gap_between_items_on_desktop",
+                "label": "Gap Between Items on Desktop",
+                "min": 0,
+                "max": 50,
+                "step": 1,
+                "unit": "rem",
+                "default": 2
+            },
         ],
         "presets": [
             {

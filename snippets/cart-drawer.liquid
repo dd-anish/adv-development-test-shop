@@ -192,7 +192,7 @@
 
                                     {%- for option in item.options_with_values -%}
                                       <div class="product-option font-body-bold ">
-                                        <dt>{{ option.name }}:</dt>
+                                        <dt>{{ option.name }} :</dt>
                                         <dd class="font-light label-custom-swatches">
                                           {{ option.value -}}
 
@@ -275,7 +275,7 @@
                                   {% endif %}
 
                                   <!-- Cart Item OG/Sale Price -->
-                                  <span class="{% if item.variant.compare_at_price %} font-body-bold {% endif %}">
+                                  <span class="cart-item__item_current_price {% if item.variant.compare_at_price %} font-body-bold {% endif %}">
                                     {{ item.original_price | money }}
                                   </span>
                                   
@@ -328,7 +328,7 @@
                                   </div>
                                 {%- else -%}
                                 <!-- Promo Products Price-->
-                                  {% if item.variant.compare_at_price %}
+                                  {% if item.variant.compare_at_price and settings.show_promo_produuct_original_price_total %}
                                     {% assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity %}
                                     <span class="cart-item__compare_at_price font-light">
                                       {{ original_price_with_quantity | money }}
