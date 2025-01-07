@@ -23,7 +23,9 @@
             "grid_row_span_mobile": "1",
             "grid_column_span_mobile": "2",
             "grid_row_span_desktop": "1",
-            "grid_column_span_desktop": "1"
+            "grid_column_span_desktop": "1",
+            "text_alignment_mobile": "center",
+            "text_alignment_desktop": "center"
           }
         },
         "link_list_xHAmqV": {
@@ -65,7 +67,9 @@
             "grid_row_span_mobile": "1",
             "grid_column_span_mobile": "1",
             "grid_row_span_desktop": "2",
-            "grid_column_span_desktop": "1"
+            "grid_column_span_desktop": "1",
+            "text_alignment_mobile": "center",
+            "text_alignment_desktop": "center"
           }
         },
         "link_list_DyyFT4": {
