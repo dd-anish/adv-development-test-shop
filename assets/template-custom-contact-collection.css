@@ -37,7 +37,7 @@
 
 /* Card Icons */
 .contact--card .contact-card__media-icons {
-    border-radius: calc(var(--border-radius) * 2);
+    border-radius: calc(var(--border-radius) * 1.5);
 }
 
 .contact-card__media .svg-wrapper {
@@ -46,7 +46,7 @@
 }
 
 .contact-card__media .svg-wrapper svg {
-    padding: 2rem;
+    padding: 1.8rem;
 }
 
 .contact--card .contact-card__media svg {
@@ -59,8 +59,8 @@
 @media screen and (min-width: 767px) {
 
     .contact-card__media .svg-wrapper svg {
-        /*  padding: 2.5rem; */
-        border-radius: calc(var(--border-radius) * 2);
+         padding: 2.5rem;
+        /* border-radius: calc(var(--border-radius) * 2); */
     }
 }
 
@@ -72,6 +72,21 @@
     flex: 1;
 }
 
+@media screen and (max-width: 375px) {
+    .contact-card__content {
+        padding: 1.5rem 1rem;
+    }
+
+    .contact-card__content .text-body--small-2{
+        font-size: 1.1rem;
+    }
+
+    .contact-card__content .text-body--small-3{
+        font-size: 1.3rem;
+    }
+    
+}
+
 /* Standard Cards */
 .contact--standard {
     border-radius: var(--border-radius);
@@ -79,15 +94,17 @@
 
 /* Full BG Gray Card -> Contact Card */
 .contact--card {
-    border-radius: var(--border-radius);
+    border-radius: calc(var(--border-radius) * 2);
 }
 
 /* Card Cards */
 .contact--card .contact-card__media {
     aspect-ratio: 1;
-    width: 40%;
+    width: 30%;
+    min-width: 60px;
+    max-width: 80px;
     margin: 0 auto;
-    margin-top: 2rem;
+    margin-top: 10%;
 }
 
 .contact-card__information--card {
@@ -99,7 +116,7 @@
     flex: 1;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) { 
 
     .contact--card .contact-card__inner {
         flex-direction: row;
@@ -113,11 +130,14 @@
     .contact--card .contact-card__media {
         flex: none;
         aspect-ratio: 1;
-        width: 40%;
-        margin: 1rem;
-        padding: var(--padding-for-icon-on-desktop);
+        width: 20%;
+        margin: 10% 0rem;
+        margin-left: 15%;
+        max-width: 80px;
+        /* padding: var(--padding-for-icon-on-desktop); */
     }
 }
+
 
 /* Card Content */
 
@@ -127,6 +147,7 @@
     gap: 0.2rem;
     flex: 1;
     justify-content: space-between;
+    color: black;
 }
 
 .contact--card-day-time-wrapper {
@@ -152,6 +173,7 @@
 
 /* Figma Like Card CSS */
 
+/* Link on Full Card */
 .contact-card__heading a:after {
     bottom: 0;
     content: "";
@@ -163,20 +185,16 @@
 }
 
 .contact--standard .contact-card__media {
-    padding: 2rem;
+    padding: 15%;
 }
 
-.contact-card__information .h2{
+.contact--standard .contact-card__information .h2{
     font-size: 1.3rem;
 }
 
 @media screen and (min-width: 768px) {
 
-    .contact--standard .contact-card__media {
-        padding: 4rem;
-    }
-
-    .contact-card__information .h2 {
+    .contact--standard .contact-card__information .h2 {
         font-size: 1.5rem;
     }
 

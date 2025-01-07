@@ -1867,12 +1867,12 @@
     ]
   },
   {
-    "name": "Contact Form",
+    "name": "Test Schema",
     "settings": [
       {
-        "type": "url",
-        "id": "contact_form_success_page",
-        "label": "Contact Form Success Page",
+        "type": "text",
+        "id": "test_text",
+        "label": "Test Text",
       }
     ]
 
