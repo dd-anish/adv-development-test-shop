@@ -45,21 +45,26 @@
       background-color: {{ section.settings.custom_block_background_color }};
     }
 
-    :root {
+   /*  :root {
         --custom-block-background-color: {{ section.settings.custom_block_background_color }};
-    }
+    } */
 
   
     /* Redering Padding for each blocks */
     {%- for block in section.blocks -%}
 
       .block-{{ block.id }} {
+
           grid-row: span {{ block.settings.grid_row }};
           grid-column: span {{ block.settings.grid_column }};
           padding-top: {{ block.settings.padding_top | times: 0.75 | round: 0 | default: 0 }}px;
           padding-bottom: {{ block.settings.padding_bottom | times: 0.75 | round: 0 | default: 0 }}px;
           padding-left: {{ block.settings.padding_left | times: 0.75 | round: 0 | default: 0 }}px;
           padding-right: {{ block.settings.padding_right | times: 0.75 | round: 0 | default: 0 }}px;
+          border-top-left-radius: {{ block.settings.border_radius_top_left | default: 0 }}px;
+          border-top-right-radius: {{ block.settings.border_radius_top_right | default: 0 }}px;
+          border-bottom-left-radius: {{ block.settings.border_radius_bottom_left | default: 0 }}px;
+          border-bottom-right-radius: {{ block.settings.border_radius_bottom_right | default: 0 }}px;
       }
 
       @media screen and (min-width: 750px) {
@@ -984,45 +989,6 @@
   </div>
 </product-info>
 
-<script>
-
-function updateBlockStyles() {
-
-  const customBlocks = document.querySelectorAll(".custom-block-background");
-
-  console.log("Triggered");
-
-  // Reset border-radius styles
-  customBlocks.forEach(block => {
-    block.style.borderRadius = "";
-  });
-
-  if (customBlocks.length > 0) {
-    // Add border-radius to the first block
-    customBlocks[0].style.borderTopLeftRadius = "var(--buttons-radius)";
-    customBlocks[0].style.borderTopRightRadius = "var(--buttons-radius)";
-
-    // Add border-radius to the last block
-    customBlocks[customBlocks.length - 1].style.borderBottomLeftRadius = "var(--buttons-radius)";
-    customBlocks[customBlocks.length - 1].style.borderBottomRightRadius = "var(--buttons-radius)";
-  }
-}
-
-// Run the script on page load
-document.addEventListener("DOMContentLoaded", updateBlockStyles);
-
-if(Shopify.designMode){
-    // Listen for Shopify theme editor events
-    document.addEventListener("shopify:section:load", updateBlockStyles);
-    document.addEventListener("shopify:section:unload", updateBlockStyles);
-    document.addEventListener("shopify:section:select", updateBlockStyles);
-    document.addEventListener("shopify:section:deselect", updateBlockStyles);
-    document.addEventListener("shopify:block:select", updateBlockStyles);
-    document.addEventListener("shopify:block:deselect", updateBlockStyles);
-}
-
-</script>
-
 {% schema %}
 {
   "name": "t:sections.main-product.name",
@@ -1065,7 +1031,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "header",
@@ -1090,7 +1057,51 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
-        },  
+        },
+        {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
+        },
         {
           "type": "header",
           "content": "Block Padding Setting"
@@ -1146,6 +1157,7 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": true
         },
         {
@@ -1171,7 +1183,51 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
-        },  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
+        },
         {
           "type": "header",
           "content": "Block Padding Setting"
@@ -1227,6 +1283,7 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": true
         },
         {
@@ -1258,6 +1315,50 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1333,7 +1434,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "header",
@@ -1358,6 +1460,50 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1446,6 +1592,7 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": true
         },
         {
@@ -1471,6 +1618,50 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1564,6 +1755,7 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": true
         },
         {
@@ -1589,6 +1781,50 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1670,7 +1906,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "checkbox",
@@ -1707,6 +1944,50 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1763,6 +2044,7 @@ if(Shopify.designMode){
           "type": "checkbox",
           "id": "enable_background",
           "label": "Enable background",
+          "info" : "Color Settings is in Section Settings",
           "default": false
         },
         {
@@ -1836,6 +2118,50 @@ if(Shopify.designMode){
             { "value": "3", "label": "3" }  
             ]  
         },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
+        },
         {
           "type": "header",
           "content": "Block Padding Setting"
@@ -1904,7 +2230,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "header",
@@ -1929,6 +2256,50 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -1989,7 +2360,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "header",
@@ -2014,6 +2386,50 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -2293,7 +2709,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "header",
@@ -2360,6 +2777,50 @@ if(Shopify.designMode){
             { "value": "3", "label": "3" }  
             ]  
         },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
+        },
         {
           "type": "header",
           "content": "Block Padding Setting"
@@ -2424,7 +2885,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "header",
@@ -2449,6 +2911,50 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",
@@ -2508,7 +3014,8 @@ if(Shopify.designMode){
         {
           "type": "checkbox",
           "id": "enable_background",
-          "label": "Enable background"
+          "label": "Enable background",
+          "info" : "Color Settings is in Section Settings"
         },
         {
           "type": "header",
@@ -2533,6 +3040,50 @@ if(Shopify.designMode){
             { "value": "2", "label": "2" },  
             { "value": "3", "label": "3" }  
             ]  
+        },
+         {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
         },
         {
           "type": "header",

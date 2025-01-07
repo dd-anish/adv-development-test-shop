@@ -1547,12 +1547,16 @@ a.product__text {
 
 /* Quanity Input */
 
+ .custom-quantity-selector-buy-button-container {
+   display: flex;
+   flex-direction: column;
+   padding: 0;
+   gap: 1rem;
+ }
 @media screen and (min-width: 750px) {
 
   .custom-quantity-selector-buy-button-container {
-    display: flex;
-    padding: 0;
-    gap: 1rem;
+    flex-direction: row;
   }
 
   .custom-quantity-selector-buy-button-container .product-form__input{
