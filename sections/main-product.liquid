@@ -237,7 +237,7 @@
                   {% comment %} product.selected_or_first_available_variant.inventory_management == 'shopify' {% endcomment %}
                   {%- if product.selected_or_first_available_variant.inventory_policy == 'deny' -%}
                     {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-                      {%- if product.selected_or_first_available_variant.inventory_quantity < block.settings.inventory_threshold -%}
+                      {%- if product.selected_or_first_available_variant.inventory_quantity < product.selected_or_first_available_variant.metafields.custom.inventory_threshold -%}
                         <span class="svg-wrapper" style="color: {{ settings.low_stock_status_color }}">
                           {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
                         </span>
@@ -274,7 +274,7 @@
                   <!-- Continue Selling Products when Out Of Stock -->
                   {%- elsif product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
                     {%- if product.selected_or_first_available_variant.inventory_quantity > 0 
-                        and product.selected_or_first_available_variant.inventory_quantity < settings.inventory_threshold -%}
+                        and product.selected_or_first_available_variant.inventory_quantity < product.selected_or_first_available_variant.metafields.custom.inventory_threshold -%}
                       <span class="svg-wrapper" style="color: {{ settings.low_stock_status_color }}">
                         {{- 'icon-inventory-in-stock-status.svg' | inline_asset_content -}}
                       </span>
