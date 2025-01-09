@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
 
+{{ 'section-header.css' |  asset_url |  stylesheet_tag }}
+
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
@@ -267,7 +269,6 @@
         {% render 'header-search', input_id: 'Search-In-Modal' %}
       {% endif %}
 
-
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
@@ -304,22 +305,30 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <div class="search-bar-and-card-container">
+        
+        {% if section.settings.show_search_bar_in_header %}
+          {% render 'header-search-bar', class: 'header-search-bar' %}
+        {% endif %}
+
+        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
           {% if cart == empty %}
             <span class="svg-wrapper">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
           {% else %}
             <span class="svg-wrapper">{{'icon-cart.svg' | inline_asset_content }}</span>
           {% endif %}
-        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-        {%- if cart != empty -%}
-          <div class="cart-count-bubble">
-            {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-          </div>
-        {%- endif -%}
-      </a>
+          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          {%- if cart != empty -%}
+            <div class="cart-count-bubble">
+              {%- if cart.item_count < 100 -%}
+                <span aria-hidden="true">{{ cart.item_count }}</span>
+              {%- endif -%}
+              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+            </div>
+          {%- endif -%}
+        </a>
+      </div>
+      
     </div>
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
@@ -645,6 +654,12 @@
       "id": "show_line_separator",
       "default": true,
       "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_bar_in_header",
+      "label": "Show Search Bar in Header",
+      "default": true
     },
     {
       "type": "checkbox",

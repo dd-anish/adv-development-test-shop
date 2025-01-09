@@ -223,3 +223,39 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   object-fit: contain;
   font-family: 'object-fit: contain';
 }
+
+
+/* Custom CSS For Header Search Bar */
+
+.header-search-bar .predictive-search--search-template{
+  height: 300px;
+}
+
+.header-search-bar #predictive-search-results{
+  height: 100%;
+}
+
+.header-search-bar .predictive-search-results{
+  display: flex;
+  flex-direction: column;
+}
+
+.header-search-bar .predictive-search__result-group:first-child{
+  flex: unset;
+}
+
+.header-search-bar .predictive-search__results-groups-wrapper{
+  overflow: auto;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header-search-bar .predictive-search__heading{
+  font-size: 1.2rem;
+}
+
+.header-search-bar .predictive-search__item .predictive-search__item-heading{
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+

@@ -102,71 +102,73 @@
   <div class="collection-search-bar-and-filter page-width">
     <!-- Search Bar Start -->
     {% comment %} {% paginate search.results by 24 %} {% endcomment %}
-      <div class="template-search template-search-custom {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %}">
-        <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
-
-          <div class="template-search__search">
-            {%- if settings.predictive_search_enabled -%}
-              <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
-            {%- endif -%}
-            <main-search>
-              <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-                <div class="field custom-search-bar custom-search-bar-field">
-                  <input
-                    class="search__input field__input field__input-custom"
-                    id="Search-In-Template"
-                    type="search"
-                    name="q"
-                    value="{{ search.terms | escape }}"
-                    placeholder="{{ 'general.search.search' | t }}"
+      {% if section.settings.show_search_bar_in_collection_page %}
+        <div class="template-search template-search-custom {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %}">
+          <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
+  
+            <div class="template-search__search">
+              {%- if settings.predictive_search_enabled -%}
+                <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
+              {%- endif -%}
+              <main-search>
+                <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+                  <div class="field custom-search-bar custom-search-bar-field">
+                    <input
+                      class="search__input field__input field__input-custom"
+                      id="Search-In-Template"
+                      type="search"
+                      name="q"
+                      value="{{ search.terms | escape }}"
+                      placeholder="{{ 'general.search.search' | t }}"
+                      {%- if settings.predictive_search_enabled -%}
+                        role="combobox"
+                        aria-expanded="false"
+                        aria-owns="predictive-search-results"
+                        aria-controls="predictive-search-results"
+                        aria-haspopup="listbox"
+                        aria-autocomplete="list"
+                        autocorrect="off"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                      {%- endif -%}
+                    >
+                      <!-- No need of label for Custom Search -->
+                   {% comment %}  <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label> {% endcomment %}
+                    <input name="options[prefix]" type="hidden" value="last">
+  
                     {%- if settings.predictive_search_enabled -%}
-                      role="combobox"
-                      aria-expanded="false"
-                      aria-owns="predictive-search-results"
-                      aria-controls="predictive-search-results"
-                      aria-haspopup="listbox"
-                      aria-autocomplete="list"
-                      autocorrect="off"
-                      autocomplete="off"
-                      autocapitalize="off"
-                      spellcheck="false"
+                      <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
+                        {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+                      </div>
+  
+                      <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
                     {%- endif -%}
-                  >
-                    <!-- No need of label for Custom Search -->
-                 {% comment %}  <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label> {% endcomment %}
-                  <input name="options[prefix]" type="hidden" value="last">
-
-                  {%- if settings.predictive_search_enabled -%}
-                    <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
-                      {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
-                    </div>
-
-                    <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-                  {%- endif -%}
-
-                  <button
-                    type="reset"
-                    class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
-                    aria-label="{{ 'general.search.reset' | t }}"
-                  >
-                    <span class="svg-wrapper">
-                      {{- 'icon-reset.svg' | inline_asset_content -}}
-                    </span>
-                  </button>
-                  <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-                    <span class="svg-wrapper">
-                      {{- 'icon-search.svg' | inline_asset_content -}}
-                    </span>
-                  </button>
-                </div>
-              </form>
-            </main-search>
-            {%- if settings.predictive_search_enabled -%}
-              </predictive-search>
-            {%- endif -%}
+  
+                    <button
+                      type="reset"
+                      class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+                      aria-label="{{ 'general.search.reset' | t }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-reset.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                    <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+                      <span class="svg-wrapper">
+                        {{- 'icon-search.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                  </div>
+                </form>
+              </main-search>
+              {%- if settings.predictive_search_enabled -%}
+                </predictive-search>
+              {%- endif -%}
+            </div>
           </div>
         </div>
-      </div>
+      {% endif %}
     {% comment %} {% endpaginate %} {% endcomment %}
     <!-- Search Bar End -->
     
@@ -390,6 +392,12 @@
   "name": "t:sections.main-collection-product-grid.name",
   "class": "section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_search_bar_in_collection_page",
+      "label": "Show Search Bar in Collection Page",
+      "default": false
+    },
     {
       "type": "range",
       "id": "products_per_page",
