@@ -228,11 +228,12 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
 /* Custom CSS For Header Search Bar */
 
 .header-search-bar .predictive-search--search-template{
-  height: 300px;
+  height: fit-content;
+  max-height: 300px !important;
 }
 
 .header-search-bar #predictive-search-results{
-  height: 100%;
+    overflow: auto;
 }
 
 .header-search-bar .predictive-search-results{
@@ -259,3 +260,18 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   font-weight: 200;
 }
 
+
+/* Scrollbar CSS */
+
+.header-search-bar .predictive-search::-webkit-scrollbar{
+  width: 3px;
+}
+
+.header-search-bar .predictive-search::-webkit-scrollbar-thumb {
+    background-color: #eae9e9; 
+    border-radius: 10px;   
+}
+
+.header-search-bar .predictive-search::-webkit-scrollbar-track {
+    background-color: #000000;
+}

@@ -7,6 +7,7 @@
     .search-bar-and-card-container {
         display: flex;
         align-items: center;
+        gap: 1rem;
     }
 
     .header-search-bar {
@@ -32,7 +33,7 @@
     }
 
     .header-search-bar .field__input, .header-search-bar .field__button{
-        height: 4rem;
+        height: 3.5rem;
     }
 
     .header-search-bar .field__input:focus{
@@ -42,9 +43,9 @@
     .header-search-bar .predictive-search__item--term{
         font-size: 1.2rem;
         font-weight: 200;
-        position: absolute;
+        /* position: absolute;
         bottom: 0;
-        background: var(--theme-black-color);
+        background: var(--theme-black-color); */
     }
     r
 }
