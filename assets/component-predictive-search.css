@@ -42,7 +42,7 @@
     /* On mobile, when there are no suggestions the first .predictive-search__results-groups-wrapper
      * is virtually empty due to a display: hidden on the predictive-search__pages-wrapper child.
      * This causes the gap to render and look like a big top margin */
-    gap: 2rem;
+    /* gap: 2rem; */
   }
 }
 
@@ -255,9 +255,18 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   font-size: 1.2rem;
 }
 
+.header-search-bar-mobile .predictive-search__heading{
+  font-weight: 400;
+  border-bottom: .1rem solid rgba(var(--color-foreground), 0.2);
+}
+
 .header-search-bar .predictive-search__item .predictive-search__item-heading{
   font-size: 1.2rem;
   font-weight: 200;
+}
+
+.header-search-bar-mobile .predictive-search__item .predictive-search__item-heading {
+  font-weight: 500;
 }
 
 
@@ -267,11 +276,20 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   width: 3px;
 }
 
-.header-search-bar .predictive-search::-webkit-scrollbar-thumb {
+.header-search-bar-desktop .predictive-search::-webkit-scrollbar-thumb {
     background-color: #eae9e9; 
     border-radius: 10px;   
 }
 
-.header-search-bar .predictive-search::-webkit-scrollbar-track {
+.header-search-bar-desktop .predictive-search::-webkit-scrollbar-track {
     background-color: #000000;
+}
+
+.header-search-bar-mobile .predictive-search::-webkit-scrollbar-thumb {
+    background-color: black; 
+    border-radius: 10px;   
+}
+
+.header-search-bar-mobile .predictive-search::-webkit-scrollbar-track {
+    background-color: transparent;
 }

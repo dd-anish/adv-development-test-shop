@@ -1,5 +1,45 @@
-.header-search-bar{
-    display: none;
+.header-search-bar-desktop{
+    display:none;
+}
+
+.header-search-bar-mobile {
+    display: block;
+    margin-top: 1.5rem;
+}
+
+.header-search-bar .custom-search-bar .field__input-custom {
+    /* padding: 1.8rem 1.5rem; */
+    font-size: 1.4rem;
+}
+
+
+.header-search-bar .custom-search-bar-field:after,
+.header-search-bar .custom-search-bar-field:focus-visible,
+.header-search-bar .custom-search-bar-field:focus {
+    border: 1px solid rgba(var(--color-foreground), 0.75);
+    box-shadow: none;
+}
+
+.header-search-bar .custom-search-bar-field:hover {
+    border: none;
+}
+
+.header-search-bar .field__input,
+.header-search-bar .field__button {
+    height: 3.5rem;
+}
+
+.header-search-bar .field__input:focus {
+    box-shadow: 0 0 0 calc(0rem + var(--inputs-border-width)) rgba(var(--color-foreground), 0.8);
+}
+
+.header-search-bar .predictive-search__item--term {
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+.header-search-bar-mobile .predictive-search__item--term {
+    font-weight: 400;
 }
 
 @media screen and (min-width: 990px) {
@@ -10,42 +50,13 @@
         gap: 1rem;
     }
 
-    .header-search-bar {
+    .header-search-bar-mobile {
+        display: none;
+    }
+
+    .header-search-bar-desktop {
         display: block;
         /* background-color: red; */
     }
-
-    .header-search-bar .custom-search-bar .field__input-custom {
-        /* padding: 1.8rem 1.5rem; */
-        font-size: 1.4rem;
-    }
     
- 
-    .header-search-bar .custom-search-bar-field:after,
-    .header-search-bar .custom-search-bar-field:focus-visible,
-    .header-search-bar .custom-search-bar-field:focus {
-        border: 1px solid rgba(var(--color-foreground), 0.75);
-        box-shadow: none;
-    }
-
-    .header-search-bar .custom-search-bar-field:hover {
-        border: none;
-    }
-
-    .header-search-bar .field__input, .header-search-bar .field__button{
-        height: 3.5rem;
-    }
-
-    .header-search-bar .field__input:focus{
-        box-shadow: 0 0 0 calc(0rem + var(--inputs-border-width)) rgba(var(--color-foreground), 0.8);
-    }
-
-    .header-search-bar .predictive-search__item--term{
-        font-size: 1.2rem;
-        font-weight: 200;
-        /* position: absolute;
-        bottom: 0;
-        background: var(--theme-black-color); */
-    }
-    r
 }

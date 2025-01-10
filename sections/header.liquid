@@ -137,7 +137,7 @@
      ">
     {%- liquid
       if section.settings.menu != blank
-        render 'header-drawer'
+        render 'header-drawer', section: section
       endif
 
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank
@@ -308,7 +308,7 @@
       <div class="search-bar-and-card-container">
         
         {% if section.settings.show_search_bar_in_header %}
-          {% render 'header-search-bar', class: 'header-search-bar' %}
+          {% render 'header-search-bar', input_id: 'Search-Bar-Desktop', class: 'header-search-bar header-search-bar-desktop' %}
         {% endif %}
 
         <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
@@ -659,6 +659,12 @@
       "type": "checkbox",
       "id": "show_search_bar_in_header",
       "label": "Show Search Bar in Header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_bar_in_mobile_menu",
+      "label": "Show Search Bar in Mobile Menu",
       "default": true
     },
     {

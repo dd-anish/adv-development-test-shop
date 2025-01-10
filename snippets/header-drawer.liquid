@@ -20,6 +20,9 @@
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
+            {% if section.settings.show_search_bar_in_mobile_menu %}
+              {% render 'header-search-bar', input_id: 'Search-Bar-Mobile', class: 'header-search-bar header-search-bar-mobile' %}
+            {% endif %}
             <!-- Bundles Option -->
             <ul class="menu-drawer__menu menu-drawer__bundle-menu {% if section.settings.enable_bundle_background %} enable-bundle-background {% endif %} has-submenu list-menu">
               <li>
