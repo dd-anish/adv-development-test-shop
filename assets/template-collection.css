@@ -112,9 +112,22 @@
   display: block;
   background: var(--theme-signature-color);
   border: none;
-  height: 4.5rem;
+  height: 3.5rem;
   border-radius: var(--inputs-radius);
   aspect-ratio: 1;
+}
+
+.filter-button-container{
+  display: flex;
+  justify-content: end;
+}
+
+.filter-button-mobile-no-search-bar{
+  display: block;
+  border-radius: var(--inputs-radius);
+  font-size: 1.1rem;
+  letter-spacing: inherit;
+  padding: 0.2rem 2rem;
 }
 
 @media only screen and (min-width: 749px) {  
@@ -124,7 +137,7 @@
     top: 0;  
   }  
 
-  .filter-button-mobile{
+  .filter-button-mobile, .filter-button-mobile-no-search-bar{
     display: none;
   }
 } 

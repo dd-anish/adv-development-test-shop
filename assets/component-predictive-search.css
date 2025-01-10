@@ -251,28 +251,30 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   height: 100%;
 }
 
-.header-search-bar .predictive-search__heading{
+.custom-search-bar .predictive-search__heading{
   font-size: 1.2rem;
 }
 
-.header-search-bar-mobile .predictive-search__heading{
+.header-search-bar-mobile .predictive-search__heading,
+.custom-search-bar-collection .predictive-search__heading
+{
   font-weight: 400;
   border-bottom: .1rem solid rgba(var(--color-foreground), 0.2);
 }
 
-.header-search-bar .predictive-search__item .predictive-search__item-heading{
+.custom-search-bar .predictive-search__item .predictive-search__item-heading{
   font-size: 1.2rem;
   font-weight: 200;
 }
 
-.header-search-bar-mobile .predictive-search__item .predictive-search__item-heading {
+.header-search-bar-mobile .predictive-search__item .predictive-search__item-heading, .custom-search-bar-collection .predictive-search__item .predictive-search__item-heading {
   font-weight: 500;
 }
 
 
 /* Scrollbar CSS */
 
-.header-search-bar .predictive-search::-webkit-scrollbar{
+.custom-search-bar .predictive-search::-webkit-scrollbar{
   width: 3px;
 }
 
@@ -285,11 +287,11 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
     background-color: #000000;
 }
 
-.header-search-bar-mobile .predictive-search::-webkit-scrollbar-thumb {
+.header-search-bar-mobile .predictive-search::-webkit-scrollbar-thumb, .custom-search-bar-collection .predictive-search::-webkit-scrollbar-thumb {
     background-color: black; 
     border-radius: 10px;   
 }
 
-.header-search-bar-mobile .predictive-search::-webkit-scrollbar-track {
+.header-search-bar-mobile .predictive-search::-webkit-scrollbar-track, .custom-search-bar-collection .predictive-search::-webkit-scrollbar-track {
     background-color: transparent;
 }

@@ -36,7 +36,12 @@
   <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
+{% if section.settings.show_search_bar_in_collection_page %}
+  {{ 'component-custom-search-bar.css' |  asset_url |  stylesheet_tag }}
+{% endif %}
+
 {%- style -%}
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -75,14 +80,6 @@
       gap: 1rem;
     }
 
-    .template-search-custom{
-      width: 100%;
-    }
-
-    .template-search-custom .page-width{
-      /* padding-right: 0; */
-    }
-
     .facets-wrapper .facets-container{
       padding-top: 0;
       column-gap:1rem;
@@ -99,26 +96,38 @@
 
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
-  <div class="collection-search-bar-and-filter page-width">
-    <!-- Search Bar Start -->
-    {% comment %} {% paginate search.results by 24 %} {% endcomment %}
-      {% if section.settings.show_search_bar_in_collection_page %}
-        {% render 'header-search-bar', input_id: 'Search-Bar-In-Collection-Page', class: 'template-search-custom' %}
-      {% endif %}
-    {% comment %} {% endpaginate %} {% endcomment %}
-    <!-- Search Bar End -->
-    
-    <!-- Filter Start works good in mobile and horizontal layout only -->
-      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
 
-        <button class="filter-button-mobile">
-          <span class="svg-wrapper">
-            {% render 'icon-filter-figma' %}
-          </span>
-        </button>
-      {%- endif -%}
-    <!-- Filter End -->
-  </div>
+  {% if section.settings.show_search_bar_in_collection_page %}
+    <div class="collection-search-bar-and-filter page-width">
+      <!-- Search Bar Start -->
+      {% comment %} {% paginate search.results by 24 %} {% endcomment %}
+        {% render 'custom-search-bar', input_id: 'Search-Bar-In-Collection-Page', class: 'custom-search-bar custom-search-bar-collection' %}
+      {% comment %} {% endpaginate %} {% endcomment %}
+      <!-- Search Bar End -->
+      
+      <!-- Filter Start works good in mobile and horizontal layout only -->
+        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+  
+          <button class="filter-button-mobile">
+            <span class="svg-wrapper">
+              {% render 'icon-filter-figma' %}
+            </span>
+          </button>
+        {%- endif -%}
+      <!-- Filter End -->
+    </div>
+
+  {% else %}
+     <div class="filter-button-container page-width">
+        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+  
+          <button class="filter-button-mobile-no-search-bar">
+            <span> Filters </span>
+          </button>
+        {%- endif -%}
+     </div>
+      
+  {% endif %}
 
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="sorting-and-product-grid-container">
@@ -302,8 +311,13 @@
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
+    
+  {% if section.settings.show_search_bar_in_collection_page %}
+    const filterButton = document.querySelector('.filter-button-mobile');
+  {%- else -%}
+    const filterButton = document.querySelector('.filter-button-mobile-no-search-bar');
+  {%- endif -%}
 
-  const filterButton = document.querySelector('.filter-button-mobile');
   const detailsElement = document.querySelector('.mobile-facets__disclosure');
 
   if (filterButton && detailsElement) {
@@ -332,7 +346,7 @@
       "type": "checkbox",
       "id": "show_search_bar_in_collection_page",
       "label": "Show Search Bar in Collection Page",
-      "default": true
+      "default": false
     },
     {
       "type": "range",
