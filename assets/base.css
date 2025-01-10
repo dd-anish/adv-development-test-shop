@@ -3590,15 +3590,11 @@ details-disclosure > details {
   font-size: 0.8rem;
 }
 
-.font-small-9-px-fix {
-  font-size: 0.8rem;
-}
-
 .font-small-8-px {
   font-size: 0.8rem;
 }
 
-.font-small-1-rem{
+.font-small-1-rem-fix{
   font-size: 1rem;
 }
 

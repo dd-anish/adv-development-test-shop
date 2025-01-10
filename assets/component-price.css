@@ -129,9 +129,9 @@
    color: var(--theme-signature-color);
 }
 
-.item-current-price{
+/* .item-current-price{
   font-weight: var(--font-body-weight-bold);
-}
+} */
 
 .price_without_tax{
   display: flex;
