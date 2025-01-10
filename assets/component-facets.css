@@ -41,7 +41,7 @@
   grid-column: 2;
   grid-row: 1;
   padding-left: 2.5rem;
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
 }
 
 @media screen and (min-width: 990px) {
@@ -876,9 +876,10 @@ a.active-facets__button.focused .active-facets__button-inner {
 
 .mobile-facets__count {
   color: rgba(var(--color-foreground), 0.7);
-  font-size: 1.3rem;
+  font-size: 1rem;
   margin: 0;
   flex-grow: 1;
+  text-transform: capitalize;
 }
 
 .mobile-facets__open-wrapper {

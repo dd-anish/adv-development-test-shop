@@ -1,0 +1,78 @@
+{% comment %}
+  Renders a header search bar. Should be used with 'header.liquid'
+
+  Accepts:
+  - input_id: {String} Id for the search input element (required)
+  - color_scheme: {String} sets the color scheme of the notification (optional)
+  - class : {String} Additional classes to apply to the search bar (optional)
+
+  Usage:
+  {% render 'header-search', input_id: 'My-Id', class: 'custom-class' %}
+{% endcomment %}
+
+
+<div class="template-search {% if class %} {{ class }} {% endif %} {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %} {% if color_scheme %} color-{{ color_scheme }} gradient{% endif %}">
+    <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
+
+        <div class="template-search__search">
+            {%- if settings.predictive_search_enabled -%}
+                <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
+            {%- endif -%}
+            <main-search>
+                <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+                <div class="field custom-search-bar-field">
+                    <input
+                    class="search__input field__input field__input-custom"
+                    id="{{ input_id }}"
+                    type="search"
+                    name="q"
+                    value="{{ search.terms | escape }}"
+                    placeholder="{{ 'general.search.search' | t }}"
+                    {%- if settings.predictive_search_enabled -%}
+                        role="combobox"
+                        aria-expanded="false"
+                        aria-owns="predictive-search-results"
+                        aria-controls="predictive-search-results"
+                        aria-haspopup="listbox"
+                        aria-autocomplete="list"
+                        autocorrect="off"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                    {%- endif -%}
+                    >
+                    <!-- No need of label for Custom Search -->
+                    {% comment %}  <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label> {% endcomment %}
+                    <input name="options[prefix]" type="hidden" value="last">
+
+                    {%- if settings.predictive_search_enabled -%}
+                    <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
+                        {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+                    </div>
+
+                    <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+                    {%- endif -%}
+
+                    <button
+                    type="reset"
+                    class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+                    aria-label="{{ 'general.search.reset' | t }}"
+                    >
+                    <span class="svg-wrapper">
+                        {{- 'icon-reset.svg' | inline_asset_content -}}
+                    </span>
+                    </button>
+                    <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+                    <span class="svg-wrapper">
+                        {{- 'icon-search.svg' | inline_asset_content -}}
+                    </span>
+                    </button>
+                </div>
+                </form>
+            </main-search>
+            {%- if settings.predictive_search_enabled -%}
+                </predictive-search>
+            {%- endif -%}
+        </div>
+    </div>
+</div>

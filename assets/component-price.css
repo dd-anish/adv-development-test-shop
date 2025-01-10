@@ -126,7 +126,11 @@
 }
 
 .price--on-sale-custom-color{
-   color: #b41d1c;
+   color: var(--theme-signature-color);
+}
+
+.item-current-price{
+  font-weight: var(--font-body-weight-bold);
 }
 
 .price_without_tax{
@@ -136,7 +140,6 @@
   /* margin-left: 0.5rem; */
   color: black;
 }
-
 
 .price--on-sale .original-price-div{
     line-height: 1;

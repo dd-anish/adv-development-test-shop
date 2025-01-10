@@ -619,7 +619,7 @@
       {
         "type": "range",
         "id": "no_product_variant_bg_opacity",
-        "min": 50,
+        "min": 0,
         "max": 100,
         "step": 10,
         "unit": "%",

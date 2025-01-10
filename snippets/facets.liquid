@@ -508,7 +508,7 @@
                 </h2>
 
                 <!-- Menu Drawer Product Count in Mobile -->
-                {% comment %} <p class="mobile-facets__count">
+                <p class="mobile-facets__count">
                   {%- if results.results_count -%}
                     {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
                   {%- elsif results.products_count == results.all_products_count -%}
@@ -519,7 +519,7 @@
                       | t: product_count: results.products_count, count: results.all_products_count
                     }}
                   {%- endif -%}
-                </p> {% endcomment %}
+                </p>
               </div>
             </div>
             <!-- Mobile Active Facets -->

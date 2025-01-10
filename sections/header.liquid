@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
 
+{{ 'component-custom-search-bar.css' |  asset_url |  stylesheet_tag }}
+
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
@@ -135,7 +137,7 @@
      ">
     {%- liquid
       if section.settings.menu != blank
-        render 'header-drawer'
+        render 'header-drawer', section: section
       endif
 
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank
@@ -267,7 +269,6 @@
         {% render 'header-search', input_id: 'Search-In-Modal' %}
       {% endif %}
 
-
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
@@ -304,22 +305,34 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <div class="search-bar-and-card-container">
+        
+        {% if section.settings.show_search_bar_in_header %}
+          {% render 'custom-search-bar', 
+            input_id: 'Search-Bar-Desktop', 
+            color_scheme: section.settings.search_bar_color_scheme,
+            class: 'custom-search-bar header-search-bar header-search-bar-desktop' 
+          %}
+        {% endif %}
+
+        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
           {% if cart == empty %}
             <span class="svg-wrapper">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
           {% else %}
             <span class="svg-wrapper">{{'icon-cart.svg' | inline_asset_content }}</span>
           {% endif %}
-        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-        {%- if cart != empty -%}
-          <div class="cart-count-bubble">
-            {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-          </div>
-        {%- endif -%}
-      </a>
+          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          {%- if cart != empty -%}
+            <div class="cart-count-bubble">
+              {%- if cart.item_count < 100 -%}
+                <span aria-hidden="true">{{ cart.item_count }}</span>
+              {%- endif -%}
+              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+            </div>
+          {%- endif -%}
+        </a>
+      </div>
+      
     </div>
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
@@ -648,9 +661,22 @@
     },
     {
       "type": "checkbox",
+      "id": "show_search_bar_in_header",
+      "label": "Show Search Bar in Header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_bar_in_mobile_menu",
+      "label": "Show Search Bar in Mobile Menu",
+      "default": true
+    },
+    {
+      "type": "checkbox",
       "id": "show_search_icon",
       "default": false,
-      "label": "Show Search icon"
+      "label": "Show Search Icon",
+      "info": "Dawn's Default Search Bar"
     },
     {
       "type": "header",
@@ -666,6 +692,12 @@
       "type": "color_scheme",
       "id": "menu_color_scheme",
       "label": "t:sections.header.settings.menu_color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "search_bar_color_scheme",
+      "label": "Search Bar Color Scheme",
       "default": "scheme-1"
     },
     {

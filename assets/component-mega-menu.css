@@ -53,7 +53,7 @@
 }
 
 .mega-menu__link--level-2 {
-  font-weight: bold;
+  font-weight: var(--font-body-weight-bold);
 }
 
 .header--top-center .mega-menu__list {
@@ -84,4 +84,11 @@
 
 .mega-menu__list--condensed .mega-menu__link {
   font-weight: normal;
+}
+
+/* Custom CSS */
+
+.mega-menu__grandchild-link{
+  padding: 0;
+  /* font-size: 1.2rem; */
 }

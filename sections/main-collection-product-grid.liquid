@@ -36,7 +36,12 @@
   <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
+{% if section.settings.show_search_bar_in_collection_page %}
+  {{ 'component-custom-search-bar.css' |  asset_url |  stylesheet_tag }}
+{% endif %}
+
 {%- style -%}
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -75,14 +80,6 @@
       gap: 1rem;
     }
 
-    .template-search-custom{
-      width: 100%;
-    }
-
-    .template-search-custom .page-width{
-      /* padding-right: 0; */
-    }
-
     .facets-wrapper .facets-container{
       padding-top: 0;
       column-gap:1rem;
@@ -99,88 +96,40 @@
 
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
-  <div class="collection-search-bar-and-filter page-width">
-    <!-- Search Bar Start -->
-    {% comment %} {% paginate search.results by 24 %} {% endcomment %}
-      <div class="template-search template-search-custom {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %}">
-        <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
 
-          <div class="template-search__search">
-            {%- if settings.predictive_search_enabled -%}
-              <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
-            {%- endif -%}
-            <main-search>
-              <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-                <div class="field custom-search-bar custom-search-bar-field">
-                  <input
-                    class="search__input field__input field__input-custom"
-                    id="Search-In-Template"
-                    type="search"
-                    name="q"
-                    value="{{ search.terms | escape }}"
-                    placeholder="{{ 'general.search.search' | t }}"
-                    {%- if settings.predictive_search_enabled -%}
-                      role="combobox"
-                      aria-expanded="false"
-                      aria-owns="predictive-search-results"
-                      aria-controls="predictive-search-results"
-                      aria-haspopup="listbox"
-                      aria-autocomplete="list"
-                      autocorrect="off"
-                      autocomplete="off"
-                      autocapitalize="off"
-                      spellcheck="false"
-                    {%- endif -%}
-                  >
-                    <!-- No need of label for Custom Search -->
-                 {% comment %}  <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label> {% endcomment %}
-                  <input name="options[prefix]" type="hidden" value="last">
+  {% if section.settings.show_search_bar_in_collection_page %}
+    <div class="collection-search-bar-and-filter page-width">
+      <!-- Search Bar Start -->
+      {% comment %} {% paginate search.results by 24 %} {% endcomment %}
+        {% render 'custom-search-bar', input_id: 'Search-Bar-In-Collection-Page', class: 'custom-search-bar custom-search-bar-collection' %}
+      {% comment %} {% endpaginate %} {% endcomment %}
+      <!-- Search Bar End -->
+      
+      <!-- Filter Start works good in mobile and horizontal layout only -->
+        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+  
+          <button class="filter-button-mobile">
+            <span class="svg-wrapper">
+              {% render 'icon-filter-figma' %}
+            </span>
+          </button>
+        {%- endif -%}
+      <!-- Filter End -->
+    </div>
 
-                  {%- if settings.predictive_search_enabled -%}
-                    <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
-                      {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
-                    </div>
+  {% else %}
+     <div class="filter-button-container page-width">
+        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+          <span class="results-product-count">
 
-                    <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-                  {%- endif -%}
-
-                  <button
-                    type="reset"
-                    class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
-                    aria-label="{{ 'general.search.reset' | t }}"
-                  >
-                    <span class="svg-wrapper">
-                      {{- 'icon-reset.svg' | inline_asset_content -}}
-                    </span>
-                  </button>
-                  <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-                    <span class="svg-wrapper">
-                      {{- 'icon-search.svg' | inline_asset_content -}}
-                    </span>
-                  </button>
-                </div>
-              </form>
-            </main-search>
-            {%- if settings.predictive_search_enabled -%}
-              </predictive-search>
-            {%- endif -%}
-          </div>
-        </div>
-      </div>
-    {% comment %} {% endpaginate %} {% endcomment %}
-    <!-- Search Bar End -->
-    
-    <!-- Filter Start works good in mobile and horizontal layout only -->
-      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-
-        <button class="filter-button-mobile">
-          <span class="svg-wrapper">
-            {% render 'icon-filter-figma' %}
           </span>
-        </button>
-      {%- endif -%}
-    <!-- Filter End -->
-  </div>
+          <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
+            <span> {{ 'products.facets.filter_button' | t }} </span>
+          </button>
+        {%- endif -%}
+     </div>
+      
+  {% endif %}
 
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="sorting-and-product-grid-container">
@@ -365,7 +314,36 @@
 
   document.addEventListener('DOMContentLoaded', function() {
 
-  const filterButton = document.querySelector('.filter-button-mobile');
+    const filterButtonContainer = document.querySelector('.results-product-count');
+    const productCountElement = document.querySelector('.mobile-facets__count');
+    console.log("productCountElement", productCountElement);
+    
+    if (productCountElement) {
+
+      const productCountText = productCountElement.textContent;
+      filterButtonContainer.innerHTML = `${productCountText}`;
+
+      const observer = new MutationObserver(function() {
+        const productCountText = productCountElement.textContent;
+        filterButtonContainer.innerHTML = `${productCountText}`;
+      });
+
+      observer.observe(productCountElement, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    
+  {% if section.settings.show_search_bar_in_collection_page %}
+    const filterButton = document.querySelector('.filter-button-mobile');
+  {%- else -%}
+    const filterButton = document.querySelector('.filter-button-mobile-no-search-bar');
+  {%- endif -%}
+
   const detailsElement = document.querySelector('.mobile-facets__disclosure');
 
   if (filterButton && detailsElement) {
@@ -390,6 +368,12 @@
   "name": "t:sections.main-collection-product-grid.name",
   "class": "section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_search_bar_in_collection_page",
+      "label": "Show Search Bar in Collection Page",
+      "default": false
+    },
     {
       "type": "range",
       "id": "products_per_page",
