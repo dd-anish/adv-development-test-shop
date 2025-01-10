@@ -126,6 +126,7 @@
               price_horizontal_alignment: section.settings.price_horizontal_alignment,
               price_vertical_alignment: section.settings.price_vertical_alignment,
               price_gap: section.settings.price_gap,
+              current_price_font_weight: section.settings.current_price_font_weight,
               original_price_size: section.settings.original_price_size,
               show_tax_price: section.settings.show_tax_price,
               tax_price_font_size: section.settings.tax_price_font_size,
@@ -501,30 +502,62 @@
     },
     {
       "type": "select",
+      "id": "current_price_font_weight",
+      "options": [
+        {
+          "value": "font-bold",
+          "label": "Bold - 700"
+        },
+        {
+          "value": "font-semibold",
+          "label": "Semi Bold - 600"
+        },
+        {
+          "value": "font-medium",
+          "label": "Medium - 500"
+        },
+        {
+          "value": "font-regular",
+          "label": "Normal - 400"
+        },
+        {
+          "value": "font-light",
+          "label": "Light - 300"
+        },
+        {
+          "value": "font-extra-light",
+          "label": "Extra Light - 200"
+        }
+      ],
+      "default": "font-semibold",
+      "label": "Current Price Font Weight"
+    },
+    {
+      "type": "select",
       "id": "original_price_size",
       "options": [
         {
-          "value": "font-small-8-px-fix",
-          "label": "Extra Extra Small"
+          "value": "font-small-8-px",
+          "label": "Extra Extra Small - 0.8rem"
         },
         {
-          "value": "font-small-1-rem",
-          "label": "Extra Small"
+          "value": "font-small-1-rem-fix",
+          "label": "Extra Small - 1rem Fix"
         },
         {
           "value": "text-body--extra-extra-small",
-          "label": "Small"
+          "label": "Small - 1.1rem"
         },
         {
           "value": "text-body--extra-small",
-          "label": "Regular"
+          "label": "Regular - 1.2rem"
         },
         {
           "value": "text-body--small",
-          "label": "Large"
+          "label": "Large - 1.3rem"
         }
       ],
-      "default": "font-small-8-px-fix",
+      "default": "text-body--small",
       "label": "Original Price Font Size"
     },
     {
@@ -595,28 +628,28 @@
       "type": "select",
       "id": "tax_price_font_size",
       "options": [
-       {
-          "value": "font-small-8-px-fix",
-          "label": "Extra Extra Small"
+        {
+          "value": "font-small-8-px",
+          "label": "Extra Extra Small - 0.8rem"
         },
         {
-          "value": "font-small-1-rem",
-          "label": "Extra Small"
+          "value": "font-small-1-rem-fix",
+          "label": "Extra Small - 1rem Fix"
         },
         {
           "value": "text-body--extra-extra-small",
-          "label": "Small"
+          "label": "Small - 1.1rem"
         },
         {
           "value": "text-body--extra-small",
-          "label": "Regular"
+          "label": "Regular - 1.2rem"
         },
         {
           "value": "text-body--small",
-          "label": "Large"
+          "label": "Large - 1.3rem"
         }
       ],
-      "default": "font-small-1-rem",
+      "default": "text-body--small",
       "label": "Tax Price Font Size"
     },
     {
@@ -625,15 +658,15 @@
       "options": [
         {
           "value": "font-regular",
-          "label": "Normal"
+          "label": "Normal - 400"
         },
         {
           "value": "font-light",
-          "label": "Light"
+          "label": "Light - 300"
         },
         {
           "value": "font-extra-light",
-          "label": "Extra Light"
+          "label": "Extra Light - 200"
         }
       ],
       "default": "font-extra-light",
@@ -651,23 +684,23 @@
       "options": [
         {
           "value": "font-small-8-px-fix",
-          "label": "Extra Extra Small"
+          "label": "Extra Extra Small - 0.8rem fix"
         },
         {
-          "value": "font-small-1-rem",
-          "label": "Extra Small"
+          "value": "font-small-1-rem-fix",
+          "label": "Extra Small - 1rem fix"
         },
         {
           "value": "text-body--extra-extra-small",
-          "label": "Small"
+          "label": "Small - 1rem"
         },
         {
           "value": "text-body--extra-small",
-          "label": "Regular"
+          "label": "Regular - 1.1rem"
         },
         {
           "value": "text-body--small",
-          "label": "Large"
+          "label": "Large - 1.2rem"
         }
       ],
       "default": "font-small-8-px-fix",

@@ -79,7 +79,7 @@
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
   }
 
-  {%- if section.settings.horizontal_alignment != 'none' -%}
+  {%- if section.settings.header_display_type == 'flex' and section.settings.horizontal_alignment != 'none' -%}
     @media screen and (min-width: 750px) {
       .header {
         display: flex;
@@ -87,6 +87,14 @@
         align-items: {{ section.settings.vertical_alignment }};
       }
     }
+  {% else %}
+    @media screen and (min-width: 750px) {
+      .header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
   {%- endif -%}
 
   .section-header {
@@ -497,7 +505,6 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  /* "max_blocks": 3, */
   "settings": [
     {
       "type": "select",
@@ -526,7 +533,24 @@
     },
     {
       "type": "select",
+      "id": "header_display_type",
+      "options": [
+        {
+          "value": "flex",
+          "label": "Flex"
+        },
+        {
+          "value": "grid",
+          "label": "grid"
+        }
+      ],
+      "label": "Header Display Type",
+      "default": "grid"
+    },
+    {
+      "type": "select",
       "id": "horizontal_alignment",
+      "info": "Works only when Header Display Type is set to Flex",
       "options": [
         {
           "value": "space-around",
@@ -551,6 +575,7 @@
     {
       "type": "select",
       "id": "vertical_alignment",
+      "info": "Works only when Header Display Type is set to Flex",
       "options": [
         {
           "value": "start",
