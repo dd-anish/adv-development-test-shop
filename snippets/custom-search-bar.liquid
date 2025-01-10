@@ -3,14 +3,15 @@
 
   Accepts:
   - input_id: {String} Id for the search input element (required)
-  - class (optional): {String} Additional classes to apply to the search bar
+  - color_scheme: {String} sets the color scheme of the notification (optional)
+  - class : {String} Additional classes to apply to the search bar (optional)
 
   Usage:
   {% render 'header-search', input_id: 'My-Id', class: 'custom-class' %}
 {% endcomment %}
 
 
-<div class="template-search {% if class %} {{ class }} {% endif %} {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %}">
+<div class="template-search {% if class %} {{ class }} {% endif %} {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %} {% if color_scheme %} color-{{ color_scheme }} gradient{% endif %}">
     <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
 
         <div class="template-search__search">

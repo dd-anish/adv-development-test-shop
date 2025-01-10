@@ -130,10 +130,25 @@
 
 .filter-button-mobile-no-search-bar{
   display: block;
-  border-radius: var(--inputs-radius);
   font-size: 1.1rem;
   letter-spacing: inherit;
-  padding: 0.2rem 2rem;
+  
+}
+
+.filter-button-mobile-no-search-bar--button{
+  background: rgba(var(--color-link), var(--alpha-link));
+  border-radius: var(--inputs-radius);
+  padding: 0.2rem 1.1rem;
+  color: rgb(234, 232, 232);
+}
+
+.filter-button-mobile-no-search-bar--link{
+  
+  color: rgba(var(--color-link), var(--alpha-link));
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+  border-radius: unset;
 }
 
 @media only screen and (min-width: 749px) {  

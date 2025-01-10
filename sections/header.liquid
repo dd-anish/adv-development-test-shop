@@ -308,7 +308,11 @@
       <div class="search-bar-and-card-container">
         
         {% if section.settings.show_search_bar_in_header %}
-          {% render 'custom-search-bar', input_id: 'Search-Bar-Desktop', class: 'custom-search-bar header-search-bar header-search-bar-desktop' %}
+          {% render 'custom-search-bar', 
+            input_id: 'Search-Bar-Desktop', 
+            color_scheme: section.settings.search_bar_color_scheme,
+            class: 'custom-search-bar header-search-bar header-search-bar-desktop' 
+          %}
         {% endif %}
 
         <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
@@ -671,7 +675,8 @@
       "type": "checkbox",
       "id": "show_search_icon",
       "default": false,
-      "label": "Show Search icon"
+      "label": "Show Search Icon",
+      "info": "Dawn's Default Search Bar"
     },
     {
       "type": "header",
@@ -687,6 +692,12 @@
       "type": "color_scheme",
       "id": "menu_color_scheme",
       "label": "t:sections.header.settings.menu_color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "search_bar_color_scheme",
+      "label": "Search Bar Color Scheme",
       "default": "scheme-1"
     },
     {
