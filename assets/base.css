@@ -135,8 +135,8 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 @media screen and (min-width: 990px) {
   .header:not(.drawer-menu).page-width {
-    padding-left: 5rem;
-    padding-right: 5rem;
+    /* padding-left: 5rem;
+    padding-right: 5rem; */
   }
 
   .page-width--narrow {
@@ -2693,6 +2693,7 @@ details[open] > .header__submenu {
 }
 
 /* Header menu */
+
 .header__inline-menu {
   margin-left: -1.2rem;
   grid-area: navigation;
@@ -2706,8 +2707,10 @@ details[open] > .header__submenu {
 
 @media screen and (min-width: 990px) {
   .header__inline-menu {
-    display: block;
+    display: flex;
+    justify-content: center;
   }
+}
 
   .header--top-center .header__inline-menu {
     justify-self: center;
