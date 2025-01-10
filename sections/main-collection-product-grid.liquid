@@ -120,7 +120,9 @@
   {% else %}
      <div class="filter-button-container page-width">
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-  
+          <span class="results-product-count">
+
+          </span>
           <button class="filter-button-mobile-no-search-bar">
             <span> Filters </span>
           </button>
@@ -309,6 +311,30 @@
 </div>
 
 <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+    const filterButtonContainer = document.querySelector('.results-product-count');
+    const productCountElement = document.querySelector('.mobile-facets__count');
+    console.log("productCountElement", productCountElement);
+    
+    if (productCountElement) {
+
+      const productCountText = productCountElement.textContent;
+      filterButtonContainer.innerHTML = `${productCountText}`;
+
+      const observer = new MutationObserver(function() {
+        const productCountText = productCountElement.textContent;
+        filterButtonContainer.innerHTML = `${productCountText}`;
+      });
+
+      observer.observe(productCountElement, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+  });
 
   document.addEventListener('DOMContentLoaded', function() {
     

@@ -119,7 +119,13 @@
 
 .filter-button-container{
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+}
+
+.results-product-count{
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    margin-left: 1rem;
 }
 
 .filter-button-mobile-no-search-bar{
@@ -137,7 +143,7 @@
     top: 0;  
   }  
 
-  .filter-button-mobile, .filter-button-mobile-no-search-bar{
+  .filter-button-mobile, .filter-button-container{
     display: none;
   }
 } 
