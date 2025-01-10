@@ -17,7 +17,7 @@
     "heading_scale": 100,
     "type_body_font": "assistant_n4",
     "body_scale": 100,
-    "page_width": 1200,
+    "page_width": 1300,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 20,
     "spacing_grid_vertical": 20,
@@ -45,6 +45,7 @@
     "variant_pills_shadow_vertical_offset": 4,
     "variant_pills_shadow_blur": 5,
     "no_product_variant_background": "#000000",
+    "no_product_variant_bg_opacity": 0,
     "no_product_variant_border_width": 0,
     "no_product_variant_border_style": "dashed",
     "inputs_border_thickness": 1,
@@ -62,7 +63,7 @@
     "card_border_thickness": 0,
     "card_border_opacity": 10,
     "card_corner_radius": 10,
-    "card_shadow_opacity": 30,
+    "card_shadow_opacity": 0,
     "card_shadow_horizontal_offset": 0,
     "card_shadow_vertical_offset": 0,
     "card_shadow_blur": 5,
@@ -293,6 +294,17 @@
           "background_gradient": "",
           "text": "#121212",
           "button": "#c11717",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#121212",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-e9467d38-c728-48cb-8aad-b70859d6ce01": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "transparent",
+          "text": "#121212",
+          "button": "#121212",
           "button_label": "#ffffff",
           "secondary_button_label": "#121212",
           "shadow": "#121212"
