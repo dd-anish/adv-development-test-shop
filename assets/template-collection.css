@@ -136,14 +136,16 @@
 }
 
 .filter-button-mobile-no-search-bar--button{
-  background: rgba(var(--color-link), var(--alpha-link));
-  border-radius: var(--inputs-radius);
+  /* background: rgba(var(--color-link), var(--alpha-link)); */
+  background: rgba(var(--color-button),var(--alpha-button-background));
+  border-radius: 0.6rem;
   padding: 0.2rem 1.1rem;
   color: rgb(234, 232, 232);
+  border: none;
 }
 
 .filter-button-mobile-no-search-bar--link{
-  
+
   color: rgba(var(--color-link), var(--alpha-link));
   text-decoration: underline;
   background: transparent;
