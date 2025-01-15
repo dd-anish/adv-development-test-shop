@@ -85,10 +85,10 @@
           > 
             {% if show_leading_icon %}
               
-              <span class="svg-wrapper">
+              <div class="svg-wrapper">
                 {{- 'icon-cart-final.svg' | inline_asset_content -}}
-              </span>
-       
+              </div>
+
             {% endif %}
             <span>
               {%- if product.selected_or_first_available_variant == null -%}
@@ -100,11 +100,9 @@
               {%- endif -%}
             </span>
             {% if show_trailing_icon %}
-             
-              <span class="svg-wrapper">
+              <div class="svg-wrapper">
                 {{- 'icon-cart-final.svg' | inline_asset_content -}}
-              </span>
-        
+             </div>
             {% endif %}
             {%- render 'loading-spinner' -%}
           </button>
