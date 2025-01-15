@@ -126,7 +126,7 @@
 .contact-form-section{
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .company_details_block{
