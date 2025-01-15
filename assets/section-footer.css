@@ -366,6 +366,9 @@
 @media screen and (min-width: 750px) {
   .footer-block__details-content {
     margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .footer-block__details-content > p,
