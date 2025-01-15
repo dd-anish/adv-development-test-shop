@@ -1606,10 +1606,10 @@ a.product__text {
   font-weight: 400;
 }
 
-.custom-product-form__submit .icon-cart-2{
+/* .custom-product-form__submit .icon-cart-final{
   width: 19px;
   height: 19px;
-}
+} */
 
 .custom-product-form__submit.button{
   line-height: normal;

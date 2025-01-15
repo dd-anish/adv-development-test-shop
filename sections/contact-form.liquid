@@ -12,10 +12,39 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .company_details_block{
+     background: {{ section.settings.company_details_block_background_color }};
+     box-shadow: 0 0 10px #00000059;
+  }
+
+  
+  {% if section.settings.show_company_details %} 
+    @media screen and (min-width: 750px) {
+      
+        .contact-form-section .contact{
+          flex:1;
+        }
+        .company_details_block{
+          padding: 1rem 3rem;
+          max-width: 40%;
+          text-align: end;
+        }
+    }
+  {% else %} 
+    @media screen and (min-width: 750px) {
+      
+      .contact.contact-forms{
+        width: 100%;
+      }
+    }
+      
+    {% endif %}
+
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="contact page-width section-{{ section.id }}-padding">
+<div class="color-{{ section.settings.color_scheme }} gradient page-width section-{{ section.id }}-padding contact-form-section">
+  <div class="contact contact-forms">
     {%- if section.settings.heading != blank -%}
       <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         {{ section.settings.heading }}
@@ -315,6 +344,19 @@
     {% endif %}
 
   </div>
+
+  {% if section.settings.show_company_details %}
+    <div class="company_details_block">
+      <h3 class="company_name">
+        {{ section.settings.company_name }}
+      </h3>
+
+      <div class="block_content">
+        {{ section.settings.block_content }}
+      </div>
+    
+    </div>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -371,6 +413,34 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Company Details Block"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_company_details",
+      "label": "Show Company Details",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "company_details_block_background_color",
+      "label": "Company Details Block Background Color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "company_name",
+      "label": "Company Name",
+      "default": "Adventure Store"
+    },
+    {
+      "type": "richtext",
+      "id": "block_content",
+      "label": "Block Content",
+      "default": "<p>Adventure Store</p>"
     },
     {
       "type": "header",
