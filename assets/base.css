@@ -2133,6 +2133,8 @@ input[type='checkbox'] {
   }
 }
 
+/* Annoucement Bar CSS */
+
 .announcement-bar__link {
   display: flex;
   width: 100%;
@@ -2172,14 +2174,8 @@ input[type='checkbox'] {
 }
 
 .announcement-bar-slider--fade-in-next .announcement-bar__message {
-  --announcement-translate-from: -1.5rem;
-  /* Prevent flicker */
-  opacity: 0;
-  animation-name: translateAnnouncementSlideIn;
-  animation-delay: var(--duration-announcement-bar);
-}
-
-.announcement-bar-slider--fade-in-previous .announcement-bar__message {
+  /* --announcement-translate-from: -1.5rem; */
+  /* Slide in from the right */
   --announcement-translate-from: 1.5rem;
   /* Prevent flicker */
   opacity: 0;
@@ -2187,13 +2183,27 @@ input[type='checkbox'] {
   animation-delay: var(--duration-announcement-bar);
 }
 
+.announcement-bar-slider--fade-in-previous .announcement-bar__message {
+  /* --announcement-translate-from: 1.5rem; */
+  /* Slide in from the left */
+  --announcement-translate-from: -1.5rem;
+  /* Prevent flicker */
+  opacity: 0;
+  animation-name: translateAnnouncementSlideIn;
+  animation-delay: var(--duration-announcement-bar);
+}
+
 .announcement-bar-slider--fade-out-next .announcement-bar__message {
-  --announcement-translate-to: 1.5rem;
+  /* --announcement-translate-from: 1.5rem; */
+  /* Slide out to the left */
+  --announcement-translate-to: -1.5rem;
   animation-name: translateAnnouncementSlideOut;
 }
 
 .announcement-bar-slider--fade-out-previous .announcement-bar__message {
-  --announcement-translate-to: -1.5rem;
+  /* --announcement-translate-from: -1.5rem; */
+  /* Slide out to the lerightft */
+  --announcement-translate-to: 1.5rem;
   animation-name: translateAnnouncementSlideOut;
 }
 
