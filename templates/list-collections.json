@@ -12,7 +12,9 @@
     "main": {
       "type": "main-list-collections",
       "settings": {
-        "title": "Collections",
+        "title": "<a href=\"https://adventure-store-test-shop.myshopify.com/en/collections\" target=\"_blank\" title=\"All collections\">CATEGORIEËN</a>",
+        "heading_size": "h1",
+        "clickable_title": false,
         "sort": "alphabetical",
         "image_ratio": "square",
         "columns_desktop": 4,

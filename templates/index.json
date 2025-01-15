@@ -212,6 +212,7 @@
       "settings": {
         "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">CATEGORIEËN</a>",
         "heading_size": "h1",
+        "clickable_title": true,
         "image_ratio": "portrait",
         "columns_desktop": 5,
         "color_scheme": "",
