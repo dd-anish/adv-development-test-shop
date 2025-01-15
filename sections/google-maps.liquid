@@ -1,0 +1,67 @@
+<div class="google_maps" style="margin: 0 auto; text-align: center; background-color: {{ section.settings.background_color }};">
+  {% if section.settings.location %}
+    <div 
+      style="
+             height: {{ section.settings.map_height }}px; 
+             width: {% if section.settings.full_width_map %} 100% {% else %} {{ section.settings.map_width }}px; {% endif %}">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb={{ section.settings.location }}" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  {% else %}
+    <p>No map location provided. Please configure the settings.</p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Map Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "location",
+      "label": "Google Map Embed Location (Paste Embed 'pb' Value Here)"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+        "type": "checkbox",
+        "id": "full_width_map",
+        "label": "Full Width Map",
+        "default": true
+    },
+    {
+      "type": "header",
+      "content": "Map Dimensions"
+    },
+    {
+      "type": "number",
+      "id": "map_height",
+      "label": "Map Height (px)",
+      "default": 350
+    },
+    {
+      "type": "number",
+      "id": "map_width",
+      "label": "Map Width (px)",
+      "info": "Only Works if Full Width Map is not enabled",
+      "default": 600
+    }
+  ],
+  "presets": [
+    {
+      "name": "Map Section"
+    }
+  ]
+}
+{% endschema %}

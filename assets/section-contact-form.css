@@ -120,3 +120,57 @@
     font-size: 1.5rem;
   }
 }
+
+/* Company Details */
+
+.contact-form-section{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.company_details_block{
+  
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    width: 100%;
+    height: fit-content;
+    text-align: left;
+    color: black;
+}
+
+.company_details_block .company_name{
+  font-size: 1.5rem;
+}
+
+.company_details_block .block_content{
+  line-height: normal;
+  font-size: 1.4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .contact-form-section {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+
+  .company_details_block{
+    padding: 1rem 3rem;
+    max-width: 40%;
+    text-align: end;
+  }
+
+  
+  .company_details_block .company_name{
+    font-size: 1.6rem;
+    font-weight: inherit;
+  }
+
+  
+  .company_details_block .block_content{
+    font-size: 1.5rem;
+  }
+
+  
+}
