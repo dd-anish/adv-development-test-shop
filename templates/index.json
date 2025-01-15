@@ -64,8 +64,9 @@
         "@media screen and (min-width: 750px) {.slider-buttons {display: flex; }}"
       ],
       "settings": {
-        "title": "<a href=\"/collections/watersport\" target=\"_blank\" title=\"Watersport\">ONTDEK ONZE</a> BESTSELLERS",
+        "title": "<a href=\"/collections/best-seller\" title=\"Best Seller\">ONTDEK ONZE</a> BESTSELLERS",
         "heading_size": "h1",
+        "clickable_title": true,
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -210,7 +211,7 @@
         ".icon-wrap {display: none;}"
       ],
       "settings": {
-        "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">CATEGORIEËN</a>",
+        "title": "<a href=\"/collections\" title=\"All collections\">CATEGORIEËN</a>",
         "heading_size": "h1",
         "clickable_title": true,
         "image_ratio": "portrait",
