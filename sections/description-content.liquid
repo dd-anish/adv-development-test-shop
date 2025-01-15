@@ -21,16 +21,13 @@
             gap: {{ section.settings.gap_between_items_on_desktop }}rem;
         }
     }
-
-
-
     
 {% endstyle %}
 
 <div class="section-{{ section.id }} section-{{ section.id }}-padding page-width description-content">
 
     {%- if section.settings.heading != blank -%}
-        <h2 class="unclickable-link {{ section.settings.heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline {% endif %}">
+        <h2 class="{% if section.settings.clickable_title == false %} unclickable-link {% endif %} {{ section.settings.heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline {% endif %}">
             {{ section.settings.heading }}
         </h2>
     {%- endif -%}
@@ -116,6 +113,12 @@
                 "default": "h1",
                 "label": "t:sections.all.heading_size.label"
             },
+            {
+                "type": "checkbox",
+                "id": "clickable_title",
+                "default": false,
+                "label": "Clickable title"
+                },
             {
                 "type": "richtext",
                 "id": "sub_heading",

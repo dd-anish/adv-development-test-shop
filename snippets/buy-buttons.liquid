@@ -85,7 +85,9 @@
           > 
             {% if show_leading_icon %}
               
-                {{- 'icon-cart-2.svg' | inline_asset_content -}}
+              <span class="svg-wrapper">
+                {{- 'icon-cart-final.svg' | inline_asset_content -}}
+              </span>
        
             {% endif %}
             <span>
@@ -99,7 +101,9 @@
             </span>
             {% if show_trailing_icon %}
              
-                {{- 'icon-cart-2.svg' | inline_asset_content -}}
+              <span class="svg-wrapper">
+                {{- 'icon-cart-final.svg' | inline_asset_content -}}
+              </span>
         
             {% endif %}
             {%- render 'loading-spinner' -%}
