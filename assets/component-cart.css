@@ -1,3 +1,5 @@
+/* Cart Page CSS */
+
 .cart {
   position: relative;
   display: block;
@@ -155,9 +157,9 @@ cart-items {
   width: 100%;
 }
 
-.cart__ctas > * + * {
+/* .cart__ctas > * + * {
   margin-top: 1rem;
-}
+} */
 
 .cart__update-button {
   margin-bottom: 1rem;
@@ -173,7 +175,7 @@ cart-items {
 }
 
 .cart__blocks > * + * {
-  margin-top: 1rem;
+  margin-top: 4rem;
 }
 
 .cart-note__label {
@@ -215,8 +217,135 @@ cart-items {
     justify-content: flex-end;
   }
 
-  .cart__ctas {
-    display: flex;
-    gap: 1rem;
+}
+
+
+/****** Custom CSS *******/
+
+.cart-page{
+  max-width: 100rem;
+}
+
+/* Cart Item Color Swatches */
+
+.color-swatch {
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 30%;
+}
+
+.label-custom-swatches {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+/* Quantity Input Stepper Container */
+
+.cart-page_totals_quantity_container{
+  display: flex;
+  flex-direction: row;
+}
+
+/* Quantity Input */
+
+.cart-page .cart-item__quantity-wrapper .quantity {
+  min-height: calc((var(--inputs-border-width) * 2) + 1.5rem);
+  /* width: calc(12rem / var(--font-body-scale) + var(--inputs-border-width) * 2); */
+  width: 80%;
+  max-width: 20rem;
+}
+
+@media screen and (max-width: 350px) {
+
+  .cart-page .cart-item__quantity-wrapper .quantity {
+    width: 100%;
   }
+
+}
+
+@media screen and (min-width: 750px) {
+  .cart-page .cart-item__quantity-wrapper .quantity {
+    min-height: calc((var(--inputs-border-width) * 2) + 4.5rem);
+  }
+  
+}
+
+.cart-item__quantity-wrapper .quantity-popover-container {
+  flex: 1;
+}
+
+/* Price Font Sizes */
+
+.cart-page .cart-item__item_current_price {
+  font-size: 1.4rem;
+}
+
+.cart-page .product-option-custom-for-price{
+  margin-top: 0.8rem;
+}
+
+@media screen and (min-width: 750px) {
+  .cart-page .cart-item__item_current_price {
+    font-size: 1.6rem;
+  }
+  
+}
+
+/* Sale Badge */
+
+.cart-page .cart-item__sale_badge {
+  top: -9%;
+  right: -4%;
+}
+
+
+/* Footer */
+
+.cart-page .cart__footer .totals-footer-cart-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.totals-footer-cart-page .totals{
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart__ctas{
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media screen and (min-width: 425px) {
+
+  .totals-footer-cart-page .totals{
+    justify-content: end;
+  }
+
+  .cart-page .cart__ctas {
+    justify-content: end;
+  }
+  
+}
+
+
+/* Footer Buttons */
+
+.cart__cart-page-button {
+  background: rgb(0, 0, 255);
+  min-width: fit-content;
+}
+
+.cart__cart-page-button::after{
+  box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset)) rgba(var(--color-button-text), var(--border-opacity)),
+      0 0 0 var(--buttons-border-width) blue, var(--alpha-button-background);
+}
+
+.cart__cart-page-button:not([disabled]):hover::after{
+  box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset)) rgba(var(--color-button-text), var(--border-opacity)),
+    0 0 0 calc(var(--buttons-border-width) + 1px) blue, var(--alpha-button-background);
 }
