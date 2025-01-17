@@ -140,6 +140,7 @@ variant-selects {
 }
 
 /* Custom styles for Swatch display type */
+
 .product-form__input--swatch {
   display: flex;
   gap: 0.3rem;
@@ -162,6 +163,15 @@ variant-selects {
     --swatch-input--size: 1.8rem;
   }
 }
+
+/* Highlight the selected the Color Swatch */
+
+.product-form__input--swatch input[type='radio']:checked + label .swatch {
+  
+  box-shadow:0 0 0 1.3px rgba(var(--theme-black-color-rgb), 1);
+}
+
+
 /* End custom styles for Swatch display type */
 
 /* Custom CSS */
