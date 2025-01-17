@@ -31,7 +31,7 @@
   endif
 -%}
 
-<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %} collection-card-wrapper {% endif %}">
+<div class="collection-card card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %} collection-card-wrapper {% endif %} underline-links-hover">
   <div
     class="
       card
@@ -83,7 +83,7 @@
       {%- else -%}
         <div class="card__content">
           <div class="card__information">
-            <h3 class="card__heading h2 font-body-bold">
+            <h3 class="card__heading h2 font-body-bold underline-links-hover">
               <a
                 {% if card_collection == blank %}
                   role="link" aria-disabled="true"

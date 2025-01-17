@@ -2739,7 +2739,7 @@ details[open] > .header__submenu {
   .header--middle-left .header__inline-menu {
     margin-left: 0;
   }
-}
+
 
 .header__menu {
   padding: 0 1rem;
@@ -4032,3 +4032,23 @@ h6,
   
 }
 
+/* Card Title Hover Effect */
+
+@media screen and (min-width: 750px) {
+
+  .underline-links-hover a {
+    text-decoration: none;
+    display: inline;
+    background-image: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
+    background-position: 0% 100%;
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease-in-out;
+  }
+  
+  .underline-links-hover:hover a {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+  
+}
