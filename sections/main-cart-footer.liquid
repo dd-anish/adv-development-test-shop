@@ -1,3 +1,5 @@
+{% comment %} '/cart' Page Footer {% endcomment %}
+
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -17,12 +19,21 @@
   }
 {%- endstyle -%}
 
+{% assign promo_product_present = false %}
+{% for item in cart.items %}
+  {% if item.variant.compare_at_price %}
+    {% assign promo_product_present = true %}
+  {% endif %}
+{% endfor %}
+
+{% assign profit_on_promo_products = 0 %}
+
 <div
   class="gradient color-{{ section.settings.color_scheme }}{% if cart == empty %} is-empty{% endif %}"
   id="main-cart-footer"
   data-id="{{ section.id }}"
 >
-  <div class="page-width">
+  <div class="page-width cart-page">
     <div class="cart__footer isolate section-{{ section.id }}-padding">
       {%- if settings.show_cart_note -%}
         <cart-note class="cart__note field">
@@ -43,9 +54,9 @@
             {%- when '@app' -%}
               {% render block %}
             {%- when 'subtotal' -%}
-              <div class="js-contents" {{ block.shopify_attributes }}>
-                <div>
-                  {%- if cart.cart_level_discount_applications.size > 0 -%}
+              <div class="js-contents totals-footer-cart-page" {{ block.shopify_attributes }}>
+                {%- if cart.cart_level_discount_applications.size > 0 -%}
+                  <div>
                     <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                       {%- for discount in cart.cart_level_discount_applications -%}
                         <li class="discounts__discount discounts__discount--position">
@@ -55,60 +66,108 @@
                         </li>
                       {%- endfor -%}
                     </ul>
-                  {%- endif -%}
-                </div>
+                  </div>
+                {%- endif -%}
 
+                <!-- Savings on PROMO -->
+                {% if settings.show_savings_on_promo and promo_product_present  %}
+                  {% comment %} Calculation for PROMO Savings {% endcomment %}
+                  {% for item in cart.items %}  
+                    {% if item.variant.compare_at_price %}  
+                    {% assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity %}  
+                  
+                    {% assign profit_on_promo_products = profit_on_promo_products | plus: original_price_with_quantity |  minus: item.original_line_price %}  
+                    {% endif %}  
+                  {% endfor %} 
+                  
+                  <!-- Savings on PROMO DIV -->
+                  <div class="totals totals-savings {% if settings.show_separator_line_below_savings %} totals-savings-bottom-border {% endif %}">  
+                    <h3 class="totals__savings text-capitalize font-medium">  
+                      {{ 'sections.cart.savings_on_promos' | t: profit_on_promo_products: profit_on_promo_products }}
+                    </h3>  
+                    <span class="h4 font-light">  
+                      {{ profit_on_promo_products |  money }}
+                    </span>  
+                  </div>
+                {% endif %}
+
+                <!-- Cart Total -->
                 <div class="totals">
                   <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-                  <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+                  <p class="totals__total-value font-bold">{{ cart.total_price }}</p>
                 </div>
 
-                <small class="tax-note caption-large rte">
-                  {%- if cart.duties_included and cart.taxes_included -%}
-                    {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
-                    {%- else -%}
-                      {{
-                        'sections.cart.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
-                        | t: link: shop.shipping_policy.url
-                      }}
+                <!-- Subtotal without Tax -->
+                {% if settings.show_subtotal_in_cart %}
+                  <div class="totals totals-subtotal">
+                    <div class="heading-with-note">
+                      <h3 class="totals__subtotal font-medium no-default-spacing"> 
+                        {{ 'sections.cart.subtotal' | t }}
+                      </h3>
+                      {% if cart.taxes_included %}
+                        <span class="VAT-note">
+                          {{ 'products.product.taxes_excluded' | t }}
+                        </span>
+                      {% endif %}
+                    </div>
+                    {% assign tax_custom = cart.total_price | times:0.21 %}
+                    <span class="h4 font-semibold">
+        
+                      {% comment %} {{ cart.total_price | divided_by: 1.21 | money_with_currency }} {% endcomment %}
+                      {{ cart.total_price | minus: tax_custom | money }}
+        
+                    </span>
+                  </div>
+                {% endif %}
+
+                {% if section.settings.show_tax_note %}
+                  <small class="tax-note caption-large rte">
+                    {%- if cart.duties_included and cart.taxes_included -%}
+                      {%- if shop.shipping_policy.body == blank -%}
+                        {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
+                      {%- else -%}
+                        {{
+                          'sections.cart.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
+                          | t: link: shop.shipping_policy.url
+                        }}
+                      {%- endif -%}
+                    {%- elsif cart.duties_included == false and cart.taxes_included -%}
+                      {%- if shop.shipping_policy.body == blank -%}
+                        {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
+                      {%- else -%}
+                        {{
+                          'sections.cart.taxes_included_shipping_at_checkout_with_policy_html'
+                          | t: link: shop.shipping_policy.url
+                        }}
+                      {%- endif -%}
+                    {%- elsif cart.duties_included and cart.taxes_included == false -%}
+                      {%- if shop.shipping_policy.body == blank -%}
+                        {{ 'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                      {%- else -%}
+                        {{
+                          'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'
+                          | t: link: shop.shipping_policy.url
+                        }}
+                      {%- endif -%}
+                    {%- elsif cart.duties_included == false and cart.taxes_included == false -%}
+                      {%- if shop.shipping_policy.body == blank -%}
+                        {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                      {%- else -%}
+                        {{
+                          'sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html'
+                          | t: link: shop.shipping_policy.url
+                        }}
+                      {%- endif -%}
                     {%- endif -%}
-                  {%- elsif cart.duties_included == false and cart.taxes_included -%}
-                    {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
-                    {%- else -%}
-                      {{
-                        'sections.cart.taxes_included_shipping_at_checkout_with_policy_html'
-                        | t: link: shop.shipping_policy.url
-                      }}
-                    {%- endif -%}
-                  {%- elsif cart.duties_included and cart.taxes_included == false -%}
-                    {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
-                    {%- else -%}
-                      {{
-                        'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'
-                        | t: link: shop.shipping_policy.url
-                      }}
-                    {%- endif -%}
-                  {%- elsif cart.duties_included == false and cart.taxes_included == false -%}
-                    {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
-                    {%- else -%}
-                      {{
-                        'sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html'
-                        | t: link: shop.shipping_policy.url
-                      }}
-                    {%- endif -%}
-                  {%- endif -%}
-                </small>
+                  </small>
+                {% endif %}
               </div>
             {%- else -%}
               <div class="cart__ctas" {{ block.shopify_attributes }}>
                 <button
                   type="submit"
                   id="checkout"
-                  class="cart__checkout-button button"
+                  class="cart__checkout-button button font-semibold"
                   name="checkout"
                   {% if cart == empty %}
                     disabled
@@ -143,6 +202,12 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tax_note",
+      "label": "Show tax note",
+      "default": false
     },
     {
       "type": "range",

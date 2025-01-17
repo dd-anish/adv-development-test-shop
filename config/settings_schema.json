@@ -525,6 +525,22 @@
     "name": "t:settings_schema.variant_pills.name",
     "settings": [
       {
+        "type": "select",
+        "id": "highlight_variant_type",
+        "options": [
+          {
+            "value": "border",
+            "label": "Border"
+          },
+          {
+            "value": "checkmark",
+            "label": "Checkmark"
+          }
+        ],
+        "default": "checkmark",
+        "label": "Selected Highlight Variant type"
+      },
+      {
         "type": "paragraph",
         "content": "t:settings_schema.variant_pills.paragraph"
       },

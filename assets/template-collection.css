@@ -192,3 +192,33 @@
   }
   
 }
+
+@media screen and (min-width: 749px) {
+
+  /* Product Card Price and Add To Cart Div */
+  .featured-collection-custom .price{
+    flex: none;
+  }
+
+  .featured-collection-custom .price-add-to-cart-container{
+    gap: 0.2rem;
+  }
+
+ /*  .featured-collection-custom .quick-add{
+    width: 100%;
+  } */
+
+  .featured-collection-custom .quick-add__submit{
+    max-width: 7rem;
+    width: 100%;
+  }
+  
+  .featured-collection-custom .quick-add__modal-opener{
+    display: flex;
+    justify-content: end;
+  }
+
+  .featured-collection-custom .price_without_tax{
+    margin-top: 0.2rem;
+  }
+}

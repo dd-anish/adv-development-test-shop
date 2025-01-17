@@ -140,6 +140,7 @@ variant-selects {
 }
 
 /* Custom styles for Swatch display type */
+
 .product-form__input--swatch {
   display: flex;
   gap: 0.3rem;

@@ -1,5 +1,13 @@
+/* Common to Cart Page and Drawer */
+
+.cart-items{
+  color: var(--theme-black-color);
+}
+
 cart-items .title-wrapper-with-link {
   margin-top: 0;
+  display: flex;
+  align-items: center;
 }
 
 .cart-items td,
@@ -254,8 +262,9 @@ cart-remove-button .icon-remove {
   .cart-item {
     display: grid;
     grid-template: repeat(2, auto) / repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3.5rem;
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+    margin-bottom: 2.5rem;
   }
 
   .cart-item:last-child {
@@ -283,6 +292,7 @@ cart-remove-button .icon-remove {
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
+    margin-top: 0.2rem;
   }
 }
 
@@ -325,7 +335,8 @@ cart-remove-button .icon-remove {
   }
 
   .cart-item__price-wrapper > *:only-child:not(.cart-item__discounted-prices) {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
+    margin-top: 1.7rem;
   }
 
   .cart-item__error {

@@ -70,7 +70,7 @@
             {{ 'sections.cart.title' | t }}
           </h2>
           <span class="text-body--small font-light">
-            ({{ cart.item_count }} artikelen)
+            ({{ 'sections.header.cart_count' | t: count: cart.item_count  }})
           </span>
         </div>
 
@@ -169,6 +169,7 @@
                                         <dd class="font-light label-custom-swatches">
                                           {{ option.value -}}
 
+                                          <!-- Color Swatches -->
                                           {%- if option.name == 'Color' or option.name == 'Kleur' -%}
                                             {% for shopify--color-pattern in metaobject_color_list %}
                                               {% assign value_handle = option.value | handle %}
@@ -300,7 +301,7 @@
                                     </span>
                                   </div>
                                 {%- else -%}
-                                <!-- Promo Products Price-->
+                                  <!-- Promo Products Price-->
                                   {% if item.variant.compare_at_price and settings.show_promo_produuct_original_price_total %}
                                     {% assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity %}
                                     <span class="cart-item__compare_at_price font-light">
@@ -670,10 +671,17 @@
         <!-- CTAs -->
 
         <div class="cart__ctas" {{ block.shopify_attributes }}>
+
+          {% if cart != empty %}
+            <a href="{{ routes.cart_url }}" class="cart__cart-page-button button text-uppercase font-semibold">
+                {{ 'sections.cart.overview' | t }}
+            </a>
+          {% endif %}
+
           <button
             type="submit"
             id="CartDrawer-Checkout"
-            class="cart__checkout-button button text-uppercase font-bold"
+            class="cart__checkout-button button text-uppercase font-semibold"
             name="checkout"
             form="CartDrawer-Form"
             {% if cart == empty %}
