@@ -65,7 +65,7 @@
         "@media screen and (min-width: 750px) {.slider-buttons {display: flex; }}"
       ],
       "settings": {
-        "title": "<a href=\"/collections/best-seller\" title=\"Best Seller\">ONTDEK ONZE</a> BESTSELLERS",
+        "title": "<a href=\"/collections/best-seller\" title=\"Best Seller\">ONTDEK ONZE BES</a>TSELLERS",
         "heading_size": "h1",
         "clickable_title": true,
         "description": "",
