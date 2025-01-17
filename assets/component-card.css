@@ -410,20 +410,32 @@
     text-underline-offset: 0.3rem;
   } */
 
-  .underline-links-hover a {
-    text-decoration: none;
-    /* display: inline; */
-    background-image: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
-    background-position: 0% 100%;
-    background-size: 0% 1px;
-    background-repeat: no-repeat;
-    transition: background-size 0.3s ease-in-out;
-  }
-
-  .underline-links-hover:hover a {
-    background-size: 100% 1px;
-    background-position: 0% 100%;
-  }
+    .underline-links-hover a {
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+    }
+  
+    .underline-links-hover a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 100%;
+      height: 1px;
+      /* Thickness of underline */
+      background: linear-gradient(to right, black, black);
+      /* Gradient for line effect */
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease-in-out;
+    }
+  
+    .underline-links-hover:hover a::after {
+      transform: scaleX(1);
+      /* Full width on hover */
+    }
 }
 
 .card--standard.card--media .card__inner .card__information,
