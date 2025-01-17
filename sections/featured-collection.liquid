@@ -166,7 +166,9 @@
           {%- endfor -%}
         {%- endfor -%}
       </ul>
+
       {%- if show_mobile_slider or show_desktop_slider -%}
+        <!-- Slider Buttons -->
         <div class="slider-buttons">
           <button
             type="button"
@@ -179,11 +181,15 @@
               {{- 'icon-caret.svg' | inline_asset_content -}}
             </span>
           </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ products_to_display }}</span>
+          <div class="slider-center-container">
+            <div class="slider-dots">
+            </div>
+            <div class="slider-counter caption">
+              <span class="slider-counter--current">1</span>
+              <span aria-hidden="true"> / </span>
+              <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+              <span class="slider-counter--total">{{ products_to_display }}</span>
+            </div>
           </div>
           <button
             type="button"
