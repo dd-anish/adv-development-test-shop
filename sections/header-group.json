@@ -34,6 +34,7 @@
         },
         "announcement_kJwRYW": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "Announcement 3",
             "link": "",
