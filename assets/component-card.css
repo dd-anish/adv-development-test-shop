@@ -405,10 +405,38 @@
     transform: scale(1.03);
   }
 
-  .underline-links-hover:hover a {
+/*   .underline-links-hover:hover a {
     text-decoration: underline;
     text-underline-offset: 0.3rem;
-  }
+  } */
+
+    .underline-links-hover a {
+      position: relative;
+      /* display: inline-block; */
+      color: inherit;
+      text-decoration: none;
+    }
+  
+    .underline-links-hover a::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      /* Thickness of underline */
+      background-color: currentColor;
+      /* Matches the text color */
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+  
+    .underline-links-hover a:hover::after {
+      transform: scaleX(1);
+      /* Expand underline */
+    }
 }
 
 .card--standard.card--media .card__inner .card__information,
