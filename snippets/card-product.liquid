@@ -55,7 +55,7 @@
       assign ratio = 1
     endif
   -%}
-  <div class="card-wrapper product-card-wrapper product-card-wrapper-custom underline-links-hover">
+  <div class="card-wrapper product-card-wrapper product-card-wrapper-custom underline-links-hover-container">
     <div class="
         card card--{{ settings.card_style }}
         {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
@@ -156,7 +156,7 @@
             <a
               href="{{ card_product.url |  within: collection }}"
               id="CardLink-{{ section_id }}-{{ card_product.id }}"
-              class="full-unstyled-link"
+              class="full-unstyled-link underline-link-title"
               aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}">
               {{ card_product.title | escape }}
             </a>
@@ -711,7 +711,7 @@
         assign ratio = 0.8
       endif
     -%}
-    <div class="card-wrapper product-card-wrapper underline-links-hover">
+    <div class="card-wrapper product-card-wrapper underline-links-hover-container">
       <div class="
         card card--{{ settings.card_style }}
         {% if extend_height %} card--extend-height{% endif %}
@@ -735,7 +735,7 @@
               <a
                 role="link"
                 aria-disabled="true"
-                class="full-unstyled-link">
+                class="full-unstyled-link underline-link-title">
                 {{ 'onboarding.product_title' | t }}
               </a>
             </h3>

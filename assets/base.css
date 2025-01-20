@@ -4052,7 +4052,7 @@ h6,
 
 @media screen and (min-width: 750px) {
 
-  .underline-links-hover a {
+  .underline-links-hover-container .underline-link-title{
     text-decoration: none;
     display: inline;
     background-image: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
@@ -4062,7 +4062,7 @@ h6,
     transition: background-size 0.3s ease-in-out;
   }
   
-  .underline-links-hover:hover a {
+  .underline-links-hover-container:hover .underline-link-title {
     background-size: 100% 1px;
     background-position: 0% 100%;
   }
