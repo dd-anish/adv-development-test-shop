@@ -170,9 +170,11 @@
       {%- if show_mobile_slider or show_desktop_slider -%}
         <!-- Slider Buttons -->
         <div class="slider-buttons">
+
+          <!-- No need of Prev Button -->
           <button
             type="button"
-            class="slider-button slider-button--prev"
+            class="slider-button slider-button--prev visually-hidden"
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
             aria-controls="Slider-{{ section.id }}"
@@ -184,16 +186,20 @@
           <div class="slider-center-container">
             <div class="slider-dots">
             </div>
-            <div class="slider-counter caption">
+            
+            <!-- No need of Slider Caption Numbers -->
+            <div class="slider-counter caption visually-hidden">
               <span class="slider-counter--current">1</span>
               <span aria-hidden="true"> / </span>
               <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
               <span class="slider-counter--total">{{ products_to_display }}</span>
             </div>
           </div>
+
+          <!-- No need of Next Button -->
           <button
             type="button"
-            class="slider-button slider-button--next"
+            class="slider-button slider-button--next visually-hidden"
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
             aria-controls="Slider-{{ section.id }}"

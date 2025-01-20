@@ -1772,6 +1772,28 @@
     ]
   },
   {
+    "name": "Slider Components",
+    "settings": [
+      {
+        "type": "select",
+        "id": "slider_type",
+        "label": "Slider Type",
+        "info": "Only for Home Page Sections",
+        "options": [
+          {
+            "value": "dawn-default",
+            "label": "Dawn's Default"
+          },
+          {
+            "value": "adv-custom",
+            "label": "Adv Custom"
+          }
+        ],
+        "default": "adv-custom"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.currency_format.name",
     "settings": [
       {

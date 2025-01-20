@@ -729,7 +729,8 @@ class SliderComponent extends HTMLElement {
     this.nextButton = this.querySelector('button[name="next"]');
     this.sliderDotsContainer = this.querySelector(".slider-dots");
 
-    if (!this.slider || !this.nextButton || !this.sliderDotsContainer) return;
+    // Hide the slider buttons is slider and either default buttons or slider dots are not present
+    if (!this.slider && (!this.nextButton || !this.sliderDotsContainer)) return;
 
     this.initPages();
     const resizeObserver = new ResizeObserver((entries) => this.initPages());
@@ -760,18 +761,25 @@ class SliderComponent extends HTMLElement {
   }
 
   initSliderDots() {
-    // Clear existing dots if any
-    this.sliderDotsContainer.innerHTML = "";
+    // Check if the slider-dots container is present
+    if (this.sliderDotsContainer) {
+      // Clear existing dots if any
+      this.sliderDotsContainer.innerHTML = "";
+      // console.log("init Slider Dots")
 
-    // Create a dot for each slide
-    for (let i = 0; i < this.totalPages; i++) {
-      const dot = document.createElement("button");
-      dot.classList.add("slider-dot");
-      dot.setAttribute("data-slide", i + 1);
-      dot.setAttribute("aria-label", `Slide ${i + 1}`);
-      dot.setAttribute("aria-selected", "false");
-      dot.addEventListener("click", () => this.goToSlide(i + 1));
-      this.sliderDotsContainer.appendChild(dot);
+      // Create a dot for each slide
+      for (let i = 0; i < this.totalPages; i++) {
+        const dot = document.createElement("button");
+        dot.classList.add("slider-dot");
+        dot.setAttribute("data-slide", i + 1);
+        dot.setAttribute("aria-label", `Slide ${i + 1}`);
+        dot.setAttribute("aria-selected", "false");
+        dot.addEventListener("click", () => this.goToSlide(i + 1));
+        this.sliderDotsContainer.appendChild(dot);
+      }
+    }
+    else {
+      // console.log("Slider dots container not initialzed");
     }
   }
 
@@ -788,7 +796,7 @@ class SliderComponent extends HTMLElement {
   update() {
     // Temporarily prevents unneeded updates resulting from variant changes
     // This should be refactored as part of https://github.com/Shopify/dawn/issues/2057
-    if (!this.slider || !this.nextButton) return;
+    if (!this.slider && (!this.nextButton || !this.sliderDotsContainer)) return;
 
     const previousPage = this.currentPage;
     this.currentPage =
@@ -835,20 +843,23 @@ class SliderComponent extends HTMLElement {
   }
 
   updateSliderDots(currentPage) {
-    const dots = this.querySelectorAll(".slider-dot");
-    dots.forEach((dot, index) => {
-      if (index === currentPage - 1) {
-        dot.setAttribute("aria-selected", "true");
-        dot.style.backgroundColor = "red"; // Active dot in red
-        dot.style.width = "5rem";
-        dot.style.transition = "width 0.3s ease-in-out";
-      } else {
-        dot.setAttribute("aria-selected", "false");
-        dot.style.backgroundColor = ""; // Reset inactive dot
-        dot.style.width = "";
-        dot.style.transition = "width 0.3s ease-in-out";
-      }
-    });
+    // Check if the slider-dots container is present
+    if (this.sliderDotsContainer) {
+      const dots = this.querySelectorAll(".slider-dot");
+      dots.forEach((dot, index) => {
+        if (index === currentPage - 1) {
+          dot.setAttribute("aria-selected", "true");
+          dot.classList.add("slider-dot--active");
+        } else {
+          dot.setAttribute("aria-selected", "false");
+          dot.classList.remove("slider-dot--active");
+        }
+      });
+    }
+    else {
+      // console.log("Slider dots container not found in Update Slider Dots Function");
+      
+    }
   }
 
   isSlideVisible(element, offset = 0) {
