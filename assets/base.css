@@ -2050,6 +2050,8 @@ input[type='checkbox'] {
     grid-template-areas: 'social-icons language-currency';
   }
 
+  /* Annoucement Bar CSS */
+
   .announcement-bar.announcement-bar--one-announcement,
   .announcement-bar--one-announcement .announcement-bar__link {
     width: fit-content;
@@ -2067,6 +2069,19 @@ input[type='checkbox'] {
   flex-wrap: wrap;
   align-content: center;
   grid-area: announcements;
+  min-height: 2.5rem;
+}
+
+.announcement-bar,
+.announcement-bar__announcement a{
+  font-size: inherit;
+}
+
+@media screen and (min-width: 749px) {
+  .announcement-bar,
+    .announcement-bar__announcement {
+      min-height: 3rem;
+    }
 }
 
 .announcement-bar .slider--everywhere {
@@ -2086,6 +2101,11 @@ input[type='checkbox'] {
 .announcement-bar-slider .slider {
   width: 100%;
 }
+
+ .announcement-bar .slider-button {
+    /* height: 3.8rem; */
+    height: unset;
+  }
 
 .announcement-bar .slider-button--next {
   margin-right: -1.5rem;
@@ -2128,10 +2148,6 @@ input[type='checkbox'] {
 
   .announcement-bar-slider {
     width: 60%;
-  }
-
-  .announcement-bar .slider-button {
-    height: 3.8rem;
   }
 }
 
