@@ -34,6 +34,7 @@
         },
         "announcement_kJwRYW": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "Announcement 3",
             "link": "",
@@ -81,7 +82,7 @@
         "show_search_icon": false,
         "color_scheme": "scheme-89272fcc-ec3f-4067-9a14-72d8f67af67d",
         "menu_color_scheme": "scheme-2c96eb9f-812b-4b2d-99c0-a754ac541f90",
-        "search_bar_color_scheme": "scheme-89272fcc-ec3f-4067-9a14-72d8f67af67d",
+        "search_bar_color_scheme": "scheme-e9467d38-c728-48cb-8aad-b70859d6ce01",
         "enable_country_selector": false,
         "enable_language_selector": false,
         "enable_customer_avatar": false,

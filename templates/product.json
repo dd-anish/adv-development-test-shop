@@ -239,6 +239,34 @@
             "padding_right": 0
           }
         },
+        "collapsible_tab_DM8DHa": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "FAQ",
+            "icon": "none",
+            "content": "<p>Heb je een vraag? Bekijk dan <a href=\"/pages/veelgestelde-vraag\" title=\"Veelgestelde vraag?\">hier</a> onze veelgestelde vragen.</p><p>Vind je geen antwoord? <a href=\"/pages/contact\" title=\"Contact Us\">Contacteer ons</a> dan!</p>",
+            "product_description": "",
+            "shipping_options": "",
+            "display_product_advantages_disadvantages": false,
+            "display_product_specifications_table": false,
+            "expand_by_default": false,
+            "enable_background": false,
+            "show_more_type": "button",
+            "show_more_text": "Toon meer",
+            "show_less_text": "Toon minder",
+            "description_limit": 6,
+            "grid_row": "1",
+            "grid_column": "2",
+            "border_radius_top_left": 0,
+            "border_radius_top_right": 0,
+            "border_radius_bottom_left": 0,
+            "border_radius_bottom_right": 0,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_left": 0,
+            "padding_right": 0
+          }
+        },
         "share": {
           "type": "share",
           "disabled": true,
@@ -269,6 +297,7 @@
         "collapsible_tab_3KfKLt",
         "collapsible_tab_ppnbak",
         "collapsible_tab_B6RWhR",
+        "collapsible_tab_DM8DHa",
         "share"
       ],
       "settings": {
@@ -324,6 +353,7 @@
       "settings": {
         "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">ONTDEK ONZE</a> BESTSELLERS",
         "heading_size": "h1",
+        "clickable_title": false,
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -345,6 +375,7 @@
         "show_rating": false,
         "quick_add": "standard",
         "show_strikethrough_price": false,
+        "current_price_font_weight": "font-semibold",
         "original_price_size": "font-small-8-px-fix",
         "price_horizontal_alignment": "column-reverse",
         "price_vertical_alignment": "flex-start",

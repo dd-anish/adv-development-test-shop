@@ -45,6 +45,7 @@
       ],
       "custom_css": [],
       "settings": {
+        "image": "shopify://shop_images/Banner_Image.webp",
         "image_overlay_opacity": 30,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
@@ -64,7 +65,7 @@
         "@media screen and (min-width: 750px) {.slider-buttons {display: flex; }}"
       ],
       "settings": {
-        "title": "<a href=\"/collections/best-seller\" title=\"Best Seller\">ONTDEK ONZE</a> BESTSELLERS",
+        "title": "<a href=\"/collections/best-seller\" title=\"Best Seller\">ONTDEK ONZE BES</a>TSELLERS",
         "heading_size": "h1",
         "clickable_title": true,
         "description": "",
@@ -140,6 +141,7 @@
         "buttons_79hBmM"
       ],
       "settings": {
+        "image": "shopify://shop_images/Kopie_van_IMG20220924152836.jpg",
         "image_overlay_opacity": 30,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
