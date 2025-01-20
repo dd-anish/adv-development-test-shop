@@ -100,7 +100,7 @@
                   {% render block %}
                 {%- when 'text' -%}
                   <p
-                    class="product__text text-link-underline {% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle {% endif %} unclickable-link"
+                    class="product__text text-link-underline-custom {% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle {% endif %} unclickable-link"
                     {{ block.shopify_attributes }}
                   >
                     {{- block.settings.text -}}

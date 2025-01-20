@@ -2,7 +2,7 @@
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
 <div class="page-width">
-  <h1 class="title title--primary text-link-underline {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {{ section.settings.heading_size }} {% if section.settings.clickable_title == false %} unclickable-link {% endif %}">
+  <h1 class="title title--primary text-link-underline-custom {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {{ section.settings.heading_size }} {% if section.settings.clickable_title == false %} unclickable-link {% endif %}">
     {{ section.settings.title }}
   </h1>
   {%- liquid

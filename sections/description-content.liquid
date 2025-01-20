@@ -27,19 +27,19 @@
 <div class="section-{{ section.id }} section-{{ section.id }}-padding page-width description-content">
 
     {%- if section.settings.heading != blank -%}
-        <h2 class="{% if section.settings.clickable_title == false %} unclickable-link {% endif %} {{ section.settings.heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline {% endif %}">
+        <h2 class="{% if section.settings.clickable_title == false %} unclickable-link {% endif %} {{ section.settings.heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline-custom-desc-content {% endif %}">
             {{ section.settings.heading }}
         </h2>
     {%- endif -%}
 
     {% if section.settings.sub_heading != blank %}
-        <div class="font-regular {{ section.settings.sub_heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline {% endif %}">
+        <div class="font-regular {{ section.settings.sub_heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline-custom-desc-content-thin {% endif %}">
             {{ section.settings.sub_heading }}
         </div>
     {% endif %}
 
     {% if section.settings.description != blank %}
-        <div class="section__description font-regular {{ section.settings.description_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline {% endif %}">
+        <div class="section__description font-regular {{ section.settings.description_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline-custom-desc-content-thin {% endif %}">
             {{ section.settings.description }}
         </div>
     {% endif %}

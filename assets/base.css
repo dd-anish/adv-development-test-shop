@@ -3924,27 +3924,51 @@ h6,
   text-decoration: none;
 }
 
-.text-link-underline-custom {
+/* .text-link-underline-custom {
   position: relative;
-  display: inline-block;
-}
-
-.text-link-underline-custom-thin {
-  position: relative;
-  display: inline-block;
+  display: inline;
 }
 
 .text-link-underline-custom::after {
   content: "";
   position: absolute;
-  bottom: -5%;
+  bottom: 0;
   left: 0;
   width: var(--text-decoration-width);
   height: var(--text-decoration-thickness);
   background-color: var(--theme-signature-color);
+} */
+
+.text-link-underline-custom {
+  position: relative;
+  display: inline;
+  background: linear-gradient(to right, var(--theme-signature-color) 70%, transparent 70%);
+  background-position: 0 92%;
+  background-repeat: repeat-x;
+  background-size: 100% var(--text-decoration-thickness);
+  box-decoration-break: clone;
+  width: fit-content;
+  line-height: 1.5;
 }
 
-.text-link-underline-custom-thin::after {
+.text-link-underline-custom a, .text-link-underline-custom-thin a{
+  text-decoration: none;
+  color: currentColor;
+}
+
+
+.text-link-underline-custom-thin {
+  position: relative;
+  display: inline;
+  background: linear-gradient(to right, var(--theme-signature-color) 70%, transparent 70%);
+  background-position: 0 95%;
+  background-repeat: repeat-x;
+  background-size: 100% var(--text-decoration-thickness);
+  box-decoration-break: clone;
+  width: fit-content;
+}
+
+/* .text-link-underline-custom-thin::after {
   content: "";
   position: absolute;
   bottom: -5%;
@@ -3952,7 +3976,7 @@ h6,
   width: var(--text-decoration-width);
   height: var(--text-decoration-thickness);
   background-color: var(--theme-signature-color);
-}
+} */
 
 @media screen and (min-width: 750px) {
 
@@ -3961,9 +3985,9 @@ h6,
     text-decoration-thickness: calc(var(--text-decoration-thickness) + var(--text-decoration-desktop-adjustment));
   }
 
-  .text-link-underline-custom::after {
+  .text-link-underline-custom {
    
-    height: calc(var(--text-decoration-thickness) + var(--text-decoration-desktop-adjustment));
+    background-size: 100% calc(var(--text-decoration-thickness) + var(--text-decoration-desktop-adjustment));
 
   }
   
@@ -3976,7 +4000,9 @@ h6,
 
   .collection .collection__title .title,
   .collection-list-wrapper .title-wrapper-with-link .collection-list-title {
-    padding: 0 2rem;
+    /* padding: 0 2rem; */
+    margin: 0 2rem;
+    /* line-height: normal; */
   }
 
 }
