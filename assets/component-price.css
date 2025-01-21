@@ -25,7 +25,7 @@
 .price .price-item {
   display: inline-block;
   /* margin: 0 1rem 0 0; */
-  line-height: 0.8;
+  /* line-height: 0.8; */
 }
 
 .price__regular .price-item--regular {
@@ -119,10 +119,10 @@
 }
 
 
-/* Custom */
+/* Custom CSS */
 
 .price__sale , .price__regular{
-  line-height: 0.8;
+  /* line-height: 0.8; */
 }
 
 .price--on-sale-custom-color{
