@@ -397,6 +397,16 @@
         "label": "Breadcrumb Background",
         "default": "#ededed"
       },
+      {
+        "type": "range",
+        "id": "breadcrumb_padding",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Breadcrumb Top Bottom Padding",
+        "default": 10
+      },
     ]
   },
   {

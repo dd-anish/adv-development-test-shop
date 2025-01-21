@@ -120,9 +120,11 @@
   {% else %}
      <div class="filter-button-container page-width">
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-          <span class="results-product-count">
 
+          <!-- Product Count -->
+          <span class="results-product-count">
           </span>
+
           <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
             <span> {{ 'products.facets.filter_button' | t }} </span>
           </button>

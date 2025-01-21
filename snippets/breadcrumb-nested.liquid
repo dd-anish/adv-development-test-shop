@@ -1,12 +1,19 @@
 {{ "component-breadcrumb.css" |  asset_url | stylesheet_tag }}
 
+<style>
+  .breadcrumbs {
+    padding-top:{{ settings.breadcrumb_padding }}px;
+    padding-bottom:{{ settings.breadcrumb_padding }}px;
+  }
+</style>
+
 {%- unless template != 'collection' and template != 'product' -%}
 
   <!-- Metafield Value -->
   {%- assign nested_collection = collection.metafields.custom.nested_collection_for_breadcrumb -%}
 
   <div class="breadcrumbs-container">
-    <nav class="page-width breadcrumbs text-body--extra-small" role="navigation" aria-label="breadcrumbs">
+    <nav class="page-width breadcrumbs" role="navigation" aria-label="breadcrumbs">
       <ol class="breadcrumbs__list">
 
         {%- if settings.show_home_breadcrumb -%}
