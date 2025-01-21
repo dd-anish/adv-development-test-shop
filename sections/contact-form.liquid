@@ -27,7 +27,7 @@
         }
         .company_details_block{
           padding: 1rem 3rem;
-          max-width: 40%;
+          max-width: {{ section.settings.company_details_block_width }}%;
           text-align: end;
         }
     }
@@ -429,6 +429,16 @@
       "id": "company_details_block_background_color",
       "label": "Company Details Block Background Color",
       "default": "#f4f4f4"
+    },
+    {
+      "type": "range",
+      "id": "company_details_block_width",
+      "min": 25,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Company Details Block Width",
+      "default": 30
     },
     {
       "type": "inline_richtext",

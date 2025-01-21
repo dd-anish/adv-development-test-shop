@@ -673,8 +673,8 @@
         <div class="cart__ctas" {{ block.shopify_attributes }}>
 
           {% if cart != empty %}
-            <a href="{{ routes.cart_url }}" class="cart__cart-page-button button text-uppercase font-semibold">
-                {{ 'sections.cart.overview' | t }}
+            <a href="{{ routes.cart_url }}" class="cart__cart-overview-button button text-uppercase font-semibold mobile-hidden">
+                {{ 'sections.cart.overview' | t }} 
             </a>
           {% endif %}
 

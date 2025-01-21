@@ -31,7 +31,7 @@
   <div class="page-width cart-page">
     <div class="title-wrapper-with-link">
       <!-- Title Cart -->
-      <h1 class="title text-link-underline-custom-thin">
+      <h1 class="title text-link-underline-custom-thin text-capitalize">
         {{ 'sections.cart.title' | t }}
         <span class="small-hide text-body--small font-light">
           ({{ 'sections.header.cart_count' | t: count: cart.item_count  }})
@@ -44,7 +44,7 @@
       </a>
     </div>
 
-    <!-- Cart Warnings -->
+    <!-- Cart Warnings and When Cart is Empty -->
     <div class="cart__warnings">
       <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
       <a href="{{ routes.all_products_collection_url }}" class="button">
