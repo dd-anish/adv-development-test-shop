@@ -26,17 +26,33 @@
 {% endcomment %}
 
 {% if clickable_variant_colors %}
-  <a href="{{ product.url | within: collection }}?variant={{ variant_id }}" class="{% if visually_disabled %} swatch-disabled-custom {% endif %} test">  
-    <span class="swatch-input__input"> </span>
-    <label
-      for="{{ id }}"
-      title="{{ value }}"
-      class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
-    >
-      {% render 'swatch', swatch: swatch, shape: shape %}
-      {{ help_text }}
-    </label>
-  </a>
+  {% if template == 'search' %}
+    <!-- Filter URL for Search Page Results -->
+    <a href="{{ product.url | within: collection | split: '?' | first }}?variant={{ variant_id }}" class="{% if visually_disabled %} swatch-disabled-custom {% endif %}">  
+      <span class="swatch-input__input"> </span>
+      <label
+        for="{{ id }}"
+        title="{{ value }}"
+        class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
+      >
+        {% render 'swatch', swatch: swatch, shape: shape %}
+        {{ help_text }}
+      </label>
+    </a>
+  {% else %}
+    <a href="{{ product.url | within: collection }}?variant={{ variant_id }}" class="{% if visually_disabled %} swatch-disabled-custom {% endif %}">  
+      <span class="swatch-input__input"> </span>
+      <label
+        for="{{ id }}"
+        title="{{ value }}"
+        class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
+      >
+        {% render 'swatch', swatch: swatch, shape: shape %}
+        {{ help_text }}
+      </label>
+    </a>
+  {% endif %}
+  
 {% else %}
   <input
     type="{{ type | default: 'radio' }}"
