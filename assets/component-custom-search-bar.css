@@ -77,3 +77,18 @@
     }
     
 }
+
+
+/* Fixing Margin/Padding Issue */
+
+.custom-search-bar .template-search__header{
+    margin-bottom: 0;
+}
+
+.custom-search-bar .template-search__search{
+    margin: unset;
+}
+
+.custom-search-bar .template-search__search .search{
+    margin-top: 0;
+}
