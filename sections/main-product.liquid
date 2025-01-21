@@ -231,6 +231,7 @@
                       tax_price_font_weight: section.settings.tax_price_font_weight
                       tax_text_font_size: section.settings.tax_text_font_size,
                       original_price_size: section.settings.original_price_size,
+                      tax_price_margin_top: section.settings.tax_price_margin_top,
                       tax_price_margin_left: section.settings.tax_price_margin_left,
                     -%}
                   </div>
@@ -4309,6 +4310,16 @@
       ],
       "default": "text-body--small-3",
       "label": "Original Price Font Size"
+    },
+    {
+      "type": "range",
+      "id": "tax_price_margin_top",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tax Price Margin Top",
+      "default": 0
     },
     {
         "type": "range",

@@ -288,6 +288,7 @@
                       tax_price_font_weight: section.settings.tax_price_font_weight
                       tax_text_font_size: section.settings.tax_text_font_size,
                       tax_text_uppercase: section.settings.tax_text_uppercase,
+                      tax_price_margin_top: section.settings.tax_price_margin_top,
                       tax_price_margin_left: section.settings.tax_price_margin_left
                     %}
                   </li>
@@ -648,7 +649,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Price Gap",
+      "label": "OG and Sale Price Gap",
       "default": 0
     },
     {
@@ -738,6 +739,16 @@
       ],
       "default": "font-small-8-px-fix",
       "label": "Tax Text Font Size"
+    },
+    {
+        "type": "range",
+        "id": "tax_price_margin_top",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Tax Price Margin Top",
+        "default": 2
     },
     {
         "type": "range",
