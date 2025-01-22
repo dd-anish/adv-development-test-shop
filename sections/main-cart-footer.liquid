@@ -20,13 +20,23 @@
 {%- endstyle -%}
 
 {% assign promo_product_present = false %}
-{% for item in cart.items %}
-  {% if item.variant.compare_at_price %}
-    {% assign promo_product_present = true %}
-  {% endif %}
-{% endfor %}
-
 {% assign profit_on_promo_products = 0 %}
+
+{% for item in cart.items %}
+
+  {% liquid
+
+    if item.variant.compare_at_price > item.variant.price
+
+      # If atleast promo product is present,
+      assign promo_product_present = true
+
+      # Calculate profit on promo products
+      assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity
+      assign profit_on_promo_products = profit_on_promo_products | plus: original_price_with_quantity |  minus: item.original_line_price
+    endif
+  -%}
+{% endfor %}
 
 <div
   class="{% if cart == empty %} is-empty{% endif %}"
@@ -71,29 +81,30 @@
 
                 <!-- Savings on PROMO -->
                 {% if settings.show_savings_on_promo and promo_product_present  %}
-                  {% comment %} Calculation for PROMO Savings {% endcomment %}
-                  {% for item in cart.items %}  
-                    {% if item.variant.compare_at_price %}  
-                    {% assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity %}  
-                  
-                    {% assign profit_on_promo_products = profit_on_promo_products | plus: original_price_with_quantity |  minus: item.original_line_price %}  
-                    {% endif %}  
-                  {% endfor %} 
-                  
-                  <!-- Savings on PROMO DIV -->
-                  <div class="totals totals-savings {% if settings.show_separator_line_below_savings %} totals-savings-bottom-border {% endif %}">  
-                    <h3 class="totals__savings text-capitalize font-medium">  
-                      {{ 'sections.cart.savings_on_promos' | t: profit_on_promo_products: profit_on_promo_products }}
-                    </h3>  
-                    <span class="h4 font-light">  
-                      {{ profit_on_promo_products |  money }}
-                    </span>  
-                  </div>
+                  {% if profit_on_promo_products > 0 %}
+                    <div class="totals totals-savings {% if settings.show_separator_line_below_savings %} totals-savings-bottom-border {% endif %}">  
+                      <h3 class="totals__savings text-capitalize font-medium">  
+                        {{ 'sections.cart.savings_on_promos' | t: profit_on_promo_products: profit_on_promo_products }}
+                      </h3>  
+                      <span class="h4 font-light">  
+                        {{ profit_on_promo_products |  money }}
+                      </span>  
+                    </div>
+                  {% endif %}
                 {% endif %}
 
                 <!-- Cart Total -->
                 <div class="totals">
-                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
+                  <div class="heading-with-note">
+                    <h2 class="totals__total">
+                      {{ 'sections.cart.estimated_total' | t }}
+                    </h2>
+                    {% if cart.taxes_included %}
+                      <span class="VAT-note">
+                        {{ 'products.product.taxes_included_short' | t }}
+                      </span>
+                    {% endif %}
+                  </div>
                   <p class="totals__total-value font-bold">{{ cart.total_price |  money }}</p>
                 </div>
 

@@ -1874,7 +1874,7 @@
       },
       {
         "type": "checkbox",
-        "id": "show_promo_produuct_original_price_total",
+        "id": "show_promo_product_original_price_total",
         "label": "Show Promo Product Original Price Total",
         "default": false
       },
