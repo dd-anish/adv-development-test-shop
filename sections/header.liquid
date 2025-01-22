@@ -196,7 +196,7 @@
     {%- endif -%}
 
     {% comment %} Menu Snippets for Desktop {% endcomment %}
-    {% comment %} {%- liquid
+    {%- liquid
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
           render 'header-dropdown-menu'
@@ -204,24 +204,8 @@
           render 'header-mega-menu'
         endif
       endif
-    %} {% endcomment %}
-    {% for block in section.blocks %}
-       {%- case block.type -%}
-
-          {%- when 'navigation' -%}
-            {% comment %} <div class="list-menu list-menu--inline">
-              {%- for link in block.settings.menu.links -%}
-                <summary class="list-menu__item">
-                  <a href="{{ link.url }}" class="list-menu__item--link link link--text focus-inset{% if link.current %} active{% endif %}">
-                    {{ link.title | escape }}
-                  </a>
-                </summary>
-              {%- endfor -%}
-            </div> {% endcomment %}
-            {% render 'header-mega-menu', block: block %}
-        {%- endcase -%}
-        
-    {% endfor %}
+    %}
+  
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}

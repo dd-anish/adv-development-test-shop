@@ -8,6 +8,24 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in block.settings.menu.links -%}
+      
+      {%- liquid
+        assign link_handle = link.handle
+        assign mega_menu = false
+        assign menu_title = ''
+        assign background_textcolor = ''
+        for block in section.blocks
+          if block.type == 'mega_menu'
+            assign block_title_handle = block.settings.title | handle
+            if link_handle == block_title_handle
+              assign mega_menu = true
+              assign menu_title = block.settings.menu_title
+              assign background_textcolor = block.settings.background_color
+            endif
+          endif
+        endfor
+      -%}      
+      
       <li>
         {%- if link.links != blank -%}
           <header-menu>
