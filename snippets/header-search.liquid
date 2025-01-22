@@ -8,7 +8,7 @@
   {% render 'header-search', input_id: 'My-Id'%}
 {% endcomment %}
 
-<details-modal class="header__search">
+<details-modal class="header__search desktop-hidden">
   <details>
     <summary
       class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
@@ -32,7 +32,7 @@
     >
       <div class="modal-overlay"></div>
       <div
-        class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}"
+        class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %} custom-search-bar header-search-bar header-search-bar-mobile"
         tabindex="-1"
       >
         {%- if settings.predictive_search_enabled -%}
@@ -41,9 +41,9 @@
           <search-form class="search-modal__form">
         {%- endif -%}
         <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
-          <div class="field">
+          <div class="field custom-search-bar-field">
             <input
-              class="search__input field__input"
+              class="search__input field__input field__input-custom"
               id="{{ input_id }}"
               type="search"
               name="q"
@@ -62,7 +62,7 @@
                 spellcheck="false"
               {%- endif -%}
             >
-            <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
+            {% comment %} <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label> {% endcomment %}
             <input type="hidden" name="options[prefix]" value="last">
             <button
               type="reset"
