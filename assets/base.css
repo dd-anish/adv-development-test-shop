@@ -2762,22 +2762,10 @@ details[open] > .header__submenu {
 }
 
 .header__menu-item {
-  padding: 1.2rem;
+  /* margin: 0 1.2rem; */
   text-decoration: none;
   color: rgba(var(--color-foreground), 0.75);
-}
-
-.header__menu-item:hover {
-  color: rgb(var(--color-foreground));
-}
-
-.header__menu-item span {
-  transition: text-decoration var(--duration-short) ease;
-}
-
-.header__menu-item:hover span {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+  text-transform: uppercase;
 }
 
 details[open] > .header__menu-item {
@@ -2790,17 +2778,6 @@ details[open]:hover > .header__menu-item {
 
 details[open] > .header__menu-item .icon-caret {
   transform: rotate(180deg);
-}
-
-.header__active-menu-item {
-  transition: text-decoration-thickness var(--duration-short) ease;
-  color: rgb(var(--color-foreground));
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-}
-
-.header__menu-item:hover .header__active-menu-item {
-  text-decoration-thickness: 0.2rem;
 }
 
 .header__submenu {
@@ -4073,6 +4050,64 @@ h6,
     }
   
 }
+
+/* Nav Item Hover || Single Item Hover */
+
+.header__menu-item:hover {
+  color: rgb(var(--color-foreground));
+}
+
+.header__menu-item span {
+  /* text-decoration: none; */
+  display: inline;
+  background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
+  background-position: 0% 100%;
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s ease-in-out;
+}
+
+.header__menu-item:hover span {
+  background-size: 100% 1px;
+  background-position: 0% 100%;
+}
+
+.header__active-menu-item {
+  transition: text-decoration-thickness var(--duration-short) ease;
+  color: rgb(var(--color-foreground));
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
+
+.header__menu-item:hover .header__active-menu-item {
+  text-decoration-thickness: 0.1rem;
+
+}
+
+.header__active-menu-item-custom{
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
+
+@media screen and (min-width: 750px) {
+
+  .underline-link-hover{
+    text-decoration: none;
+    display: inline;
+    background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
+    background-position: 0% 100%;
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s ease-in-out;
+  }
+  
+  .underline-link-hover:hover {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+  
+}
+
 
 /* Card Title Hover Effect */
 
