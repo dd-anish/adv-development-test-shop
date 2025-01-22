@@ -317,6 +317,11 @@ cart-items {
   gap: 0.5rem;
 }
 
+.cart-page .totals > * + * {
+  /* width: 42%;
+  text-align: end; */
+}
+
 @media screen and (min-width: 425px) {
 
   
@@ -340,6 +345,10 @@ cart-items {
 
   .totals-footer-cart-page .totals__total{
     font-size: 1.6rem;
+  }
+
+  .totals-footer-cart-page .totals{
+    /* justify-content: end; */
   }
 
 }

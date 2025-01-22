@@ -9,11 +9,6 @@
   {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
 {% endif %}
 
-{%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-  {{ 'component-facets.css' | asset_url | stylesheet_tag }}
-  <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
-{%- endif -%}
-
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -98,6 +93,19 @@
           {{- 'general.search.search' | t -}}
         {%- endif -%}
       </h1>
+      <div class="filter-button-container page-width">
+        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+
+          <!-- Product Count -->
+          <span class="results-product-count">
+          </span>
+
+          <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
+            <span> {{ 'products.facets.filter_button' | t }} </span>
+          </button>
+        {%- endif -%}
+     </div>
+      <!-- Search Bar in Page -->
       <div class="template-search__search hidden">
         {%- if settings.predictive_search_enabled -%}
           <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
@@ -210,7 +218,7 @@
             </div>
             
             <!-- Search Result Product Counts Desktop -->
-            <div class="product-count-vertical light hidden" role="status">
+            <div class="product-count-vertical light" role="status">
               <h2 class="product-count__text text-body">
                 <span id="ProductCountDesktop">
                   {%- if search.results_count -%}
@@ -237,6 +245,8 @@
       >
         {%- if search.filters != empty -%}
           {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+              {{ 'component-facets.css' | asset_url | stylesheet_tag }}
+              <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
             <aside
               aria-labelledby="verticalTitle"
               class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
@@ -248,7 +258,8 @@
                 enable_filtering: section.settings.enable_filtering,
                 enable_sorting: section.settings.enable_sorting,
                 filter_type: section.settings.filter_type,
-                paginate: paginate
+                paginate: paginate,
+                enable_sticky_sorting: section.settings.enable_sticky_sorting
               %}
             </aside>
           {%- endif -%}
@@ -377,6 +388,57 @@
 {% if section.settings.image_shape == 'arch' %}
   {{ 'mask-arch.svg' | inline_asset_content }}
 {%- endif -%}
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+    const filterButtonContainer = document.querySelector('.results-product-count');
+    const productCountElement = document.querySelector('.mobile-facets__count');
+    console.log("productCountElement", productCountElement);
+    
+    if (productCountElement) {
+
+      const productCountText = productCountElement.textContent;
+      filterButtonContainer.innerHTML = `${productCountText}`;
+
+      const observer = new MutationObserver(function() {
+        const productCountText = productCountElement.textContent;
+        filterButtonContainer.innerHTML = `${productCountText}`;
+      });
+
+      observer.observe(productCountElement, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    
+
+  const filterButton = document.querySelector('.filter-button-mobile-no-search-bar');
+  const detailsElement = document.querySelector('.mobile-facets__disclosure');
+
+  if (filterButton && detailsElement) {
+    filterButton.addEventListener('click', function() {
+      // Toggle the 'open' attribute
+      detailsElement.toggleAttribute('open');
+      
+      // Add 'menu-opening' class when 'open' is toggled
+      if (detailsElement.hasAttribute('open')) {
+        detailsElement.classList.add('menu-opening');
+      } else {
+        detailsElement.classList.remove('menu-opening');
+      }
+    });
+  }
+});
+
+</script>
+
 
 {% schema %}
 {

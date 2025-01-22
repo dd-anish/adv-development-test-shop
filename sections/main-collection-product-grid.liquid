@@ -118,18 +118,19 @@
     </div>
         
   {% else %}
-     <div class="filter-button-container page-width {% if collection.products.size == 0 %} hidden {% endif %}">
-        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+    <!-- No Search Bar in Collection Page UI with Only Filter Button -->
+    <div class="filter-button-container page-width {% if collection.products.size == 0 %} hidden {% endif %}">
+      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
 
-          <!-- Product Count -->
-          <span class="results-product-count">
-          </span>
+        <!-- Product Count -->
+        <span class="results-product-count">
+        </span>
 
-          <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
-            <span> {{ 'products.facets.filter_button' | t }} </span>
-          </button>
-        {%- endif -%}
-     </div>
+        <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
+          <span> {{ 'products.facets.filter_button' | t }} </span>
+        </button>
+      {%- endif -%}
+    </div>
       
   {% endif %}
 
