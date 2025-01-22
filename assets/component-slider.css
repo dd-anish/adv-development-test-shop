@@ -420,5 +420,5 @@ slider-component.slider-component-full-width {
 
 .slider-dot--active{
   background-color: var(--theme-signature-color); 
-  width: 3rem; 
+  width: 4rem; 
 }
