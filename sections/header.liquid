@@ -47,6 +47,8 @@
   .list-menu--inline {
     display: inline-flex;
     flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
   }
 
   summary.list-menu__item {
@@ -205,6 +207,7 @@
         endif
       endif
     %}
+  
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -273,7 +276,7 @@
         {%- endif -%}
       </div>
       
-      {% if section.settings.show_search_icon %}
+      {% if section.settings.show_search_icon_in_mobile %}
         {% render 'header-search', input_id: 'Search-In-Modal' %}
       {% endif %}
 
@@ -698,9 +701,9 @@
     },
     {
       "type": "checkbox",
-      "id": "show_search_icon",
-      "default": false,
-      "label": "Show Search Icon",
+      "id": "show_search_icon_in_mobile",
+      "default": true,
+      "label": "Show Search Icon In Mobile",
       "info": "Dawn's Default Search Bar"
     },
     {
@@ -818,10 +821,74 @@
       "default": 20
     }
   ],
- /*  "blocks": [
+  "blocks": [
     {
-      "type": "@app"
+      "type": "navigation",
+      "name": "Navigation",
+      "settings":[
+        {
+          "type": "header",
+          "content": "Navigation"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Nav Item"
+        },
+        {
+          "type":"color",
+          "id":"text_color",
+          "label":"Text color"
+        },
+        {
+          "type":"color",
+          "id":"background_color",
+          "label":"Background Color"
+        },
+        {
+          "type": "range",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "default": 400,
+          "min": 100,
+          "max": 900,
+          "step": 100
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "label": "Border Radius",
+          "default": 10,
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "padding_top_bottom",
+          "min": 0,
+          "max": 15,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Top and Bottom",
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "padding_left_right",
+          "min": 0,
+          "max": 15,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Left and Right",
+          "default": 8
+        }
+
+      ]
+      
     }
-  ] */
+  ]
 }
 {% endschema %}

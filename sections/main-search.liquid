@@ -3,14 +3,33 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-search.css' | asset_url | stylesheet_tag }}
 
-{%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-  {{ 'component-facets.css' | asset_url | stylesheet_tag }}
-  <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
-{%- endif -%}
+{% if section.settings.show_product_variants %}
+  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
+
+{%- unless section.settings.quick_add == 'none' -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+{%- endunless -%}
+
+{%- if section.settings.quick_add == 'standard' -%}
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if section.settings.quick_add == 'bulk' -%}
+  <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 
 <script src="{{ 'main-search.js' | asset_url }}" defer="defer"></script>
 
@@ -34,7 +53,7 @@
 
   @media screen and (min-width: 750px) {
     .template-search__header {
-      margin-bottom: 5rem;
+      /* margin-bottom: 5rem; */
     }
   }
 
@@ -64,16 +83,33 @@
 {%- endstyle -%}
 
 {% paginate search.results by 24 %}
-  <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %} section-{{ section.id }}-padding">
+  <div class="template-search{% unless search.performed and search.results_count > 0 %} yes 2 template-search--empty{% endunless %} section-{{ section.id }}-padding">
+    <!-- Search Page Search Bar -->
     <div class="template-search__header page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      <h1 class="h2 center">
+      <h1 class="h2 center text-capitalize">
         {%- if search.performed -%}
-          {{- 'templates.search.title' | t -}}
+          {{- 'templates.search.title' | t -}} 
+          <span class="text-body--small font-light mobile-hidden" style="display: inline;">
+            ({{ search.results_count }})
+          </span>
         {%- else -%}
           {{- 'general.search.search' | t -}}
         {%- endif -%}
       </h1>
-      <div class="template-search__search">
+      <div class="filter-button-container page-width">
+        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+
+          <!-- Product Count -->
+          <span class="results-product-count">
+          </span>
+
+          <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
+            <span> {{ 'products.facets.filter_button' | t }} </span>
+          </button>
+        {%- endif -%}
+     </div>
+      <!-- Search Bar in Page -->
+      <div class="template-search__search hidden">
         {%- if settings.predictive_search_enabled -%}
           <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
         {%- endif -%}
@@ -132,6 +168,7 @@
           </predictive-search>
         {%- endif -%}
       </div>
+
       {%- if search.performed -%}
         {%- unless section.settings.enable_filtering or section.settings.enable_sorting -%}
           {%- if search.results_count > 0 -%}
@@ -182,8 +219,9 @@
                 </div>
               </div>
             </div>
-
-            <div class="product-count-vertical light" role="status">
+            
+            <!-- Search Result Product Counts Desktop -->
+            {% comment %} <div class="product-count-vertical light" role="status">
               <h2 class="product-count__text text-body">
                 <span id="ProductCountDesktop">
                   {%- if search.results_count -%}
@@ -199,7 +237,7 @@
                 </span>
               </h2>
               {%- render 'loading-spinner' -%}
-            </div>
+            </div> {% endcomment %}
           </form>
         </facet-filters-form>
       {%- endif -%}
@@ -210,6 +248,8 @@
       >
         {%- if search.filters != empty -%}
           {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+              {{ 'component-facets.css' | asset_url | stylesheet_tag }}
+              <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
             <aside
               aria-labelledby="verticalTitle"
               class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
@@ -221,7 +261,8 @@
                 enable_filtering: section.settings.enable_filtering,
                 enable_sorting: section.settings.enable_sorting,
                 filter_type: section.settings.filter_type,
-                paginate: paginate
+                paginate: paginate,
+                enable_sticky_sorting: section.settings.enable_sticky_sorting
               %}
             </aside>
           {%- endif -%}
@@ -247,7 +288,7 @@
             </div>
           {%- else -%}
             <div
-              class="template-search__results collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              class="template-search__results collection {% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
               id="product-grid"
               data-id="{{ section.id }}"
             >
@@ -280,7 +321,25 @@
                           show_vendor: section.settings.show_vendor,
                           show_rating: section.settings.show_rating,
                           lazy_load: lazy_load,
-                          skip_styles: skip_card_product_styles
+                          skip_styles: skip_card_product_styles,
+                          quick_add: section.settings.quick_add,
+                          section_id: section.id,
+                          truncate_description: section.settings.truncate_description,
+                          show_product_variants: section.settings.show_product_variants,
+                          show_product_stock_status: section.settings.show_product_stock_status,
+                          show_strikethrough_price: section.settings.show_strikethrough_price,
+                          price_horizontal_alignment: section.settings.price_horizontal_alignment,
+                          price_vertical_alignment: section.settings.price_vertical_alignment,
+                          price_gap: section.settings.price_gap,
+                          current_price_font_weight: section.settings.current_price_font_weight,
+                          original_price_size: section.settings.original_price_size,
+                          show_tax_price: section.settings.show_tax_price,
+                          tax_price_font_size: section.settings.tax_price_font_size,
+                          tax_price_font_weight: section.settings.tax_price_font_weight
+                          tax_text_font_size: section.settings.tax_text_font_size,
+                          tax_text_uppercase: section.settings.tax_text_uppercase,
+                          tax_price_margin_top: section.settings.tax_price_margin_top,
+                          tax_price_margin_left: section.settings.tax_price_margin_left
                         %}
                         {%- assign skip_card_product_styles = true -%}
                       {%- when 'article' -%}
@@ -294,7 +353,7 @@
                           lazy_load: lazy_load
                         %}
                       {%- when 'page' -%}
-                        <div class="article-card-wrapper card-wrapper underline-links-hover">
+                        <div class="article-card-wrapper card-wrapper underline-links-hover-container">
                           <div
                             class="card card--card card--text ratio color-{{ settings.blog_card_color_scheme }}"
                             style="--ratio-percent: 100%;"
@@ -302,7 +361,7 @@
                             <div class="card__content">
                               <div class="card__information">
                                 <h3 class="card__heading">
-                                  <a href="{{ item.url }}" class="full-unstyled-link">
+                                  <a href="{{ item.url }}" class="full-unstyled-link underline-link-title">
                                     {{ item.title | truncate: 50 | escape }}
                                   </a>
                                 </h3>
@@ -332,6 +391,57 @@
 {% if section.settings.image_shape == 'arch' %}
   {{ 'mask-arch.svg' | inline_asset_content }}
 {%- endif -%}
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+    const filterButtonContainer = document.querySelector('.results-product-count');
+    const productCountElement = document.querySelector('.mobile-facets__count');
+    console.log("productCountElement", productCountElement);
+    
+    if (productCountElement) {
+
+      const productCountText = productCountElement.textContent;
+      filterButtonContainer.innerHTML = `${productCountText}`;
+
+      const observer = new MutationObserver(function() {
+        const productCountText = productCountElement.textContent;
+        filterButtonContainer.innerHTML = `${productCountText}`;
+      });
+
+      observer.observe(productCountElement, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    
+
+  const filterButton = document.querySelector('.filter-button-mobile-no-search-bar');
+  const detailsElement = document.querySelector('.mobile-facets__disclosure');
+
+  if (filterButton && detailsElement) {
+    filterButton.addEventListener('click', function() {
+      // Toggle the 'open' attribute
+      detailsElement.toggleAttribute('open');
+      
+      // Add 'menu-opening' class when 'open' is toggled
+      if (detailsElement.hasAttribute('open')) {
+        detailsElement.classList.add('menu-opening');
+      } else {
+        detailsElement.classList.remove('menu-opening');
+      }
+    });
+  }
+});
+
+</script>
+
 
 {% schema %}
 {
@@ -415,6 +525,24 @@
     },
     {
       "type": "checkbox",
+      "id": "truncate_description",
+      "default": true,
+      "label": "Truncate Description to have same height of Cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_variants",
+      "default": true,
+      "label": "Show Product Variants"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_stock_status",
+      "default": true,
+      "label": "Show Product Stock Status"
+    },
+    {
+      "type": "checkbox",
       "id": "show_secondary_image",
       "default": false,
       "label": "t:sections.main-search.settings.show_secondary_image.label"
@@ -431,6 +559,263 @@
       "default": false,
       "label": "t:sections.main-search.settings.show_rating.label",
       "info": "t:sections.main-search.settings.show_rating.info"
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "default": "standard",
+      "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
+      "info": "t:sections.main-collection-product-grid.settings.quick_add.info",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+        },
+        {
+          "value": "standard",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_2"
+        },
+        {
+          "value": "bulk",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
+        }
+      ]
+    },
+    {
+        "type": "header",
+        "content": "Price Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_strikethrough_price",
+      "default": true,
+      "label": "Show Strikethrough Price"
+    },
+    {
+      "type": "select",
+      "id": "current_price_font_weight",
+      "options": [
+        {
+          "value": "font-bold",
+          "label": "Bold - 700"
+        },
+        {
+          "value": "font-semibold",
+          "label": "Semi Bold - 600"
+        },
+        {
+          "value": "font-medium",
+          "label": "Medium - 500"
+        },
+        {
+          "value": "font-regular",
+          "label": "Normal - 400"
+        },
+        {
+          "value": "font-light",
+          "label": "Light - 300"
+        },
+        {
+          "value": "font-extra-light",
+          "label": "Extra Light - 200"
+        }
+      ],
+      "default": "font-semibold",
+      "label": "Current Price Font Weight"
+    },
+    {
+      "type": "select",
+      "id": "original_price_size",
+      "options": [
+        {
+          "value": "font-small-8-px",
+          "label": "Extra Extra Small - 0.8rem"
+        },
+        {
+          "value": "font-small-1-rem-fix",
+          "label": "Extra Small - 1rem Fix"
+        },
+        {
+          "value": "text-body--extra-extra-small",
+          "label": "Small - 1.1rem"
+        },
+        {
+          "value": "text-body--extra-small",
+          "label": "Regular - 1.2rem"
+        },
+        {
+          "value": "text-body--small",
+          "label": "Large - 1.3rem"
+        }
+      ],
+      "default": "text-body--small",
+      "label": "Original Price Font Size"
+    },
+    {
+      "type": "select",
+      "id": "price_horizontal_alignment",
+      "options": [
+        {
+          "value": "row",
+          "label": "Original Price at End"
+        },
+        {
+          "value": "column",
+          "label": "Original Price at Bottom"
+        },
+        {
+          "value": "row-reverse",
+          "label": "Original Price at Start"
+        },
+        {
+          "value": "column-reverse",
+          "label": "Original Price at Top"
+        }
+      ],
+      "default": "column-reverse",
+      "label": "Horizontal Alignment"
+    },
+    {
+      "type": "select",
+      "id": "price_vertical_alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "baseline",
+          "label": "Baseline"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "flex-start",
+      "label": "Vertical Alignment"
+    },
+    {
+      "type": "range",
+      "id": "price_gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "OG and Sale Price Gap",
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tax_price",
+      "default": true,
+      "label": "Show Tax Price"
+    },
+    {
+      "type": "select",
+      "id": "tax_price_font_size",
+      "options": [
+        {
+          "value": "font-small-8-px",
+          "label": "Extra Extra Small - 0.8rem"
+        },
+        {
+          "value": "font-small-1-rem-fix",
+          "label": "Extra Small - 1rem Fix"
+        },
+        {
+          "value": "text-body--extra-extra-small",
+          "label": "Small - 1.1rem"
+        },
+        {
+          "value": "text-body--extra-small",
+          "label": "Regular - 1.2rem"
+        },
+        {
+          "value": "text-body--small",
+          "label": "Large - 1.3rem"
+        }
+      ],
+      "default": "text-body--small",
+      "label": "Tax Price Font Size"
+    },
+    {
+      "type": "select",
+      "id": "tax_price_font_weight",
+      "options": [
+        {
+          "value": "font-regular",
+          "label": "Normal"
+        },
+        {
+          "value": "font-light",
+          "label": "Light"
+        },
+        {
+          "value": "font-extra-light",
+          "label": "Extra Light"
+        }
+      ],
+      "default": "font-extra-light",
+      "label": "Tax Price Font Weight"
+    },
+    {
+      "type": "checkbox",
+      "id": "tax_text_uppercase",
+      "label": "Uppercase Tax Text",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "tax_text_font_size",
+      "options": [
+        {
+          "value": "font-small-8-px-fix",
+          "label": "Extra Extra Small - 0.8rem fix"
+        },
+        {
+          "value": "font-small-1-rem-fix",
+          "label": "Extra Small - 1rem fix"
+        },
+        {
+          "value": "text-body--extra-extra-small",
+          "label": "Small - 1rem"
+        },
+        {
+          "value": "text-body--extra-small",
+          "label": "Regular - 1.1rem"
+        },
+        {
+          "value": "text-body--small",
+          "label": "Large - 1.2rem"
+        }
+      ],
+      "default": "font-small-8-px-fix",
+      "label": "Tax Text Font Size"
+    },
+    {
+        "type": "range",
+        "id": "tax_price_margin_top",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Tax Price Margin Top",
+        "default": 2
+    },
+    {
+        "type": "range",
+        "id": "tax_price_margin_left",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Tax Price Margin Left",
+        "default": 1
     },
     {
       "type": "header",
@@ -460,7 +845,7 @@
           "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
         }
       ],
-      "default": "horizontal",
+      "default": "vertical",
       "label": "t:sections.main-collection-product-grid.settings.filter_type.label",
       "info": "t:sections.main-collection-product-grid.settings.filter_type.info"
     },
@@ -469,6 +854,12 @@
       "id": "enable_sorting",
       "default": true,
       "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_sorting",
+      "default": true,
+      "label": "Enable Sticky Sorting"
     },
     {
       "type": "header",

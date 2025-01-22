@@ -397,6 +397,16 @@
         "label": "Breadcrumb Background",
         "default": "#ededed"
       },
+      {
+        "type": "range",
+        "id": "breadcrumb_padding",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Breadcrumb Top Bottom Padding",
+        "default": 10
+      },
     ]
   },
   {
@@ -1768,6 +1778,28 @@
         "default": false,
         "label": "t:settings_schema.search_input.settings.predictive_search_show_price.label",
         "info": "t:settings_schema.search_input.settings.predictive_search_show_price.info"
+      }
+    ]
+  },
+  {
+    "name": "Slider Components",
+    "settings": [
+      {
+        "type": "select",
+        "id": "slider_type",
+        "label": "Slider Type",
+        "info": "Only for Home Page Sections",
+        "options": [
+          {
+            "value": "dawn-default",
+            "label": "Dawn's Default"
+          },
+          {
+            "value": "adv-custom",
+            "label": "Adv Custom"
+          }
+        ],
+        "default": "adv-custom"
       }
     ]
   },

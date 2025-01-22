@@ -108,7 +108,7 @@
       <!-- Filter Start works good in mobile and horizontal layout only -->
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
   
-          <button class="filter-button-mobile">
+          <button class="filter-button-mobile {% if collection.products.size == 0 %} hidden {% endif %}">
             <span class="svg-wrapper">
               {% render 'icon-filter-figma' %}
             </span>
@@ -116,18 +116,21 @@
         {%- endif -%}
       <!-- Filter End -->
     </div>
-
+        
   {% else %}
-     <div class="filter-button-container page-width">
-        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-          <span class="results-product-count">
+    <!-- No Search Bar in Collection Page UI with Only Filter Button -->
+    <div class="filter-button-container page-width {% if collection.products.size == 0 %} hidden {% endif %}">
+      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
 
-          </span>
-          <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
-            <span> {{ 'products.facets.filter_button' | t }} </span>
-          </button>
-        {%- endif -%}
-     </div>
+        <!-- Product Count -->
+        <span class="results-product-count">
+        </span>
+
+        <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
+          <span> {{ 'products.facets.filter_button' | t }} </span>
+        </button>
+      {%- endif -%}
+    </div>
       
   {% endif %}
 
@@ -135,7 +138,7 @@
     <div class="sorting-and-product-grid-container">
       {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
       {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
-        <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
+        <facet-filters-form class="facets facets-vertical-sort page-width small-hide {% if collection.products.size == 0 %} hidden {% endif %}">
           <form class="facets-vertical-form" id="FacetSortForm">
             <div class="facet-filters sorting caption">
               <div class="facet-filters__field">
@@ -200,7 +203,7 @@
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
           <aside
             aria-labelledby="verticalTitle"
-            class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+            class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %} {% if collection.products.size == 0 %} hidden {% endif %}"
             id="main-collection-filters"
             data-id="desktop-{{ section.id }}"
           >
@@ -222,11 +225,12 @@
             data-cascade
           {% endif %}
         >
+          <!-- When the Collection has No Products -->
           {%- if collection.products.size == 0 -%}
             <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
               <div class="loading-overlay gradient"></div>
               <div class="title-wrapper center">
-                <h2 class="title title--primary">
+                <h2 class="title title--primary h4">
                   {{ 'sections.collection_template.empty' | t -}}
                   <br>
                   {{
@@ -288,6 +292,7 @@
                       tax_price_font_weight: section.settings.tax_price_font_weight
                       tax_text_font_size: section.settings.tax_text_font_size,
                       tax_text_uppercase: section.settings.tax_text_uppercase,
+                      tax_price_margin_top: section.settings.tax_price_margin_top,
                       tax_price_margin_left: section.settings.tax_price_margin_left
                     %}
                   </li>
@@ -648,8 +653,8 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Price Gap",
-      "default": 0
+      "label": "OG and Sale Price Gap",
+      "default": 2
     },
     {
       "type": "checkbox",
@@ -741,6 +746,16 @@
     },
     {
         "type": "range",
+        "id": "tax_price_margin_top",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Tax Price Margin Top",
+        "default": 2
+    },
+    {
+        "type": "range",
         "id": "tax_price_margin_left",
         "min": 0,
         "max": 20,
@@ -777,7 +792,7 @@
           "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
         }
       ],
-      "default": "horizontal",
+      "default": "vertical",
       "label": "t:sections.main-collection-product-grid.settings.filter_type.label",
       "info": "t:sections.main-collection-product-grid.settings.filter_type.info"
     },

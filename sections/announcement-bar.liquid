@@ -31,6 +31,15 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  {% if section.settings.show_slider_icons == false %}
+    .announcement-bar .announcement-bar-slider .slider-button{
+      display: none;
+    }
+  {% endif %}
+
+
+
 {% endstyle %}
 
 <div
@@ -201,6 +210,12 @@
       "label": "t:sections.header.settings.show_line_separator.label"
     },
     {
+      "type": "checkbox",
+      "id": "show_slider_icons",
+      "default": false,
+      "label": "Show slider icons"
+    },
+    {
       "type": "header",
       "content": "t:sections.announcement-bar.settings.header__1.content",
       "info": "t:sections.announcement-bar.settings.header__1.info"
@@ -345,7 +360,7 @@
               "label": "Regular"
             }
           ]
-        },
+        }
       ]
     }
   ],

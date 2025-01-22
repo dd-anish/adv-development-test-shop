@@ -11,7 +11,7 @@
 {% endcomment %}
 
 
-<div class="template-search {% if class %} {{ class }} {% endif %} {% unless search.performed and search.results_count > 0 %} template-search--empty {% endunless %} {% if color_scheme %} color-{{ color_scheme }} gradient{% endif %}">
+<div class="template-search {% if class %} {{ class }} {% endif %} {% unless search.performed and search.results_count > 0 %} custom-template-search--empty {% endunless %} {% if color_scheme %} color-{{ color_scheme }} gradient{% endif %}">
     <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
 
         <div class="template-search__search">

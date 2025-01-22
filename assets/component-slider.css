@@ -396,3 +396,29 @@ slider-component.slider-component-full-width {
     gap: 20px;
   }
 } */
+
+.slider-center-container{
+  margin-top: 1.5rem;
+}
+
+.slider-dots{
+  display: flex;
+  align-items: center;
+}
+
+.slider-dot{
+  width: 2rem;
+  height: 1rem;
+  border-radius: 1rem;
+  background-color: #ccc;
+  margin: 0 5px;
+  cursor: pointer;
+  border: none;
+  /* box-shadow: 0 0 1px 1px black; */
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.slider-dot--active{
+  background-color: var(--theme-signature-color); 
+  width: 3rem; 
+}

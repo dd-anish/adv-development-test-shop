@@ -59,7 +59,7 @@
     }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 750px) {
 
     .search-bar-and-card-container {
         display: flex;
@@ -76,4 +76,19 @@
         /* background-color: red; */
     }
     
+}
+
+
+/* Fixing Margin/Padding Issue */
+
+.custom-search-bar .template-search__header{
+    margin-bottom: 0;
+}
+
+.custom-search-bar .template-search__search{
+    margin: unset;
+}
+
+.custom-search-bar .template-search__search .search{
+    margin-top: 0;
 }

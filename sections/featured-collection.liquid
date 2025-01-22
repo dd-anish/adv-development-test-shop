@@ -4,6 +4,12 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
+{% if section.settings.show_product_variants %}
+  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -40,6 +46,7 @@
   .card-information .price-add-to-cart-container{
     min-height: 0;
   }
+  
 {%- endstyle -%}
 
 {%- liquid
@@ -72,7 +79,7 @@
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
-        <h2 class="title text-link-underline {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% if section.settings.clickable_title == false %} unclickable-link {% endif %}">
+        <h2 class="title text-link-underline-custom {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% if section.settings.clickable_title == false %} unclickable-link {% endif %}">
           {{ section.settings.title }}
         </h2>
       {%- endif -%}
@@ -133,6 +140,7 @@
               tax_price_font_weight: section.settings.tax_price_font_weight
               tax_text_font_size: section.settings.tax_text_font_size,
               tax_text_uppercase: section.settings.tax_text_uppercase,
+              tax_price_margin_top: section.settings.tax_price_margin_top,
               tax_price_margin_left: section.settings.tax_price_margin_left
             %}
           </li>
@@ -166,11 +174,15 @@
           {%- endfor -%}
         {%- endfor -%}
       </ul>
+
       {%- if show_mobile_slider or show_desktop_slider -%}
+        <!-- Slider Buttons -->
         <div class="slider-buttons">
+
+          <!-- No need of Prev Button -->
           <button
             type="button"
-            class="slider-button slider-button--prev"
+            class="slider-button slider-button--prev visually-hidden"
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
             aria-controls="Slider-{{ section.id }}"
@@ -179,15 +191,23 @@
               {{- 'icon-caret.svg' | inline_asset_content -}}
             </span>
           </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ products_to_display }}</span>
+          <div class="slider-center-container">
+            <div class="slider-dots">
+            </div>
+            
+            <!-- No need of Slider Caption Numbers -->
+            <div class="slider-counter caption visually-hidden">
+              <span class="slider-counter--current">1</span>
+              <span aria-hidden="true"> / </span>
+              <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+              <span class="slider-counter--total">{{ products_to_display }}</span>
+            </div>
           </div>
+
+          <!-- No need of Next Button -->
           <button
             type="button"
-            class="slider-button slider-button--next"
+            class="slider-button slider-button--next visually-hidden"
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
             aria-controls="Slider-{{ section.id }}"
@@ -711,6 +731,16 @@
       ],
       "default": "font-small-8-px-fix",
       "label": "Tax Text Font Size"
+    },
+    {
+      "type": "range",
+      "id": "tax_price_margin_top",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tax Price Margin Top",
+      "default": 2
     },
     {
       "type": "range",
