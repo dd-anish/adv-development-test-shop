@@ -27,6 +27,10 @@ git fetch upstream
 git pull upstream main
 ```
 
+### Start the Theme with CLI
+
+`shopify theme dev --store adventure-store-test-shop`
+
 
 ### Theme Check
 

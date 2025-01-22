@@ -91,6 +91,13 @@
 
               <tbody>
                 {%- for item in cart.items -%}
+
+                  {% liquid
+                    assign is_promo_product = false
+                    if item.variant.compare_at_price > item.variant.price
+                      assign is_promo_product = true
+                    endif
+                  %}
                   <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
                     <!-- Cart Item Image -->
                     <td class="cart-item__media">
@@ -108,7 +115,7 @@
                           >
 
                           <!-- Sale Badge -->
-                          {% if item.variant.compare_at_price %}
+                          {% if is_promo_product %}
                           
                             <span id="Badge-{{ section.id }}-{{ item.id }}" class="cart-item__sale_badge color-{{ settings.sale_badge_color_scheme }} text-uppercase">
                               {{- 'products.product.on_sale' | t -}}
@@ -199,23 +206,23 @@
                           </strong>
                         </div>
                       {%- else -%}
-                        <div class="product-option font-regular cart-item__original-price {% if item.variant.compare_at_price %} cart-item_sale-price {% endif %} product-option-custom-for-price">
+                        <div class="product-option font-regular cart-item__original-price {% if is_promo_product %} cart-item_sale-price {% endif %} product-option-custom-for-price">
 
                           <!-- Cart Item Original Price -->
-                          {% if item.variant.compare_at_price %}
+                          {% if is_promo_product %}
                               <span class="cart-item__compare_at_price font-light">
                                 {{ item.variant.compare_at_price | money }}
                               </span>
                           {% endif %}
 
                           <!-- Cart Item OG/Sale Price -->
-                          <span class="cart-item__item_current_price {% if item.variant.compare_at_price %} font-body-bold {% endif %}">
+                          <span class="cart-item__item_current_price {% if is_promo_product %} font-body-bold {% endif %}">
                             {{ item.original_price | money }}
                           </span>
                           
 
                           <!-- Sale Discount Percentage -->
-                          {% if item.variant.compare_at_price and settings.show_sale_discount_percentage_in_cart %}
+                          {% if is_promo_product and settings.show_sale_discount_percentage_in_cart %}
                             {% assign discount = item.variant.compare_at_price | minus: item.original_price %}
                             {% assign discount_percentage = discount | times: 100 | divided_by: item.variant.compare_at_price %}
 
@@ -261,7 +268,7 @@
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            <span class="{% if item.variant.compare_at_price %} cart-item_sale-price {% endif %}">
+                            <span class="{% if is_promo_product %} cart-item_sale-price {% endif %}">
                               {{ item.original_line_price | money }}
                             </span>
                           </span>
@@ -482,7 +489,7 @@
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            <span class="{% if item.variant.compare_at_price %} cart-item_sale-price {% endif %}">
+                            <span class="{% if is_promo_product %} cart-item_sale-price {% endif %}">
                               {{ item.original_line_price | money }}
                             </span>
                           </span>

@@ -103,20 +103,32 @@
                 <table class="cart-items" role="table">
                   {% comment %} Removed the Caption Table Row Header {% endcomment %}
                   <tbody role="rowgroup">
+
+                    {% assign promo_product_present = false %}
                     {% assign profit_on_promo_products = 0 %}
+                    
                     {%- for item in cart.items -%}
+                      {% assign is_promo_product = false %}
                         
                         {% liquid
-                          assign is_promo_product = false
+                   
                           if item.variant.compare_at_price > item.variant.price
+
                             assign is_promo_product = true
+
+                            # If atleast promo product is present,
+                            assign promo_product_present = true
+
+                            # Calculate profit on promo products
+                            assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity
+                            assign profit_on_promo_products = profit_on_promo_products | plus: original_price_with_quantity |  minus: item.original_line_price
                           endif
                         %}
+
                       <tr
                         id="CartDrawer-Item-{{ item.index | plus: 1 }}"
                         class="cart-item"
                         role="row">
-
                         <!-- Product Image -->
                         <td
                           class="cart-item__media"
@@ -308,7 +320,7 @@
                                   </div>
                                 {%- else -%}
                                   <!-- Promo Products Price-->
-                                  {% if is_promo_product and settings.show_promo_produuct_original_price_total %}
+                                  {% if is_promo_product and settings.show_promo_product_original_price_total %}
                                     {% assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity %}
                                     <span class="cart-item__compare_at_price font-light">
                                       {{ original_price_with_quantity | money }}
@@ -575,25 +587,17 @@
           {%- endif -%}
 
           <!-- Savings on PROMO -->
-          {% if settings.show_savings_on_promo and is_promo_product %}
-            {% comment %} Calculation for PROMO Savings {% endcomment %}
-            {% for item in cart.items %}  
-              {% if is_promo_product %}  
-              {% assign original_price_with_quantity = item.variant.compare_at_price | times: item.quantity %}  
-            
-              {% assign profit_on_promo_products = profit_on_promo_products | plus: original_price_with_quantity |  minus: item.original_line_price %}  
-              {% endif %}  
-            {% endfor %} 
-            
-            <!-- Savings on PROMO DIV -->
-            <div class="totals totals-savings {% if settings.show_separator_line_below_savings %} totals-savings-bottom-border {% endif %}">  
-              <h3 class="totals__savings text-capitalize font-medium">  
-                {{ 'sections.cart.savings_on_promos' | t: profit_on_promo_products: profit_on_promo_products }}
-              </h3>  
-              <span class="h4 font-light">  
-                {{ profit_on_promo_products |  money }}
-              </span>  
-            </div>
+          {% if settings.show_savings_on_promo and promo_product_present %}        
+            {% if profit_on_promo_products > 0 %}
+              <div class="totals totals-savings {% if settings.show_separator_line_below_savings %} totals-savings-bottom-border {% endif %}">  
+                <h3 class="totals__savings text-capitalize font-medium">  
+                  {{ 'sections.cart.savings_on_promos' | t: profit_on_promo_products: profit_on_promo_products }}
+                </h3>  
+                <span class="h4 font-light">  
+                  {{ profit_on_promo_products |  money }}
+                </span>  
+              </div>
+            {% endif %}
           {% endif %}
 
           <!-- Totals -->
