@@ -132,7 +132,7 @@
   display: block;
   font-size: 1.1rem;
   letter-spacing: inherit;
-  font-family: inherit;
+  /* font-family: inherit; */
 }
 
 .filter-button-mobile-no-search-bar--button{
