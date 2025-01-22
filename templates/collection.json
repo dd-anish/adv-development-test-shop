@@ -39,7 +39,7 @@
         "original_price_size": "text-body--extra-small",
         "price_horizontal_alignment": "column-reverse",
         "price_vertical_alignment": "flex-start",
-        "price_gap": 2,
+        "price_gap": 4,
         "show_tax_price": true,
         "tax_price_font_size": "text-body--extra-small",
         "tax_price_font_weight": "font-extra-light",
