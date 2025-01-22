@@ -89,7 +89,7 @@
       <h1 class="h2 center text-capitalize">
         {%- if search.performed -%}
           {{- 'templates.search.title' | t -}} 
-          <span class="text-body--small font-light mobile-hidden">
+          <span class="text-body--small font-light mobile-hidden" style="display: inline;">
             ({{ search.results_count }})
           </span>
         {%- else -%}
