@@ -509,7 +509,12 @@
 
                 <!-- Menu Drawer Product Count in Mobile -->
                 <p class="mobile-facets__count">
-                  {{ 'products.facets.product_count_simple' | t: count: results.products_count }}
+                  {% if template contains 'search' %}
+                    {{ 'products.facets.product_count_simple' | t: count: results.results_count }}
+                  {% else %}
+                    {{ 'products.facets.product_count_simple' | t: count: results.products_count }}
+                  {% endif %}
+  
                 </p>
               </div>
             </div>
