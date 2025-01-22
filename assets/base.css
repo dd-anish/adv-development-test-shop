@@ -549,7 +549,13 @@ summary {
   position: relative;
 }
 
-summary .icon-caret, summary .icon-plus, summary .icon-minus {
+summary .icon-caret{
+  position: absolute;
+  height: 0.6rem;
+  right: 1.5rem;
+}
+
+summary .icon-plus, summary .icon-minus {
   position: absolute;
   height: 0.6rem;
   right: 1.5rem;
@@ -2770,11 +2776,14 @@ details[open] > .header__submenu {
 }
 
 details[open] > .header__menu-item {
+  color: rgb(var(--color-foreground));
   text-decoration: underline;
+  text-decoration-color: var(--theme-signature-color);
+  text-underline-offset: 0.5rem;
 }
 
 details[open]:hover > .header__menu-item {
-  text-decoration-thickness: 0.2rem;
+  text-decoration-thickness: 0.1rem;
 }
 
 details[open] > .header__menu-item .icon-caret {
