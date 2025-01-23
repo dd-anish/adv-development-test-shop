@@ -19,7 +19,7 @@
 }
 
 .list-menu__item--active:hover {
-  text-decoration-thickness: 0.2rem;
+  text-decoration-thickness: 0.1rem;
 }
 
 .list-menu--disclosure.localization-selector {
@@ -27,4 +27,19 @@
   overflow: auto;
   width: 10rem;
   padding: 0.5rem;
+}
+
+
+@media screen and (min-width: 750px) {
+  
+  .list-menu__item--active {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    text-decoration-color: var(--theme-signature-color);
+  }
+
+  .list-menu__item--active:hover {
+    text-decoration-thickness: 0.1rem;
+  }
+  
 }

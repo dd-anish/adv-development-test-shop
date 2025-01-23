@@ -4073,6 +4073,7 @@ details[open]>.header__menu-item .icon-caret {
   color: rgb(var(--color-foreground));
 }
 
+/* Hover Effect Base Code Nav Link (100%) */
 .header__menu-item span{
   /* text-decoration: none; */
   display: inline;
@@ -4083,11 +4084,13 @@ details[open]>.header__menu-item .icon-caret {
   transition: background-size 0.5s ease-in-out;
 }
 
+/* Hover Effect Hover Code Nav Link (100%) */
 .header__menu-item:hover span {
   background-size: 100% 1px;
   background-position: 0% 100%;
 }
 
+/* Hover Effect on Active Link (95%) */
 details[open]>.header__menu-item span{
   display: inline;
   background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
@@ -4116,6 +4119,7 @@ details[open]:hover > .header__menu-item span{
 
 } */
 
+/* Hover Effect on Active Link (95%) */
 .header__menu-item .header__active-menu-item{
   display: inline;
   background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
@@ -4135,6 +4139,7 @@ details[open]:hover > .header__menu-item span{
   text-underline-offset: 0.5rem;
 }
 
+/* Hover Effect on Active Link (95%) */
 .header__menu-item .header__active-menu-item-custom{
   display: inline;
   background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
