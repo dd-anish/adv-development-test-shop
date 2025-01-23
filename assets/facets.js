@@ -93,19 +93,22 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderProductCount(html) {
-    const count = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductCount').innerHTML;
-    const container = document.getElementById('ProductCount');
-    const containerDesktop = document.getElementById('ProductCountDesktop');
-    container.innerHTML = count;
-    container.classList.remove('loading');
-    if (containerDesktop) {
-      containerDesktop.innerHTML = count;
-      containerDesktop.classList.remove('loading');
-    }
-    const loadingSpinners = document.querySelectorAll(
-      '.facets-container .loading__spinner, facet-filters-form .loading__spinner'
+    const count = new DOMParser()
+      .parseFromString(html, "text/html")
+      .getElementById("ProductCount").innerHTML;
+    const containers = document.querySelectorAll(
+      ".filter-results-product-count"
     );
-    loadingSpinners.forEach((spinner) => spinner.classList.add('hidden'));
+    containers.forEach((container) => {
+      container.innerHTML = count;
+      container.classList.remove("loading");
+      const loadingSpinnerContainer = container.querySelector(
+        ".loading-spinner-container"
+      );
+      if (loadingSpinnerContainer) {
+        loadingSpinnerContainer.classList.add("hidden");
+      }
+    });
   }
 
   static renderFilters(html, event) {

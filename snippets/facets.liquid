@@ -428,10 +428,9 @@
           {%- endif -%}
 
           <!-- Desktop Products Count -->
-
-          {% comment %} <div class="product-count light" role="status">
+          <div class="product-count light" role="status">
             <h2 class="product-count__text text-body">
-              <span id="ProductCountDesktop">
+              <span id="ProductCountDesktop" class="filter-results-product-count">
                 {%- if results.results_count -%}
                   {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
                 {%- elsif results.products_count == results.all_products_count -%}
@@ -445,7 +444,7 @@
               </span>
             </h2>
             {%- render 'loading-spinner' -%}
-          </div> {% endcomment %}
+          </div>
         {%- endif -%}
       </form>
     </facet-filters-form>
@@ -507,13 +506,18 @@
                   {%- endif -%}
                 </h2>
 
-                <!-- Menu Drawer Product Count in Mobile -->
-                <p class="mobile-facets__count">
-                  {% if template contains 'search' %}
-                    {{ 'products.facets.product_count_simple' | t: count: results.results_count }}
-                  {% else %}
+                <!-- Menu Drawer Product Count in Mobile Filter Menu -->
+                <p class="filter-results-product-count results-product-count">
+                  {%- if results.results_count -%}
+                    {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
+                  {%- elsif results.products_count == results.all_products_count -%}
                     {{ 'products.facets.product_count_simple' | t: count: results.products_count }}
-                  {% endif %}
+                  {%- else -%}
+                    {{
+                      'products.facets.product_count_simple'
+                      | t: count: results.products_count
+                    }}
+        {%- endif -%}
   
                 </p>
               </div>
@@ -882,47 +886,6 @@
     </details>
   </menu-drawer>
 
-  {% comment %} <div class="active-facets active-facets-mobile medium-hide large-up-hide">
-    {%- for filter in results.filters -%}
-      {%- for value in filter.active_values -%}
-        <facet-remove>
-          <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
-            <span class="active-facets__button-inner button button--tertiary">
-              {{ filter.label | escape }}: {{ value.label | escape }}
-              <span class="svg-wrapper">
-                {{- 'icon-close-small.svg' | inline_asset_content -}}
-              </span>
-              <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
-            </span>
-          </a>
-        </facet-remove>
-      {%- endfor -%}
-
-      {%- if filter.type == 'price_range' -%}
-        {% assign min = filter.min_value.value %}
-        {% assign max = filter.max_value.value %}
-        {%- if min != null or max != null -%}
-          <facet-remove>
-            <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
-              <span class="active-facets__button-inner button button--tertiary">
-                {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
-                <span class="svg-wrapper">
-                  {{- 'icon-close-small.svg' | inline_asset_content -}}
-                </span>
-                <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
-              </span>
-            </a>
-          </facet-remove>
-        {%- endif -%}
-      {%- endif -%}
-    {%- endfor -%}
-    <facet-remove class="active-facets__button-wrapper">
-      <a href="{{ results_url }}" class="active-facets__button-remove underlined-link">
-        <span>{{ 'products.facets.clear_all' | t }}</span>
-      </a>
-    </facet-remove>
-  </div> {% endcomment %}
-
   {% comment %} Sort, product count and filter pills at the end when filter is type of Drawer for the correct tabbing order {% endcomment %}
   {%- if enable_sorting and filter_type == 'drawer' -%}
     <facet-filters-form class="facets small-hide">
@@ -971,27 +934,27 @@
   {%- endif -%}
 
   <!-- Mobile Product Count -->
-
-  {% comment %} <div
+  <div
     class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide large-up-hide{% endif %}"
     role="status"
   >
-    <h2 class="product-count__text text-body">
-      <span id="ProductCount">
+    <h2 class="product-count__text text-body visually-hidden">
+      <!-- The OG Dynamic Product Count -->
+      <span id="ProductCount"> 
         {%- if results.results_count -%}
           {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
         {%- elsif results.products_count == results.all_products_count -%}
           {{ 'products.facets.product_count_simple' | t: count: results.products_count }}
         {%- else -%}
           {{
-            'products.facets.product_count'
-            | t: product_count: results.products_count, count: results.all_products_count
+            'products.facets.product_count_simple'
+            | t: count: results.products_count
           }}
         {%- endif -%}
+        {%- render 'loading-spinner' -%}
       </span>
     </h2>
-    {%- render 'loading-spinner' -%}
-  </div> {% endcomment %}
+  </div>
 
   {%- if filter_type == 'drawer' -%}
     <facet-filters-form class="facets facets-pill small-hide">
