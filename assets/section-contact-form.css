@@ -171,8 +171,8 @@
 
   .company_details_block{
     padding: 1rem 3rem;
-    max-width: 40%;
     text-align: end;
+    height: auto;
   }
 
   
