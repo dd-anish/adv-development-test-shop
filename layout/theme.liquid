@@ -282,6 +282,29 @@
           font-size: 1.6rem;
         }
       }
+
+      /* Search Bar Header Input CSS */
+      {% if settings.search_input_reset_enabled %}
+        .field .search__input.field__input {
+          padding-right: 9.8rem;
+        }
+
+        .reset__button{
+          display: block;
+        }
+
+      {% else %}    
+        .field .search__input.field__input {
+          padding-right: 4rem;
+        }
+
+        .reset__button.field__button{
+          display: none;
+        }
+
+      {% endif %}
+
+    
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}

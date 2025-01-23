@@ -1761,6 +1761,12 @@
       },
       {
         "type": "checkbox",
+        "id": "search_input_reset_enabled",
+        "default": false,
+        "label": "Search Input Reset Enabled"
+      },
+      {
+        "type": "checkbox",
         "id": "predictive_search_enabled",
         "default": true,
         "label": "t:settings_schema.search_input.settings.predictive_search_enabled.label"
