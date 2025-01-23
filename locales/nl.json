@@ -262,6 +262,8 @@
     "contact": {
       "form": {
         "name": "Naam",
+        "first_name": "Voornaam",
+        "last_name": "Naam",
         "email": "Email",
         "phone": "Telefoonnummer",
         "company_name": "Bedrijfsnaam",
