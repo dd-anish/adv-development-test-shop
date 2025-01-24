@@ -173,6 +173,10 @@
 }
 
 @media screen and (min-width: 750px) {
+
+  .image-with-text__content {
+    padding: 0 5rem;
+  }
   .image-with-text__grid--reverse .image-with-text__content {
     margin-left: auto;
   }
@@ -332,7 +336,8 @@
 
 @media screen and (min-width: 990px) {
   .image-with-text__content {
-    padding: 6rem 7rem 7rem;
+    /* padding: 6rem 7rem 7rem; */
+    padding: 0 6rem;
   }
 }
 

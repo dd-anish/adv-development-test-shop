@@ -121,6 +121,7 @@
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="sorting-and-product-grid-container">
 
+      <!-- Collection Page Left Column -->
       <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
         {{ 'component-facets.css' | asset_url | stylesheet_tag }}
         <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
@@ -143,7 +144,10 @@
           </aside>
         {%- endif -%}
 
+        <!-- Collection Page Right Column -->
         <div class="collection_page-right-col">
+
+          <!-- Collection Banner/Hero -->
           <div class="collection-hero__text-wrapper">
             <h1 class="collection-hero__title">
               <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
@@ -153,6 +157,7 @@
               {{ collection.description }}
             </div>
           </div>
+
 
           <!-- Mobile View: Product Count and Filter Button -->
           <div class="filter-button-container page-width {% if collection.products.size == 0 %} hidden {% endif %}">
@@ -184,9 +189,9 @@
           </div>  
      
 
-          {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
+          <!-- Desktop View: Product Count and Filters Side Bar -->
           {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
-            <facet-filters-form class="facets facets-vertical-sort page-width small-hide {% if collection.products.size == 0 %} hidden {% endif %}">
+            <facet-filters-form class="facets facets-vertical-sort small-hide {% if collection.products.size == 0 %} hidden {% endif %}">
               <form class="facets-vertical-form" id="FacetSortForm">
 
                 <!-- Product Count Desktop for Collection -->
@@ -335,6 +340,16 @@
             {%- endif -%}
           </div>
         </div>
+
+        <!-- More Blocks for Collection Page -->
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'collection_info' %}
+              <div class="collection">
+                {{ block.settings.title }}
+              </div>
+          {% endcase %}
+        {% endfor %}
       </div>
     </div>
   {%- endpaginate -%}
@@ -378,6 +393,26 @@
 {
   "name": "t:sections.main-collection-product-grid.name",
   "class": "section",
+  "blocks": [
+    {
+      "type": "collection_info",
+      "name": "Collection Info",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:blocks.collection_title.settings.title.label",
+          "default": "t:blocks.collection_title.settings.title.default"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "t:blocks.collection_title.settings.description.label",
+          "default": "t:blocks.collection_title.settings.description.default"
+        }
+      ]
+    }
+  ],
   "settings": [
     {
       "type": "checkbox",

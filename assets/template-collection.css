@@ -224,3 +224,10 @@
     margin-top: 0.2rem;
   }
 }
+
+
+/* Collection Page Right Col */
+
+.collection_page-right-col{
+  flex: 1;
+}
