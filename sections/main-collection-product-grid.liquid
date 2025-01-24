@@ -92,6 +92,34 @@
 
   }
 
+  /* Redering Padding for each blocks */
+    {%- for block in section.blocks -%}
+
+      .block-{{ block.id }} {
+
+          padding-top: {{ block.settings.padding_top | times: 0.75 | round: 0 | default: 0 }}px;
+          padding-bottom: {{ block.settings.padding_bottom | times: 0.75 | round: 0 | default: 0 }}px;
+          padding-left: {{ block.settings.padding_left | times: 0.75 | round: 0 | default: 0 }}px;
+          padding-right: {{ block.settings.padding_right | times: 0.75 | round: 0 | default: 0 }}px;
+          border-top-left-radius: {{ block.settings.border_radius_top_left | default: 0 }}px;
+          border-top-right-radius: {{ block.settings.border_radius_top_right | default: 0 }}px;
+          border-bottom-left-radius: {{ block.settings.border_radius_bottom_left | default: 0 }}px;
+          border-bottom-right-radius: {{ block.settings.border_radius_bottom_right | default: 0 }}px;
+          background-color: {{ block.settings.background_color | default: '#f4f4f4' }};
+          opacity: {{ block.settings.background_opacity | default: 100 }}%;
+      }
+
+      @media screen and (min-width: 750px) {
+
+        .block-{{ block.id }} {
+          padding-top: {{ block.settings.padding_top | default: 0 }}px;
+          padding-bottom: {{ block.settings.padding_bottom | default: 0 }}px;
+          padding-left: {{ block.settings.padding_left | default: 0 }}px;
+          padding-right: {{ block.settings.padding_right | default: 0 }}px;
+        }
+      }
+    {%- endfor -%}
+
 {%- endstyle -%}
 
 
@@ -121,6 +149,7 @@
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="sorting-and-product-grid-container">
 
+      <!-- Collection Page Left Column -->
       <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
         {{ 'component-facets.css' | asset_url | stylesheet_tag }}
         <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
@@ -143,19 +172,35 @@
           </aside>
         {%- endif -%}
 
+        <!-- Collection Page Right Column -->
         <div class="collection_page-right-col">
-          <div class="collection-hero__text-wrapper">
-            <h1 class="collection-hero__title">
-              <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-              {{- collection.title | escape -}}
-            </h1>
-            <div class="collection-hero__description rte">
-              {{ collection.description }}
+
+          <!-- Collection Banner/Hero -->
+          {% for block in section.blocks %}
+            <div class="collection-info-block block-{{ block.id }}">
+              {% if block.type == 'collection_info' %}
+  
+                <h1 class="collection-info-block__title">
+                  <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+                  {{- collection.title | escape -}}
+                </h1>
+                <div class="collection-info-block__description">
+                  
+                  {% render 'show-more-text-content',
+                    item_description: block.settings.collection_description,
+                    show_more_type: block.settings.show_more_type,
+                    show_more_text: block.settings.show_more_text, ,
+                    show_less_text: block.settings.show_less_text,
+                    description_limit: block.settings.description_limit 
+                  %}
+                </div>
+              {% endif %}
             </div>
-          </div>
+          {% endfor %}
+
 
           <!-- Mobile View: Product Count and Filter Button -->
-          <div class="filter-button-container page-width {% if collection.products.size == 0 %} hidden {% endif %}">
+          <div class="filter-button-container {% if collection.products.size == 0 %} hidden {% endif %}">
             {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
 
               <!-- Product Count for Mobile besides Filter Button -->
@@ -184,9 +229,9 @@
           </div>  
      
 
-          {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
+          <!-- Desktop View: Product Count and Filters Side Bar -->
           {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
-            <facet-filters-form class="facets facets-vertical-sort page-width small-hide {% if collection.products.size == 0 %} hidden {% endif %}">
+            <facet-filters-form class="facets facets-vertical-sort small-hide {% if collection.products.size == 0 %} hidden {% endif %}">
               <form class="facets-vertical-form" id="FacetSortForm">
 
                 <!-- Product Count Desktop for Collection -->
@@ -334,7 +379,18 @@
               </div>
             {%- endif -%}
           </div>
+          <!-- More Blocks for Collection Page -->
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'collection_info_1' %}
+                <div class="collection">
+                  {{ block.settings.title }}
+                  {{ block.settings.description }}
+                </div>
+            {% endcase %}
+          {% endfor %}
         </div>
+
       </div>
     </div>
   {%- endpaginate -%}
@@ -378,6 +434,174 @@
 {
   "name": "t:sections.main-collection-product-grid.name",
   "class": "section",
+  "blocks": [
+    {
+      "type": "collection_info",
+      "name": "Collection Info",
+      "settings": [
+        {
+          "type": "text",
+          "id": "collection_title",
+          "label": "Collection Title",
+          "default": "{{ collection.title }}"
+        },
+        {
+          "type": "richtext",
+          "id": "collection_description",
+          "label": "Collection Description",
+          "default": "<p>{{ collection.description }}</p>"
+        },
+        {
+          "type": "header",
+          "content": "Show more/less setting"
+        },
+        {
+          "type": "select",
+          "id": "show_more_type",
+          "label": "Show more type",
+          "options": [
+            {
+              "value": "button",
+              "label": "Button"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            }
+          ],
+          "default": "button"
+        },
+        {
+          "type": "text",
+          "id": "show_more_text",
+          "label": "Show more text",
+          "default": "Toon meer"
+        },
+        {
+          "type": "text",
+          "id": "show_less_text",
+          "label": "Show less text",
+          "default": "Toon minder"
+        },
+        {
+          "type": "range",
+          "id": "description_limit",
+          "label": "Description limit",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 6
+        },
+        {
+          "type": "header",
+          "content" : "Block Background Setting"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#f4f4f4"
+        },
+        {
+          "type": "range",
+          "id": "background_opacity",
+          "label": "Background Opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100
+        },
+        {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Block Padding Setting"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Left padding",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Right padding",
+          "default": 0
+        }
+      ]
+    }
+  ],
   "settings": [
     {
       "type": "checkbox",

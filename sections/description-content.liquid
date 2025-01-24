@@ -27,8 +27,13 @@
 <div class="section-{{ section.id }} section-{{ section.id }}-padding page-width description-content">
 
     {%- if section.settings.heading != blank -%}
-        <h2 class="{% if section.settings.clickable_title == false %} unclickable-link {% endif %} {{ section.settings.heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% else %} text-link-underline-custom {% endif %}">
+        <h2 class="section__description-content-heading {% if section.settings.clickable_title == false %} unclickable-link {% endif %} {{ section.settings.heading_size }} {% if section.settings.text_decoration_type == 'color_text' %} text-link-color {% endif %}">
+
+        {% if section.settings.text_decoration_type == 'color_text' %}
             {{ section.settings.heading }}
+        {% else %}
+            {{ section.settings.heading  | replace: '<p>', '<p class="text-link-underline-custom">'  }}
+        {% endif %}
         </h2>
     {%- endif -%}
 
