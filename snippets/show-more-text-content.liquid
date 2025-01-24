@@ -69,17 +69,23 @@
     {% comment %} {{ item_description | strip_html }} used to ignore new lines {% endcomment %}
     {{ item_description }}
   </div>
-  <div class="description-button">
-    {% if show_more_type == 'button' %}
-      <button class="toggle-description-btn text-body--extra-small" data-toggle-description>
-        {{ show_more_text }}
-      </button>
-    {% else %}
-      <a href="#" class="toggle-description-link text-body--small" data-toggle-description>
-        {{ show_more_text }}
-      </a>
-    {% endif %}
-  </div>
+  
+  {% assign stripped_description = item_description | strip_html %}
+  {% assign limit = description_limit | default: 3 | times: 50 %}
+  {% if stripped_description.size > limit %}
+
+    <div class="description-button">
+      {% if show_more_type == 'button' %}
+        <button class="toggle-description-btn text-body--extra-small" data-toggle-description>
+          {{ show_more_text }}
+        </button>
+      {% else %}
+        <a href="#" class="toggle-description-link text-body--small" data-toggle-description>
+          {{ show_more_text }}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
 </div>
 
 

@@ -149,13 +149,25 @@
 
           <!-- Collection Banner/Hero -->
           <div class="collection-hero__text-wrapper">
-            <h1 class="collection-hero__title">
-              <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-              {{- collection.title | escape -}}
-            </h1>
-            <div class="collection-hero__description rte">
-              {{ collection.description }}
-            </div>
+            {% for block in section.blocks %}
+              {% if block.type == 'collection_info' %}
+  
+                <h1 class="collection-hero__title">
+                  <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+                  {{- collection.title | escape -}}
+                </h1>
+                <div class="collection-hero__description rte">
+                  
+                  {% render 'show-more-text-content',
+                    item_description: block.settings.collection_description,
+                    show_more_type: block.settings.show_more_type,
+                    show_more_text: block.settings.show_more_text, ,
+                    show_less_text: block.settings.show_less_text,
+                    description_limit: block.settings.description_limit 
+                  %}
+                </div>
+              {% endif %}
+            {% endfor %}
           </div>
 
 
@@ -339,17 +351,18 @@
               </div>
             {%- endif -%}
           </div>
+          <!-- More Blocks for Collection Page -->
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'collection_info_1' %}
+                <div class="collection">
+                  {{ block.settings.title }}
+                  {{ block.settings.description }}
+                </div>
+            {% endcase %}
+          {% endfor %}
         </div>
 
-        <!-- More Blocks for Collection Page -->
-        {% for block in section.blocks %}
-          {% case block.type %}
-            {% when 'collection_info' %}
-              <div class="collection">
-                {{ block.settings.title }}
-              </div>
-          {% endcase %}
-        {% endfor %}
       </div>
     </div>
   {%- endpaginate -%}
@@ -400,16 +413,57 @@
       "settings": [
         {
           "type": "text",
-          "id": "title",
-          "label": "t:blocks.collection_title.settings.title.label",
-          "default": "t:blocks.collection_title.settings.title.default"
+          "id": "collection_title",
+          "label": "Collection Title",
+          "default": "{{ collection.title }}"
         },
         {
-          "type": "textarea",
-          "id": "description",
-          "label": "t:blocks.collection_title.settings.description.label",
-          "default": "t:blocks.collection_title.settings.description.default"
-        }
+          "type": "richtext",
+          "id": "collection_description",
+          "label": "Collection Description",
+          "default": "<p>{{ collection.description }}</p>"
+        },
+        {
+          "type": "header",
+          "content": "Show more/less setting"
+        },
+        {
+          "type": "select",
+          "id": "show_more_type",
+          "label": "Show more type",
+          "options": [
+            {
+              "value": "button",
+              "label": "Button"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            }
+          ],
+          "default": "button"
+        },
+        {
+          "type": "text",
+          "id": "show_more_text",
+          "label": "Show more text",
+          "default": "Toon meer"
+        },
+        {
+          "type": "text",
+          "id": "show_less_text",
+          "label": "Show less text",
+          "default": "Toon minder"
+        },
+        {
+          "type": "range",
+          "id": "description_limit",
+          "label": "Description limit",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 6
+        },
       ]
     }
   ],
