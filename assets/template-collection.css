@@ -231,3 +231,18 @@
 .collection_page-right-col{
   flex: 1;
 }
+
+/* Collection Page Collection Info Block */
+
+.collection-info-block{
+  margin-bottom: 1rem;
+}
+
+.collection-info-block__title{
+  text-transform: capitalize;
+  margin: 0; 
+}
+
+.collection-info-block__description p{
+  margin: 0;
+}
