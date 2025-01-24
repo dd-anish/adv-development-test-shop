@@ -20,6 +20,32 @@
     },
     "product-grid": {
       "type": "main-collection-product-grid",
+      "blocks": {
+        "collection_info_jPbiMn": {
+          "type": "collection_info",
+          "settings": {
+            "collection_title": "{{ collection.title }}",
+            "collection_description": "{{ collection.description }}",
+            "show_more_type": "button",
+            "show_more_text": "Toon meer",
+            "show_less_text": "Toon minder",
+            "description_limit": 2,
+            "background_color": "rgba(0,0,0,0)",
+            "background_opacity": 100,
+            "border_radius_top_left": 0,
+            "border_radius_top_right": 0,
+            "border_radius_bottom_left": 0,
+            "border_radius_bottom_right": 0,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_left": 0,
+            "padding_right": 0
+          }
+        }
+      },
+      "block_order": [
+        "collection_info_jPbiMn"
+      ],
       "settings": {
         "show_search_bar_in_collection_page": false,
         "products_per_page": 16,
