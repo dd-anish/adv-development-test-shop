@@ -363,6 +363,14 @@ details[open]>summary>.svg-wrapper.svg-wrapper-child-link {
   margin: 0;
 }
 
+.parent-menu-item-info p{
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .menu-drawer__inner-submenu{
   /* margin: 0 1rem;
   background: #efa3a3;
