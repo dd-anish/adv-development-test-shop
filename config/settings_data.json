@@ -141,11 +141,11 @@
     "currency_code_enabled": true,
     "cart_type": "drawer",
     "show_vendor": false,
-    "show_promo_produuct_original_price_total": false,
     "show_cart_note": false,
     "show_sale_discount_percentage_in_cart": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-f0072fee-2089-45cd-8bcb-aa17c05b11eb",
+    "show_promo_produuct_original_price_total": false,
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
