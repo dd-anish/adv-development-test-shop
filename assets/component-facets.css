@@ -1282,12 +1282,15 @@ input.mobile-facets__checkbox {
 
   .facets-vertical-form {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 
   .product-count-vertical {
-    margin-left: 3.5rem;
     position: relative;
+  }
+
+  .product-count-vertical .results-product-count{
+    margin-left: 0.5rem;
   }
 
   .facets-vertical .active-facets__button-wrapper {
@@ -1475,4 +1478,8 @@ input.mobile-facets__checkbox {
   text-decoration: underline;
   text-decoration-thickness: inherit;
   text-decoration-color: var(--theme-signature-color);
+}
+
+.mobile-facets__header .results-product-count{
+  margin: 0;
 }

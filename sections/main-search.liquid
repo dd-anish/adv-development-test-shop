@@ -99,13 +99,30 @@
       <div class="filter-button-container page-width">
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
 
-          <!-- Product Count -->
-          <span class="results-product-count">
-          </span>
+            <!-- Product Count for Mobile -->
+            {% comment %} <span class="results-product-count">
+            </span> {% endcomment %}
+            <span class="results-product-count filter-results-product-count">
+              {%- if search.results_count -%}
+                {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+              {%- elsif search.products_count == search.all_products_count -%}
+                {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
+              {%- else -%}
+                {{
+                  'products.facets.product_count_simple'
+                  | t: count: search.products_count
+                }}
+                
+              {%- endif -%}
 
-          <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
-            <span> {{ 'products.facets.filter_button' | t }} </span>
-          </button>
+              {%- render 'loading-spinner' -%}
+            </span>
+
+
+            <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
+              <span> {{ 'products.facets.filter_button' | t }} </span>
+            </button>
+
         {%- endif -%}
      </div>
       <!-- Search Bar in Page -->
@@ -149,13 +166,14 @@
 
               <button
                 type="reset"
-                class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+                class="reset__button field__button {% if search.terms == blank %} hidden {% endif %}"
                 aria-label="{{ 'general.search.reset' | t }}"
               >
                 <span class="svg-wrapper">
                   {{- 'icon-reset.svg' | inline_asset_content -}}
                 </span>
               </button>
+
               <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
                 <span class="svg-wrapper">
                   {{- 'icon-search.svg' | inline_asset_content -}}
@@ -178,7 +196,7 @@
           {%- endif -%}
         {%- endunless -%}
         {%- if search.results_count == 0 and search.filters == empty -%}
-          <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
+          <p class="no_search_results" role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
         {%- endif -%}
       {%- endif -%}
     </div>
@@ -188,7 +206,28 @@
         and search.filters != empty
       -%}
         <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
-          <form class="facets-vertical-form" id="FacetSortForm">
+          <form class="facets-vertical-form" id="FacetSortForm"> 
+            <!-- Search Result Product Counts Desktop -->
+            <div class="product-count-vertical light" role="status">
+              <h2 class="product-count__text text-body">
+                <span class="results-product-count filter-results-product-count">
+              
+                  {%- if search.results_count -%}
+                    {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+                  {%- elsif search.products_count == search.all_products_count -%}
+                    {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
+                  {%- else -%}
+                    {{
+                      'products.facets.product_count'
+                      | t: product_count: search.products_count, count: search.all_products_count
+                    }}
+                  {%- endif -%}
+                  {%- render 'loading-spinner' -%}
+                </span>
+              </h2>
+            </div>
+
+             <!-- Sorting Option on Desktop -->
             <div class="facet-filters sorting caption">
               <div class="facet-filters__field">
                 <h2 class="facet-filters__label caption-large text-body">
@@ -219,25 +258,6 @@
                 </div>
               </div>
             </div>
-            
-            <!-- Search Result Product Counts Desktop -->
-            {% comment %} <div class="product-count-vertical light" role="status">
-              <h2 class="product-count__text text-body">
-                <span id="ProductCountDesktop">
-                  {%- if search.results_count -%}
-                    {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-                  {%- elsif search.products_count == search.all_products_count -%}
-                    {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
-                  {%- else -%}
-                    {{
-                      'products.facets.product_count'
-                      | t: product_count: search.products_count, count: search.all_products_count
-                    }}
-                  {%- endif -%}
-                </span>
-              </h2>
-              {%- render 'loading-spinner' -%}
-            </div> {% endcomment %}
           </form>
         </facet-filters-form>
       {%- endif -%}

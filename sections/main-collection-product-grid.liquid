@@ -115,86 +115,11 @@
           </button>
         {%- endif -%}
       <!-- Filter End -->
-    </div>
-        
-  {% else %}
-    <!-- No Search Bar in Collection Page UI with Only Filter Button -->
-    <div class="filter-button-container page-width {% if collection.products.size == 0 %} hidden {% endif %}">
-      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-
-        <!-- Product Count -->
-        <span class="results-product-count">
-        </span>
-
-        <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
-          <span> {{ 'products.facets.filter_button' | t }} </span>
-        </button>
-      {%- endif -%}
-    </div>
-      
+    </div>   
   {% endif %}
 
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="sorting-and-product-grid-container">
-      {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
-      {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
-        <facet-filters-form class="facets facets-vertical-sort page-width small-hide {% if collection.products.size == 0 %} hidden {% endif %}">
-          <form class="facets-vertical-form" id="FacetSortForm">
-            <div class="facet-filters sorting caption">
-              <div class="facet-filters__field">
-                <h2 class="facet-filters__label caption-large text-body">
-                  <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
-                </h2>
-                <div class="select">
-                  {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-                  <select
-                    name="sort_by"
-                    class="facet-filters__sort select__select caption-large"
-                    id="SortBy"
-                    aria-describedby="a11y-refresh-page-message"
-                  >
-                    {%- for option in collection.sort_options -%}
-                      <option
-                        value="{{ option.value | escape }}"
-                        {% if option.value == sort_by %}
-                          selected="selected"
-                        {% endif %}
-                      >
-                        {{ option.name | escape }}
-                      </option>
-                    {%- endfor -%}
-                  </select>
-                  <span class="svg-wrapper">
-                    {{- 'icon-caret.svg' | inline_asset_content -}}
-                  </span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Product Count Desktop -->
-            {% comment %} <div class="product-count-vertical light" role="status">
-              <h2 class="product-count__text text-body">
-                <span id="ProductCountDesktop">
-                  {%- if collection.results_count -%}
-                    {{
-                      'templates.search.results_with_count'
-                      | t: terms: collection.terms, count: collection.results_count
-                    }}
-                  {%- elsif collection.products_count == collection.all_products_count -%}
-                    {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
-                  {%- else -%}
-                    {{
-                      'products.facets.product_count'
-                      | t: product_count: collection.products_count, count: collection.all_products_count
-                    }}
-                  {%- endif -%}
-                </span>
-              </h2>
-              {%- render 'loading-spinner' -%}
-            </div> {% endcomment %}
-          </form>
-        </facet-filters-form>
-      {%- endif -%}
 
       <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
         {{ 'component-facets.css' | asset_url | stylesheet_tag }}
@@ -218,93 +143,197 @@
           </aside>
         {%- endif -%}
 
-        <div
-          class="product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          id="ProductGridContainer"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-          {% endif %}
-        >
-          <!-- When the Collection has No Products -->
-          {%- if collection.products.size == 0 -%}
-            <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
-              <div class="loading-overlay gradient"></div>
-              <div class="title-wrapper center">
-                <h2 class="title title--primary h4">
-                  {{ 'sections.collection_template.empty' | t -}}
-                  <br>
-                  {{
-                    'sections.collection_template.use_fewer_filters_html'
-                    | t: link: collection.url, class: 'underlined-link link'
-                  }}
-                </h2>
-              </div>
+        <div class="collection_page-right-col">
+          <div class="collection-hero__text-wrapper">
+            <h1 class="collection-hero__title">
+              <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+              {{- collection.title | escape -}}
+            </h1>
+            <div class="collection-hero__description rte">
+              {{ collection.description }}
             </div>
-          {%- else -%}
-            <div
-              class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
-            >
-              <div class="loading-overlay gradient"></div>
-              <ul
-                id="product-grid"
-                data-id="{{ section.id }}"
-                class="
-                  grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
-                  grid--{{ section.settings.columns_desktop }}-col-desktop
-                  {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
-                "
-              >
-                {% assign skip_card_product_styles = false %}
-                {%- for product in collection.products -%}
-                  {% assign lazy_load = false %}
-                  {%- if forloop.index > 2 -%}
-                    {%- assign lazy_load = true -%}
-                  {%- endif -%}
-                  <li
-                    class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                    {% if settings.animations_reveal_on_scroll %}
-                      data-cascade
-                      style="--animation-order: {{ forloop.index }};"
-                    {% endif %}
-                  >
-                    {% render 'card-product',
-                      card_product: product,
-                      media_aspect_ratio: section.settings.image_ratio,
-                      image_shape: section.settings.image_shape,
-                      show_secondary_image: section.settings.show_secondary_image,
-                      show_vendor: section.settings.show_vendor,
-                      show_rating: section.settings.show_rating,
-                      lazy_load: lazy_load,
-                      skip_styles: skip_card_product_styles,
-                      quick_add: section.settings.quick_add,
-                      section_id: section.id,
-                      truncate_description: section.settings.truncate_description,
-                      show_product_variants: section.settings.show_product_variants,
-                      show_product_stock_status: section.settings.show_product_stock_status,
-                      show_strikethrough_price: section.settings.show_strikethrough_price,
-                      price_horizontal_alignment: section.settings.price_horizontal_alignment,
-                      price_vertical_alignment: section.settings.price_vertical_alignment,
-                      price_gap: section.settings.price_gap,
-                      current_price_font_weight: section.settings.current_price_font_weight,
-                      original_price_size: section.settings.original_price_size,
-                      show_tax_price: section.settings.show_tax_price,
-                      tax_price_font_size: section.settings.tax_price_font_size,
-                      tax_price_font_weight: section.settings.tax_price_font_weight
-                      tax_text_font_size: section.settings.tax_text_font_size,
-                      tax_text_uppercase: section.settings.tax_text_uppercase,
-                      tax_price_margin_top: section.settings.tax_price_margin_top,
-                      tax_price_margin_left: section.settings.tax_price_margin_left
-                    %}
-                  </li>
-                  {%- assign skip_card_product_styles = true -%}
-                {%- endfor -%}
-              </ul>
+          </div>
 
-              {%- if paginate.pages > 1 -%}
-                {% render 'pagination', paginate: paginate, anchor: '' %}
-              {%- endif -%}
-            </div>
+          <!-- Mobile View: Product Count and Filter Button -->
+          <div class="filter-button-container page-width {% if collection.products.size == 0 %} hidden {% endif %}">
+            {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+
+              <!-- Product Count for Mobile besides Filter Button -->
+              <span class="results-product-count filter-results-product-count">
+                {%- if collection.results_count -%}
+                  {{
+                    'templates.search.results_with_count'
+                    | t: terms: collection.terms, count: collection.results_count
+                  }}
+                {%- elsif collection.products_count == collection.all_products_count -%}
+                  {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
+                {%- else -%}
+                  {{
+                    'products.facets.product_count_simple'
+                    | t: count: collection.products_count
+                  }}
+                {%- endif -%}
+                {%- render 'loading-spinner' -%}
+              </span>
+              
+
+              <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
+                <span> {{ 'products.facets.filter_button' | t }} </span>
+              </button>
+            {%- endif -%}
+          </div>  
+     
+
+          {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
+          {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
+            <facet-filters-form class="facets facets-vertical-sort page-width small-hide {% if collection.products.size == 0 %} hidden {% endif %}">
+              <form class="facets-vertical-form" id="FacetSortForm">
+
+                <!-- Product Count Desktop for Collection -->
+                <div class="product-count-vertical light" role="status">
+                  <h2 class="product-count__text text-body">
+                    <span class="filter-results-product-count results-product-count">
+                      {%- if collection.results_count -%}
+                        {{
+                          'templates.search.results_with_count'
+                          | t: terms: collection.terms, count: collection.results_count
+                        }}
+                      {%- elsif collection.products_count == collection.all_products_count -%}
+                        {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
+                      {%- else -%}
+                        {{
+                          'products.facets.product_count_simple'
+                          | t: count: collection.products_count
+                        }}
+                      {%- endif -%}
+                      {%- render 'loading-spinner' -%}
+                    </span>
+                  </h2>
+                </div>
+                <!-- Sorting Option on Desktop -->
+                <div class="facet-filters sorting caption">
+                  <div class="facet-filters__field">
+                    <h2 class="facet-filters__label caption-large text-body">
+                      <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+                    </h2>
+                    <div class="select">
+                      {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                      <select
+                        name="sort_by"
+                        class="facet-filters__sort select__select caption-large"
+                        id="SortBy"
+                        aria-describedby="a11y-refresh-page-message"
+                      >
+                        {%- for option in collection.sort_options -%}
+                          <option
+                            value="{{ option.value | escape }}"
+                            {% if option.value == sort_by %}
+                              selected="selected"
+                            {% endif %}
+                          >
+                            {{ option.name | escape }}
+                          </option>
+                        {%- endfor -%}
+                      </select>
+                      <span class="svg-wrapper">
+                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </facet-filters-form>
           {%- endif -%}
+          
+          <!-- Product Cards UI -->
+          <div
+            class="product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            id="ProductGridContainer"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+            {% endif %}
+          >
+            <!-- When the Collection has No Products -->
+            {%- if collection.products.size == 0 -%}
+              <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+                <div class="loading-overlay gradient"></div>
+                <div class="title-wrapper center">
+                  <h2 class="title title--primary h4">
+                    {{ 'sections.collection_template.empty' | t -}}
+                    <br>
+                    {{
+                      'sections.collection_template.use_fewer_filters_html'
+                      | t: link: collection.url, class: 'underlined-link link'
+                    }}
+                  </h2>
+                </div>
+              </div>
+            {%- else -%}
+              <div
+                class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              >
+                <div class="loading-overlay gradient"></div>
+                <ul
+                  id="product-grid"
+                  data-id="{{ section.id }}"
+                  class="
+                    grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
+                    grid--{{ section.settings.columns_desktop }}-col-desktop
+                    {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
+                  "
+                >
+                  {% assign skip_card_product_styles = false %}
+                  {%- for product in collection.products -%}
+                    {% assign lazy_load = false %}
+                    {%- if forloop.index > 2 -%}
+                      {%- assign lazy_load = true -%}
+                    {%- endif -%}
+                    <li
+                      class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                      {% if settings.animations_reveal_on_scroll %}
+                        data-cascade
+                        style="--animation-order: {{ forloop.index }};"
+                      {% endif %}
+                    >
+                      {% render 'card-product',
+                        card_product: product,
+                        media_aspect_ratio: section.settings.image_ratio,
+                        image_shape: section.settings.image_shape,
+                        show_secondary_image: section.settings.show_secondary_image,
+                        show_vendor: section.settings.show_vendor,
+                        show_rating: section.settings.show_rating,
+                        lazy_load: lazy_load,
+                        skip_styles: skip_card_product_styles,
+                        quick_add: section.settings.quick_add,
+                        section_id: section.id,
+                        truncate_description: section.settings.truncate_description,
+                        show_product_variants: section.settings.show_product_variants,
+                        show_product_stock_status: section.settings.show_product_stock_status,
+                        show_strikethrough_price: section.settings.show_strikethrough_price,
+                        price_horizontal_alignment: section.settings.price_horizontal_alignment,
+                        price_vertical_alignment: section.settings.price_vertical_alignment,
+                        price_gap: section.settings.price_gap,
+                        current_price_font_weight: section.settings.current_price_font_weight,
+                        original_price_size: section.settings.original_price_size,
+                        show_tax_price: section.settings.show_tax_price,
+                        tax_price_font_size: section.settings.tax_price_font_size,
+                        tax_price_font_weight: section.settings.tax_price_font_weight
+                        tax_text_font_size: section.settings.tax_text_font_size,
+                        tax_text_uppercase: section.settings.tax_text_uppercase,
+                        tax_price_margin_top: section.settings.tax_price_margin_top,
+                        tax_price_margin_left: section.settings.tax_price_margin_left
+                      %}
+                    </li>
+                    {%- assign skip_card_product_styles = true -%}
+                  {%- endfor -%}
+                </ul>
+  
+                {%- if paginate.pages > 1 -%}
+                  {% render 'pagination', paginate: paginate, anchor: '' %}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
         </div>
       </div>
     </div>
@@ -317,30 +346,6 @@
 </div>
 
 <script>
-
-  document.addEventListener('DOMContentLoaded', function() {
-
-    const filterButtonContainer = document.querySelector('.results-product-count');
-    const productCountElement = document.querySelector('.mobile-facets__count');
-    console.log("productCountElement", productCountElement);
-    
-    if (productCountElement) {
-
-      const productCountText = productCountElement.textContent;
-      filterButtonContainer.innerHTML = `${productCountText}`;
-
-      const observer = new MutationObserver(function() {
-        const productCountText = productCountElement.textContent;
-        filterButtonContainer.innerHTML = `${productCountText}`;
-      });
-
-      observer.observe(productCountElement, {
-        childList: true,
-        subtree: true
-      });
-    }
-
-  });
 
   document.addEventListener('DOMContentLoaded', function() {
     

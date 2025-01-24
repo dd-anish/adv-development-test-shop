@@ -43,7 +43,21 @@
 /* Custom CSS */
 
 .adv-contact-form {
-  max-width: 70rem;
+  /* max-width: 70rem; */
+  max-width: unset;
+}
+
+.adv-contact-form .field__label_normal{
+  font-weight: 700;
+  color: #000;
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .adv-contact-form .field__label_normal {
+    font-size: 1.5rem;
+  }
+  
 }
 
 
@@ -157,8 +171,8 @@
 
   .company_details_block{
     padding: 1rem 3rem;
-    max-width: 40%;
     text-align: end;
+    height: auto;
   }
 
   

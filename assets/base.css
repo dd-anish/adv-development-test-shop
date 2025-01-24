@@ -553,6 +553,7 @@ summary .icon-caret{
   position: absolute;
   height: 0.6rem;
   right: 1.5rem;
+  top:calc(50% - .2rem);
 }
 
 summary .icon-plus, summary .icon-minus {
@@ -2768,27 +2769,6 @@ details[open] > .header__submenu {
   padding: 0 1rem;
 }
 
-.header__menu-item {
-  /* margin: 0 1.2rem; */
-  text-decoration: none;
-  color: rgba(var(--color-foreground), 0.75);
-  text-transform: uppercase;
-}
-
-details[open] > .header__menu-item {
-  color: rgb(var(--color-foreground));
-  text-decoration: underline;
-  text-decoration-color: var(--theme-signature-color);
-  text-underline-offset: 0.5rem;
-}
-
-details[open]:hover > .header__menu-item {
-  text-decoration-thickness: 0.1rem;
-}
-
-details[open] > .header__menu-item .icon-caret {
-  transform: rotate(180deg);
-}
 
 .header__submenu {
   transition: opacity var(--duration-default) ease, transform var(--duration-default) ease;
@@ -2830,6 +2810,7 @@ details[open] > .header__menu-item .icon-caret {
 
 .header__menu-item .icon-caret {
   right: 0.8rem;
+  top: 30%;
 }
 
 .header__submenu .icon-caret {
@@ -3464,6 +3445,18 @@ details-disclosure > details {
 }
 
 /* Loading spinner */
+.filter-results-product-count.loading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.filter-results-product-count.loading .loading__spinner {
+  opacity: 1;
+  position: absolute;
+  z-index: 1;
+  width: 1.8rem;
+}
+
 .loading__spinner {
   position: absolute;
   z-index: 1;
@@ -3994,6 +3987,14 @@ h6,
 
 }
 
+/* No Results Search Page */
+
+.no_search_results{
+  text-align: center;
+  margin: 5rem 1rem;
+  height: 50vh;
+}
+
 
 /* Search Bar in Collection Page template-search__search*/
 
@@ -4063,11 +4064,37 @@ h6,
 
 /* Nav Item Hover || Single Item Hover */
 
+/* Header Nav Menu Details Nav Item */
+
+/* margin: 0 1.2rem; */
+.header__menu-item {
+  text-decoration: none;
+  color: rgba(var(--color-foreground), 0.75);
+  text-transform: uppercase;
+}
+
+details[open]>.header__menu-item {
+  color: rgb(var(--color-foreground));
+  text-decoration: underline;
+  text-decoration-color: var(--theme-signature-color);
+  text-underline-offset: 0.5rem;
+}
+
+/* details[open]:hover>.header__menu-item {
+  text-decoration-thickness: 0.2rem;
+} */
+
+details[open]>.header__menu-item .icon-caret {
+  transform: rotate(180deg);
+}
+
+
 .header__menu-item:hover {
   color: rgb(var(--color-foreground));
 }
 
-.header__menu-item span {
+/* Hover Effect Base Code Nav Link (100%) */
+.header__menu-item span{
   /* text-decoration: none; */
   display: inline;
   background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
@@ -4077,9 +4104,25 @@ h6,
   transition: background-size 0.5s ease-in-out;
 }
 
+/* Hover Effect Hover Code Nav Link (100%) */
 .header__menu-item:hover span {
   background-size: 100% 1px;
   background-position: 0% 100%;
+}
+
+/* Hover Effect on Active Link (95%) */
+details[open]>.header__menu-item span{
+  display: inline;
+  background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
+  background-position: 0% 95%;
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s ease-in-out;
+}
+
+details[open]:hover > .header__menu-item span{
+  background-size: 100% 1px;
+  background-position: 0% 95%;
 }
 
 .header__active-menu-item {
@@ -4087,16 +4130,48 @@ h6,
   color: rgb(var(--color-foreground));
   text-decoration: underline;
   text-underline-offset: 0.5rem;
+  /* Header Active Menu Red Color Underline */
+  text-decoration-color: var(--theme-signature-color);
+}
+
+/* .header__menu-item:hover .header__active-menu-item {
+  text-decoration-thickness: 0.1rem;
+
+} */
+
+/* Hover Effect on Active Link (95%) */
+.header__menu-item .header__active-menu-item{
+  display: inline;
+  background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
+  background-position: 0% 95%;
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s ease-in-out;
 }
 
 .header__menu-item:hover .header__active-menu-item {
-  text-decoration-thickness: 0.1rem;
-
+  background-size: 100% 1px;
+  background-position: 0% 95%;
 }
 
 .header__active-menu-item-custom{
   text-decoration: underline;
   text-underline-offset: 0.5rem;
+}
+
+/* Hover Effect on Active Link (95%) */
+.header__menu-item .header__active-menu-item-custom{
+  display: inline;
+  background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
+  background-position: 0% 95%;
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s ease-in-out;
+}
+
+.header__menu-item:hover .header__active-menu-item-custom {
+  background-size: 100% 1px;
+  background-position: 0% 95%;
 }
 
 @media screen and (min-width: 750px) {

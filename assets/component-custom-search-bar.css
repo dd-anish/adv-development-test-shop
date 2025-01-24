@@ -83,6 +83,7 @@
 
 .custom-search-bar .template-search__header{
     margin-bottom: 0;
+    min-width: 25rem;
 }
 
 .custom-search-bar .template-search__search{

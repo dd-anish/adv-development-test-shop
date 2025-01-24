@@ -116,11 +116,12 @@
     flex: 1;
 }
 
-@media screen and (min-width: 768px) { 
+@media screen and (min-width: 750px) { 
 
     .contact--card .contact-card__inner {
         flex-direction: row;
         height: fit-content;
+        flex-wrap: wrap;
     }
 
     .contact--card .contact-card__content {
@@ -163,7 +164,7 @@
     align-items: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 750px) {
     .contact-card-more-content {
         flex: none;
         justify-content: normal;
@@ -192,7 +193,7 @@
     font-size: 1.3rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 750px) {
 
     .contact--standard .contact-card__information .h2 {
         font-size: 1.5rem;

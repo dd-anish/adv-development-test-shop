@@ -3,15 +3,29 @@
     {% if allow_hover_on_images %}
         @media screen and (min-width: 750px){
         
+            /* Contact Card with Images  */
+            .contact-card-wrapper .contact-card__media-section-{{ section.id }} img {  
+                transform: scale(1);  
+                transition: transform 0.5s;  
+            }  
+
             .contact-card-wrapper:hover .contact-card__media-section-{{ section.id }} img {  
                 transform: scale(1.1);  
                 transition: transform 0.5s;  
             }  
             
-            .contact-card-wrapper:hover .contact-card__media-section-{{ section.id }} svg {  
-                transform: scale(1.1);  
-                transition: transform 0.5s;  
+
+            /* Contact Card with SVG Icons */
+            .contact-card-wrapper .contact-card__media-section-{{ section.id }} svg {  
+                transform: scale(1);  
+                transition: transform 0.8s;  
             }  
+
+            .contact-card-wrapper:hover .contact-card__media-section-{{ section.id }} svg {  
+                transform: scale(1.3);  
+                transition: transform 1s;  
+            }  
+
         }
     {% endif %}
 
