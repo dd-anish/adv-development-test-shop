@@ -217,8 +217,14 @@
 }
 
 .facets__disclosure[open] .facets__summary,
-.facets__summary:hover {
+.facets__summary:hover
+{
   color: rgb(var(--color-foreground));
+}
+
+.facets__disclosure-vertical[open] .facets__summary{
+  color: rgb(var(--color-foreground));
+  font-weight: 400;
 }
 
 .facets__disclosure[open] .facets__display,
@@ -231,8 +237,9 @@
 }
 
 .facets__summary:hover .facets__summary-label {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+  
 }
 
 .facets__and-helptext {
@@ -346,7 +353,7 @@
 /* Hover/focus state */
 .facets-layout-list .facets__label:hover .facet-checkbox__text-label,
 .facets-layout-list input:focus ~ .facet-checkbox__text-label {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .facets-layout-grid > * {
