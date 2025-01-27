@@ -1958,6 +1958,7 @@ input[type='checkbox'] {
   height: 4rem;
   width: 4.5rem;
   background-color: transparent;
+  color: #ededed;
 }
 
 .modal__close-button .icon {
@@ -2507,7 +2508,6 @@ input[type='checkbox'] {
   height: 44px; */
   width: 25px;
   height: 25px;
-  color: rgb(var(--color-foreground), 0.9);
 }
 
 .header__icon::after {
@@ -2531,6 +2531,7 @@ input[type='checkbox'] {
   height: 4.4rem;
   width: 4.4rem;
   padding: 0;
+  color: #ededed;
 }
 
 .header__icon--cart {
@@ -2560,6 +2561,7 @@ details .header__icon-close {
 
 details[open] .header__icon-close {
   display: inline-block;
+  /* color: rgb(var(--color-foreground)); */
 }
 
 account-icon {
@@ -2613,9 +2615,16 @@ menu-drawer + .header__search {
   }
 }
 
+/* Search Bar Modal in Header */
+
+.header__search{
+  background: transparent;
+}
+
 details[open] > .search-modal {
   opacity: 1;
   animation: animateMenuOpen var(--duration-default) ease;
+  background: var(--theme-black-color);
 }
 
 details[open] .modal-overlay {

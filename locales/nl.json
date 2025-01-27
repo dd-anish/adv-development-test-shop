@@ -223,7 +223,8 @@
       "filter_selected_accessibility": "{{ type }} ({{ count }} filters geselecteerd)",
       "show_more": "Meer weergeven",
       "show_less": "Minder weergeven",
-      "filter_and_operator_subtitle": "Alles matchen"
+      "filter_and_operator_subtitle": "Alles matchen",
+      "no_active_filters": "Geen actieve filters",
     }
   },
   "templates": {
