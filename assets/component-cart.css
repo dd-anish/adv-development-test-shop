@@ -264,7 +264,7 @@ cart-items {
 
 @media screen and (min-width: 750px) {
   .cart-page .cart-item__quantity-wrapper .quantity {
-    min-height: calc((var(--inputs-border-width) * 2) + 4.5rem);
+    min-height: calc((var(--inputs-border-width) * 2) + 3.5rem);
   }
   
 }

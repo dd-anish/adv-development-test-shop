@@ -65,10 +65,10 @@
 
       <!-- Cart Header -->
       <div class="drawer__header">
-        <div class="">
-          <h2 class="drawer__heading text-link-underline-custom-thin">
+        <div class="drawer__header-heading-product-count-wrapper">
+          <a href="{{ routes.cart_url }}" class="drawer__heading text-link-underline-custom full-unstyled-link h2">
             {{ 'sections.cart.title' | t }}
-          </h2>
+          </a>
           <span class="text-body--small font-light">
             ({{ 'sections.header.cart_count' | t: count: cart.item_count  }})
           </span>
