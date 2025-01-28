@@ -149,7 +149,7 @@
             "border_radius_top_right": 0,
             "border_radius_bottom_left": 0,
             "border_radius_bottom_right": 0,
-            "padding_top": 14,
+            "padding_top": 18,
             "padding_bottom": 0,
             "padding_left": 0,
             "padding_right": 0
@@ -315,6 +315,7 @@
         "tax_price_font_weight": "font-extra-light",
         "tax_text_font_size": "text-body--extra-small",
         "original_price_size": "text-body--small-3",
+        "tax_price_margin_top": 0,
         "tax_price_margin_left": 2,
         "media_size": "small",
         "constrain_to_viewport": true,
@@ -325,8 +326,8 @@
         "mobile_thumbnails": "show",
         "hide_variants": true,
         "enable_video_looping": false,
-        "padding_top": 12,
-        "padding_bottom": 12
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "related-products": {
@@ -351,9 +352,9 @@
     "featured_collection_Bp3hzr": {
       "type": "featured-collection",
       "settings": {
-        "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">ONTDEK ONZE</a> BESTSELLERS",
+        "title": "<a href=\"/collections\" target=\"_blank\" title=\"All collections\">ONTDEK ONZE BESTSELLERS</a>",
         "heading_size": "h1",
-        "clickable_title": false,
+        "clickable_title": true,
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -374,17 +375,18 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",
-        "show_strikethrough_price": false,
+        "show_strikethrough_price": true,
         "current_price_font_weight": "font-semibold",
-        "original_price_size": "font-small-8-px-fix",
+        "original_price_size": "font-small-1-rem-fix",
         "price_horizontal_alignment": "column-reverse",
         "price_vertical_alignment": "flex-start",
-        "price_gap": 0,
+        "price_gap": 2,
         "show_tax_price": true,
-        "tax_price_font_size": "font-small-1-rem",
+        "tax_price_font_size": "text-body--extra-extra-small",
         "tax_price_font_weight": "font-extra-light",
         "tax_text_uppercase": true,
         "tax_text_font_size": "font-small-8-px-fix",
+        "tax_price_margin_top": 2,
         "tax_price_margin_left": 0,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
