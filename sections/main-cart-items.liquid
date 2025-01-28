@@ -31,12 +31,14 @@
   <div class="page-width cart-page">
     <div class="title-wrapper-with-link">
       <!-- Title Cart -->
-      <h1 class="title text-link-underline-custom-thin text-capitalize">
+      <div class="title ">
+        <h1 class="text-link-underline-custom text-capitalize">
         {{ 'sections.cart.title' | t }}
+        </h1>
         <span class="small-hide text-body--small font-light">
           ({{ 'sections.header.cart_count' | t: count: cart.item_count  }})
         </span>
-      </h1>
+      </div>
 
       <!-- Collection URL -->
       <a href="{{ routes.all_products_collection_url }}" class="underlined-link text-body--small ">

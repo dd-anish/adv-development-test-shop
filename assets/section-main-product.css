@@ -1663,14 +1663,19 @@ a.product__text {
 
 /* Collapsible Row */
 
+
 .product__accordion.accordion{
-  border-top: 0;
+  /* border-top: 0.2rem solid var(--theme-signature-color); */
   border-bottom: 0.2rem solid var(--theme-signature-color);
 }
 
 .product__accordion.accordion .accordion__content .shipping-options, .product__accordion.accordion .accordion__content .collapsible-richtext-content{
   padding: 0;
   margin: 0;
+}
+
+.product__accordion summary:hover{
+  background-color: rgba(var(--color-foreground), .05) ;
 }
 
 .product__description-container .text-link-underline-custom::after {
@@ -1683,6 +1688,9 @@ a.product__text {
   }
   
 }
+
+
+/* Advantage Disadvantages */
 
 .accordion__content.rte ul{
   padding-left: 0;
@@ -1707,7 +1715,6 @@ a.product__text {
   height: 1.5rem;
   display: flex;
   align-items: center;
-  /* To have Icons take Given Width without Shrinking in Size */
   flex: none; 
 }
 

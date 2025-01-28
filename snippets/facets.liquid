@@ -136,6 +136,7 @@
                       open
                     {% endif %}
                   >
+                    <!-- Filter Label: Collapsible Header -->
                     <summary
                       class="facets__summary caption-large focus-offset"
                       aria-label="{{ filter.label | escape }} ({{ 'products.facets.filters_selected.one' | t: count: filter.active_values.size }})"
@@ -157,6 +158,7 @@
                         {{- 'icon-caret.svg' | inline_asset_content -}}
                       </div>
                     </summary>
+                    <!-- Filter Values: Collapsible Content -->
                     <div
                       id="Facet-{{ forloop.index }}-{{ section.id }}"
                       class="parent-display {% if filter_type == 'horizontal' %}facets__display{% else %}facets__display-vertical{% endif %}"
@@ -524,6 +526,17 @@
             </div>
             <!-- Mobile Active Facets -->
             <div class="active-facets active-facets-mobile medium-hide large-up-hide">
+            {% assign has_active_filters = false %}
+
+            {% if results.filters and results.filters.size > 0 %}
+              {% for filter in results.filters %}
+                {% if filter.active_values and filter.active_values.size > 0 %}
+                  {% assign has_active_filters = true %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% if has_active_filters %}
               {%- for filter in results.filters -%}
                 {%- for value in filter.active_values -%}
                   <facet-remove>
@@ -557,12 +570,20 @@
                   {%- endif -%}
                 {%- endif -%}
               {%- endfor -%}
+
               <facet-remove class="active-facets__button-wrapper visually-hidden">
                 <a href="{{ results_url }}" class="active-facets__button-remove underlined-link">
                   <span>{{ 'products.facets.clear_all' | t }}</span>
                 </a>
               </facet-remove>
-            </div>
+            {% else %}
+              <span class="active-facets__no-filters">
+                {{ 'products.facets.no_active_filters' | t }}
+              </span>
+            {% endif %}
+          </div>
+
+
             {%- if enable_sorting and enable_sticky_sorting -%}
               <div class="sticky-sorting-mobile">
                 <div

@@ -8,9 +8,9 @@
   {% render 'header-search', input_id: 'My-Id'%}
 {% endcomment %}
 
-<details-modal class="header__search desktop-hidden">
+<details-modal class="header__search desktop-hidden color-{{ section.settings.search_bar_color_scheme_mobile_modal }}">
   <details>
-    <summary
+  <summary
       class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
       aria-haspopup="dialog"
       aria-label="{{ 'general.search.search' | t }}"

@@ -421,18 +421,8 @@
     background-position: 0% 100%;
   }
 
-  /* Hover Effect on Active Link (95%) */
-  .footer-block__details-content .list-menu__item--active{
-    display: inline;
-    background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
-    background-position: 0% 100%;
+  .footer-block__details-content .list-menu__item--active:hover{
     background-size: 0% 1px;
-    background-repeat: no-repeat;
-    transition: background-size 0.5s ease-in-out;
-  }
-
-  .footer-block__details-content .list-menu__item--active:hover {
-    background-size: 100% 1px;
     background-position: 0% 100%;
   }
 }

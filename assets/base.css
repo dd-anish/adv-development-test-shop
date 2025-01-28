@@ -489,7 +489,7 @@ details > * {
 .inline-richtext a {
   text-underline-offset: 0.3rem;
   text-decoration-thickness: 0.1rem;
-  transition: text-decoration-thickness ease 100ms;  
+  transition: text-decoration-thickness ease 1000ms;  
 }
 
 
@@ -497,8 +497,9 @@ details > * {
 .customer a:hover,
 .inline-richtext a:hover {
   color: rgb(var(--color-link));
-  text-decoration-thickness: 0.3rem;
+  text-decoration-thickness: 0.2rem;
 }
+
 
 .underlined-link,
 .customer a {
@@ -1957,6 +1958,7 @@ input[type='checkbox'] {
   height: 4rem;
   width: 4.5rem;
   background-color: transparent;
+  color: #ededed;
 }
 
 .modal__close-button .icon {
@@ -2506,7 +2508,6 @@ input[type='checkbox'] {
   height: 44px; */
   width: 25px;
   height: 25px;
-  color: rgb(var(--color-foreground), 0.9);
 }
 
 .header__icon::after {
@@ -2530,6 +2531,7 @@ input[type='checkbox'] {
   height: 4.4rem;
   width: 4.4rem;
   padding: 0;
+  color: #ededed;
 }
 
 .header__icon--cart {
@@ -2559,6 +2561,7 @@ details .header__icon-close {
 
 details[open] .header__icon-close {
   display: inline-block;
+  /* color: rgb(var(--color-foreground)); */
 }
 
 account-icon {
@@ -2612,9 +2615,16 @@ menu-drawer + .header__search {
   }
 }
 
+/* Search Bar Modal in Header */
+
+.header__search{
+  background: transparent;
+}
+
 details[open] > .search-modal {
   opacity: 1;
   animation: animateMenuOpen var(--duration-default) ease;
+  background: var(--theme-black-color);
 }
 
 details[open] .modal-overlay {
@@ -4111,19 +4121,6 @@ details[open]>.header__menu-item .icon-caret {
 }
 
 /* Hover Effect on Active Link (95%) */
-details[open]>.header__menu-item span{
-  display: inline;
-  background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
-  background-position: 0% 95%;
-  background-size: 0% 1px;
-  background-repeat: no-repeat;
-  transition: background-size 0.5s ease-in-out;
-}
-
-details[open]:hover > .header__menu-item span{
-  background-size: 100% 1px;
-  background-position: 0% 95%;
-}
 
 .header__active-menu-item {
   transition: text-decoration-thickness var(--duration-short) ease;
@@ -4139,39 +4136,10 @@ details[open]:hover > .header__menu-item span{
 
 } */
 
-/* Hover Effect on Active Link (95%) */
-.header__menu-item .header__active-menu-item{
-  display: inline;
-  background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
-  background-position: 0% 95%;
-  background-size: 0% 1px;
-  background-repeat: no-repeat;
-  transition: background-size 0.5s ease-in-out;
-}
-
-.header__menu-item:hover .header__active-menu-item {
-  background-size: 100% 1px;
-  background-position: 0% 95%;
-}
 
 .header__active-menu-item-custom{
   text-decoration: underline;
   text-underline-offset: 0.5rem;
-}
-
-/* Hover Effect on Active Link (95%) */
-.header__menu-item .header__active-menu-item-custom{
-  display: inline;
-  background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
-  background-position: 0% 95%;
-  background-size: 0% 1px;
-  background-repeat: no-repeat;
-  transition: background-size 0.5s ease-in-out;
-}
-
-.header__menu-item:hover .header__active-menu-item-custom {
-  background-size: 100% 1px;
-  background-position: 0% 95%;
 }
 
 @media screen and (min-width: 750px) {
