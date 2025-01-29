@@ -59,3 +59,17 @@
 .collection-list-view-all {
   margin-top: 2rem;
 }
+
+
+/* Custom CSS */
+
+.main-list-collection-grid{
+  margin-top: 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .main-list-collection-grid {
+    margin-top: 2rem;
+  }
+  
+}
