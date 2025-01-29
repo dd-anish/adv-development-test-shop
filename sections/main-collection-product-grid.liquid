@@ -384,10 +384,31 @@
           <!-- More Blocks for Collection Page -->
           {% for block in section.blocks %}
             {% case block.type %}
-              {% when 'collection_info_1' %}
+              {% when 'collection_offer' %}
+          
                 <div class="collection">
-                  {{ block.settings.title }}
-                  {{ block.settings.description }}
+                  {{ block.settings.offer_title }}
+                  {% comment %} {{ block.settings.offer_description | richtext }} {% endcomment %}
+                  
+                  {% comment %} {{ block.settings.offer_description }}
+                  {{ collection.metafields.custom.offer_description.children.children.value  }} {% endcomment %}
+                  {% assign offer_description = collection.metafields.custom.offer_description %}
+
+                  {% assign parsed_description = offer_description | parse_json %}
+
+
+                  {% comment %} {{ offer_description.value }}
+                  {{ offer_description.value.type }} {% endcomment %}
+                  {% comment %} {{ parsed_description }} {% endcomment %}
+
+                  {% for item in parsed_description.value.children %}
+                     {% for subchild in item.children %}
+                      {% if subchild.type == "text" %}
+                        {{ subchild.value }}
+                      {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+                 
                 </div>
             {% endcase %}
           {% endfor %}
@@ -626,7 +647,30 @@
           "default": 0
         }
       ]
-    }
+    },
+    {
+      "type": "collection_offer",
+      "name": "Collection Offer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "offer_title",
+          "label": "Offer Title",
+          "default": "{{ collection.metafields.custom.offer_title.value }}"
+        },
+        {
+          "type": "richtext",
+          "id": "offer_description",
+          "label": "Offer Description",
+          "default": "<p>Test {{ collection.metafields.custom.offer_description }}</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "offer_image",
+          "label": "Offer Image"
+        }
+      ]
+    },
   ],
   "settings": [
     {
