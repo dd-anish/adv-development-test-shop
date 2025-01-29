@@ -25,6 +25,7 @@
           "type": "collection_info",
           "settings": {
             "collection_title": "{{ collection.title }}",
+            "text_case": "uppercase",
             "collection_description": "{{ collection.description }}",
             "show_more_type": "button",
             "show_more_text": "Toon meer",
@@ -41,10 +42,20 @@
             "padding_left": 0,
             "padding_right": 0
           }
+        },
+        "collection_offer_8LYbVX": {
+          "type": "collection_offer",
+          "settings": {
+            "offer_title": "{{ collection.metafields.custom.offer_title.value }}",
+            "offer_description": "",
+            "offer_button_label": "Shop Now",
+            "offer_button_link": ""
+          }
         }
       },
       "block_order": [
-        "collection_info_jPbiMn"
+        "collection_info_jPbiMn",
+        "collection_offer_8LYbVX"
       ],
       "settings": {
         "show_search_bar_in_collection_page": false,
