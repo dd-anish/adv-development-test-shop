@@ -182,7 +182,7 @@
             <div class="collection-info-block block-{{ block.id }}">
               {% if block.type == 'collection_info' %}
   
-                <h1 class="collection-info-block__title">
+                <h1 class="collection-info-block__title text-link-underline-custom" style="text-transform: {{ block.settings.text_case  }};">
                   <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
                   {{- collection.title | escape -}}
                 </h1>
@@ -446,6 +446,30 @@
           "id": "collection_title",
           "label": "Collection Title",
           "default": "{{ collection.title }}"
+        },
+        {
+          "type": "select",
+          "id": "text_case",
+          "label": "Text Case",
+          "options": [
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize"
+            },
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ],
+          "default": "uppercase"
         },
         {
           "type": "richtext",
