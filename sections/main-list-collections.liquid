@@ -1,8 +1,22 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
-<div class="page-width">
-  <h1 class="title title--primary text-link-underline-custom {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {{ section.settings.heading_size }} {% if section.settings.clickable_title == false %} unclickable-link {% endif %}">
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width section-{{ section.id }}-padding ">
+  <h1 class="main-list-collection-title title title--primary text-link-underline-custom {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {{ section.settings.heading_size }} {% if section.settings.clickable_title == false %} unclickable-link {% endif %}">
     {{ section.settings.title }}
   </h1>
   {%- liquid
@@ -25,28 +39,31 @@
   -%}
   {%- paginate collections by paginate_by -%}
     <ul
-      class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+      class="main-list-collection-grid collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
       role="list"
     >
       {%- for collection in collections -%}
-        <li
-          class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
-          {% render 'card-collection',
-            card_collection: collection,
-            media_aspect_ratio: section.settings.image_ratio,
-            columns: 3
-          %}
-        </li>
+        {% if collection.metafields.custom.main_collection %}
+          <li
+            class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
+            {% render 'card-collection',
+              card_collection: collection,
+              media_aspect_ratio: section.settings.image_ratio,
+              columns: 3
+            %}
+          </li>
+        {% endif %}
       {%- endfor -%}
     </ul>
     {% render 'pagination', paginate: paginate %}
   {%- endpaginate -%}
 </div>
+
 {% schema %}
 {
   "name": "t:sections.main-list-collections.name",
@@ -173,6 +190,30 @@
       ],
       "default": "2",
       "label": "t:sections.main-list-collections.settings.columns_mobile.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 18
     }
   ]
 }

@@ -149,11 +149,12 @@
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="sorting-and-product-grid-container">
 
-      <!-- Collection Page Left Column -->
+      <!-- Collection Page Container -->
       <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
         {{ 'component-facets.css' | asset_url | stylesheet_tag }}
         <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 
+        <!-- Desktop Left Filter -->
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
           <aside
             aria-labelledby="verticalTitle"
@@ -172,15 +173,16 @@
           </aside>
         {%- endif -%}
 
-        <!-- Collection Page Right Column -->
+        <!-- Collection Page Right Container -->
         <div class="collection_page-right-col">
 
           <!-- Collection Banner/Hero -->
           {% for block in section.blocks %}
+
             <div class="collection-info-block block-{{ block.id }}">
               {% if block.type == 'collection_info' %}
   
-                <h1 class="collection-info-block__title">
+                <h1 class="collection-info-block__title text-link-underline-custom" style="text-transform: {{ block.settings.text_case  }};">
                   <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
                   {{- collection.title | escape -}}
                 </h1>
@@ -382,10 +384,47 @@
           <!-- More Blocks for Collection Page -->
           {% for block in section.blocks %}
             {% case block.type %}
-              {% when 'collection_info_1' %}
-                <div class="collection">
-                  {{ block.settings.title }}
-                  {{ block.settings.description }}
+              {% when 'collection_offer' %}
+          
+                <div class="collection-offer-container">
+                  
+                  <div class="collection-offer-image">
+                    {% if block.settings.offer_image %}
+
+                     {{ block.settings.offer_image |  image_url: width: 400 |  image_tag }}
+          
+
+                    {% endif %}
+
+                  </div>
+
+                  <div class="collection-offer-content">
+                    <div class="collection-offer-content-text">
+                      <div class="collection-offer-title h2">
+                        {{ block.settings.offer_title }}
+                      </div>
+            
+                      <div class="collection-offer-description">
+                        {% assign offer_description = collection.metafields.custom.offer_description %}
+
+                        {% for item in offer_description.value.children %}
+                          {% for subchild in item.children %}
+                            {% if subchild.type == "text" %}
+                              {{ subchild.value }}
+                            {% endif %}
+                          {% endfor %}
+                        {% endfor %}
+                      </div>
+                    </div>
+
+                    
+                    <a href="{{ block.settings.offer_button_link }} " class="button button--primary collection-offer-button">
+
+                      {{ block.settings.offer_button_label }}
+                    </a>
+                    
+                  </div>
+                 
                 </div>
             {% endcase %}
           {% endfor %}
@@ -444,6 +483,30 @@
           "id": "collection_title",
           "label": "Collection Title",
           "default": "{{ collection.title }}"
+        },
+        {
+          "type": "select",
+          "id": "text_case",
+          "label": "Text Case",
+          "options": [
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize"
+            },
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ],
+          "default": "uppercase"
         },
         {
           "type": "richtext",
@@ -600,7 +663,41 @@
           "default": 0
         }
       ]
-    }
+    },
+    {
+      "type": "collection_offer",
+      "name": "Collection Offer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "offer_title",
+          "label": "Offer Title",
+          "default": "{{ collection.metafields.custom.offer_title.value }}"
+        },
+        {
+          "type": "richtext",
+          "id": "offer_description",
+          "label": "Offer Description",
+          "default": "<p>Test {{ collection.metafields.custom.offer_description }}</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "offer_image",
+          "label": "Offer Image"
+        },
+        {
+          "type": "text",
+          "id": "offer_button_label",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "offer_button_link",
+          "label": "Button Link"
+        },
+      ]
+    },
   ],
   "settings": [
     {

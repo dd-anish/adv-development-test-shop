@@ -246,3 +246,46 @@
 .collection-info-block__description p{
   margin: 0;
 }
+
+/* Collection Offer Block */
+
+.collection-offer-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 auto;
+  width: fit-content;
+  margin-top: 2rem;
+}
+
+.collection-offer-content{
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.collection-offer-image img{
+  width: 100%;
+  height: 100%;
+}
+
+.collection-offer-image{
+    height: 24rem;
+    width: 24rem;
+    flex: none;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.collection-offer-button{
+  max-width: 15rem;
+}
+
+@media screen and (min-width: 749px) {
+  .collection-offer-container{
+    flex-direction: row;
+    gap: 5rem;
+  }
+  
+}
