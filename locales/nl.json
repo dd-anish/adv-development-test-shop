@@ -235,6 +235,7 @@
         "other": "{{ count }} resultaten"
       },
       "title": "Zoekresultaten",
+      "search_title_no_results": "Geen resultaten gevonden",
       "page": "Pagina",
       "products": "Producten",
       "search_for": "Zoeken naar '{{ terms }}'",

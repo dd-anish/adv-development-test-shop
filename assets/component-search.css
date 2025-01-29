@@ -68,3 +68,11 @@ input::-webkit-search-decoration {
 .template-search__results {
   position: relative;
 }
+
+
+
+/* Custom CSS */
+
+.default-search-page .template-search__header > h1{
+  margin: 0;
+}

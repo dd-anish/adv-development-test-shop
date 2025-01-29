@@ -253,6 +253,7 @@
         "other": "{{ count }} results found for “{{ terms }}”"
       },
       "title": "Search results",
+      "search_title_no_results": "No results found",
       "search_for": "Search for “{{ terms }}”",
       "suggestions": "Suggestions",
       "pages": "Pages"

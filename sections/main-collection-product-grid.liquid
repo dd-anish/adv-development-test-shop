@@ -149,11 +149,12 @@
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="sorting-and-product-grid-container">
 
-      <!-- Collection Page Left Column -->
+      <!-- Collection Page Container -->
       <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
         {{ 'component-facets.css' | asset_url | stylesheet_tag }}
         <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 
+        <!-- Desktop Left Filter -->
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
           <aside
             aria-labelledby="verticalTitle"
@@ -172,11 +173,12 @@
           </aside>
         {%- endif -%}
 
-        <!-- Collection Page Right Column -->
+        <!-- Collection Page Right Container -->
         <div class="collection_page-right-col">
 
           <!-- Collection Banner/Hero -->
           {% for block in section.blocks %}
+
             <div class="collection-info-block block-{{ block.id }}">
               {% if block.type == 'collection_info' %}
   

@@ -4000,8 +4000,7 @@ h6,
 /* No Results Search Page */
 
 .no_search_results{
-  text-align: center;
-  margin: 5rem 1rem;
+  margin: 5rem 0rem;
   height: 50vh;
 }
 
