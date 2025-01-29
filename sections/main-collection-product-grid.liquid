@@ -386,28 +386,44 @@
             {% case block.type %}
               {% when 'collection_offer' %}
           
-                <div class="collection">
-                  {{ block.settings.offer_title }}
-                  {% comment %} {{ block.settings.offer_description | richtext }} {% endcomment %}
+                <div class="collection-offer-container">
                   
-                  {% comment %} {{ block.settings.offer_description }}
-                  {{ collection.metafields.custom.offer_description.children.children.value  }} {% endcomment %}
-                  {% assign offer_description = collection.metafields.custom.offer_description %}
+                  <div class="collection-offer-image">
+                    {% if block.settings.offer_image %}
 
-                  {% assign parsed_description = offer_description | parse_json %}
+                     {{ block.settings.offer_image |  image_url: width: 400 |  image_tag }}
+          
 
+                    {% endif %}
 
-                  {% comment %} {{ offer_description.value }}
-                  {{ offer_description.value.type }} {% endcomment %}
-                  {% comment %} {{ parsed_description }} {% endcomment %}
+                  </div>
 
-                  {% for item in parsed_description.value.children %}
-                     {% for subchild in item.children %}
-                      {% if subchild.type == "text" %}
-                        {{ subchild.value }}
-                      {% endif %}
-                    {% endfor %}
-                  {% endfor %}
+                  <div class="collection-offer-content">
+                    <div class="collection-offer-content-text">
+                      <div class="collection-offer-title h2">
+                        {{ block.settings.offer_title }}
+                      </div>
+            
+                      <div class="collection-offer-description">
+                        {% assign offer_description = collection.metafields.custom.offer_description %}
+
+                        {% for item in offer_description.value.children %}
+                          {% for subchild in item.children %}
+                            {% if subchild.type == "text" %}
+                              {{ subchild.value }}
+                            {% endif %}
+                          {% endfor %}
+                        {% endfor %}
+                      </div>
+                    </div>
+
+                    
+                    <a href="{{ block.settings.offer_button_link }} " class="button button--primary collection-offer-button">
+
+                      {{ block.settings.offer_button_label }}
+                    </a>
+                    
+                  </div>
                  
                 </div>
             {% endcase %}
@@ -668,7 +684,18 @@
           "type": "image_picker",
           "id": "offer_image",
           "label": "Offer Image"
-        }
+        },
+        {
+          "type": "text",
+          "id": "offer_button_label",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "offer_button_link",
+          "label": "Button Link"
+        },
       ]
     },
   ],
