@@ -15,7 +15,7 @@
         "heading_TBXELt": {
           "type": "heading",
           "settings": {
-            "heading": "Start jouw avontuur hier?",
+            "heading": "Start jouw volgend avontuur hier?",
             "heading_size": "h2"
           }
         },
@@ -99,6 +99,7 @@
         "tax_price_font_weight": "font-extra-light",
         "tax_text_uppercase": true,
         "tax_text_font_size": "font-small-8-px-fix",
+        "tax_price_margin_top": 2,
         "tax_price_margin_left": 0,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
