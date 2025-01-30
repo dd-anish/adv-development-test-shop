@@ -14,6 +14,8 @@
   position: absolute;
   right: 0;
   top: 100%;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
 }
 
 .shopify-section-header-sticky .mega-menu__content {
@@ -39,6 +41,8 @@
   gap: 1.8rem 4rem;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   list-style: none;
+  max-width: 120rem;
+  padding: 0;
 }
 
 .mega-menu__link {
