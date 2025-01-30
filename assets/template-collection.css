@@ -279,15 +279,23 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: 0.5s ease;
 }
 
 
 .collection-offer-button{
   max-width: 15rem;
+  min-height: 4rem;
+  padding: 0;
+  margin: 0;
 }
 
 .collection-offer-content-text{
   text-align: center;
+}
+
+.collection-offer-description{
+
 }
 
 @media screen and (min-width: 749px) {
@@ -304,11 +312,16 @@
 
   .collection-offer-image {
     height: 25rem;
-    width: 50%;
+    width: 40%;
   }
 
   .collection-offer-content-text{
     text-align: unset;
   }
-  
+
+  .collection-offer-container:hover img {
+    transform: scale(1.1);
+    transition: 0.5s ease;
+  }
+
 }
