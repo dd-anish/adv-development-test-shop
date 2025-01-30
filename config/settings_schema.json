@@ -257,6 +257,12 @@
         "id": "sticky_collection_color_scheme",
         "label": "Sticky Collection Color Scheme"
       },
+      {
+        "type": "color",
+        "id": "sticky_collection_mega_menu_background",
+        "label": "Sticky Collection Mega Menu Background",
+        "default": "#EDEDED"
+      },
     ]
 
   },
