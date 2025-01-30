@@ -195,7 +195,7 @@
               <!-- Search Page Header Default Title -->
               {% if section.settings.show_default_search_header_title %}
                 <div class="template-search__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in {% endif %}">
-                  <h1 class="h2 center text-capitalize">
+                  <h1 class="h2 text-capitalize">
                     {%- if search.performed -%}
                       {{- 'templates.search.title' | t -}} 
                       <span class="text-body--small font-light mobile-hidden" style="display: inline;">
@@ -274,16 +274,18 @@
                       {%- endif -%}
                     </h1>
 
-                    <div class="collection-info-block__description">
+                    {%- if search.results_count > 0 -%}
+                      <div class="collection-info-block__description">
                       
-                      {% render 'show-more-text-content',
+                        {% render 'show-more-text-content',
                         item_description: block.settings.search_description,
                         show_more_type: block.settings.show_more_type,
                         show_more_text: block.settings.show_more_text, ,
                         show_less_text: block.settings.show_less_text,
                         description_limit: block.settings.description_limit 
-                      %}
-                    </div>
+                        %}
+                      </div>
+                    {% endif %}
                   {% endif %}
                 </div>
               {% endfor %}
@@ -355,31 +357,33 @@
               
     
               <!-- Mobile View: Product Count and Filter Button -->
-              <div class="filter-button-container">
-                {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-    
-                    <!-- Product Count for Mobile besides Filter Button -->
-                    <span class="results-product-count filter-results-product-count">
-                      {%- if search.results_count -%}
-                        {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-                      {%- elsif search.products_count == search.all_products_count -%}
-                        {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
-                      {%- else -%}
-                        {{
-                          'products.facets.product_count_simple'
-                          | t: count: search.products_count
-                        }}
-                        
-                      {%- endif -%}
-    
-                      {%- render 'loading-spinner' -%}
-                    </span>
-    
-                    <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
-                      <span> {{ 'products.facets.filter_button' | t }} </span>
-                    </button>
-                {%- endif -%}
-              </div>
+              {%- if search.results_count > 0 -%}
+                <div class="filter-button-container">
+                  {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+      
+                      <!-- Product Count for Mobile besides Filter Button -->
+                      <span class="results-product-count filter-results-product-count">
+                        {%- if search.results_count -%}
+                          {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+                        {%- elsif search.products_count == search.all_products_count -%}
+                          {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
+                        {%- else -%}
+                          {{
+                            'products.facets.product_count_simple'
+                            | t: count: search.products_count
+                          }}
+                          
+                        {%- endif -%}
+      
+                        {%- render 'loading-spinner' -%}
+                      </span>
+      
+                      <button class="filter-button-mobile-no-search-bar filter-button-mobile-no-search-bar--button">
+                        <span> {{ 'products.facets.filter_button' | t }} </span>
+                      </button>
+                  {%- endif -%}
+                </div>
+              {% endif %}
     
               <!-- Desktop View: Product Count and Filters Side Bar -->
               <div class="product-grid-container" id="ProductGridContainer">
