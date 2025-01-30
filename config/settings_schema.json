@@ -250,6 +250,17 @@
     ]
   },
   {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "sticky_collection_color_scheme",
+        "label": "Sticky Collection Color Scheme"
+      },
+    ]
+
+  },
+  {
     "name": "Text Decorations",
     "settings": [
       {

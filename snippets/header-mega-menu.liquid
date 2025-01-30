@@ -2,12 +2,26 @@
   Renders a megamenu for the header.
 
   Usage:
-  {% render 'header-mega-menu' %}
+  {% render 'header-mega-menu'
+    menu_links: linklists.collections-list.links (optional)
+    color_scheme: color_scheme (optional)
+  %}
 {% endcomment %}
 
-<nav class="header__inline-menu">
+{% assign header_menu_links = '' %}
+
+{% if menu_links != blank %}
+      {% assign header_menu_links = menu_links %}
+{% else %}
+    {% assign header_menu_links = section.settings.menu.links %}
+{% endif %}
+
+
+
+<nav class="header__inline-menu {% if color_scheme %} color-{{ color_scheme }} {% endif %}">
   <ul class="list-menu list-menu--inline" role="list">
-    {%- for link in section.settings.menu.links -%}
+    
+    {%- for link in header_menu_links -%}
       
       {%- liquid
         assign link_handle = link.handle
@@ -51,7 +65,7 @@
               </summary>
               <div
                 id="MegaMenu-Content-{{ forloop.index }}"
-                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup page-width"
                 tabindex="-1"
               >
                 <ul
@@ -123,3 +137,5 @@
     {%- endfor -%}
   </ul>
 </nav>
+
+

@@ -61,12 +61,6 @@
 
 @media screen and (min-width: 750px) {
 
-    .search-bar-and-card-container {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
     .header-search-bar-mobile, .custom-search-bar-collection {
         display: none;
     }
