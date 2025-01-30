@@ -49,16 +49,15 @@
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
               <summary
                 id="HeaderMenu-{{ link.handle }}"
-                class="header__menu-item list-menu__item link focus-inset"
+                class="header__menu-item list-menu__item link focus-inset
+                {%- if link.current and custom_menu == false %}
+                    header__active-menu-item
+                  {% elsif link.current and custom_menu == true %}
+                    header__active-menu-item-custom
+                  {% endif %}"
                 {% if custom_menu %} style="color: {{ text_color }}; background-color: {{ background_color }}; font-weight: {{ font_weight }}; border-radius : {{ border_radius }}px; padding: {{ padding_top_bottom }}px {{ padding_left_right }}px" {% endif %}
               >
-                <span
-                  {%- if link.current and custom_menu == false %}
-                    class="header__active-menu-item"
-                  {% elsif link.current and custom_menu == true %}
-                    class="header__active-menu-item-custom"
-                  {% endif %}
-                >
+                <span>
                   {{- link.title | escape -}}
                 </span>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -116,19 +115,19 @@
           <a
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset"
+            class="header__menu-item list-menu__item link link--text focus-inset
+              {%- if link.current and custom_menu == false %}
+                header__active-menu-item
+              {% elsif link.current and custom_menu == true %}
+                header__active-menu-item-custom
+              {% endif %}
+            "
             {% if link.current %}
               aria-current="page"
             {% endif %}
             {% if custom_menu %} style="color: {{ text_color }}; background-color: {{ background_color }}; font-weight: {{ font_weight }}; border-radius : {{ border_radius }}px; padding: {{ padding_top_bottom }}px {{ padding_left_right }}px" {% endif %}
           >
-            <span
-              {%- if link.current and custom_menu == false %}
-                class="header__active-menu-item"
-              {% elsif link.current and custom_menu == true %}
-                class="header__active-menu-item-custom"
-              {% endif %}
-            >
+            <span>
               {{- link.title | escape -}}
             </span>
           </a>

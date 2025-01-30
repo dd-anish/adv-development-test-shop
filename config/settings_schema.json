@@ -263,6 +263,25 @@
         "label": "Sticky Collection Mega Menu Background",
         "default": "#EDEDED"
       },
+      {
+        "type": "range",
+        "id": "sticky_collection_header_menu_font_size",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Sticky Collection Header Menu Font Size",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "sticky_collection_header_menu_font_weight",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "label": "Sticky Collection Header Menu Font Weight",
+        "default": 600
+      }
     ]
 
   },
