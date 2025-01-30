@@ -302,16 +302,29 @@
           >
             <!-- When the Collection has No Products -->
             {%- if collection.products.size == 0 -%}
-              <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+              <div class="collection collection--empty" id="product-grid" data-id="{{ section.id }}">
                 <div class="loading-overlay gradient"></div>
                 <div class="title-wrapper center">
-                  <h2 class="title title--primary h4">
+                  <h2 class="title title--primary h4 text-capitalize">
+
                     {{ 'sections.collection_template.empty' | t -}}
-                    <br>
-                    {{
-                      'sections.collection_template.use_fewer_filters_html'
-                      | t: link: collection.url, class: 'underlined-link link'
-                    }}
+                    
+          
+
+                    <span class="empty-collection-text text-body--small font-light">
+                      {{
+                        'sections.collection_template.use_fewer_filters_html'
+                        | t: link: collection.url, class: 'full-unstyled-link empty-collection-text-1'
+                      }}
+                    </span>
+
+            
+                    
+                    <span class="empty-collection-text text-body--extra-small font-regular">
+                      {{
+                        'sections.collection_template.go_to_home_page_html' | t: link: routes.root_url , class: 'full-unstyled-link empty-collection-text-2'
+                      }}
+                    </span>
                   </h2>
                 </div>
               </div>

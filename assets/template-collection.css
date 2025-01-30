@@ -53,9 +53,31 @@
   display: block;
 }
 
+.collection--empty{
+  height: 50vh;
+}
+
 .collection--empty .title-wrapper {
   margin-top: 10rem;
   margin-bottom: 15rem;
+}
+
+.collection--empty .title-wrapper .title{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.empty-collection-text-1,.empty-collection-text-2{
+  text-decoration: underline;
+  text-decoration-color: black;
+  display: unset;
+}
+
+.empty-collection-text-1:hover ,
+.empty-collection-text-2:hover {
+  color: black;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 989px) {
