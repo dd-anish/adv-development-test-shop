@@ -11,6 +11,28 @@
 
 <script>
  
+ // Get all details elements
+const detailsElements = document.querySelectorAll('.mega-menu');
+
+
+// Add event listeners to each details element
+detailsElements.forEach((details) => {
+    let timeoutId;
+    const summary = details.querySelector('summary');
+
+    // Open on hover
+    details.addEventListener('mouseenter', () => {
+        clearTimeout(timeoutId);
+        details.setAttribute('open', '');
+    });
+
+    // Close when the mouse leaves the entire dropdown (not just the summary)
+    details.addEventListener('mouseleave', () => {
+        timeoutId = setTimeout(() => {
+            details.removeAttribute('open');
+        }, 200);
+    });
+});
 
  
 

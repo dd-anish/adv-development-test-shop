@@ -4183,7 +4183,7 @@ details[open]>.header__menu-item .icon-caret {
   transition: text-decoration-thickness var(--duration-short) ease;
   color: rgb(var(--color-foreground));
   text-decoration: underline;
-  text-underline-offset: 0.5rem;
+  text-underline-offset: 0.2rem;
   /* Header Active Menu Red Color Underline */
   text-decoration-color: var(--theme-signature-color);
 }

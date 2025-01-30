@@ -14,6 +14,7 @@
   position: absolute;
   right: 0;
   top: 100%;
+  z-index: 10;
 }
 
 .shopify-section-header-sticky .mega-menu__content {
@@ -94,6 +95,7 @@
 }
 
 /* Hover Effect on Sub Menu Link */
+
 .mega-menu__link span{
   display: inline;
   background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
@@ -112,4 +114,43 @@
 .mega-menu__link--active:hover span {
   background-size: 0% 1px;
   background-position: 0% 95%;
+}
+
+
+/* Sticky Collection Bar */
+
+/* .sticky-collection-menu .header__menu-item span{
+  display: inline;
+  background-image: linear-gradient(to right, var(--theme-signature-color), var(--theme-signature-color));
+  background-position: 0% 100%;
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  transition: background-size .5s ease-in-out;
+}
+
+.sticky-collection-menu .header__menu-item:hover:not(.header__active-menu-item) span {
+
+  background-size: 100% 1px;
+  background-position: 0% 100%;
+  transition: background-size .5s ease-in-out;
+}
+
+.sticky-collection-menu .mega-menu[open] .header__menu-item:hover span{
+  background-size: 0% 1px;
+  background-position: 0% 100%;
+}
+ */
+
+ .sticky-collection-menu .header__active-menu-item{
+  font-weight: 600;
+ }
+
+ .sticky-collection-menu .mega-menu[open] .header__menu-item:hover span{
+  background-size: 0% 1px;
+  background-position: 0% 100%;
+ }
+
+.sticky-collection-menu .mega-menu[open] .header__menu-item{
+ text-decoration: none;
+  text-underline-offset: 0.2rem;
 }
