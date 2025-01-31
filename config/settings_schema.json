@@ -250,6 +250,58 @@
     ]
   },
   {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "select",
+        "id": "sticky_collection_menu_opening_type",
+        "options": [
+          {
+            "value": "hover",
+            "label": "Hover"
+          },
+          {
+            "value": "click",
+            "label": "Click"
+          }
+        ],
+        "label": "Sticky Collection Menu Opening Type",
+        "default": "hover",
+      },
+      {
+        "type": "color_scheme",
+        "id": "sticky_collection_color_scheme",
+        "label": "Sticky Collection Color Scheme"
+      },
+      {
+        "type": "color",
+        "id": "sticky_collection_mega_menu_background",
+        "label": "Sticky Collection Mega Menu Background",
+        "default": "#EDEDED"
+      },
+      {
+        "type": "range",
+        "id": "sticky_collection_header_menu_font_size",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Sticky Collection Header Menu Font Size",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "sticky_collection_header_menu_font_weight",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "label": "Sticky Collection Header Menu Font Weight",
+        "default": 600
+      }
+    ]
+
+  },
+  {
     "name": "Text Decorations",
     "settings": [
       {

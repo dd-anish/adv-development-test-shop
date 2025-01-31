@@ -2,12 +2,26 @@
   Renders a megamenu for the header.
 
   Usage:
-  {% render 'header-mega-menu' %}
+  {% render 'header-mega-menu'
+    menu_links: linklists.collections-list.links (optional)
+    color_scheme: color_scheme (optional)
+  %}
 {% endcomment %}
 
-<nav class="header__inline-menu">
+{% assign header_menu_links = '' %}
+
+{% if menu_links != blank %}
+      {% assign header_menu_links = menu_links %}
+{% else %}
+    {% assign header_menu_links = section.settings.menu.links %}
+{% endif %}
+
+
+
+<nav class="header__inline-menu {% if color_scheme %} color-{{ color_scheme }} {% endif %}">
   <ul class="list-menu list-menu--inline" role="list">
-    {%- for link in section.settings.menu.links -%}
+    
+    {%- for link in header_menu_links -%}
       
       {%- liquid
         assign link_handle = link.handle
@@ -35,16 +49,15 @@
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
               <summary
                 id="HeaderMenu-{{ link.handle }}"
-                class="header__menu-item list-menu__item link focus-inset"
+                class="header__menu-item list-menu__item link focus-inset
+                {%- if link.current and custom_menu == false %}
+                    header__active-menu-item
+                  {% elsif link.current and custom_menu == true %}
+                    header__active-menu-item-custom
+                  {% endif %}"
                 {% if custom_menu %} style="color: {{ text_color }}; background-color: {{ background_color }}; font-weight: {{ font_weight }}; border-radius : {{ border_radius }}px; padding: {{ padding_top_bottom }}px {{ padding_left_right }}px" {% endif %}
               >
-                <span
-                  {%- if link.current and custom_menu == false %}
-                    class="header__active-menu-item"
-                  {% elsif link.current and custom_menu == true %}
-                    class="header__active-menu-item-custom"
-                  {% endif %}
-                >
+                <span>
                   {{- link.title | escape -}}
                 </span>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -55,7 +68,7 @@
                 tabindex="-1"
               >
                 <ul
-                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
+                  class="mega-menu__list page-width {% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
                   role="list"
                 >
                   {%- for childlink in link.links -%}
@@ -102,19 +115,19 @@
           <a
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset"
+            class="header__menu-item list-menu__item link link--text focus-inset
+              {%- if link.current and custom_menu == false %}
+                header__active-menu-item
+              {% elsif link.current and custom_menu == true %}
+                header__active-menu-item-custom
+              {% endif %}
+            "
             {% if link.current %}
               aria-current="page"
             {% endif %}
             {% if custom_menu %} style="color: {{ text_color }}; background-color: {{ background_color }}; font-weight: {{ font_weight }}; border-radius : {{ border_radius }}px; padding: {{ padding_top_bottom }}px {{ padding_left_right }}px" {% endif %}
           >
-            <span
-              {%- if link.current and custom_menu == false %}
-                class="header__active-menu-item"
-              {% elsif link.current and custom_menu == true %}
-                class="header__active-menu-item-custom"
-              {% endif %}
-            >
+            <span>
               {{- link.title | escape -}}
             </span>
           </a>
@@ -123,3 +136,5 @@
     {%- endfor -%}
   </ul>
 </nav>
+
+

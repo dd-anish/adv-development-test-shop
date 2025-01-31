@@ -53,9 +53,31 @@
   display: block;
 }
 
+.collection--empty{
+  height: 50vh;
+}
+
 .collection--empty .title-wrapper {
   margin-top: 10rem;
   margin-bottom: 15rem;
+}
+
+.collection--empty .title-wrapper .title{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.empty-collection-text-1,.empty-collection-text-2{
+  text-decoration: underline;
+  text-decoration-color: black;
+  display: unset;
+}
+
+.empty-collection-text-1:hover ,
+.empty-collection-text-2:hover {
+  color: black;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 989px) {
@@ -235,12 +257,15 @@
 /* Collection Page Collection Info Block */
 
 .collection-info-block{
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .collection-info-block__title{
   text-transform: capitalize;
-  margin: 0; 
+}
+
+.collection-info-block__description{
+  margin-top: 1rem;
 }
 
 .collection-info-block__description p{
@@ -254,38 +279,75 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  margin: 0 auto;
-  width: fit-content;
+  width: 100%;
   margin-top: 2rem;
 }
 
 .collection-offer-content{
   display: flex;
   flex-direction: column;
-  gap: 5rem;
-}
-
-.collection-offer-image img{
-  width: 100%;
-  height: 100%;
+  gap: 2rem;
 }
 
 .collection-offer-image{
-    height: 24rem;
-    width: 24rem;
+    height: 15rem;
+    width: auto;
     flex: none;
     border-radius: 1rem;
     overflow: hidden;
 }
 
+.collection-offer-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s ease;
+}
+
+
 .collection-offer-button{
   max-width: 15rem;
+  min-height: 4rem;
+  padding: 0;
+  margin: 0;
+}
+
+.collection-offer-content-text{
+  text-align: center;
+}
+
+.collection-offer-description{
+
+}
+
+@media screen and (min-width: 425px) {
+  .collection-offer-container {
+    flex-direction: row;
+    gap: 5rem;
+    justify-content: center;
+  }
+
+  .collection-offer-image {
+    height: 25rem;
+    width: 40%;
+  }
+
+  .collection-offer-content-text {
+    text-align: unset;
+  }
+
+  .collection-offer-content{
+    gap: 5rem;
+    flex: 1;
+  }
+  
 }
 
 @media screen and (min-width: 749px) {
-  .collection-offer-container{
-    flex-direction: row;
-    gap: 5rem;
+
+  .collection-offer-container:hover img {
+    transform: scale(1.1);
+    transition: 0.5s ease;
   }
-  
+
 }

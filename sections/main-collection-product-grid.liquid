@@ -92,7 +92,7 @@
 
   }
 
-  /* Redering Padding for each blocks */
+  /* Rendering Padding for each blocks */
     {%- for block in section.blocks -%}
 
       .block-{{ block.id }} {
@@ -105,7 +105,7 @@
           border-top-right-radius: {{ block.settings.border_radius_top_right | default: 0 }}px;
           border-bottom-left-radius: {{ block.settings.border_radius_bottom_left | default: 0 }}px;
           border-bottom-right-radius: {{ block.settings.border_radius_bottom_right | default: 0 }}px;
-          background-color: {{ block.settings.background_color | default: '#f4f4f4' }};
+          background-color: {{ block.settings.background_color }};
           opacity: {{ block.settings.background_opacity | default: 100 }}%;
       }
 
@@ -158,7 +158,7 @@
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
           <aside
             aria-labelledby="verticalTitle"
-            class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %} {% if collection.products.size == 0 %} hidden {% endif %}"
+            class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width {% endif %} {% if collection.products.size == 0 %} hidden {% endif %}"
             id="main-collection-filters"
             data-id="desktop-{{ section.id }}"
           >
@@ -179,10 +179,10 @@
           <!-- Collection Banner/Hero -->
           {% for block in section.blocks %}
 
-            <div class="collection-info-block block-{{ block.id }}">
-              {% if block.type == 'collection_info' %}
-  
-                <h1 class="collection-info-block__title text-link-underline-custom" style="text-transform: {{ block.settings.text_case  }};">
+            {% if block.type == 'collection_info' %}
+
+              <div class="collection-info-block block-{{ block.id }}">
+                <h1 class="collection-info-block__title text-link-underline-custom" style="text-transform: {{ block.settings.text_case }};">
                   <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
                   {{- collection.title | escape -}}
                 </h1>
@@ -195,9 +195,11 @@
                     show_less_text: block.settings.show_less_text,
                     description_limit: block.settings.description_limit 
                   %}
+
+                 
                 </div>
+              </div>
               {% endif %}
-            </div>
           {% endfor %}
 
 
@@ -302,16 +304,29 @@
           >
             <!-- When the Collection has No Products -->
             {%- if collection.products.size == 0 -%}
-              <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+              <div class="collection collection--empty" id="product-grid" data-id="{{ section.id }}">
                 <div class="loading-overlay gradient"></div>
                 <div class="title-wrapper center">
-                  <h2 class="title title--primary h4">
+                  <h2 class="title title--primary h4 text-capitalize">
+
                     {{ 'sections.collection_template.empty' | t -}}
-                    <br>
-                    {{
-                      'sections.collection_template.use_fewer_filters_html'
-                      | t: link: collection.url, class: 'underlined-link link'
-                    }}
+                    
+          
+
+                    <span class="empty-collection-text text-body--small font-light">
+                      {{
+                        'sections.collection_template.use_fewer_filters_html'
+                        | t: link: collection.url, class: 'full-unstyled-link empty-collection-text-1'
+                      }}
+                    </span>
+
+            
+                    
+                    <span class="empty-collection-text text-body--extra-small font-regular">
+                      {{
+                        'sections.collection_template.go_to_home_page_html' | t: link: routes.root_url , class: 'full-unstyled-link empty-collection-text-2'
+                      }}
+                    </span>
                   </h2>
                 </div>
               </div>
@@ -385,47 +400,40 @@
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'collection_offer' %}
-          
-                <div class="collection-offer-container">
-                  
-                  <div class="collection-offer-image">
+                
+                {% if collection.metafields.custom.main_collection and collection.all_products_count > 0 %}
+
+                  <div class="collection-offer-container block-{{ block.id }} color-{{ block.settings.color_scheme }}">
+                    
                     {% if block.settings.offer_image %}
-
-                     {{ block.settings.offer_image |  image_url: width: 400 |  image_tag }}
-          
-
+                      <div class="collection-offer-image">
+                        {{ block.settings.offer_image |  image_url: width: 400 |  image_tag }}   
+                      </div>
                     {% endif %}
 
-                  </div>
-
-                  <div class="collection-offer-content">
-                    <div class="collection-offer-content-text">
-                      <div class="collection-offer-title h2">
-                        {{ block.settings.offer_title }}
+                  
+  
+                    <div class="collection-offer-content {% if block.settings.offer_image == blank %} center align-center {% else %} align-start {% endif %} ">
+                      <div class="collection-offer-content-text {% if block.settings.offer_image == blank %} center {% endif %}">
+                        <div class="collection-offer-title h2">
+                          {{ block.settings.offer_title }}
+                        </div>
+              
+                        <div class="collection-offer-description">
+                          {{ block.settings.offer_description }}                        
+                        </div>
                       </div>
-            
-                      <div class="collection-offer-description">
-                        {% assign offer_description = collection.metafields.custom.offer_description %}
-
-                        {% for item in offer_description.value.children %}
-                          {% for subchild in item.children %}
-                            {% if subchild.type == "text" %}
-                              {{ subchild.value }}
-                            {% endif %}
-                          {% endfor %}
-                        {% endfor %}
-                      </div>
+  
+                      
+                      <a href="{{ block.settings.offer_button_link }} " class="button button--primary collection-offer-button">
+  
+                        {{ block.settings.offer_button_label }}
+                      </a>
+                      
                     </div>
-
-                    
-                    <a href="{{ block.settings.offer_button_link }} " class="button button--primary collection-offer-button">
-
-                      {{ block.settings.offer_button_label }}
-                    </a>
-                    
+                   
                   </div>
-                 
-                </div>
+                {% endif %}
             {% endcase %}
           {% endfor %}
         </div>
@@ -677,8 +685,7 @@
         {
           "type": "richtext",
           "id": "offer_description",
-          "label": "Offer Description",
-          "default": "<p>Test {{ collection.metafields.custom.offer_description }}</p>"
+          "label": "Offer Description"
         },
         {
           "type": "image_picker",
@@ -696,6 +703,100 @@
           "id": "offer_button_link",
           "label": "Button Link"
         },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Color Scheme",
+          "default": "scheme-1"
+        },
+        {
+          "type": "header",
+          "content": "Block Border Radius Setting"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Left",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "border_radius_top_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Top Right",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Left",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "border_radius_bottom_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius Bottom Right",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Block Padding Setting"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "padding_left",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Left padding",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "padding_right",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Right padding",
+          "default": 18
+        }
       ]
     },
   ],

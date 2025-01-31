@@ -353,7 +353,8 @@
     "collection_template": {
       "empty": "No products found",
       "title": "Collection",
-      "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all</a>"
+      "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\"> remove all </a>",
+      "go_to_home_page_html": "<a class=\"{{ class }}\" href=\"{{ link }}\"> Go to the home page </a>"
     },
     "video": {
       "load_video": "Load video: {{ description }}"

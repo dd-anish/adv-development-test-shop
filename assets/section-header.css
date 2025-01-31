@@ -1,0 +1,55 @@
+/* Custom CSS */
+
+.header-logo-container{
+    line-height: 0;
+}
+
+
+
+/* Sticky Collection Menu */
+
+.sticky-collection-menu{
+    display: none;
+}
+
+
+
+@media screen and (min-width: 750px){
+    
+    .sticky-collection-menu{
+        display: block;
+    }
+    
+    .sticky-collection-menu{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sticky-collection-menu .list-menu--inline {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        /* overflow-x: auto; */
+        justify-content: space-between;
+        margin: 1rem;
+        width: 100%;
+        max-width: 120rem;
+    }
+
+    .sticky-collection-menu .header__inline-menu {
+        /* margin:0 1rem; */
+        padding: 0 3.2rem;
+    }
+
+    .sticky-collection-menu .list-menu--inline li {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    
+}
+
+
