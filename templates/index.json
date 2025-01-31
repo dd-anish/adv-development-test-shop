@@ -60,10 +60,7 @@
     },
     "featured_collection": {
       "type": "featured-collection",
-      "custom_css": [
-        ".slider-buttons {display: none;}",
-        "@media screen and (min-width: 750px) {.slider-buttons {display: flex; }}"
-      ],
+      "custom_css": [],
       "settings": {
         "title": "<a href=\"/collections/best-seller\" title=\"Best Seller\">ONTDEK ONZE BES</a>TSELLERS",
         "heading_size": "h1",
@@ -210,9 +207,7 @@
         "featured_collection_fMH8LC",
         "featured_collection_XXKdif"
       ],
-      "custom_css": [
-        ".icon-wrap {display: none;}"
-      ],
+      "custom_css": [],
       "settings": {
         "title": "<a href=\"/collections\" title=\"All collections\">CATEGORIEËN</a>",
         "heading_size": "h1",
