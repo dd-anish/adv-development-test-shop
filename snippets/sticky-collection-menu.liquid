@@ -20,14 +20,14 @@
 
 <div class="sticky-collection-menu">
     {% render 'header-mega-menu', 
-        menu_links: linklists.collections-list.links,
+        menu_links: settings.sticky_collection_menu.links,
         color_scheme: settings.sticky_collection_color_scheme
     %}
 </div>
 
 {% if settings.sticky_collection_menu_opening_type == 'hover' %}
     <script>
-        
+
         const detailsElements = document.querySelectorAll('.mega-menu');
 
         detailsElements.forEach((details) => {
