@@ -269,6 +269,11 @@
         "default": "hover",
       },
       {
+        "type": "link_list",
+        "id": "sticky_collection_menu",
+        "label": "Sticky Collection Menu",
+      },
+      {
         "type": "color_scheme",
         "id": "sticky_collection_color_scheme",
         "label": "Sticky Collection Color Scheme"

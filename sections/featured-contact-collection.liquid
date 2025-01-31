@@ -1,6 +1,5 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
-
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'template-custom-contact-collection.css' | asset_url | stylesheet_tag }}
@@ -9,12 +8,12 @@
 
 {%- style -%}
 
-  :root{
+  .contact-cards-container {
     --number_of_columns_on_desktop: {{ section.settings.columns_desktop }};
     --padding-for-icon-on-desktop: {{ 10.0 | divided_by: section.settings.columns_desktop | round: 2 }}rem;
 
     /* Variable Not Working from Schema */
-    --contact-card-image-padding: {{ section.settings.contact_card_image_padding }};
+    /* --contact-card-image-padding: {{ section.settings.contact_card_image_padding }}px; */
 
   }
 
@@ -167,7 +166,8 @@
       "step": 2,
       "unit": "px",
       "label": "t:settings_schema.global.settings.image_padding.label",
-      "default": 0
+      "info": "Only",
+      "default": 10
     },
     {
       "type": "color_scheme",
