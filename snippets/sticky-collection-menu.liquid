@@ -1,11 +1,22 @@
-<style>
+{% style %}
+
     .sticky-collection-menu .header__menu-item{
         font-size: {{ settings.sticky_collection_header_menu_font_size }}px;
         font-weight: {{ settings.sticky_collection_header_menu_font_weight }};
     }
 
-</style>
+    {% if settings.sticky_collection_menu_opening_type == 'hover' %}
+        /* The Icon Caret for the Mega Menu's Nav Item */
+        .sticky-collection-menu .header__menu-item .icon-caret{
+            display: none;
+        }
 
+        .sticky-collection-menu summary.list-menu__item{
+            padding-right: 0rem;
+        }
+    {% endif %}    
+
+{% endstyle %}
 
 <div class="sticky-collection-menu">
     {% render 'header-mega-menu', 
@@ -13,3 +24,31 @@
         color_scheme: settings.sticky_collection_color_scheme
     %}
 </div>
+
+{% if settings.sticky_collection_menu_opening_type == 'hover' %}
+    <script>
+        
+        const detailsElements = document.querySelectorAll('.mega-menu');
+
+        detailsElements.forEach((details) => {
+            let timeoutId;
+            const summary = details.querySelector('summary');
+
+            // Open on hover
+            details.addEventListener('mouseenter', () => {
+                clearTimeout(timeoutId);
+                details.setAttribute('open', '');
+            });
+
+            // Close when the mouse leaves the entire dropdown (not just the summary)
+            details.addEventListener('mouseleave', () => {
+                timeoutId = setTimeout(() => {
+                    details.removeAttribute('open');
+                }, 200);
+            });
+        });
+
+
+
+    </script>
+{% endif %}

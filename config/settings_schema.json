@@ -253,6 +253,22 @@
     "name": "Header",
     "settings": [
       {
+        "type": "select",
+        "id": "sticky_collection_menu_opening_type",
+        "options": [
+          {
+            "value": "hover",
+            "label": "Hover"
+          },
+          {
+            "value": "click",
+            "label": "Click"
+          }
+        ],
+        "label": "Sticky Collection Menu Opening Type",
+        "default": "hover",
+      },
+      {
         "type": "color_scheme",
         "id": "sticky_collection_color_scheme",
         "label": "Sticky Collection Color Scheme"
