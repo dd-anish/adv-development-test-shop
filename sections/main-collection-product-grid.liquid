@@ -180,9 +180,9 @@
           {% for block in section.blocks %}
 
             {% if block.type == 'collection_info' %}
+
               <div class="collection-info-block block-{{ block.id }}">
-  
-                <h1 class="collection-info-block__title text-link-underline-custom" style="text-transform: {{ block.settings.text_case  }};">
+                <h1 class="collection-info-block__title text-link-underline-custom" style="text-transform: {{ block.settings.text_case }};">
                   <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
                   {{- collection.title | escape -}}
                 </h1>
@@ -195,6 +195,8 @@
                     show_less_text: block.settings.show_less_text,
                     description_limit: block.settings.description_limit 
                   %}
+
+                 
                 </div>
               </div>
               {% endif %}

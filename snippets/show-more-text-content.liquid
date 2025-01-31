@@ -69,30 +69,24 @@
     {% comment %} {{ item_description | strip_html }} used to ignore new lines {% endcomment %}
     {{ item_description }}
   </div>
-  
-  {% assign stripped_description = item_description | strip_html %}
-  {% assign limit = description_limit | default: 3 | times: 50 %}
-  {% if stripped_description.size > limit %}
-
-    <div class="description-button">
-      {% if show_more_type == 'button' %}
-        <button class="toggle-description-btn text-body--extra-small" data-toggle-description>
-          {{ show_more_text }}
-        </button>
-      {% else %}
-        <a href="#" class="toggle-description-link text-body--small" data-toggle-description>
-          {{ show_more_text }}
-        </a>
-      {% endif %}
-    </div>
-  {% endif %}
+  <div class="description-button" style="display: none;">
+    {% if show_more_type == 'button' %}
+      <button class="toggle-description-btn text-body--extra-small" data-toggle-description>
+        {{ show_more_text }}
+      </button>
+    {% else %}
+      <a href="#" class="toggle-description-link text-body--small" data-toggle-description>
+        {{ show_more_text }}
+      </a>
+    {% endif %}
+  </div>
 </div>
 
 
 <script>
 
     function toggleDescription(){
-      console.log("toggleDescription");
+      // console.log("toggleDescription");
       
       const toggleButtons = document.querySelectorAll("[data-toggle-description]");
       toggleButtons.forEach((btn) => {
@@ -107,17 +101,70 @@
       });
     }
 
-    document.addEventListener("DOMContentLoaded", toggleDescription);
+    // Added time to make it less performance-intensive (a debounced function)
+    let timeoutId;
+
+    function checkTruncation() {
+
+      const descriptionContents = document.querySelectorAll(".description-content");
+      descriptionContents.forEach((content) => {
+        
+        const height = content.scrollHeight;
+        const containerHeight = content.offsetHeight;
+
+        if (height > containerHeight) {
+          content.nextElementSibling.style.display = "block";
+        } else {
+          content.nextElementSibling.style.display = "none";
+        }
+      });
+      // console.log("checkTruncation");
+      
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      toggleDescription();
+      checkTruncation();
+    });
+
+    window.addEventListener("resize", () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkTruncation, 100);
+    });
+
 
     if(Shopify.designMode){
 
-      document.addEventListener("shopify:section:load", toggleDescription);
-      document.addEventListener("shopify:section:unload", toggleDescription);
-      document.addEventListener("shopify:section:select", toggleDescription);
-      document.addEventListener("shopify:section:deselect", toggleDescription);
-      document.addEventListener("shopify:block:select", toggleDescription);
-      document.addEventListener("shopify:block:deselect", toggleDescription);
-      
+      document.addEventListener("shopify:section:load", () => {
+        toggleDescription();
+        checkTruncation();
+      });
+
+      document.addEventListener("shopify:section:unload", () => {
+        toggleDescription();
+        checkTruncation();
+      });
+
+      document.addEventListener("shopify:section:select", () => {
+        toggleDescription();
+        checkTruncation();
+      });
+
+      document.addEventListener("shopify:section:deselect", () => {
+        toggleDescription();
+        checkTruncation();
+      });
+
+      document.addEventListener("shopify:block:select", () => {
+        toggleDescription();
+        checkTruncation();
+      });
+
+      document.addEventListener("shopify:block:deselect", () => {
+        toggleDescription();
+        checkTruncation();
+      });
+          
       // toggleDescription();
       // document.addEventListener("shopify:section:reorder", toggleDescription);
     }
