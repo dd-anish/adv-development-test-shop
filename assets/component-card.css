@@ -692,6 +692,10 @@
 
 }
 
+.card-information .price-add-to-cart-container{
+  min-height: 0;
+}
+
 /* Product Card Info */
 
 .card__heading-text-truncate {

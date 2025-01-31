@@ -26,7 +26,7 @@
 
 /* Variable Not Working from Schema */
 /* .contact--standard .contact-card__media {
-    padding: var(--contact-card-image-padding)px;
+    padding: var(--contact-card-image-padding);
 } */
 
 .contact-card__media img,
