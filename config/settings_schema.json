@@ -250,7 +250,7 @@
     ]
   },
   {
-    "name": "Header",
+    "name": "Sticky  Bar",
     "settings": [
       {
         "type": "select",
