@@ -69,6 +69,7 @@
     {% comment %} {{ item_description | strip_html }} used to ignore new lines {% endcomment %}
     {{ item_description }}
   </div>
+
   <div class="description-button" style="display: none;">
     {% if show_more_type == 'button' %}
       <button class="toggle-description-btn text-body--extra-small" data-toggle-description>
@@ -112,7 +113,7 @@
         const height = content.scrollHeight;
         const containerHeight = content.offsetHeight;
 
-        if (height > containerHeight) {
+        if (height > containerHeight && content.scrollHeight > content.offsetHeight * 1.5) {
           content.nextElementSibling.style.display = "block";
         } else {
           content.nextElementSibling.style.display = "none";
