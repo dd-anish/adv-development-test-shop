@@ -48,8 +48,18 @@
           "settings": {
             "offer_title": "{{ collection.metafields.custom.offer_title.value }}",
             "offer_description": "",
+            "offer_image": "{{ collection.metafields.custom.offer_image.value }}",
             "offer_button_label": "Shop Now",
-            "offer_button_link": ""
+            "offer_button_link": "",
+            "color_scheme": "scheme-966de08a-a9f0-4e7b-99fc-d2a727bd7470",
+            "border_radius_top_left": 10,
+            "border_radius_top_right": 10,
+            "border_radius_bottom_left": 10,
+            "border_radius_bottom_right": 10,
+            "padding_top": 18,
+            "padding_bottom": 18,
+            "padding_left": 18,
+            "padding_right": 18
           }
         }
       },
@@ -89,7 +99,7 @@
         "enable_sorting": true,
         "enable_sticky_sorting": true,
         "columns_mobile": "2",
-        "padding_top": 12,
+        "padding_top": 4,
         "padding_bottom": 20
       }
     },
@@ -98,109 +108,11 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "image_banner_ttwDzz": {
-      "type": "image-banner",
-      "blocks": {
-        "heading_tE4BK3": {
-          "type": "heading",
-          "settings": {
-            "heading": "Start your adventure here?",
-            "heading_size": "h2"
-          }
-        },
-        "heading_GUNDGQ": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h1"
-          }
-        },
-        "buttons_FAFWXT": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop now",
-            "button_link_1": "/collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_tE4BK3",
-        "heading_GUNDGQ",
-        "buttons_FAFWXT"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/Kopie_van_IMG20220924152836.jpg",
-        "image_2": "shopify://shop_images/Banner_Image.webp",
-        "image_overlay_opacity": 40,
-        "image_height": "medium",
-        "desktop_content_position": "middle-center",
-        "show_text_box": true,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-48127e4c-0a03-4338-ae2b-62bb9848ff4b",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
-    },
-    "image_with_text_ahHVji": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading_tE3zia": {
-          "type": "heading",
-          "settings": {
-            "heading": "Afbeelding met tekst",
-            "heading_size": "h1"
-          }
-        },
-        "text_Qjbq6W": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Plaats een afbeelding bij stukken tekst om de aandacht op je gekozen product, collectie of blogpost te richten. Voeg details over beschikbaarheid en stijl toe of plaats een productrecensie.</p>",
-            "text_style": "body"
-          }
-        },
-        "button_WjQTc4": {
-          "type": "button",
-          "settings": {
-            "button_label": "Knoplabel",
-            "button_link": "shopify://collections/best-seller",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_tE3zia",
-        "text_Qjbq6W",
-        "button_WjQTc4"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/OG_XL_Games_Sumo_Wrestling_Set_Kids_2.webp",
-        "height": "small",
-        "desktop_image_width": "small",
-        "layout": "image_first",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "section_color_scheme": "scheme-f0072fee-2089-45cd-8bcb-aa17c05b11eb",
-        "color_scheme": "scheme-f0072fee-2089-45cd-8bcb-aa17c05b11eb",
-        "image_behavior": "ambient",
-        "mobile_content_alignment": "center",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
     "banner",
     "product-grid",
-    "55d8f282-e9fa-447c-9bab-ba53fb471760",
-    "image_banner_ttwDzz",
-    "image_with_text_ahHVji"
+    "55d8f282-e9fa-447c-9bab-ba53fb471760"
   ]
 }
