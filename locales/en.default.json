@@ -291,7 +291,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
@@ -299,6 +298,11 @@
         "one": "{{ count }} item",
         "other": "{{ count }} items"
       }
+    },
+    "sticky_collection": {
+      "view_all": "View all",
+      "view_all_label": "View all products in the {{ collection_name }} collection",
+      "view_collection_page": "View {{ collection_name }} page"
     },
     "cart": {
       "title": "Your cart",
