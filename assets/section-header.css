@@ -2,6 +2,14 @@
 
 .header-logo-container{
     line-height: 0;
+    justify-self: center;
+}
+
+@media screen and (min-width: 750px){
+    .header-logo-container{
+        justify-self: flex-start;
+    }
+    
 }
 
 
