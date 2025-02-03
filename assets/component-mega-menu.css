@@ -15,8 +15,8 @@
   position: absolute;
   right: 0;
   top: 100%;
-  border-bottom-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+  border-bottom-left-radius: 0rem;
+  border-bottom-right-radius: 0rem;
 }
 
 .shopify-section-header-sticky .mega-menu__content {

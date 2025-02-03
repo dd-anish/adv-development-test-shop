@@ -47,7 +47,8 @@
     }
 
     .sticky-collection-menu .list-menu--inline li {
-        /* text-align: center; */
+        /* flex-shrink: 0;
+        white-space: nowrap; */
     }
 
     .sticky-collection-menu .header__menu-item .icon-caret {
