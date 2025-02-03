@@ -84,7 +84,8 @@
 }
 
 .mega-menu .mega-menu__list--condensed {
-  display: block;
+  /* display: block; */
+  display: grid;
 }
 
 .mega-menu__list--condensed .mega-menu__link {
