@@ -292,6 +292,11 @@
         "other": "{{ count }} artikelen"
       }
     },
+    "sticky_collection": {
+      "view_all": "Alles bekijken",
+      "view_all_label": "Bekijk alle producten in de collectie {{ collection_name }}",
+      "view_collection_page": "Bekijk {{ collection_name }} pagina"
+    },
     "cart": {
       "title": "Je winkelwagen",
       "caption": "Artikelen in winkelwagen",

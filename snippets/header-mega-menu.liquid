@@ -51,10 +51,10 @@
                 id="HeaderMenu-{{ link.handle }}"
                 class="header__menu-item list-menu__item link focus-inset
                 {%- if link.current and custom_menu == false %}
-                    header__active-menu-item
-                  {% elsif link.current and custom_menu == true %}
-                    header__active-menu-item-custom
-                  {% endif %}"
+                  header__active-menu-item
+                {% elsif link.current and custom_menu == true %}
+                  header__active-menu-item-custom
+                {% endif %}"
                 {% if custom_menu %} style="color: {{ text_color }}; background-color: {{ background_color }}; font-weight: {{ font_weight }}; border-radius : {{ border_radius }}px; padding: {{ padding_top_bottom }}px {{ padding_left_right }}px" {% endif %}
               >
                 <span>
@@ -67,6 +67,14 @@
                 class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
                 tabindex="-1"
               >
+                <a href="{{ link.url }}" class="mega-menu__collection-title full-unstyled-link mega-menu__link text-uppercase font-semibold
+                {%- if link.current %} mega-menu__link--active {% endif %}
+                ">
+                  <span>
+                    {{ 'sections.sticky_collection.view_collection_page' | t: collection_name: link.title }}
+                  </span>
+                </a>
+                
                 <ul
                   class="mega-menu__list page-width {% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
                   role="list"

@@ -12,11 +12,12 @@
   /* padding-bottom: 3rem;
   padding-top: 3rem; */
   padding: 3rem;
+  padding-top: 0rem;
   position: absolute;
   right: 0;
   top: 100%;
-  border-bottom-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+  border-bottom-left-radius: 0rem;
+  border-bottom-right-radius: 0rem;
 }
 
 .shopify-section-header-sticky .mega-menu__content {
@@ -83,8 +84,10 @@
   text-decoration-thickness: 0.1rem;
 }
 
+/* When Child Link has no Children */
 .mega-menu .mega-menu__list--condensed {
-  display: block;
+  /* display: block; */
+  display: grid;
 }
 
 .mega-menu__list--condensed .mega-menu__link {
@@ -126,3 +129,12 @@
   background-size: 0% 1px;
   background-position: 0% 100%;
 } */
+
+/* Collection Title */
+
+.mega-menu__collection-title{
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 2rem 0;
+    font-size: 1.4rem;
+}
