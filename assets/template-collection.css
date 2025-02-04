@@ -148,6 +148,9 @@
     font-size: 1.1rem;
     text-transform: capitalize;
     margin-left: 1rem;
+    width: fit-content;
+    position: relative;
+    display: flex;
 }
 
 .filter-button-mobile-no-search-bar{

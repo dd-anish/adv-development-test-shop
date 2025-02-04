@@ -1217,19 +1217,11 @@ input.mobile-facets__checkbox {
   margin: 0;
 }
 
+/* Product Count */
+
 #ProductCountDesktop.loading,
 #ProductCount.loading {
   visibility: hidden;
-}
-
-.product-count .loading__spinner,
-.product-count-vertical .loading__spinner {
-  position: absolute;
-  padding-top: 0.6rem;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.8rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -1297,6 +1289,7 @@ input.mobile-facets__checkbox {
   .facets-vertical-form {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .product-count-vertical {
@@ -1496,4 +1489,5 @@ input.mobile-facets__checkbox {
 
 .mobile-facets__header .results-product-count{
   margin: 0;
+  justify-self: center;
 }
