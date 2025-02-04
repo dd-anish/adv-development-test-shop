@@ -3466,6 +3466,7 @@ details-disclosure > details {
 }
 
 /* Loading spinner */
+
 .filter-results-product-count.loading {
   opacity: 0;
   pointer-events: none;
@@ -3481,10 +3482,6 @@ details-disclosure > details {
 .loading__spinner {
   position: absolute;
   z-index: 1;
-  width: 1.8rem;
-}
-
-.loading__spinner {
   width: 1.8rem;
   display: inline-block;
 }
@@ -3575,7 +3572,7 @@ details-disclosure > details {
   }
 }
 
-/*********** Custom CSS for the custom theme ************/
+/*********** Custom CSS for the ADV theme ************/
 
 /* Padding Margin 0 */
 

@@ -454,6 +454,10 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   padding-bottom: 0.5rem;
 }
 
+.product-options-price-container .product-option dt{
+  flex: none;
+}
+
 .total-price-container{
   display: flex;
   align-items: flex-end;

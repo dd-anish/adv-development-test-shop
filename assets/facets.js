@@ -100,6 +100,8 @@ class FacetFiltersForm extends HTMLElement {
       ".filter-results-product-count"
     );
     containers.forEach((container) => {
+      // console.log("Removing loading class from", container);
+
       container.innerHTML = count;
       container.classList.remove("loading");
       const loadingSpinnerContainer = container.querySelector(
@@ -109,6 +111,22 @@ class FacetFiltersForm extends HTMLElement {
         loadingSpinnerContainer.classList.add("hidden");
       }
     });
+    
+    /* const count = new DOMParser()
+      .parseFromString(html, "text/html")
+      .getElementById("ProductCount").innerHTML;
+    const container = document.getElementById("ProductCount");
+    const containerDesktop = document.getElementById("ProductCountDesktop");
+    container.innerHTML = count;
+    container.classList.remove("loading");
+    if (containerDesktop) {
+      containerDesktop.innerHTML = count;
+      containerDesktop.classList.remove("loading");
+    }
+    const loadingSpinners = document.querySelectorAll(
+      ".facets-container .loading__spinner, facet-filters-form .loading__spinner"
+    );
+    loadingSpinners.forEach((spinner) => spinner.classList.add("hidden")); */
   }
 
   static renderFilters(html, event) {
