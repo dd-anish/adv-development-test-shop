@@ -100,15 +100,12 @@ class FacetFiltersForm extends HTMLElement {
       ".filter-results-product-count"
     );
     containers.forEach((container) => {
+      // console.log("Removing loading class from", container);
+
       container.innerHTML = count;
       container.classList.remove("loading");
-      const loadingSpinnerContainer = container.querySelector(
-        ".loading-spinner-container"
-      );
-      if (loadingSpinnerContainer) {
-        loadingSpinnerContainer.classList.add("hidden");
-      }
     });
+  
   }
 
   static renderFilters(html, event) {

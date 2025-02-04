@@ -43,9 +43,9 @@
                       {% endif %}
 
                       <div class="parent-menu-item-info">
-                        <h2>
+                        <span class="font-bold">
                           {{ link.title | escape }}
-                        </h2>
+                        </span>
 
                         {% if link.object.description %}
                           <p class="text-body--extra-small">{{ link.object.description |  strip_html }}</p>
@@ -88,9 +88,9 @@
                           {% endif %}
   
                           <div class="parent-menu-item-info">
-                            <h2>
+                            <span class="font-bold">
                               {{ link.title | escape }}
-                            </h2>
+                            </span>
 
                             {% if link.object.description %}
                               <p class="text-body--extra-small">{{ link.object.description |  strip_html }}</p>
@@ -217,9 +217,9 @@
                       {% endif %}
 
                       <div class="parent-menu-item-info">
-                        <h2>
+                        <span class="font-bold">
                           {{ link.title | escape }}
-                        </h2>
+                        </span>
 
                         {% if link.object.description %}
                           <p class="text-body--extra-small">{{ link.object.description |  strip_html }}</p>
@@ -257,9 +257,9 @@
                   {% endif %}  
               
                   <div class="parent-menu-item-info">  
-                  <h2>  
-                    {{ link.title | escape }}  
-                  </h2>  
+                  <span class="font-bold">
+                    {{ link.title | escape }}
+                  </span>
               
                   {% if link.object.content %}  
                     <p class="text-body--extra-small">{{ link.object.content | strip_html }}</p>  

@@ -180,26 +180,30 @@
           {% for block in section.blocks %}
 
             {% if block.type == 'collection_info' %}
-
+              
               <div class="collection-info-block block-{{ block.id }}">
                 <h1 class="collection-info-block__title text-link-underline-custom" style="text-transform: {{ block.settings.text_case }};">
                   <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
                   {{- collection.title | escape -}}
                 </h1>
-                <div class="collection-info-block__description">
-                  
-                  {% render 'show-more-text-content',
-                    item_description: block.settings.collection_description,
-                    show_more_type: block.settings.show_more_type,
-                    show_more_text: block.settings.show_more_text, ,
-                    show_less_text: block.settings.show_less_text,
-                    description_limit: block.settings.description_limit 
-                  %}
 
-                 
-                </div>
+                {% if block.settings.collection_description != blank %}
+                  <div class="collection-info-block__description">
+                    
+                    {% render 'show-more-text-content',
+                      item_description: block.settings.collection_description,
+                      show_more_type: block.settings.show_more_type,
+                      show_more_text: block.settings.show_more_text, ,
+                      show_less_text: block.settings.show_less_text,
+                      description_limit: block.settings.description_limit 
+                    %}
+
+                  
+                  </div>  
+                {% endif %}
+                
               </div>
-              {% endif %}
+            {% endif %}
           {% endfor %}
 
 

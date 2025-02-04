@@ -66,7 +66,7 @@
       <!-- Cart Header -->
       <div class="drawer__header">
         <div class="drawer__header-heading-product-count-wrapper">
-          <a href="{{ routes.cart_url }}" class="drawer__heading text-link-underline-custom full-unstyled-link h2">
+          <a href="{{ routes.cart_url }}" class="drawer__heading text-link-underline-custom full-unstyled-link h2 text-capitalize">
             {{ 'sections.cart.title' | t }}
           </a>
           <span class="text-body--small font-light">
@@ -590,9 +590,9 @@
           {% if settings.show_savings_on_promo and promo_product_present %}        
             {% if profit_on_promo_products > 0 %}
               <div class="totals totals-savings {% if settings.show_separator_line_below_savings %} totals-savings-bottom-border {% endif %}">  
-                <h3 class="totals__savings text-capitalize font-medium">  
+                <span class="totals__savings text-capitalize font-medium">  
                   {{ 'sections.cart.savings_on_promos' | t: profit_on_promo_products: profit_on_promo_products }}
-                </h3>  
+                </span>  
                 <span class="h4 font-light">  
                   {{ profit_on_promo_products |  money }}
                 </span>  
@@ -603,9 +603,9 @@
           <!-- Totals -->
           <div class="totals" role="status">
             <div class="heading-with-note">
-              <h2 class="totals__total">
+              <span class="totals__total font-bold">
                 {{ 'sections.cart.estimated_total' | t }}
-              </h2>
+              </span>
               {% if cart.taxes_included %}
                 <span class="VAT-note">
                    {{ 'products.product.taxes_included_short' | t }}
@@ -619,9 +619,9 @@
           {% if settings.show_subtotal_in_cart %}
             <div class="totals totals-subtotal">
               <div class="heading-with-note">
-                <h3 class="totals__subtotal font-medium no-default-spacing"> 
+                <span class="totals__subtotal font-medium no-default-spacing"> 
                   {{ 'sections.cart.subtotal' | t }}
-                </h3>
+                </span>
                 {% if cart.taxes_included %}
                   <span class="VAT-note">
                     {{ 'products.product.taxes_excluded' | t }}

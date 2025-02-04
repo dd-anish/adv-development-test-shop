@@ -700,13 +700,13 @@
 
 .card__heading-text-truncate {
   display: -webkit-box;
-  /* min-height: 3.2rem; */
   min-height: 3.8rem;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
+  line-height: 1.2;
 }
 
 @media screen and (min-width: 750px) {
