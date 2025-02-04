@@ -2394,7 +2394,13 @@ input[type='checkbox'] {
 
 .header__heading-link .h2 {
   line-height: 1;
-  color: rgba(var(--color-foreground), 0.75);
+  color: rgba(var(--color-foreground), 0.90);
+  padding: 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: baseline;
 }
 
 .header__heading-logo {
