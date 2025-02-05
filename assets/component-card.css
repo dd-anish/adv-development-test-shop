@@ -706,12 +706,12 @@
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-height: 1.2;
 }
 
 @media screen and (min-width: 750px) {
   .card__heading-text-truncate {
     min-height: 4rem;
+    line-height: 1.2;
   } 
 
   .price-add-to-cart-container{
