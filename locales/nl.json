@@ -224,7 +224,7 @@
       "show_more": "Meer weergeven",
       "show_less": "Minder weergeven",
       "filter_and_operator_subtitle": "Alles matchen",
-      "no_active_filters": "Geen actieve filters",
+      "no_active_filters": "Geen actieve filters"
     }
   },
   "templates": {
@@ -295,7 +295,7 @@
     "sticky_collection": {
       "view_all": "Alles bekijken",
       "view_all_label": "Bekijk alle producten in de collectie {{ collection_name }}",
-      "view_collection_page": "Bekijk {{ collection_name }} pagina"
+      "view_collection_page": "Alle producten"
     },
     "cart": {
       "title": "Je winkelwagen",
@@ -351,7 +351,7 @@
       "title": "Collectie",
       "empty": "Geen producten gevonden",
       "use_fewer_filters_html": "Minder filters gebruiken of <a class=\"{{ class }}\" href=\"{{ link }}\">alles verwijderen</a>",
-      "go_to_home_page_html": "<a class=\"{{ class }}\" href=\"{{ link }}\"> Ga naar de startpagina </a>",
+      "go_to_home_page_html": "<a class=\"{{ class }}\" href=\"{{ link }}\"> Ga naar de startpagina </a>"
     },
     "video": {
       "load_video": "Video laden: {{ description }}"
