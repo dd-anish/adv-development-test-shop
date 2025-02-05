@@ -32,6 +32,17 @@
         }
     {% endif %}    
 
+    {% if settings.sticky_collection_menu_overflow_behaviour == 'no_text_wrap' %}
+        .sticky-collection-menu .list-menu--inline li {
+            /* flex-shrink: 0; */
+            white-space: nowrap;
+        }
+    {% elsif settings.sticky_collection_menu_overflow_behaviour == 'wrap_nav_item_to_fit_in_container' %}
+        .sticky-collection-menu .list-menu.list-menu--inline{
+            flex-wrap: wrap;
+        }
+    {% endif %}  
+
 {% endstyle %}
 
 <div class="sticky-collection-menu">

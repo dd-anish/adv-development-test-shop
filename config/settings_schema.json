@@ -296,6 +296,26 @@
         "label": "Sticky Collection Color Scheme"
       },
       {
+        "type": "select",
+        "id": "sticky_collection_menu_overflow_behaviour",
+        "options": [
+          {
+            "value": "fit_items_in_container",
+            "label": "Fit Items in Container"
+          },
+          {
+            "value": "wrap_nav_item_to_fit_in_container",
+            "label": "Wrap Item to Fit in Container"
+          },
+          {
+            "value": "no_text_wrap",
+            "label": "No Text Wrap"
+          }
+        ],
+        "label": "Sticky Collection Menu Overflow Behaviour",
+        "default": "fit_items_in_container",
+      },
+      {
         "type": "color",
         "id": "sticky_collection_mega_menu_background",
         "label": "Sticky Collection Mega Menu Background",
