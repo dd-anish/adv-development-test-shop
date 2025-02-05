@@ -116,11 +116,16 @@
         </div>
 
       {% if show_tax_price %}
-        {% assign tax_price = price | times: 0.21  %}
+        {% assign price_without_tax = price |  divided_by: 1.21 %}
+        {% assign tax_price = price | minus: price_without_tax  %}
         <span class="price_without_tax {{ tax_price_font_size }} {{ tax_price_font_weight }} {% if tax_text_uppercase %} text-uppercase {% endif %}" style="margin-left: {{ tax_price_margin_left  }}px; margin-top: {{ tax_price_margin_top }}px;">
 
           <span style="flex: none;">
-            {{ price |  minus: tax_price | money }}
+            {{ price_without_tax | money }}
+          </span>
+
+          <span class="text-body--extra-small font-light visually-hidden">
+            Product Tax Price: {{ tax_price | money }}
           </span>
 
           <p class="tax_excluded-text no-default-spacing {{ tax_price_font_weight }} {{ tax_text_font_size }}">
