@@ -33,7 +33,7 @@
     "nested_breadcrumb_option": "show_only_nested_collection",
     "breadcrumb_radius": 0,
     "breadcrumb_background": "rgba(0,0,0,0)",
-    "breadcrumb_padding": 8,
+    "breadcrumb_padding": 2,
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
     "buttons_radius": 10,
