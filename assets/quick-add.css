@@ -362,7 +362,7 @@ quick-add-modal .product-form__buttons {
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 375px) {
   .quick-add__submit {
     padding: 0.5rem 1.5rem;
   }

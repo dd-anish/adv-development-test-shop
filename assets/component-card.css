@@ -427,7 +427,7 @@
   padding: 0 1rem;
 }
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 375px) {
   .card--standard > .card__content {
     padding: 0 0.1rem 0 0.5rem;
   }
@@ -821,6 +821,13 @@
   }
 
   
+}
+
+@media screen and (max-width: 350px){
+  .variants-stocks-status-container{
+    flex-direction: column-reverse;
+    align-items: start;
+  }
 }
 
 /* Bundle Product */
