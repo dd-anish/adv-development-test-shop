@@ -296,6 +296,26 @@
         "label": "Sticky Collection Color Scheme"
       },
       {
+        "type": "select",
+        "id": "sticky_collection_menu_overflow_behaviour",
+        "options": [
+          {
+            "value": "fit_items_in_container",
+            "label": "Fit Items in Container"
+          },
+          {
+            "value": "wrap_nav_item_to_fit_in_container",
+            "label": "Wrap Item to Fit in Container"
+          },
+          {
+            "value": "no_text_wrap",
+            "label": "No Text Wrap"
+          }
+        ],
+        "label": "Sticky Collection Menu Overflow Behaviour",
+        "default": "fit_items_in_container",
+      },
+      {
         "type": "color",
         "id": "sticky_collection_mega_menu_background",
         "label": "Sticky Collection Mega Menu Background",
@@ -319,6 +339,62 @@
         "step": 100,
         "label": "Sticky Collection Header Menu Font Weight",
         "default": 600
+      },
+      {
+        "type": "header",
+        "content": "Box Shadow"
+      },
+      {
+        "type": "checkbox",
+        "id": "sticky_collection_menu_shadow",
+        "label": "Enable Sticky Collection Menu Shadow",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "sticky_collection_menu_shadow_color",
+        "label": "Sticky Collection Shadow Color",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "sticky_collection_menu_shadow_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Sticky Collection Shadow Opacity",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "sticky_collection_menu_shadow_horizontal_offset",
+        "min": -12,
+        "max": 12,
+        "step": 2,
+        "unit": "px",
+        "label": "Sticky Collection Shadow Horizontal Offset",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "sticky_collection_menu_shadow_vertical_offset",
+        "min": -12,
+        "max": 12,
+        "step": 2,
+        "unit": "px",
+        "label": "Sticky Collection Shadow Vertical Offset",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "sticky_collection_menu_shadow_blur_radius",
+        "min": 0,
+        "max": 20,
+        "step": 5,
+        "unit": "px",
+        "label": "Sticky Collection Shadow Blur",
+        "default": 5
       }
     ]
 

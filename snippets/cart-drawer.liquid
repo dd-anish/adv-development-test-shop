@@ -628,12 +628,15 @@
                   </span>
                 {% endif %}
               </div>
-              {% assign tax_custom = cart.total_price | times:0.21 %}
+              {% assign sub_total = cart.total_price | divided_by: 1.21 %}
+              {% assign tax_custom = cart.total_price | minus:sub_total %}
               <span class="h4 font-semibold">
   
-                {% comment %} {{ cart.total_price | divided_by: 1.21 | money_with_currency }} {% endcomment %}
-                {{ cart.total_price | minus: tax_custom | money }}
-  
+                {{ sub_total | money }}
+    
+                <span class="text-body--extra-small font-regular visually-hidden">
+                  {{ tax_custom | money }}
+                </span>
               </span>
             </div>
           {% endif %}

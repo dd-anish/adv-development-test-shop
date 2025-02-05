@@ -1571,9 +1571,10 @@ a.product__text {
 
 .variant_picker_price_container{
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: space-between;
   align-items: end;
+  flex-wrap: wrap;
 }
 
 
