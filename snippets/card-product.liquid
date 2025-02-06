@@ -218,16 +218,20 @@
                 {% if show_product_variants %}
                   <div class="variants">
                    
-                    {% if card_product.type != blank %}
+                    {% if card_product.type != blank and card_product.type == 'bundle' %}
                       <span class="bundle-product-tag font-semibold">
                         {{ card_product.type | upcase }}
                       </span>
                     {% endif %}
 
-                    {% if card_product.variants.size > 1 %}
+                    {% comment %} {% if card_product.variants.size > 0 %} {% endcomment %}
+                    {% unless card_product.has_only_default_variant %}
             
-                    <!-- Custom Snippet for Product card to show variants in Shop View -->
-                    {% render 'card-product-variant-picker', product: card_product, block: block, product_form_id: product_form_id %}
+                      <!-- Custom Snippet for Product card to show variants in Shop View -->
+                      {% render 'card-product-variant-picker', 
+                        product: card_product, 
+                        block: block, 
+                        product_form_id: product_form_id %}
  
                     {% else %}
                       {% comment %} <span class="caption">
@@ -243,7 +247,7 @@
                         </span>
                       </div>
 
-                    {% endif %}
+                    {% endunless %}
                   </div>
                 {% endif %}
 
