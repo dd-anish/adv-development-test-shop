@@ -197,8 +197,6 @@
                       show_less_text: block.settings.show_less_text,
                       description_limit: block.settings.description_limit 
                     %}
-
-                  
                   </div>  
                 {% endif %}
                 
@@ -208,7 +206,7 @@
 
 
           <!-- Mobile View: Product Count and Filter Button -->
-          <div class="filter-button-container {% if collection.products.size == 0 %} hidden {% endif %}">
+          <div class="filter-button-container {% if collection.products.size == 0 or section.settings.show_search_bar_in_collection_page %} hidden {% endif %}">
             {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
 
               <!-- Product Count for Mobile besides Filter Button -->
