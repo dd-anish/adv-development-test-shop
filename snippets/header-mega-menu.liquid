@@ -67,11 +67,14 @@
                 class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
                 tabindex="-1"
               >
+                {% assign view_all_type = settings.sticky_collection_menu_view_all_type %}
+                {% assign translation_key = 'sections.sticky_collection.' | append: view_all_type %}
+
                 <a href="{{ link.url }}" class="mega-menu__collection-title full-unstyled-link mega-menu__link text-uppercase font-semibold
                 {%- if link.current %} mega-menu__link--active {% endif %}
                 ">
                   <span>
-                    {{ 'sections.sticky_collection.view_collection_page' | t: collection_name: link.title }}
+                    {{ translation_key | t: collection_name: link.title }}
                   </span>
                 </a>
                 

@@ -2,9 +2,10 @@
 
 <style>
   .breadcrumbs {
-    padding-top:{{ settings.breadcrumb_padding }}px;
-    padding-bottom:{{ settings.breadcrumb_padding }}px;
+    padding-top:{{ settings.breadcrumb_padding_top }}px;
+    padding-bottom:{{ settings.breadcrumb_padding_bottom }}px;
   }
+
 </style>
 
 {%- unless template != 'collection' and template != 'product' -%}
@@ -21,7 +22,7 @@
             <span class="svg-wrapper">
               {{- 'icon-chevron-left.svg' | inline_asset_content -}}
             </span>
-            <a class="breadcrumbs__link" href="{{ settings.home_breadcrumb_url }}">
+            <a class="breadcrumbs__link one-line-text-truncate" href="{{ settings.home_breadcrumb_url }}">
               {{ settings.home_breadcrumb_text | strip_html }}
             </a>
           </li>
@@ -44,14 +45,14 @@
                   {% for collection_list in nested_collection.value %}
                     <li class="breadcrumbs__item">
                       <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
-                      <a class="breadcrumbs__link" href="{{ collection_list.url }}"> {{ collection_list.title }}</a>
+                      <a class="breadcrumbs__link one-line-text-truncate" href="{{ collection_list.url }}"> {{ collection_list.title }}</a>
                     </li>
                   {% endfor %}
                 {% endif %}
                 {% unless collection.url contains 'collections/all' %}  
                   <li class="breadcrumbs__item">  
                     <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>  
-                    <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>  
+                    <a class="breadcrumbs__link one-line-text-truncate" href="{{ collection.url }}">{{ collection.title }}</a>  
                   </li>  
                 {% endunless %}  
               {% else %}
@@ -81,7 +82,7 @@
                 <!-- Immediate Parent Collection of Product -->
                 <li class="breadcrumbs__item">
                   <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
-                  <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+                  <a class="breadcrumbs__link one-line-text-truncate" href="{{ collection.url }}">{{ collection.title }}</a>
                 </li>
               {% else %}
                
@@ -91,7 +92,7 @@
                     {% for collection_list in collection.metafields.custom.nested_collection_for_breadcrumb.value %}  
                       
                       <li class="breadcrumbs__item">  
-                      <a class="breadcrumbs__link" href="{{ collection_list.url }}"> {{ collection_list.title }}</a>  
+                      <a class="breadcrumbs__link one-line-text-truncate" href="{{ collection_list.url }}"> {{ collection_list.title }}</a>  
                       <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>  
                       </li>  
                     {% endfor %}
@@ -106,7 +107,7 @@
                   <!-- Immediate Parent Collection of Product -->
                   <li class="breadcrumbs__item">
                     <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
-                    <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+                    <a class="breadcrumbs__link one-line-text-truncate" href="{{ collection.url }}">{{ collection.title }}</a>
                   </li>
                 {% else %}
                     Test else
@@ -128,7 +129,7 @@
               {% for collection_list in nested_collection.value %}
                 <li class="breadcrumbs__item">
                   <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
-                  <a class="breadcrumbs__link" href="{{ collection_list.url }}">{{ collection_list.title }}</a>
+                  <a class="breadcrumbs__link one-line-text-truncate" href="{{ collection_list.url }}">{{ collection_list.title }}</a>
                 </li>
               {% endfor %}
             {% endif %}
@@ -136,7 +137,7 @@
               {% unless collection.url contains 'collections/all' %}  
                 <li class="breadcrumbs__item">  
                   <span class="svg-wrapper">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>  
-                  <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>  
+                  <a class="breadcrumbs__link one-line-text-truncate" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>  
                 </li>  
               {% endunless %}
 

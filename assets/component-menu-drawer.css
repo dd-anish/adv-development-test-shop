@@ -181,7 +181,7 @@ Grand Child Menu - hxs =  1.3rem
   position: absolute;
   transform: translateX(-100%);
   visibility: hidden;
-  z-index: 3;
+  z-index: 30;
   left: 0;
   top: 100%;
   width: 100%;

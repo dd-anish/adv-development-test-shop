@@ -293,9 +293,9 @@
       }
     },
     "sticky_collection": {
-      "view_all": "Alles bekijken",
+      "view_all": "Alle producten",
       "view_all_label": "Bekijk alle producten in de collectie {{ collection_name }}",
-      "view_collection_page": "Alle producten"
+      "view_collection_page": "Bekijk {{ collection_name }} pagina"
     },
     "cart": {
       "title": "Je winkelwagen",

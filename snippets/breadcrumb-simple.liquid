@@ -1,5 +1,12 @@
 {{ "component-breadcrumb.css" |  asset_url | stylesheet_tag }}
 
+<style>
+  .breadcrumbs {
+    padding-top:{{ settings.breadcrumb_padding_top }}px;
+    padding-bottom:{{ settings.breadcrumb_padding_bottom }}px;
+  }
+  
+</style>
 {% assign template = template.name %}
 
 {%- unless template == 'index' or template == '404' or template == 'cart' or template == 'list-collections' or template == 'page.contact' or template == 'page.terms-and-conditions'   -%}
@@ -35,7 +42,12 @@
           {%- when 'product' -%}
           {%- if collection.url -%}
             <li class="breadcrumbs__item">
-              {{ collection.title | link_to: collection.url }}
+              <a
+                class="breadcrumbs__link"
+                href="{{ collection.url }}"
+              >
+                {{ collection.title }}
+              </a>
               <span class="svg-wrapper">
                 {{- 'icon-chevron-right.svg' | inline_asset_content -}}
               </span>
