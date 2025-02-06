@@ -300,7 +300,7 @@
       }
     },
     "sticky_collection": {
-      "view_all": "View all",
+      "view_all": "All Products",
       "view_all_label": "View all products in the {{ collection_name }} collection",
       "view_collection_page": "View {{ collection_name }} page"
     },
