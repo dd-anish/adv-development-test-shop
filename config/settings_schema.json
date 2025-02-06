@@ -291,6 +291,26 @@
         "label": "Sticky Collection Menu",
       },
       {
+        "type": "select",
+        "id": "sticky_collection_menu_view_all_type",
+        "options": [
+          {
+            "value": "view_all",
+            "label": "View All"
+          },
+          {
+            "value": "view_collection_page",
+            "label": "View Collection Page"
+          },
+          {
+            "value": "view_all_label",
+            "label": "View All Long"
+          }
+        ],
+        "label": "Sticky Collection Menu View All Type",
+        "default": "view_all",
+      },
+      {
         "type": "color_scheme",
         "id": "sticky_collection_color_scheme",
         "label": "Sticky Collection Color Scheme"
