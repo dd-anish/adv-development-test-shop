@@ -49,7 +49,7 @@
 
 
 {% if collection.metafields.custom.main_collection and collection.all_products_count > 0  and block.settings.offer_title != blank %}
-    <div class="collection-offer-wrapper">
+    <div class="collection-offer-wrapper {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in {% endif %}">
         <div class="collection-offer-container collection-offer-container-{{ block.id }} block-{{ block.id }} color-{{ block.settings.color_scheme }}">
         
             {% if block.settings.offer_image %}
