@@ -33,7 +33,8 @@
     "nested_breadcrumb_option": "show_only_nested_collection",
     "breadcrumb_radius": 0,
     "breadcrumb_background": "rgba(0,0,0,0)",
-    "breadcrumb_padding": 2,
+    "breadcrumb_padding_top": 12,
+    "breadcrumb_padding_bottom": 6,
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
     "buttons_radius": 10,
@@ -149,6 +150,7 @@
     "show_sale_discount_percentage_in_cart": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-f0072fee-2089-45cd-8bcb-aa17c05b11eb",
+    "breadcrumb_padding": 2,
     "show_promo_produuct_original_price_total": false,
     "sections": {
       "main-password-header": {
