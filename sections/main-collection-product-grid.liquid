@@ -404,40 +404,11 @@
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'collection_offer' %}
+                {% render 'collection-offer',
+                  block: block,
+                  collection: collection
+                %}
                 
-                {% if collection.metafields.custom.main_collection and collection.all_products_count > 0 %}
-
-                  <div class="collection-offer-container block-{{ block.id }} color-{{ block.settings.color_scheme }}">
-                    
-                    {% if block.settings.offer_image %}
-                      <div class="collection-offer-image">
-                        {{ block.settings.offer_image |  image_url: width: 400 |  image_tag }}   
-                      </div>
-                    {% endif %}
-
-                  
-  
-                    <div class="collection-offer-content {% if block.settings.offer_image == blank %} center align-center {% else %} align-start {% endif %} ">
-                      <div class="collection-offer-content-text {% if block.settings.offer_image == blank %} center {% endif %}">
-                        <div class="collection-offer-title h2">
-                          {{ block.settings.offer_title }}
-                        </div>
-              
-                        <div class="collection-offer-description">
-                          {{ block.settings.offer_description }}                        
-                        </div>
-                      </div>
-  
-                      
-                      <a href="{{ block.settings.offer_button_link }} " class="button button--primary collection-offer-button">
-  
-                        {{ block.settings.offer_button_label }}
-                      </a>
-                      
-                    </div>
-                   
-                  </div>
-                {% endif %}
             {% endcase %}
           {% endfor %}
         </div>
@@ -705,13 +676,109 @@
         {
           "type": "url",
           "id": "offer_button_link",
-          "label": "Button Link"
+          "label": "Button Link",
+          "default": "{{ collection.metafields.custom.offer_button_link.value }}"
         },
         {
           "type": "color_scheme",
           "id": "color_scheme",
           "label": "Color Scheme",
           "default": "scheme-1"
+        },
+        {
+          "type": "header",
+          "content": "Block Style Settings"
+        },
+        {
+          "type": "range",
+          "id": "gap_between_image_and_content",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Gap Between Image and Content",
+          "default": 50,
+          "info": "30% is reduced for mobile"
+        },
+        {
+          "type": "header",
+          "content": "Block Offer Content Settings"
+        },
+        {
+          "type": "select",
+          "id": "justify_content",
+          "options": [
+            {
+              "value": "space-around",
+              "label": "Space Around"
+            },
+            {
+              "value": "space-between",
+              "label": "Space Between"
+            },
+            {
+              "value": "space-evenly",
+              "label": "Space Evenly"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "flex-start",
+              "label": "Flex Start"
+            },
+            {
+              "value": "flex-end",
+              "label": "Flex End"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ],
+          "default": "space-evenly",
+          "label": "Block Justify Content"
+        },
+        {
+          "type": "select",
+          "id": "align_items",
+          "options": [
+            {
+              "value": "start",
+              "label": "Start"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "end",
+              "label": "End"
+            }
+          ],
+          "default": "start",
+          "label": "Block Align Items"
+        },
+        {
+          "type": "select",
+          "id": "align_items_mobile",
+          "options": [
+            {
+              "value": "start",
+              "label": "Start"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "end",
+              "label": "End"
+            }
+          ],
+          "default": "center",
+          "label": "Block Align Items Mobile"
         },
         {
           "type": "header",

@@ -1,0 +1,101 @@
+{% style %}
+    
+    .collection-offer-container-{{ block.id }}{
+        gap: {{ block.settings.gap_between_image_and_content | times: 0.3 | round: 0 }}px;
+    }
+
+    .collection-offer-content-{{ block.id }}{
+        justify-content: {{ block.settings.justify_content }};
+        align-items: {{ block.settings.align_items_mobile }};
+    }
+
+    @media screen and (min-width: 425px){
+        .collection-offer-container-{{ block.id }}{
+            gap: {{ block.settings.gap_between_image_and_content | round: 0 }}px;
+        }
+
+        .collection-offer-content-{{ block.id }}{
+            align-items: {{ block.settings.align_items }};
+        }
+    }
+
+    {% if block.settings.align_items_mobile == 'center' %} 
+        @media screen and (max-width: 425px){
+            .collection-offer-content-text-{{ block.id }}{
+                text-align: center;
+            } 
+        }
+    {% endif %}
+
+    {% if block.settings.align_items_mobile == 'start' %} 
+        @media screen and (max-width: 425px){
+            .collection-offer-content-text-{{ block.id }}{
+                text-align: left;
+            } 
+        }
+    {% endif %}
+
+    {% if block.settings.align_items_mobile == 'end' %} 
+        @media screen and (max-width: 425px){
+            .collection-offer-content-text-{{ block.id }}{
+                text-align: right;
+            } 
+        }
+    {% endif %}
+
+{% endstyle %}
+
+
+
+
+{% if collection.metafields.custom.main_collection and collection.all_products_count > 0  and block.settings.offer_title != blank %}
+    <div class="collection-offer-wrapper">
+        <div class="collection-offer-container collection-offer-container-{{ block.id }} block-{{ block.id }} color-{{ block.settings.color_scheme }}">
+        
+            {% if block.settings.offer_image %}
+                <div class="collection-offer-image">
+                {{ block.settings.offer_image |  image_url: width: 400 |  image_tag }}   
+                </div>
+            {% endif %}
+        
+            <div class="{% if block.settings.offer_image == blank %} 
+                            {% if block.settings.align_items == 'center' %} center align-center {% endif %} 
+                            {% if block.settings.align_items == 'start' %} left align-start {% endif %} 
+                            {% if block.settings.align_items == 'end' %} right align-end {% endif %}
+                        {% else %} 
+                            collection-offer-content collection-offer-content-{{ block.id }} 
+                        {% endif %} ">
+
+                <div class="collection-offer-content-text 
+                    {% if block.settings.align_items == 'center' %} center {% endif %} 
+                    {% if block.settings.align_items == 'start' %} left {% endif %} 
+                    {% if block.settings.align_items == 'end' %} right {% endif %} 
+                    collection-offer-content-text-{{ block.id }}"
+                >
+                
+                    {% if block.settings.offer_title %}
+                        <div class="collection-offer-title h2">
+                        {{ block.settings.offer_title }}
+                        </div>
+                    {% endif %}
+            
+                    {% if block.settings.offer_description %}
+                        <div class="collection-offer-description">
+                            {{ block.settings.offer_description }}                        
+                        </div>
+                    {% endif %}
+                </div>
+                    
+                    
+                {% if block.settings.offer_button_link %}  
+                    <a href="{{ block.settings.offer_button_link }} " class="button button--primary collection-offer-button">
+                        
+                        {{ block.settings.offer_button_label }}
+                    </a>
+                {% endif %}
+                
+            </div>
+        
+        </div>
+    </div>
+{% endif %}
