@@ -43,18 +43,18 @@
             "padding_right": 0
           }
         },
-        "collection_offer_jCbJ4y": {
+        "collection_offer_8LYbVX": {
           "type": "collection_offer",
           "settings": {
-            "offer_title": "All Offer",
-            "offer_description": "<p>The amazing powerbank is on sale till 20th Feb 2025</p>",
-            "offer_image": "shopify://shop_images/OG_Elektronica_Power_Bank_Romoss_Romoss_PEA30_30W_QC3_0_PD_SCP_30000mAh_2_d7eab778-2384-442c-bccb-6612f98f6e7b.webp",
-            "offer_button_label": "Grab Deal Now",
-            "offer_button_link": "shopify://products/elektronica-powerbank-romoss-pea30-30000mah-zwart",
-            "color_scheme": "scheme-1",
+            "offer_title": "{{ collection.metafields.custom.offer_title.value }}",
+            "offer_description": "{{ collection.metafields.custom.offer_description | metafield_tag }}",
+            "offer_image": "{{ collection.metafields.custom.offer_image.value }}",
+            "offer_button_label": "Shop Now",
+            "offer_button_link": "{{ collection.metafields.custom.offer_link.value }}",
+            "color_scheme": "scheme-966de08a-a9f0-4e7b-99fc-d2a727bd7470",
             "gap_between_image_and_content": 50,
             "justify_content": "space-evenly",
-            "align_items": "start",
+            "align_items": "center",
             "align_items_mobile": "center",
             "border_radius_top_left": 10,
             "border_radius_top_right": 10,
@@ -66,15 +66,15 @@
             "padding_right": 18
           }
         },
-        "collection_offer_8LYbVX": {
+        "collection_offer_jCbJ4y": {
           "type": "collection_offer",
           "settings": {
-            "offer_title": "{{ collection.metafields.custom.offer_title.value }}",
-            "offer_description": "{{ collection.metafields.custom.offer_description | metafield_tag }}",
-            "offer_image": "{{ collection.metafields.custom.offer_image.value }}",
-            "offer_button_label": "Shop Now yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
-            "offer_button_link": "{{ collection.metafields.custom.offer_link.value }}",
-            "color_scheme": "scheme-966de08a-a9f0-4e7b-99fc-d2a727bd7470",
+            "offer_title": "All Offer",
+            "offer_description": "<p>The amazing powerbank is on sale till 20th Feb 2025</p>",
+            "offer_image": "shopify://shop_images/OG_Elektronica_Power_Bank_Romoss_Romoss_PEA30_30W_QC3_0_PD_SCP_30000mAh_2_d7eab778-2384-442c-bccb-6612f98f6e7b.webp",
+            "offer_button_label": "Grab Deal Now",
+            "offer_button_link": "shopify://products/elektronica-powerbank-romoss-pea30-30000mah-zwart",
+            "color_scheme": "scheme-5",
             "gap_between_image_and_content": 50,
             "justify_content": "space-evenly",
             "align_items": "start",
@@ -92,8 +92,8 @@
       },
       "block_order": [
         "collection_info_jPbiMn",
-        "collection_offer_jCbJ4y",
-        "collection_offer_8LYbVX"
+        "collection_offer_8LYbVX",
+        "collection_offer_jCbJ4y"
       ],
       "settings": {
         "show_search_bar_in_collection_page": false,
@@ -107,7 +107,6 @@
         "show_product_stock_status": true,
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
         "quick_add": "standard",
         "show_strikethrough_price": true,
         "current_price_font_weight": "font-semibold",
