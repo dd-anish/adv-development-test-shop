@@ -62,7 +62,7 @@
       "type": "featured-collection",
       "custom_css": [],
       "settings": {
-        "title": "<a href=\"/collections/best-seller\" title=\"Best Seller\">ONTDEK ONZE BES</a>TSELLERS",
+        "title": "ONTDEK ONZE BESTSELLERS",
         "heading_size": "h1",
         "clickable_title": true,
         "description": "",
