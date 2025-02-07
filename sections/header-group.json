@@ -87,7 +87,7 @@
         "vertical_alignment": "center",
         "menu": "main-menu",
         "menu_type_desktop": "mega",
-        "mobile-menu": "v1-collection-list",
+        "mobile-menu": "collections-list",
         "mobile-bundles-menu": "mobile-bundles-menu",
         "enable_bundle_background": true,
         "bundle_background_color": "#c9fed0",
