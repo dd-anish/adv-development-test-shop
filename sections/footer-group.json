@@ -47,7 +47,7 @@
           "type": "link_list",
           "settings": {
             "heading": "ALGEMENE INFO",
-            "menu": "algemene-info",
+            "menu": "footer-algemene-info",
             "hide_in": "none",
             "width_of_block": 100,
             "grid_row_span_mobile": "1",
