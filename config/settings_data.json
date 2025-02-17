@@ -24,7 +24,7 @@
     "animations_reveal_on_scroll": true,
     "animations_hover_elements": "none",
     "sticky_collection_menu_opening_type": "hover",
-    "sticky_collection_menu": "v1-collection-list",
+    "sticky_collection_menu": "collection-list-desktop",
     "sticky_collection_color_scheme": "scheme-e9467d38-c728-48cb-8aad-b70859d6ce01",
     "text_decoration_spacing": 5,
     "breadcrumb_type": "nested",
